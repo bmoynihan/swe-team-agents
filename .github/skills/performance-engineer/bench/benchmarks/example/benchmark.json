@@ -1,0 +1,15 @@
+{
+  "name": "example-parse",
+  "cwd": ".",
+  "fixture": "../../fixtures/example/input.json",
+  "warmup": 3,
+  "runs": 10,
+  "env": {},
+  "command": [
+    "python3",
+    "target.py",
+    "--input",
+    "$BENCH_FIXTURE"
+  ]
+}
+

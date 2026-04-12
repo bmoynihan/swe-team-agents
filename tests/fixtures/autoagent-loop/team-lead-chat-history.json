@@ -1,0 +1,67 @@
+{
+    "conversationId": "team-lead-shadow-session",
+    "messages": [
+        {
+            "ts": 1,
+            "message": {
+                "author": {
+                    "role": "assistant"
+                },
+                "content": [
+                    {
+                        "type": "text",
+                        "text": "baseline reviewed the governed artifacts and kept the deterministic boundary."
+                    }
+                ],
+                "metadata": {
+                    "candidate": {
+                        "id": "baseline"
+                    }
+                },
+                "tool_calls": [
+                    {
+                        "id": "call-1",
+                        "type": "function",
+                        "function": {
+                            "name": "read_file"
+                        }
+                    }
+                ]
+            },
+            "result": {
+                "status": "completed"
+            }
+        },
+        {
+            "ts": 2,
+            "message": {
+                "author": {
+                    "role": "assistant"
+                },
+                "content": [
+                    {
+                        "type": "text",
+                        "text": "relax-no-product-code-boundary tried a looser boundary and failed review."
+                    }
+                ],
+                "metadata": {
+                    "candidate": {
+                        "id": "relax-no-product-code-boundary"
+                    }
+                },
+                "tool_calls": [
+                    {
+                        "id": "call-2",
+                        "type": "function",
+                        "function": {
+                            "name": "apply_patch"
+                        }
+                    }
+                ]
+            },
+            "result": {
+                "status": "failed"
+            }
+        }
+    ]
+}

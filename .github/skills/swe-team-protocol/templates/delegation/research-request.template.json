@@ -1,0 +1,16 @@
+{
+  "type": "ResearchRequest",
+  "goal": "",
+  "context": {
+    "issueUrl": "",
+    "constraints": []
+  },
+  "asks": [
+    "2-3 hypotheses with confidence",
+    "minimal repro steps",
+    "suspect files and rationale"
+  ],
+  "outputFormat": "Short summary + one JSON ResearchReport in a fenced code block"
+}
+
+

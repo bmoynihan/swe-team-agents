@@ -1,0 +1,86 @@
+{
+  "specVersion": "0.1",
+  "source": {
+    "kind": "github-copilot-agent-profile",
+    "filePath": ".github/agents/example.agent.md",
+    "sourceFormat": "agent-md",
+    "sourceTargets": ["vscode", "github-copilot"],
+    "parserWarnings": [],
+    "rawFrontmatter": {}
+  },
+  "identity": {
+    "id": "example-agent",
+    "name": "example-agent",
+    "displayName": "Example Agent",
+    "description": ""
+  },
+  "behavior": {
+    "systemPrompt": "",
+    "modelPreferences": {
+      "preferred": [],
+      "fallback": []
+    },
+    "visibility": {
+      "pickerVisible": true,
+      "allowSubagentInvocation": false
+    },
+    "routing": {
+      "subagents": {
+        "allowed": []
+      },
+      "handoffs": []
+    }
+  },
+  "capabilities": {
+    "sessionToolPolicy": "allowlist",
+    "rawTools": [],
+    "canonicalTools": {
+      "read": [],
+      "write": [],
+      "shell": [],
+      "search": [],
+      "web": [],
+      "agent": [],
+      "mcp": []
+    },
+    "unresolvedTools": [],
+    "hooks": {
+      "vscodeOnly": [],
+      "unsupported": []
+    }
+  },
+  "integrations": {
+    "mcpServers": []
+  },
+  "runtimeRequirements": {
+    "workspace": {
+      "requiresRepoContext": true,
+      "requiresFilesystem": true
+    },
+    "execution": {
+      "mutationLevel": "read-only",
+      "needsInteractiveAuth": false,
+      "needsBackgroundProcess": false,
+      "networkAccess": "optional"
+    }
+  },
+  "packagingHints": {
+    "preferredTargets": ["copilot-sdk-service", "databricks-app"],
+    "serviceSurfaces": {
+      "restApi": true,
+      "mcp": true
+    },
+    "authProfile": {
+      "interactiveUser": "oauth",
+      "serviceToService": "token-or-oauth"
+    },
+    "publicExposure": {
+      "anonymousAllowed": false
+    }
+  },
+  "conversionReport": {
+    "determinism": "high",
+    "lossyTransforms": [],
+    "manualReviewReasons": []
+  }
+}

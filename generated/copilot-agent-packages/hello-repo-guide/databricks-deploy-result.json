@@ -1,0 +1,8 @@
+{
+  "appName": "hello-repo-guide-app",
+  "url": "https://hello-repo-guide-app-225736506851063.3.azure.databricksapps.com",
+  "appState": "ACTIVE",
+  "deploymentId": "01f12f9bc9c8182aba024d3a41a385c7",
+  "deploymentState": "SUCCEEDED",
+  "sourceCodePath": "/Workspace/Users/bmoynihan@comcast.net/generated/copilot-agent-packages/hello-repo-guide"
+}

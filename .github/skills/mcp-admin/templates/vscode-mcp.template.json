@@ -1,0 +1,29 @@
+{
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "example-api-key",
+      "description": "Example API key (stored securely by VS Code)",
+      "password": true
+    }
+  ],
+  "servers": {
+    "exampleStdioServer": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "REPLACE_ME_PACKAGE"],
+      "env": {
+        "EXAMPLE_API_KEY": "${input:example-api-key}"
+      },
+      "envFile": "${workspaceFolder}/.env.mcp"
+    },
+    "exampleHttpServer": {
+      "type": "http",
+      "url": "https://REPLACE_ME.example.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${input:example-api-key}"
+      }
+    }
+  }
+}
+

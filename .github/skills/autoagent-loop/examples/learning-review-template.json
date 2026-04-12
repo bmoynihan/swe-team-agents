@@ -1,0 +1,56 @@
+{
+    "type": "AutoAgentLearningReview",
+    "reviewer": "human-maintainer",
+    "reviewedAt": "2026-01-01T00:00:00Z",
+    "summary": "Review generated learning drafts and explicitly accept, reject, or defer each one.",
+    "benchmarkDrafts": [
+        {
+            "draftId": "benchmark-fragment-01",
+            "decision": "accept",
+            "notes": "Accept the generated episode observation guard directly without hand-authoring raw checks."
+        },
+        {
+            "draftId": "benchmark-fragment-02",
+            "decision": "accept",
+            "notes": "Example of supplying a custom deterministic check instead of importing the generated suggestion.",
+            "checks": [
+                {
+                    "id": "reviewed-custom-guard",
+                    "type": "contains_text",
+                    "target": "body",
+                    "value": "manager-led multi-agent workflow",
+                    "weight": 0.25
+                }
+            ]
+        },
+        {
+            "draftId": "benchmark-fragment-03",
+            "decision": "defer",
+            "notes": "Keep this draft in review until a maintainer decides whether the pattern should become policy."
+        }
+    ],
+    "mutationDrafts": [
+        {
+            "draftId": "mutation-draft-01",
+            "decision": "accept",
+            "notes": "Promote the source-backed mutation clone."
+        },
+        {
+            "draftId": "mutation-draft-02",
+            "decision": "reject",
+            "notes": "Do not promote this mutation draft into the executable catalog."
+        }
+    ],
+    "policyDrafts": [
+        {
+            "draftId": "policy-draft-01",
+            "decision": "accept",
+            "notes": "Promote this reviewed policy into the separate reviewed policy catalog."
+        },
+        {
+            "draftId": "policy-draft-02",
+            "decision": "defer",
+            "notes": "Keep this policy draft staged until a maintainer decides whether it should become a reviewed policy."
+        }
+    ]
+}

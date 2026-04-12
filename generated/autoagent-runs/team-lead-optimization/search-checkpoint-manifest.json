@@ -1,0 +1,42 @@
+{
+  "type": "AutoAgentCheckpointManifest",
+  "version": 1,
+  "experiment": {
+    "name": "team-lead-optimization",
+    "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/autoagent-experiment.md"
+  },
+  "checkpointPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/search-checkpoint.json",
+  "checkpointVersion": 2,
+  "resumeStage": "post_mutation_search",
+  "candidatePolicy": {
+    "keepStrategy": "score-then-simpler",
+    "searchStrategy": "current_best",
+    "frontierSize": 1
+  },
+  "currentFrontierCandidateIds": [
+    "baseline"
+  ],
+  "deterministicBestCandidateId": "baseline",
+  "inlineCandidateIds": [
+    "baseline"
+  ],
+  "snapshotCandidateCount": 1,
+  "requiredFileCount": 1,
+  "snapshotCandidates": [
+    {
+      "candidateId": "relax-no-product-code-boundary",
+      "iteration": 1,
+      "parentCandidateId": "baseline",
+      "searchDepth": 1,
+      "candidatePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-01-relax-no-product-code-boundary.agent.md",
+      "requiredFiles": [
+        {
+          "targetId": "team-lead",
+          "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-01-relax-no-product-code-boundary.agent.md",
+          "kind": "agent_profile",
+          "primary": true
+        }
+      ]
+    }
+  ]
+}

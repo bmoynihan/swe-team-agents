@@ -1,0 +1,183 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TaskSpecDraft/TaskSpecFinal",
+  "type": "object",
+  "required": [
+    "type",
+    "status",
+    "goal",
+    "constraints",
+    "acceptanceCriteria",
+    "validationPlan",
+    "risks",
+    "rollback",
+    "openQuestions",
+    "traceability",
+    "artifactUpdated"
+  ],
+  "properties": {
+    "type": {
+      "enum": [
+        "TaskSpecDraft",
+        "TaskSpecFinal"
+      ]
+    },
+    "status": {
+      "enum": [
+        "DRAFT",
+        "FINAL"
+      ]
+    },
+    "goal": {
+      "type": "string",
+      "minLength": 1
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    },
+    "acceptanceCriteria": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "statement",
+          "evidence",
+          "negativeCases"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^AC\\d+$"
+          },
+          "statement": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          "negativeCases": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": []
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "validationPlan": {
+      "type": "object",
+      "required": [
+        "fastSubset",
+        "fullSuite",
+        "notes"
+      ],
+      "properties": {
+        "fastSubset": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "fullSuite": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "risk",
+          "mitigation"
+        ],
+        "properties": {
+          "risk": {
+            "type": "string",
+            "minLength": 1
+          },
+          "mitigation": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": false
+      },
+      "default": []
+    },
+    "rollback": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "openQuestions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    },
+    "traceability": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "ac",
+          "tests",
+          "evidence"
+        ],
+        "properties": {
+          "ac": {
+            "type": "string",
+            "pattern": "^AC\\d+$"
+          },
+          "tests": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          "evidence": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "artifactUpdated": {
+      "type": "string",
+      "enum": [
+        "docs/agents/task-spec.md"
+      ]
+    }
+  },
+  "additionalProperties": false
+}
+

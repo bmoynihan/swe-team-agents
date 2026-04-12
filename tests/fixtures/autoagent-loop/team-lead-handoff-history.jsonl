@@ -1,0 +1,1 @@
+{"ts": 5, "event": "handoff", "message": {"author": {"role": "assistant"}, "content": [{"type": "text", "text": "The final reviewed handoff stayed with the baseline path after checking the governed artifacts."}]}, "handoff": {"targetCandidateId": "baseline"}, "tool": {"name": "read_file"}, "result": {"status": "completed"}}

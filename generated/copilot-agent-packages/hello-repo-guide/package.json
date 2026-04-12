@@ -1,0 +1,19 @@
+{
+  "name": "copilot-agent-hello-repo-guide",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Tiny onboarding example agent used to validate the copilot-agent-converter end-to-end packaging flow.\n",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node ./src/server.js",
+    "smoke": "node ./scripts/local_smoke_test.mjs"
+  },
+  "dependencies": {
+    "@github/copilot": "1.0.17",
+    "@github/copilot-sdk": "0.2.0",
+    "express": "5.2.1"
+  }
+}

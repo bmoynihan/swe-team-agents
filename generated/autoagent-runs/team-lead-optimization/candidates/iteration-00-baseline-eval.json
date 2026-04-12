@@ -1,0 +1,189 @@
+{
+  "score": 1.0,
+  "passedChecks": 8,
+  "totalChecks": 8,
+  "checks": [
+    {
+      "id": "sole-coordinator",
+      "type": "contains_text",
+      "targetId": "team-lead",
+      "target": "body",
+      "key": null,
+      "comparator": "contains",
+      "weight": 1.5,
+      "passed": true,
+      "expected": "the only coordinator",
+      "observed": {
+        "containsExpected": true,
+        "targetLength": 2948
+      },
+      "actual": {
+        "containsExpected": true,
+        "targetLength": 2948
+      }
+    },
+    {
+      "id": "specialists-no-peer-coordination",
+      "type": "contains_text",
+      "targetId": "team-lead",
+      "target": "body",
+      "key": null,
+      "comparator": "contains",
+      "weight": 1.0,
+      "passed": true,
+      "expected": "specialists do not coordinate with each other",
+      "observed": {
+        "containsExpected": true,
+        "targetLength": 2948
+      },
+      "actual": {
+        "containsExpected": true,
+        "targetLength": 2948
+      }
+    },
+    {
+      "id": "current-run-contract",
+      "type": "contains_text",
+      "targetId": "team-lead",
+      "target": "body",
+      "key": null,
+      "comparator": "contains",
+      "weight": 1.0,
+      "passed": true,
+      "expected": "`docs/agents/current-run.json`",
+      "observed": {
+        "containsExpected": true,
+        "targetLength": 2948
+      },
+      "actual": {
+        "containsExpected": true,
+        "targetLength": 2948
+      }
+    },
+    {
+      "id": "no-product-code-boundary",
+      "type": "contains_text",
+      "targetId": "team-lead",
+      "target": "body",
+      "key": null,
+      "comparator": "contains",
+      "weight": 1.5,
+      "passed": true,
+      "expected": "but not product code",
+      "observed": {
+        "containsExpected": true,
+        "targetLength": 2948
+      },
+      "actual": {
+        "containsExpected": true,
+        "targetLength": 2948
+      }
+    },
+    {
+      "id": "quality-gate-flow",
+      "type": "contains_text",
+      "targetId": "team-lead",
+      "target": "body",
+      "key": null,
+      "comparator": "contains",
+      "weight": 1.0,
+      "passed": true,
+      "expected": "`quality-gate`",
+      "observed": {
+        "containsExpected": true,
+        "targetLength": 2948
+      },
+      "actual": {
+        "containsExpected": true,
+        "targetLength": 2948
+      }
+    },
+    {
+      "id": "review-report-artifact",
+      "type": "contains_text",
+      "targetId": "team-lead",
+      "target": "body",
+      "key": null,
+      "comparator": "contains",
+      "weight": 1.0,
+      "passed": true,
+      "expected": "`docs/agents/review-report.md`",
+      "observed": {
+        "containsExpected": true,
+        "targetLength": 2948
+      },
+      "actual": {
+        "containsExpected": true,
+        "targetLength": 2948
+      }
+    },
+    {
+      "id": "manager-decision-output",
+      "type": "contains_text",
+      "targetId": "team-lead",
+      "target": "body",
+      "key": null,
+      "comparator": "contains",
+      "weight": 1.5,
+      "passed": true,
+      "expected": "`ManagerDecision`",
+      "observed": {
+        "containsExpected": true,
+        "targetLength": 2948
+      },
+      "actual": {
+        "containsExpected": true,
+        "targetLength": 2948
+      }
+    },
+    {
+      "id": "tools-exact",
+      "type": "frontmatter_equals",
+      "targetId": "team-lead",
+      "target": null,
+      "key": "tools",
+      "comparator": "equals",
+      "weight": 1.0,
+      "passed": true,
+      "expected": [
+        "read",
+        "search",
+        "execute",
+        "edit",
+        "agent",
+        "github/*"
+      ],
+      "observed": [
+        "read",
+        "search",
+        "execute",
+        "edit",
+        "agent",
+        "github/*"
+      ],
+      "actual": [
+        "read",
+        "search",
+        "execute",
+        "edit",
+        "agent",
+        "github/*"
+      ]
+    }
+  ],
+  "complexity": {
+    "bodyChars": 2948,
+    "toolCount": 6,
+    "mcpServerCount": 0,
+    "fileCount": 1,
+    "score": 3113,
+    "perTarget": {
+      "team-lead": {
+        "bodyChars": 2948,
+        "toolCount": 6,
+        "mcpServerCount": 0,
+        "score": 3098
+      }
+    }
+  }
+}

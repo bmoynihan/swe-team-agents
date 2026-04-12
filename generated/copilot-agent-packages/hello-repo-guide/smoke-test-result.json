@@ -1,0 +1,23 @@
+{
+  "health": {
+    "status": "ok",
+    "runtimeMode": "mock",
+    "agent": {
+      "id": "hello-repo-guide",
+      "displayName": "hello-repo-guide"
+    },
+    "determinism": "high",
+    "manualReviewReasons": []
+  },
+  "invoke": {
+    "agent": {
+      "id": "hello-repo-guide",
+      "displayName": "hello-repo-guide"
+    },
+    "runtime": {
+      "mode": "mock",
+      "usedTools": []
+    },
+    "message": "Hello from hello-repo-guide. Tiny onboarding example agent used to validate the copilot-agent-converter end-to-end packaging flow.\n This response came from the deterministic mock mode of the generated service. Suggested next docs: copilot-agent-converter, .agent.md, AGENTS.md, docs/agents/task-spec.md. Prompt received: Say hello and point me to the repo workflow docs."
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "mcpServers": {
+    "exampleLocalServer": {
+      "type": "local",
+      "command": "npx",
+      "args": ["-y", "REPLACE_ME_PACKAGE", "REPLACE_ME_SUBCOMMAND"],
+      "tools": ["REPLACE_ME_READONLY_TOOL_1", "REPLACE_ME_READONLY_TOOL_2"],
+      "env": {
+        "API_TOKEN": "COPILOT_MCP_EXAMPLE_API_TOKEN"
+      }
+    },
+    "exampleRemoteServer": {
+      "type": "http",
+      "url": "https://REPLACE_ME.example.com/mcp",
+      "tools": ["REPLACE_ME_READONLY_TOOL_1"],
+      "headers": {
+        "Authorization": "Bearer $COPILOT_MCP_EXAMPLE_BEARER_TOKEN"
+      }
+    }
+  }
+}
+

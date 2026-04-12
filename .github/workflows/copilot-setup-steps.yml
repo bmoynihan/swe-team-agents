@@ -1,0 +1,81 @@
+name: "Copilot Setup Steps"
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+  pull_request:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+
+jobs:
+  # This workflow must be present on the default branch for Copilot to use it.
+  # This job must be named exactly "copilot-setup-steps".
+  # Only certain job keys are honored (steps, permissions, runs-on, services, snapshot, timeout-minutes).
+  copilot-setup-steps:
+    runs-on: ubuntu-latest
+    timeout-minutes: 59
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: |
+            pyproject.toml
+            poetry.lock
+            requirements.txt
+            requirements-dev.txt
+            requirements/*.txt
+            setup.cfg
+
+      - name: Upgrade pip tooling
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+
+      - name: Install dependencies (auto-detect)
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          echo "Detecting dependency manager..."
+          if [[ -f "uv.lock" ]]; then
+            echo "Using uv (uv.lock detected)"
+            python -m pip install --upgrade uv
+            uv sync --dev
+            exit 0
+          fi
+
+          if [[ -f "poetry.lock" ]]; then
+            echo "Using Poetry (poetry.lock detected)"
+            python -m pip install --upgrade poetry
+            poetry install --no-interaction || poetry install --no-interaction --with dev
+            exit 0
+          fi
+
+          if [[ -f "requirements.txt" ]]; then
+            echo "Using pip requirements.txt"
+            python -m pip install -r requirements.txt
+            if [[ -f "requirements-dev.txt" ]]; then
+              python -m pip install -r requirements-dev.txt
+            fi
+            exit 0
+          fi
+
+          if [[ -f "pyproject.toml" ]]; then
+            echo "Using editable install from pyproject.toml"
+            python -m pip install -e ".[dev]" || python -m pip install -e .
+            exit 0
+          fi
+
+          echo "No recognized dependency files found; skipping dependency install."
+          echo "Consider adding requirements.txt/poetry.lock/uv.lock or a pyproject.toml."
+
+

@@ -1,0 +1,92 @@
+[
+  {
+    "severity": "high",
+    "category": "github-compatibility",
+    "file": ".github/agents/team-lead.agent",
+    "evidence": "All 23 custom agents use the `.agent` suffix; `AGENTS.md:23` and `.github/copilot-instructions.md:28` also document `.github/agents/*.agent`. Current GitHub custom-agent docs use `.github/agents/<name>.agent.md`.",
+    "risk": "GitHub will not load the custom agent catalog, so the role system fails at the platform layer.",
+    "recommended_fix": "Rename every file under `.github/agents/*.agent` to `.agent.md` and update every repo reference and validator glob to match.",
+    "owner": "repo-maintainer"
+  },
+  {
+    "severity": "high",
+    "category": "artifact-contract",
+    "file": "docs/agents/CANONICAL_ARTIFACT_POLICY.md",
+    "evidence": "`docs/agents/CANONICAL_ARTIFACT_POLICY.md:5-19` declares 6 required canonical files plus 5 supporting canonicals, while `AGENTS.md:12-16`, `.github/copilot-instructions.md:40-45`, and `.github/skills/swe-team-protocol/SKILL.md:39-49` center only 3 files.",
+    "risk": "Different agents can legitimately believe different artifact sets are authoritative, which breaks handoffs and completion logic.",
+    "recommended_fix": "Pick one canonical artifact contract and restate it consistently in `AGENTS.md`, `.github/copilot-instructions.md`, Team Lead, and `swe-team-protocol`.",
+    "owner": "team-lead"
+  },
+  {
+    "severity": "high",
+    "category": "mirror-drift",
+    "file": "docs/agents/security-report.md",
+    "evidence": "`docs/agents/` is declared canonical, but `.github/docs/agents/` duplicates 24 artifacts and 11 have drift. Examples: `docs/agents/security-report.md` vs `.github/docs/agents/security-report.md`, `docs/agents/sre-report.md` vs `.github/docs/agents/sre-report.md`, `docs/agents/ux-review-report.md` vs `.github/docs/agents/ux-review-report.md`.",
+    "risk": "Agents and humans can read or update the wrong copy, producing nondeterministic outputs and stale review evidence.",
+    "recommended_fix": "Stop committing mutable mirrors, or regenerate `.github/docs/agents/` from the canonical tree only; never let both trees be editable.",
+    "owner": "repo-maintainer"
+  },
+  {
+    "severity": "high",
+    "category": "artifact-ownership",
+    "file": ".github/agents/release-engineer.agent",
+    "evidence": "`.github/agents/release-engineer.agent:53-75` writes `docs/agents/release-report.md` with JSON type `ReleasePlan`, while `.github/agents/release-manager.agent:121-184` writes the same file with JSON type `ReleaseReport`. `docs/agents/release-report.md:7` names `release-manager` as author, and `team-lead.agent:59-66` omits any release stage.",
+    "risk": "The release artifact can be overwritten with incompatible schemas, and the release roles are not consistently reachable from the main manager workflow.",
+    "recommended_fix": "Keep one release role and one JSON contract, update the Team Lead loop to invoke it explicitly, and delete or alias the other role.",
+    "owner": "release-owner"
+  },
+  {
+    "severity": "high",
+    "category": "run-scope",
+    "file": "docs/agents/current-run.json",
+    "evidence": "`docs/agents/CANONICAL_ARTIFACT_POLICY.md:24-27` requires active-run artifacts under `docs/agents/runs/<run-id>/`, but `docs/agents/current-run.json` points to a run folder that lacks `patch-report.md`, `test-report.md`, and `release-report.md`. `.github/hooks/hooks.json:10-14,23-28,37-40,50-53,64-66` logs to shared `docs/agents/_hook-audit/*` instead of a run folder.",
+    "risk": "Concurrent or repeated runs overwrite shared singleton files and lose run ownership, auditability, and reproducibility.",
+    "recommended_fix": "Make `docs/agents/runs/<run-id>/` the owner for mutable artifacts and hook audit logs; keep only a pointer file at the root.",
+    "owner": "team-lead"
+  },
+  {
+    "severity": "medium",
+    "category": "prompt-integrity",
+    "file": ".github/skills/mcp-admin/SKILL.md",
+    "evidence": "There are 111 stale `:contentReference[...]` markers across 19 files. Some corrupt content directly, e.g. `.github/skills/mcp-admin/SKILL.md:4,61` and `.github/agents/security-engineer.agent:118-122,149`.",
+    "risk": "Agents read broken prose and malformed JSON examples, which increases prompt confusion and schema drift.",
+    "recommended_fix": "Strip every `:contentReference[...]` marker and repair the damaged lines before using these prompts as canonical system instructions.",
+    "owner": "skill-author"
+  },
+  {
+    "severity": "medium",
+    "category": "protocol-duplication",
+    "file": ".github/skills/team-lead/SKILL.md",
+    "evidence": "`.github/skills/team-lead/SKILL.md:20-22` tells the manager to start with `/swe-team-protocol`, but `.github/skills/team-lead/**` and `.github/skills/swe-team-protocol/**` duplicate the same schemas/templates with different content. Example differences: `templates/task-spec.template.md`, `templates/review-report.template.md`, and `templates/delegation/research-request.template.json`.",
+    "risk": "The manager and protocol layers can generate different artifact shapes for the same handoff, which makes the system non-deterministic.",
+    "recommended_fix": "Choose a single shared protocol package and make the other skill reference it instead of carrying divergent copies.",
+    "owner": "skill-author"
+  },
+  {
+    "severity": "medium",
+    "category": "markdown-structure",
+    "file": "docs/agents/review-report.md",
+    "evidence": "`docs/agents/review-report.md`, `docs/agents/patch-report.md`, `docs/agents/release-report.md`, many other report templates, and all `.github/agents/*.agent` files end with an opening ```json fence but no closing fence.",
+    "risk": "Markdown rendering and copy/paste behavior become inconsistent, and schema examples are easier for models to misread.",
+    "recommended_fix": "Close every fenced code block and add a validator that fails on odd fence counts in prompts and report templates.",
+    "owner": "skill-author"
+  },
+  {
+    "severity": "medium",
+    "category": "validation-gap",
+    "file": "scripts/ci/check_agent_system.py",
+    "evidence": "`scripts/ci/check_agent_system.py:29-32,66-72` validates `.github/agents/*.agent` and checks `.github/workflows/copilot-setup-steps.md`, then reports PASS. It does not validate the real `.yml` workflow path, official `.agent.md` naming, mirror drift, release-role collisions, or malformed markdown fences.",
+    "risk": "The repo reports a clean agent system while critical compatibility and determinism issues remain undetected.",
+    "recommended_fix": "Retarget the validator to the official GitHub paths and add checks for mirror drift, duplicate artifact owners, fence balance, and run-scoped artifact policy.",
+    "owner": "repo-maintainer"
+  },
+  {
+    "severity": "medium",
+    "category": "hooks-layout",
+    "file": ".github/hooks/hooks.json",
+    "evidence": "`.github/hooks/hooks.json` executes `scripts/hooks/*`, while `.github/scripts/hooks/*` contains wrapper duplicates that forward to the root scripts. The repo therefore has two hook-script roots for the same behavior.",
+    "risk": "Future changes can update one hook root and not the other, creating silent drift and review confusion.",
+    "recommended_fix": "Keep one hook script root only; because hooks.json already points at `scripts/hooks/*`, either delete `.github/scripts/hooks/*` or regenerate it from the canonical root.",
+    "owner": "hooks-engineer"
+  }
+]

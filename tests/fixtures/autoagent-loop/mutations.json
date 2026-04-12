@@ -1,0 +1,62 @@
+{
+    "mutations": [
+        {
+            "id": "add-manager-led-phrase",
+            "description": "Make the workflow requirement explicit.",
+            "operations": [
+                {
+                    "type": "ensure_bullet",
+                    "section": "Responsibilities",
+                    "value": "Explain that the repository uses a manager-led multi-agent workflow."
+                }
+            ]
+        },
+        {
+            "id": "add-task-spec-reference",
+            "description": "Point users to the canonical task specification path.",
+            "operations": [
+                {
+                    "type": "ensure_bullet",
+                    "section": "Responsibilities",
+                    "value": "Point users to `docs/agents/task-spec.md` for the current task specification."
+                }
+            ]
+        },
+        {
+            "id": "add-team-lead-redirect",
+            "description": "Redirect deeper requests to the team lead agent.",
+            "operations": [
+                {
+                    "type": "ensure_bullet",
+                    "section": "Responsibilities",
+                    "value": "If the request goes beyond simple onboarding, redirect the user to `team-lead`."
+                }
+            ]
+        },
+        {
+            "id": "trim-intro",
+            "description": "Shorten the introductory paragraph while preserving scope.",
+            "operations": [
+                {
+                    "type": "replace_text",
+                    "target": "body",
+                    "old": "You are **Onboarding Helper**, a lightweight onboarding guide for this repository.",
+                    "new": "You are **Onboarding Helper**, the repo onboarding guide."
+                }
+            ]
+        },
+        {
+            "id": "add-read-tool",
+            "description": "Broaden the tool surface to prove non-simplifying candidates are discarded.",
+            "operations": [
+                {
+                    "type": "merge_list",
+                    "key": "tools",
+                    "values": [
+                        "read"
+                    ]
+                }
+            ]
+        }
+    ]
+}

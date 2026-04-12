@@ -1,0 +1,110 @@
+{
+  "schemaVersion": "1.0",
+  "protocol": "swe-team-v1",
+  "repo": {
+    "name": "",
+    "defaultBranch": "main"
+  },
+  "task": {
+    "id": "",
+    "title": "",
+    "goal": "",
+    "source": {
+      "type": "issue|pr|manual",
+      "reference": ""
+    },
+    "createdAt": "",
+    "updatedAt": ""
+  },
+  "phase": "Intake",
+  "acceptance_criteria_refs": [],
+  "constraints": [],
+  "decisions": [
+    {
+      "ts": "",
+      "by": "team-lead",
+      "summary": "Initialized task state",
+      "details": {
+        "notes": ""
+      }
+    }
+  ],
+  "delegations": [
+    {
+      "ts": "",
+      "by": "team-lead",
+      "toAgent": "repo-researcher",
+      "requestType": "ResearchRequest",
+      "status": "not_started",
+      "inputRef": "",
+      "outputRef": "",
+      "notes": ""
+    }
+  ],
+  "evidence": {
+    "tests": [],
+    "reports": {
+      "taskSpec": "docs/agents/task-spec.md",
+      "patchReport": "docs/agents/patch-report.md",
+      "testReport": "docs/agents/test-report.md",
+      "reviewReport": "docs/agents/review-report.md",
+      "releaseReport": "docs/agents/release-report.md",
+      "ciReport": "docs/agents/ci-report.md",
+      "securityReport": "docs/agents/security-report.md",
+      "observabilityReport": "docs/agents/observability-report.md",
+      "performanceReport": "docs/agents/performance-report.md",
+      "dependencyReport": "docs/agents/dependency-report.md",
+      "backlogReport": "docs/agents/backlog-report.md",
+      "architectureReport": "docs/agents/architecture-review-report.md",
+      "agentArchitectureAuditReport": "docs/agents/agent-architecture-audit-report.md",
+      "sreReport": "docs/agents/sre-report.md",
+      "uxReport": "docs/agents/ux-review-report.md",
+      "privacyReport": "docs/agents/data-privacy-report.md",
+      "complianceReport": "docs/agents/compliance-report.md",
+      "mcpReport": "docs/agents/mcp-report.md",
+      "hooksReport": "docs/agents/hooks-report.md",
+      "skillsReport": "docs/agents/skills-report.md",
+      "copilotAgentConversionReport": "docs/agents/copilot-agent-conversion-report.md"
+    }
+  },
+  "failures": [
+    {
+      "ts": "",
+      "category": "setup_failure|test_or_runtime_failure|network_block|tool_denial|permission_or_governance_block|other",
+      "summary": "",
+      "evidence": "",
+      "retryCount": 0,
+      "nextStep": ""
+    }
+  ],
+  "risk_register": [
+    {
+      "id": "R1",
+      "risk": "",
+      "impact": "low|medium|high",
+      "likelihood": "low|medium|high",
+      "mitigation": "",
+      "owner": "team-lead",
+      "status": "open|mitigated|accepted"
+    }
+  ],
+  "quality_gate": {
+    "status": "not_started",
+    "lastReviewAt": "",
+    "reviewReportRef": "docs/agents/review-report.md",
+    "blockers": []
+  },
+  "next_action": {
+    "owner": "team-lead",
+    "summary": "Run research step and produce ResearchReport",
+    "agent": "repo-researcher",
+    "due": ""
+  },
+  "meta": {
+    "notes": "Do not store secrets. Keep this file stable and machine-parseable."
+  }
+}
+
+
+
+

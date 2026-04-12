@@ -1,0 +1,40 @@
+{
+    "mutations": [
+        {
+            "id": "trim-intro-paragraph",
+            "description": "Shorten the introductory paragraph without dropping onboarding scope.",
+            "operations": [
+                {
+                    "type": "replace_text",
+                    "target": "body",
+                    "old": "You are **Hello Repo Guide**, a very small onboarding agent used only to prove that this repository's\n`copilot-agent-converter` can turn a real `.agent.md` into a runnable service package.",
+                    "new": "You are **Hello Repo Guide**, a small onboarding agent for this repository."
+                }
+            ]
+        },
+        {
+            "id": "restate-team-lead-redirect",
+            "description": "Reinforce the existing team-lead redirect rule.",
+            "operations": [
+                {
+                    "type": "ensure_bullet",
+                    "section": "Responsibilities",
+                    "value": "If the request goes beyond simple onboarding, redirect the user to `team-lead`."
+                }
+            ]
+        },
+        {
+            "id": "add-read-tool",
+            "description": "Expand the tool surface with a read tool to show that non-simplifying mutations are discarded.",
+            "operations": [
+                {
+                    "type": "merge_list",
+                    "key": "tools",
+                    "values": [
+                        "read"
+                    ]
+                }
+            ]
+        }
+    ]
+}

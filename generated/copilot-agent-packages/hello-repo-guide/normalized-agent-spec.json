@@ -1,0 +1,106 @@
+{
+  "specVersion": "0.1",
+  "source": {
+    "kind": "github-copilot-agent-profile",
+    "filePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/.github/agents/hello-repo-guide.agent.md",
+    "sourceFormat": "agent-md",
+    "sourceTargets": [
+      "vscode",
+      "github-copilot"
+    ],
+    "parserWarnings": [],
+    "rawFrontmatter": {
+      "name": "hello-repo-guide",
+      "description": "Tiny onboarding example agent used to validate the copilot-agent-converter end-to-end packaging flow.\n",
+      "target": [
+        "vscode",
+        "github-copilot"
+      ],
+      "tools": [],
+      "user-invocable": true,
+      "disable-model-invocation": false,
+      "metadata": {
+        "role": "example",
+        "purpose": "converter-validation"
+      }
+    }
+  },
+  "identity": {
+    "id": "hello-repo-guide",
+    "name": "hello-repo-guide",
+    "displayName": "hello-repo-guide",
+    "description": "Tiny onboarding example agent used to validate the copilot-agent-converter end-to-end packaging flow.\n"
+  },
+  "behavior": {
+    "systemPrompt": "# Hello Repo Guide\n\nYou are **Hello Repo Guide**, a very small onboarding agent used only to prove that this repository's\n`copilot-agent-converter` can turn a real `.agent.md` into a runnable service package.\n\n## Responsibilities\n\n- Greet the user in 2-4 short sentences.\n- Explain that this repository uses a manager-led multi-agent workflow.\n- Point the user at `AGENTS.md` and `docs/agents/task-spec.md`.\n- If the request goes beyond simple onboarding, redirect the user to `team-lead`.\n\n## Constraints\n\n- Do not write code.\n- Do not run tools.\n- Do not edit repository files.\n- Keep responses concise, friendly, and scoped to onboarding.",
+    "modelPreferences": {
+      "preferred": [],
+      "fallback": []
+    },
+    "visibility": {
+      "pickerVisible": true,
+      "allowSubagentInvocation": false
+    },
+    "routing": {
+      "subagents": {
+        "allowed": []
+      },
+      "handoffs": []
+    }
+  },
+  "capabilities": {
+    "sessionToolPolicy": "none",
+    "rawTools": [],
+    "canonicalTools": {
+      "read": [],
+      "write": [],
+      "shell": [],
+      "search": [],
+      "web": [],
+      "agent": [],
+      "mcp": []
+    },
+    "unresolvedTools": [],
+    "hooks": {
+      "vscodeOnly": [],
+      "unsupported": []
+    }
+  },
+  "integrations": {
+    "mcpServers": []
+  },
+  "runtimeRequirements": {
+    "workspace": {
+      "requiresRepoContext": true,
+      "requiresFilesystem": true
+    },
+    "execution": {
+      "mutationLevel": "read-only",
+      "needsInteractiveAuth": false,
+      "needsBackgroundProcess": false,
+      "networkAccess": "optional"
+    }
+  },
+  "packagingHints": {
+    "preferredTargets": [
+      "copilot-sdk-service",
+      "databricks-app"
+    ],
+    "serviceSurfaces": {
+      "restApi": true,
+      "mcp": true
+    },
+    "authProfile": {
+      "interactiveUser": "oauth",
+      "serviceToService": "token-or-oauth"
+    },
+    "publicExposure": {
+      "anonymousAllowed": false
+    }
+  },
+  "conversionReport": {
+    "determinism": "high",
+    "lossyTransforms": [],
+    "manualReviewReasons": []
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "hooks": {
+    "sessionStart": [
+      {
+        "type": "command",
+        "bash": "bash scripts/hooks/session_start.sh",
+        "powershell": "\"C:/Program Files/PowerShell/7/pwsh.exe\" -NoProfile -ExecutionPolicy Bypass -File scripts/hooks/session_start.ps1",
+        "timeoutSec": 30,
+        "env": {
+          "HOOK_EVENT": "sessionStart",
+          "HOOK_CURRENT_RUN_FILE": "docs/agents/current-run.json",
+          "HOOK_AUDIT_DIR": "docs/agents/runs/<current-run>/hook-audit",
+          "HOOK_AUDIT_LOG": "docs/agents/runs/<current-run>/hook-audit/tool-audit.jsonl"
+        }
+      }
+    ],
+    "preToolUse": [
+      {
+        "type": "command",
+        "bash": "bash scripts/hooks/pretool_denylist.sh",
+        "powershell": "\"C:/Program Files/PowerShell/7/pwsh.exe\" -NoProfile -ExecutionPolicy Bypass -File scripts/hooks/pretool_denylist.ps1",
+        "timeoutSec": 10,
+        "env": {
+          "HOOK_EVENT": "preToolUse",
+          "HOOK_POLICY_MODE": "enforce",
+          "HOOK_CURRENT_RUN_FILE": "docs/agents/current-run.json",
+          "HOOK_AUDIT_DIR": "docs/agents/runs/<current-run>/hook-audit",
+          "HOOK_AUDIT_LOG": "docs/agents/runs/<current-run>/hook-audit/tool-audit.jsonl"
+        }
+      }
+    ],
+    "postToolUse": [
+      {
+        "type": "command",
+        "bash": "bash scripts/hooks/audit_log.sh",
+        "powershell": "\"C:/Program Files/PowerShell/7/pwsh.exe\" -NoProfile -ExecutionPolicy Bypass -File scripts/hooks/audit_log.ps1",
+        "timeoutSec": 10,
+        "env": {
+          "HOOK_EVENT": "postToolUse",
+          "HOOK_CURRENT_RUN_FILE": "docs/agents/current-run.json",
+          "HOOK_AUDIT_DIR": "docs/agents/runs/<current-run>/hook-audit",
+          "HOOK_AUDIT_LOG": "docs/agents/runs/<current-run>/hook-audit/tool-audit.jsonl"
+        }
+      }
+    ],
+    "errorOccurred": [
+      {
+        "type": "command",
+        "bash": "bash scripts/hooks/audit_log.sh",
+        "powershell": "\"C:/Program Files/PowerShell/7/pwsh.exe\" -NoProfile -ExecutionPolicy Bypass -File scripts/hooks/audit_log.ps1",
+        "timeoutSec": 10,
+        "env": {
+          "HOOK_EVENT": "errorOccurred",
+          "HOOK_CURRENT_RUN_FILE": "docs/agents/current-run.json",
+          "HOOK_AUDIT_DIR": "docs/agents/runs/<current-run>/hook-audit",
+          "HOOK_AUDIT_LOG": "docs/agents/runs/<current-run>/hook-audit/tool-audit.jsonl"
+        }
+      }
+    ],
+    "sessionEnd": [
+      {
+        "type": "command",
+        "bash": "bash scripts/hooks/session_end.sh",
+        "powershell": "\"C:/Program Files/PowerShell/7/pwsh.exe\" -NoProfile -ExecutionPolicy Bypass -File scripts/hooks/session_end.ps1",
+        "timeoutSec": 30,
+        "env": {
+          "HOOK_EVENT": "sessionEnd",
+          "HOOK_CURRENT_RUN_FILE": "docs/agents/current-run.json",
+          "HOOK_AUDIT_DIR": "docs/agents/runs/<current-run>/hook-audit",
+          "HOOK_AUDIT_LOG": "docs/agents/runs/<current-run>/hook-audit/tool-audit.jsonl"
+        }
+      }
+    ]
+  }
+}

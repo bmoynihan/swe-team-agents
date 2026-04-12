@@ -1,0 +1,6 @@
+{
+  "hook": "preToolUse",
+  "toolName": "bash",
+  "toolArgs": "rm -rf /"
+}
+

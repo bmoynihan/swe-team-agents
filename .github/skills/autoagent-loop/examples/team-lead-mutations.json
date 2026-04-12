@@ -1,0 +1,16 @@
+{
+    "mutations": [
+        {
+            "id": "relax-no-product-code-boundary",
+            "description": "Loosen the manager scope to prove governance regressions are discarded.",
+            "operations": [
+                {
+                    "type": "replace_text",
+                    "target": "body",
+                    "old": "You may edit coordination artifacts, templates, and lightweight workflow wiring, but not product code.",
+                    "new": "You may edit coordination artifacts, templates, lightweight workflow wiring, and product code."
+                }
+            ]
+        }
+    ]
+}

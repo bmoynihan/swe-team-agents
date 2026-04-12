@@ -1,0 +1,2371 @@
+{
+  "type": "AutoAgentTrace",
+  "version": 1,
+  "traceKind": "optimization_run",
+  "experiment": {
+    "name": "team-lead-optimization",
+    "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/autoagent-experiment.md",
+    "description": "Conservative first-pass AutoAgent experiment for this repository. It benchmarks the `team-lead` agent profile, tests a small mutation catalog, and keeps only variants that improve score or preserve score with lower complexity while staging review-oriented run metadata.\n",
+    "primaryTargetId": "team-lead",
+    "targetBundle": [
+      {
+        "id": "team-lead",
+        "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/.github/agents/team-lead.agent.md",
+        "kind": "agent_profile",
+        "primary": true,
+        "mutableRegions": [
+          "body"
+        ],
+        "weight": 1.0
+      }
+    ],
+    "benchmark": {
+      "id": "team-lead-benchmark",
+      "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/.github/skills/autoagent-loop/examples/team-lead-benchmark.json",
+      "checkCount": 8
+    },
+    "mutationCatalog": {
+      "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/.github/skills/autoagent-loop/examples/team-lead-mutations.json",
+      "mutationCount": 1
+    }
+  },
+  "inputs": {
+    "experiment": {
+      "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/autoagent-experiment.md",
+      "exists": true,
+      "sha256": "4fdfba58c95ea72fac6e4e6aa0c82dc34e1d3eb934735dddfe9a6869e4052c15",
+      "sizeBytes": 8968
+    },
+    "resumeCheckpoint": null,
+    "liveEvaluatorPrompt": null,
+    "liveEvaluatorRubrics": []
+  },
+  "policies": {
+    "candidatePolicy": {
+      "keepStrategy": "score-then-simpler",
+      "searchStrategy": "current_best",
+      "frontierSize": 1
+    },
+    "evaluationMode": {
+      "deterministic": true,
+      "live": false,
+      "liveEvaluator": {
+        "enabled": false,
+        "strategy": "advisory",
+        "provider": "github-models",
+        "model": "gpt-5.4",
+        "promptArtifactPath": null,
+        "rubricPaths": [],
+        "maxSamples": 0,
+        "recordRawOutputs": false,
+        "requireDeterministicPass": true,
+        "temperature": 0.0
+      }
+    },
+    "continuousPolicy": {
+      "enabled": false,
+      "mode": "manual",
+      "scheduleCron": null,
+      "triggerOn": [
+        "review_failure"
+      ],
+      "minSignalCount": 2,
+      "maxQueuedRuns": 1,
+      "maxRunsPerSweep": 1,
+      "learningWindowDays": 30,
+      "stageOnly": true,
+      "requireReviewPass": true
+    },
+    "stagedPatchPolicy": {
+      "enabled": true,
+      "mode": "review_bundle",
+      "applyOnPass": false,
+      "includeTargetSnapshots": true,
+      "includeDiffSummary": true,
+      "reviewerHints": [],
+      "manifestFormat": "candidate_snapshot"
+    },
+    "evidencePolicy": {
+      "enabled": true,
+      "runsDir": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/runs",
+      "currentFiles": [
+        "state.json",
+        "patch-report.md",
+        "test-report.md",
+        "review-report.md"
+      ],
+      "reportFiles": [
+        "state.json",
+        "patch-report.md",
+        "test-report.md",
+        "review-report.md",
+        "autoagent-report.md"
+      ],
+      "includeCurrentArtifacts": true,
+      "includeHookAudit": true,
+      "includeChatHistory": true,
+      "chatHistoryPaths": [
+        "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/tests/fixtures/autoagent-loop/team-lead-chat-history.json"
+      ],
+      "includeTranscriptHistory": true,
+      "transcriptHistoryPaths": [
+        "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/tests/fixtures/autoagent-loop/team-lead-transcript-history.jsonl"
+      ],
+      "includeHandoffHistory": true,
+      "handoffHistoryPaths": [
+        "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/tests/fixtures/autoagent-loop/team-lead-handoff-history.jsonl"
+      ],
+      "includeVsCodeLogs": false,
+      "vsCodeLogPaths": [],
+      "externalLogSources": [
+        {
+          "id": "chat-history-1",
+          "kind": "chat_transcript",
+          "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/tests/fixtures/autoagent-loop/team-lead-chat-history.json",
+          "format": "json",
+          "optional": true,
+          "includeLinePatterns": [],
+          "excludeLinePatterns": [],
+          "maxRecords": 200,
+          "maxLineLength": 400
+        },
+        {
+          "id": "transcript-history-1",
+          "kind": "conversation_transcript",
+          "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/tests/fixtures/autoagent-loop/team-lead-transcript-history.jsonl",
+          "format": "jsonl",
+          "optional": true,
+          "includeLinePatterns": [],
+          "excludeLinePatterns": [],
+          "maxRecords": 200,
+          "maxLineLength": 400
+        },
+        {
+          "id": "handoff-history-1",
+          "kind": "handoff_history",
+          "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/tests/fixtures/autoagent-loop/team-lead-handoff-history.jsonl",
+          "format": "jsonl",
+          "optional": true,
+          "includeLinePatterns": [],
+          "excludeLinePatterns": [],
+          "maxRecords": 200,
+          "maxLineLength": 400
+        }
+      ],
+      "maxRuns": 5,
+      "maxRecordsPerFile": 200,
+      "maxExternalLogLineLength": 400,
+      "redactSensitive": true,
+      "allowExternalPaths": false
+    },
+    "reviewedPolicyRuntime": {
+      "enabled": false,
+      "artifactPath": null,
+      "preferredSequenceBonus": 0.04,
+      "escalationPenalty": 0.05
+    },
+    "reviewedPolicyRuntimeState": {
+      "enabled": false,
+      "status": "disabled",
+      "artifactPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/reviewed-policies.json",
+      "artifactFound": false,
+      "policyCount": 0,
+      "activePolicyCount": 0,
+      "approvedLearningDraftCount": 0
+    }
+  },
+  "summary": {
+    "baseline": {
+      "candidateId": "baseline",
+      "score": 1.0,
+      "trajectoryScore": 0.88,
+      "trajectoryScoreBreakdown": {
+        "validationBreadth": 1.0,
+        "parentProgress": 0.0,
+        "actionEfficiency": 1.0,
+        "targetFocus": 1.0,
+        "lineageEfficiency": 1.0,
+        "matchedEvidenceRecords": 6,
+        "attributedSuccessCount": 3,
+        "attributedWarningCount": 0,
+        "attributedErrorCount": 0,
+        "attributedToolErrorCount": 0,
+        "attributedExternalErrorCount": 0,
+        "evidenceSupport": 0.03,
+        "evidenceIssuePenalty": 0.0,
+        "reviewedPolicyBonus": 0.0,
+        "reviewedPolicyPenalty": 0.0,
+        "liveWinnerBoost": 0.0
+      },
+      "trajectoryEvidenceContext": {
+        "aliases": [
+          "baseline",
+          "candidate-trajectory-baseline"
+        ],
+        "matchedRecordCount": 6,
+        "errorCount": 0,
+        "warningCount": 0,
+        "successCount": 3,
+        "toolErrorCount": 0,
+        "externalErrorCount": 0,
+        "sourceKindCounts": {
+          "run_state": 2,
+          "run_report": 1,
+          "transcript_event": 2,
+          "handoff_event": 1
+        },
+        "statusCounts": {
+          "review": 1,
+          "spec": 1,
+          "ready_for_quality_gate": 1,
+          "success": 3
+        }
+      },
+      "reviewedPolicyContext": {
+        "enabled": false,
+        "status": "disabled",
+        "artifactPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/reviewed-policies.json",
+        "policyCount": 0,
+        "matchedPolicyCount": 0,
+        "preferredSequenceMatchCount": 0,
+        "escalationMatchCount": 0,
+        "bonus": 0.0,
+        "penalty": 0.0,
+        "matchedPolicyIds": [],
+        "matchedPolicies": []
+      },
+      "passedChecks": 8,
+      "totalChecks": 8,
+      "complexity": {
+        "bodyChars": 2948,
+        "toolCount": 6,
+        "mcpServerCount": 0,
+        "fileCount": 1,
+        "score": 3113,
+        "perTarget": {
+          "team-lead": {
+            "bodyChars": 2948,
+            "toolCount": 6,
+            "mcpServerCount": 0,
+            "score": 3098
+          }
+        }
+      }
+    },
+    "bestCandidate": {
+      "candidateId": "baseline",
+      "score": 1.0,
+      "trajectoryScore": 0.88,
+      "trajectoryScoreBreakdown": {
+        "validationBreadth": 1.0,
+        "parentProgress": 0.0,
+        "actionEfficiency": 1.0,
+        "targetFocus": 1.0,
+        "lineageEfficiency": 1.0,
+        "matchedEvidenceRecords": 6,
+        "attributedSuccessCount": 3,
+        "attributedWarningCount": 0,
+        "attributedErrorCount": 0,
+        "attributedToolErrorCount": 0,
+        "attributedExternalErrorCount": 0,
+        "evidenceSupport": 0.03,
+        "evidenceIssuePenalty": 0.0,
+        "reviewedPolicyBonus": 0.0,
+        "reviewedPolicyPenalty": 0.0,
+        "liveWinnerBoost": 0.0
+      },
+      "trajectoryEvidenceContext": {
+        "aliases": [
+          "baseline",
+          "candidate-trajectory-baseline"
+        ],
+        "matchedRecordCount": 6,
+        "errorCount": 0,
+        "warningCount": 0,
+        "successCount": 3,
+        "toolErrorCount": 0,
+        "externalErrorCount": 0,
+        "sourceKindCounts": {
+          "run_state": 2,
+          "run_report": 1,
+          "transcript_event": 2,
+          "handoff_event": 1
+        },
+        "statusCounts": {
+          "review": 1,
+          "spec": 1,
+          "ready_for_quality_gate": 1,
+          "success": 3
+        }
+      },
+      "reviewedPolicyContext": {
+        "enabled": false,
+        "status": "disabled",
+        "artifactPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/reviewed-policies.json",
+        "policyCount": 0,
+        "matchedPolicyCount": 0,
+        "preferredSequenceMatchCount": 0,
+        "escalationMatchCount": 0,
+        "bonus": 0.0,
+        "penalty": 0.0,
+        "matchedPolicyIds": [],
+        "matchedPolicies": []
+      },
+      "passedChecks": 8,
+      "totalChecks": 8,
+      "complexity": {
+        "bodyChars": 2948,
+        "toolCount": 6,
+        "mcpServerCount": 0,
+        "fileCount": 1,
+        "score": 3113,
+        "perTarget": {
+          "team-lead": {
+            "bodyChars": 2948,
+            "toolCount": 6,
+            "mcpServerCount": 0,
+            "score": 3098
+          }
+        }
+      },
+      "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-00-baseline.agent.md"
+    },
+    "liveEvaluation": {
+      "enabled": false,
+      "status": "disabled",
+      "strategy": "advisory",
+      "provider": "github-models",
+      "model": "gpt-5.4",
+      "sampleCount": 0,
+      "evaluatedCandidateIds": [],
+      "winnerCandidateId": "baseline",
+      "bestCandidateChanged": false,
+      "tieBreakerApplied": false,
+      "fallbackToDeterministic": false,
+      "reason": "live_evaluator_disabled",
+      "verdictCounts": {},
+      "judgments": []
+    },
+    "resume": {
+      "requested": false,
+      "resumed": false,
+      "checkpointStage": "post_mutation_search",
+      "startingMutationIndex": 1,
+      "completedMutationCount": 1,
+      "requestedMutationCount": 1,
+      "totalMutationCount": 1,
+      "nextMutationIndex": 2,
+      "hasRemainingMutations": false,
+      "inlineCandidateCount": 1,
+      "snapshotBackedCandidateCount": 1,
+      "checkpointPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/search-checkpoint.json",
+      "checkpointManifestPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/search-checkpoint-manifest.json",
+      "manifestSnapshotCandidateCount": 1,
+      "manifestRequiredFileCount": 1
+    },
+    "candidateSearch": {
+      "strategy": "current_best",
+      "frontierSize": 1,
+      "keepStrategy": "score-then-simpler",
+      "rankingSignals": [
+        "benchmark_score",
+        "complexity",
+        "trajectory_score"
+      ],
+      "mutationExecutionPlan": [
+        {
+          "plannedIndex": 1,
+          "catalogIndex": 1,
+          "planToken": "1:relax-no-product-code-boundary",
+          "mutationId": "relax-no-product-code-boundary",
+          "description": "Loosen the manager scope to prove governance regressions are discarded.",
+          "priorityStatus": "neutral",
+          "priorityScore": 0.0,
+          "bonus": 0.0,
+          "penalty": 0.0,
+          "matchedPolicyCount": 0,
+          "matchedPolicyIds": [],
+          "sourceCandidateIds": []
+        }
+      ],
+      "maxSearchDepth": 1,
+      "ledgerNodeCount": 2,
+      "searchLedgerPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/search-ledger.json",
+      "bestCandidateLineage": [
+        "baseline"
+      ],
+      "finalFrontierCandidateIds": [
+        "baseline"
+      ],
+      "winnerExplanation": {
+        "winnerCandidateId": "baseline",
+        "comparedCandidateId": "relax-no-product-code-boundary",
+        "comparisonMode": "deterministic_ranking",
+        "decisiveSignal": "benchmark_score",
+        "evidenceBacked": false,
+        "summary": "baseline beat relax-no-product-code-boundary on benchmark score (1.0 vs 0.842105).",
+        "evidenceSummary": null,
+        "rankingComparison": {
+          "winnerScore": 1.0,
+          "runnerUpScore": 0.842105,
+          "scoreDelta": 0.157895,
+          "winnerComplexityScore": 3113,
+          "runnerUpComplexityScore": 3105,
+          "complexityAdvantage": -8,
+          "winnerTrajectoryScore": 0.88,
+          "runnerUpTrajectoryScore": 0.60125,
+          "trajectoryScoreDelta": 0.27875
+        },
+        "topTrajectorySignals": [
+          {
+            "signal": "attributedSuccessCount",
+            "preference": "higher_is_better",
+            "winner": 3,
+            "runnerUp": 0,
+            "advantage": 3.0
+          },
+          {
+            "signal": "matchedEvidenceRecords",
+            "preference": "higher_is_better",
+            "winner": 6,
+            "runnerUp": 3,
+            "advantage": 3.0
+          },
+          {
+            "signal": "attributedErrorCount",
+            "preference": "lower_is_better",
+            "winner": 0,
+            "runnerUp": 2,
+            "advantage": 2.0
+          },
+          {
+            "signal": "attributedToolErrorCount",
+            "preference": "lower_is_better",
+            "winner": 0,
+            "runnerUp": 2,
+            "advantage": 2.0
+          },
+          {
+            "signal": "actionEfficiency",
+            "preference": "higher_is_better",
+            "winner": 1.0,
+            "runnerUp": 0.5,
+            "advantage": 0.5
+          }
+        ],
+        "trajectorySummary": "Top trajectory contributors: attributedSuccessCount +3, matchedEvidenceRecords +3, attributedErrorCount lower by 2",
+        "evidenceComparison": {
+          "winnerSourceKinds": {
+            "handoff_event": 1,
+            "run_report": 1,
+            "run_state": 2,
+            "transcript_event": 2
+          },
+          "runnerUpSourceKinds": {
+            "run_report": 1,
+            "transcript_event": 2
+          },
+          "winnerStatuses": {
+            "ready_for_quality_gate": 1,
+            "review": 1,
+            "spec": 1,
+            "success": 3
+          },
+          "runnerUpStatuses": {
+            "error": 2,
+            "ready_for_quality_gate": 1
+          }
+        },
+        "winner": {
+          "candidateId": "baseline",
+          "iteration": 0,
+          "searchDepth": 0,
+          "score": 1.0,
+          "complexityScore": 3113,
+          "trajectoryScore": 0.88,
+          "trajectorySignals": {
+            "validationBreadth": 1.0,
+            "parentProgress": 0.0,
+            "actionEfficiency": 1.0,
+            "targetFocus": 1.0,
+            "lineageEfficiency": 1.0,
+            "matchedEvidenceRecords": 6,
+            "attributedSuccessCount": 3,
+            "attributedWarningCount": 0,
+            "attributedErrorCount": 0,
+            "attributedToolErrorCount": 0,
+            "attributedExternalErrorCount": 0,
+            "evidenceSupport": 0.03,
+            "evidenceIssuePenalty": 0.0,
+            "reviewedPolicyBonus": 0.0,
+            "reviewedPolicyPenalty": 0.0,
+            "liveWinnerBoost": 0.0
+          },
+          "evidence": {
+            "matchedRecordCount": 6,
+            "successCount": 3,
+            "warningCount": 0,
+            "errorCount": 0,
+            "toolErrorCount": 0,
+            "externalErrorCount": 0,
+            "sourceKindCounts": {
+              "handoff_event": 1,
+              "run_report": 1,
+              "run_state": 2,
+              "transcript_event": 2
+            },
+            "statusCounts": {
+              "ready_for_quality_gate": 1,
+              "review": 1,
+              "spec": 1,
+              "success": 3
+            }
+          }
+        },
+        "runnerUp": {
+          "candidateId": "relax-no-product-code-boundary",
+          "iteration": 1,
+          "searchDepth": 1,
+          "score": 0.842105,
+          "complexityScore": 3105,
+          "trajectoryScore": 0.60125,
+          "trajectorySignals": {
+            "validationBreadth": 0.875,
+            "parentProgress": 0.0,
+            "actionEfficiency": 0.5,
+            "targetFocus": 1.0,
+            "lineageEfficiency": 0.5,
+            "matchedEvidenceRecords": 3,
+            "attributedSuccessCount": 0,
+            "attributedWarningCount": 0,
+            "attributedErrorCount": 2,
+            "attributedToolErrorCount": 2,
+            "attributedExternalErrorCount": 0,
+            "evidenceSupport": 0.0,
+            "evidenceIssuePenalty": 0.08,
+            "reviewedPolicyBonus": 0.0,
+            "reviewedPolicyPenalty": 0.0,
+            "liveWinnerBoost": 0.0
+          },
+          "evidence": {
+            "matchedRecordCount": 3,
+            "successCount": 0,
+            "warningCount": 0,
+            "errorCount": 2,
+            "toolErrorCount": 2,
+            "externalErrorCount": 0,
+            "sourceKindCounts": {
+              "run_report": 1,
+              "transcript_event": 2
+            },
+            "statusCounts": {
+              "error": 2,
+              "ready_for_quality_gate": 1
+            }
+          }
+        },
+        "liveEvaluation": null
+      }
+    },
+    "evidenceSummary": {
+      "recordCount": 26,
+      "runCount": 3,
+      "recordsByKind": {
+        "run_state": 3,
+        "run_report": 8,
+        "hook_event": 5,
+        "session_event": 5,
+        "transcript_event": 4,
+        "handoff_event": 1
+      },
+      "statuses": {
+        "Review": 1,
+        "READY_FOR_QUALITY_GATE": 5,
+        "PASS": 3,
+        "Spec": 1,
+        "Intake": 1,
+        "success": 3,
+        "error": 2
+      },
+      "reportFailureCount": 0,
+      "toolErrorCount": 0,
+      "parseErrorCount": 0,
+      "sessionRecordCount": 5,
+      "transcriptRecordCount": 4,
+      "handoffRecordCount": 1,
+      "externalLogRecordCount": 5,
+      "externalSourceCount": 3
+    },
+    "stagedPatch": {
+      "enabled": true,
+      "mode": "review_bundle",
+      "applyOnPass": false,
+      "candidateId": "baseline",
+      "candidatePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-00-baseline.agent.md",
+      "changedTargetCount": 0,
+      "changedTargets": [],
+      "reviewerHints": [],
+      "manifestFormat": "candidate_snapshot",
+      "includeTargetSnapshots": true,
+      "includeDiffSummary": true
+    },
+    "outcomeLabel": "unchanged",
+    "improvementDelta": 0.0,
+    "appliedBestVariant": false,
+    "appliedPaths": [],
+    "keptCandidateCount": 1,
+    "discardedCandidateCount": 1,
+    "trajectoryCount": 2,
+    "episodeCount": 2,
+    "evidenceBackedEpisodeCount": 2,
+    "bestTrajectoryId": "candidate-trajectory-baseline",
+    "bestTrajectoryScore": 0.88,
+    "bestTrajectoryEvidenceMatches": 6,
+    "rankingSignals": [
+      "benchmark_score",
+      "complexity",
+      "trajectory_score"
+    ],
+    "winnerExplanation": {
+      "winnerCandidateId": "baseline",
+      "comparedCandidateId": "relax-no-product-code-boundary",
+      "comparisonMode": "deterministic_ranking",
+      "decisiveSignal": "benchmark_score",
+      "evidenceBacked": false,
+      "summary": "baseline beat relax-no-product-code-boundary on benchmark score (1.0 vs 0.842105).",
+      "evidenceSummary": null,
+      "rankingComparison": {
+        "winnerScore": 1.0,
+        "runnerUpScore": 0.842105,
+        "scoreDelta": 0.157895,
+        "winnerComplexityScore": 3113,
+        "runnerUpComplexityScore": 3105,
+        "complexityAdvantage": -8,
+        "winnerTrajectoryScore": 0.88,
+        "runnerUpTrajectoryScore": 0.60125,
+        "trajectoryScoreDelta": 0.27875
+      },
+      "topTrajectorySignals": [
+        {
+          "signal": "attributedSuccessCount",
+          "preference": "higher_is_better",
+          "winner": 3,
+          "runnerUp": 0,
+          "advantage": 3.0
+        },
+        {
+          "signal": "matchedEvidenceRecords",
+          "preference": "higher_is_better",
+          "winner": 6,
+          "runnerUp": 3,
+          "advantage": 3.0
+        },
+        {
+          "signal": "attributedErrorCount",
+          "preference": "lower_is_better",
+          "winner": 0,
+          "runnerUp": 2,
+          "advantage": 2.0
+        },
+        {
+          "signal": "attributedToolErrorCount",
+          "preference": "lower_is_better",
+          "winner": 0,
+          "runnerUp": 2,
+          "advantage": 2.0
+        },
+        {
+          "signal": "actionEfficiency",
+          "preference": "higher_is_better",
+          "winner": 1.0,
+          "runnerUp": 0.5,
+          "advantage": 0.5
+        }
+      ],
+      "trajectorySummary": "Top trajectory contributors: attributedSuccessCount +3, matchedEvidenceRecords +3, attributedErrorCount lower by 2",
+      "evidenceComparison": {
+        "winnerSourceKinds": {
+          "handoff_event": 1,
+          "run_report": 1,
+          "run_state": 2,
+          "transcript_event": 2
+        },
+        "runnerUpSourceKinds": {
+          "run_report": 1,
+          "transcript_event": 2
+        },
+        "winnerStatuses": {
+          "ready_for_quality_gate": 1,
+          "review": 1,
+          "spec": 1,
+          "success": 3
+        },
+        "runnerUpStatuses": {
+          "error": 2,
+          "ready_for_quality_gate": 1
+        }
+      },
+      "winner": {
+        "candidateId": "baseline",
+        "iteration": 0,
+        "searchDepth": 0,
+        "score": 1.0,
+        "complexityScore": 3113,
+        "trajectoryScore": 0.88,
+        "trajectorySignals": {
+          "validationBreadth": 1.0,
+          "parentProgress": 0.0,
+          "actionEfficiency": 1.0,
+          "targetFocus": 1.0,
+          "lineageEfficiency": 1.0,
+          "matchedEvidenceRecords": 6,
+          "attributedSuccessCount": 3,
+          "attributedWarningCount": 0,
+          "attributedErrorCount": 0,
+          "attributedToolErrorCount": 0,
+          "attributedExternalErrorCount": 0,
+          "evidenceSupport": 0.03,
+          "evidenceIssuePenalty": 0.0,
+          "reviewedPolicyBonus": 0.0,
+          "reviewedPolicyPenalty": 0.0,
+          "liveWinnerBoost": 0.0
+        },
+        "evidence": {
+          "matchedRecordCount": 6,
+          "successCount": 3,
+          "warningCount": 0,
+          "errorCount": 0,
+          "toolErrorCount": 0,
+          "externalErrorCount": 0,
+          "sourceKindCounts": {
+            "handoff_event": 1,
+            "run_report": 1,
+            "run_state": 2,
+            "transcript_event": 2
+          },
+          "statusCounts": {
+            "ready_for_quality_gate": 1,
+            "review": 1,
+            "spec": 1,
+            "success": 3
+          }
+        }
+      },
+      "runnerUp": {
+        "candidateId": "relax-no-product-code-boundary",
+        "iteration": 1,
+        "searchDepth": 1,
+        "score": 0.842105,
+        "complexityScore": 3105,
+        "trajectoryScore": 0.60125,
+        "trajectorySignals": {
+          "validationBreadth": 0.875,
+          "parentProgress": 0.0,
+          "actionEfficiency": 0.5,
+          "targetFocus": 1.0,
+          "lineageEfficiency": 0.5,
+          "matchedEvidenceRecords": 3,
+          "attributedSuccessCount": 0,
+          "attributedWarningCount": 0,
+          "attributedErrorCount": 2,
+          "attributedToolErrorCount": 2,
+          "attributedExternalErrorCount": 0,
+          "evidenceSupport": 0.0,
+          "evidenceIssuePenalty": 0.08,
+          "reviewedPolicyBonus": 0.0,
+          "reviewedPolicyPenalty": 0.0,
+          "liveWinnerBoost": 0.0
+        },
+        "evidence": {
+          "matchedRecordCount": 3,
+          "successCount": 0,
+          "warningCount": 0,
+          "errorCount": 2,
+          "toolErrorCount": 2,
+          "externalErrorCount": 0,
+          "sourceKindCounts": {
+            "run_report": 1,
+            "transcript_event": 2
+          },
+          "statusCounts": {
+            "error": 2,
+            "ready_for_quality_gate": 1
+          }
+        }
+      },
+      "liveEvaluation": null
+    }
+  },
+  "artifacts": {
+    "tracePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/autoagent-trace.json",
+    "runRoot": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization",
+    "resultsPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/autoagent-results.tsv",
+    "evidencePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/autoagent-evidence.json",
+    "checkpointPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/search-checkpoint.json",
+    "checkpointManifestPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/search-checkpoint-manifest.json",
+    "searchLedgerPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/search-ledger.json",
+    "benchmarkDraftsPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/draft-benchmark-fragments.json",
+    "mutationDraftsPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/draft-mutation-catalog.json",
+    "policyDraftsPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/draft-policy-catalog.json"
+  },
+  "trajectories": [
+    {
+      "trajectoryId": "candidate-trajectory-baseline",
+      "kind": "candidate_journey",
+      "candidateId": "baseline",
+      "parentCandidateId": null,
+      "mutationId": null,
+      "description": "Baseline target agent",
+      "searchDepth": 0,
+      "status": "keep",
+      "context": {
+        "experimentName": "team-lead-optimization",
+        "experimentDescription": "Conservative first-pass AutoAgent experiment for this repository. It benchmarks the `team-lead` agent profile, tests a small mutation catalog, and keeps only variants that improve score or preserve score with lower complexity while staging review-oriented run metadata.\n",
+        "benchmarkId": "team-lead-benchmark",
+        "primaryTargetId": "team-lead",
+        "candidatePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-00-baseline.agent.md",
+        "touchedTargets": [],
+        "lineageCandidateIds": [
+          "baseline"
+        ],
+        "evidence": {
+          "aliases": [
+            "baseline",
+            "candidate-trajectory-baseline"
+          ],
+          "matchedRecordCount": 6,
+          "errorCount": 0,
+          "warningCount": 0,
+          "successCount": 3,
+          "toolErrorCount": 0,
+          "externalErrorCount": 0,
+          "sourceKindCounts": {
+            "run_state": 2,
+            "run_report": 1,
+            "transcript_event": 2,
+            "handoff_event": 1
+          },
+          "statusCounts": {
+            "review": 1,
+            "spec": 1,
+            "ready_for_quality_gate": 1,
+            "success": 3
+          }
+        },
+        "reviewedPolicies": {
+          "enabled": false,
+          "status": "disabled",
+          "artifactPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/reviewed-policies.json",
+          "policyCount": 0,
+          "matchedPolicyCount": 0,
+          "preferredSequenceMatchCount": 0,
+          "escalationMatchCount": 0,
+          "bonus": 0.0,
+          "penalty": 0.0,
+          "matchedPolicyIds": [],
+          "matchedPolicies": []
+        },
+        "mutation": null
+      },
+      "actionSequence": [],
+      "validationAttempts": [
+        {
+          "attemptType": "deterministic_benchmark",
+          "attemptIndex": 1,
+          "benchmarkId": "team-lead-benchmark",
+          "passedChecks": 8,
+          "totalChecks": 8,
+          "checks": [
+            {
+              "id": "sole-coordinator",
+              "type": "contains_text",
+              "targetId": "team-lead",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.5,
+              "passed": true,
+              "expected": "the only coordinator",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2948
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2948
+              }
+            },
+            {
+              "id": "specialists-no-peer-coordination",
+              "type": "contains_text",
+              "targetId": "team-lead",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.0,
+              "passed": true,
+              "expected": "specialists do not coordinate with each other",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2948
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2948
+              }
+            },
+            {
+              "id": "current-run-contract",
+              "type": "contains_text",
+              "targetId": "team-lead",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.0,
+              "passed": true,
+              "expected": "`docs/agents/current-run.json`",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2948
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2948
+              }
+            },
+            {
+              "id": "no-product-code-boundary",
+              "type": "contains_text",
+              "targetId": "team-lead",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.5,
+              "passed": true,
+              "expected": "but not product code",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2948
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2948
+              }
+            },
+            {
+              "id": "quality-gate-flow",
+              "type": "contains_text",
+              "targetId": "team-lead",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.0,
+              "passed": true,
+              "expected": "`quality-gate`",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2948
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2948
+              }
+            },
+            {
+              "id": "review-report-artifact",
+              "type": "contains_text",
+              "targetId": "team-lead",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.0,
+              "passed": true,
+              "expected": "`docs/agents/review-report.md`",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2948
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2948
+              }
+            },
+            {
+              "id": "manager-decision-output",
+              "type": "contains_text",
+              "targetId": "team-lead",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.5,
+              "passed": true,
+              "expected": "`ManagerDecision`",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2948
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2948
+              }
+            },
+            {
+              "id": "tools-exact",
+              "type": "frontmatter_equals",
+              "targetId": "team-lead",
+              "target": null,
+              "key": "tools",
+              "comparator": "equals",
+              "weight": 1.0,
+              "passed": true,
+              "expected": [
+                "read",
+                "search",
+                "execute",
+                "edit",
+                "agent",
+                "github/*"
+              ],
+              "observed": [
+                "read",
+                "search",
+                "execute",
+                "edit",
+                "agent",
+                "github/*"
+              ],
+              "actual": [
+                "read",
+                "search",
+                "execute",
+                "edit",
+                "agent",
+                "github/*"
+              ]
+            }
+          ]
+        }
+      ],
+      "ranking": {
+        "trajectoryScore": 0.88,
+        "signals": {
+          "validationBreadth": 1.0,
+          "parentProgress": 0.0,
+          "actionEfficiency": 1.0,
+          "targetFocus": 1.0,
+          "lineageEfficiency": 1.0,
+          "matchedEvidenceRecords": 6,
+          "attributedSuccessCount": 3,
+          "attributedWarningCount": 0,
+          "attributedErrorCount": 0,
+          "attributedToolErrorCount": 0,
+          "attributedExternalErrorCount": 0,
+          "evidenceSupport": 0.03,
+          "evidenceIssuePenalty": 0.0,
+          "reviewedPolicyBonus": 0.0,
+          "reviewedPolicyPenalty": 0.0,
+          "liveWinnerBoost": 0.0
+        }
+      },
+      "outcome": {
+        "status": "keep",
+        "score": 1.0,
+        "deltaFromBaseline": 0.0,
+        "deltaFromParent": null,
+        "passedChecks": 8,
+        "totalChecks": 8,
+        "complexity": {
+          "bodyChars": 2948,
+          "toolCount": 6,
+          "mcpServerCount": 0,
+          "fileCount": 1,
+          "score": 3113,
+          "perTarget": {
+            "team-lead": {
+              "bodyChars": 2948,
+              "toolCount": 6,
+              "mcpServerCount": 0,
+              "score": 3098
+            }
+          }
+        },
+        "selectedAsBest": true,
+        "appliedBestVariant": false
+      }
+    },
+    {
+      "trajectoryId": "candidate-trajectory-relax-no-product-code-boundary",
+      "kind": "candidate_journey",
+      "candidateId": "relax-no-product-code-boundary",
+      "parentCandidateId": "baseline",
+      "mutationId": "relax-no-product-code-boundary",
+      "description": "Loosen the manager scope to prove governance regressions are discarded.",
+      "searchDepth": 1,
+      "status": "discard",
+      "context": {
+        "experimentName": "team-lead-optimization",
+        "experimentDescription": "Conservative first-pass AutoAgent experiment for this repository. It benchmarks the `team-lead` agent profile, tests a small mutation catalog, and keeps only variants that improve score or preserve score with lower complexity while staging review-oriented run metadata.\n",
+        "benchmarkId": "team-lead-benchmark",
+        "primaryTargetId": "team-lead",
+        "candidatePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-01-relax-no-product-code-boundary.agent.md",
+        "touchedTargets": [
+          "team-lead"
+        ],
+        "lineageCandidateIds": [
+          "baseline",
+          "relax-no-product-code-boundary"
+        ],
+        "evidence": {
+          "aliases": [
+            "candidate-trajectory-relax-no-product-code-boundary",
+            "relax-no-product-code-boundary"
+          ],
+          "matchedRecordCount": 3,
+          "errorCount": 2,
+          "warningCount": 0,
+          "successCount": 0,
+          "toolErrorCount": 2,
+          "externalErrorCount": 0,
+          "sourceKindCounts": {
+            "run_report": 1,
+            "transcript_event": 2
+          },
+          "statusCounts": {
+            "ready_for_quality_gate": 1,
+            "error": 2
+          }
+        },
+        "reviewedPolicies": {
+          "enabled": false,
+          "status": "disabled",
+          "artifactPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/reviewed-policies.json",
+          "policyCount": 0,
+          "matchedPolicyCount": 0,
+          "preferredSequenceMatchCount": 0,
+          "escalationMatchCount": 0,
+          "bonus": 0.0,
+          "penalty": 0.0,
+          "matchedPolicyIds": [],
+          "matchedPolicies": []
+        },
+        "mutation": {
+          "id": "relax-no-product-code-boundary",
+          "description": "Loosen the manager scope to prove governance regressions are discarded.",
+          "operationCount": 1
+        }
+      },
+      "actionSequence": [
+        {
+          "actionId": "mutation-operation-01",
+          "actionType": "mutation_operation",
+          "operationIndex": 1,
+          "operation": {
+            "type": "replace_text",
+            "target": "body",
+            "old": "You may edit coordination artifacts, templates, and lightweight workflow wiring, but not product code.",
+            "new": "You may edit coordination artifacts, templates, lightweight workflow wiring, and product code.",
+            "targetId": "team-lead"
+          }
+        }
+      ],
+      "validationAttempts": [
+        {
+          "attemptType": "deterministic_benchmark",
+          "attemptIndex": 1,
+          "benchmarkId": "team-lead-benchmark",
+          "passedChecks": 7,
+          "totalChecks": 8,
+          "checks": [
+            {
+              "id": "sole-coordinator",
+              "type": "contains_text",
+              "targetId": "team-lead",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.5,
+              "passed": true,
+              "expected": "the only coordinator",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2940
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2940
+              }
+            },
+            {
+              "id": "specialists-no-peer-coordination",
+              "type": "contains_text",
+              "targetId": "team-lead",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.0,
+              "passed": true,
+              "expected": "specialists do not coordinate with each other",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2940
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2940
+              }
+            },
+            {
+              "id": "current-run-contract",
+              "type": "contains_text",
+              "targetId": "team-lead",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.0,
+              "passed": true,
+              "expected": "`docs/agents/current-run.json`",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2940
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2940
+              }
+            },
+            {
+              "id": "no-product-code-boundary",
+              "type": "contains_text",
+              "targetId": "team-lead",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.5,
+              "passed": false,
+              "expected": "but not product code",
+              "observed": {
+                "containsExpected": false,
+                "targetLength": 2940
+              },
+              "actual": {
+                "containsExpected": false,
+                "targetLength": 2940
+              }
+            },
+            {
+              "id": "quality-gate-flow",
+              "type": "contains_text",
+              "targetId": "team-lead",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.0,
+              "passed": true,
+              "expected": "`quality-gate`",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2940
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2940
+              }
+            },
+            {
+              "id": "review-report-artifact",
+              "type": "contains_text",
+              "targetId": "team-lead",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.0,
+              "passed": true,
+              "expected": "`docs/agents/review-report.md`",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2940
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2940
+              }
+            },
+            {
+              "id": "manager-decision-output",
+              "type": "contains_text",
+              "targetId": "team-lead",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.5,
+              "passed": true,
+              "expected": "`ManagerDecision`",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2940
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2940
+              }
+            },
+            {
+              "id": "tools-exact",
+              "type": "frontmatter_equals",
+              "targetId": "team-lead",
+              "target": null,
+              "key": "tools",
+              "comparator": "equals",
+              "weight": 1.0,
+              "passed": true,
+              "expected": [
+                "read",
+                "search",
+                "execute",
+                "edit",
+                "agent",
+                "github/*"
+              ],
+              "observed": [
+                "read",
+                "search",
+                "execute",
+                "edit",
+                "agent",
+                "github/*"
+              ],
+              "actual": [
+                "read",
+                "search",
+                "execute",
+                "edit",
+                "agent",
+                "github/*"
+              ]
+            }
+          ]
+        }
+      ],
+      "ranking": {
+        "trajectoryScore": 0.60125,
+        "signals": {
+          "validationBreadth": 0.875,
+          "parentProgress": 0.0,
+          "actionEfficiency": 0.5,
+          "targetFocus": 1.0,
+          "lineageEfficiency": 0.5,
+          "matchedEvidenceRecords": 3,
+          "attributedSuccessCount": 0,
+          "attributedWarningCount": 0,
+          "attributedErrorCount": 2,
+          "attributedToolErrorCount": 2,
+          "attributedExternalErrorCount": 0,
+          "evidenceSupport": 0.0,
+          "evidenceIssuePenalty": 0.08,
+          "reviewedPolicyBonus": 0.0,
+          "reviewedPolicyPenalty": 0.0,
+          "liveWinnerBoost": 0.0
+        }
+      },
+      "outcome": {
+        "status": "discard",
+        "score": 0.842105,
+        "deltaFromBaseline": -0.157895,
+        "deltaFromParent": -0.157895,
+        "passedChecks": 7,
+        "totalChecks": 8,
+        "complexity": {
+          "bodyChars": 2940,
+          "toolCount": 6,
+          "mcpServerCount": 0,
+          "fileCount": 1,
+          "score": 3105,
+          "perTarget": {
+            "team-lead": {
+              "bodyChars": 2940,
+              "toolCount": 6,
+              "mcpServerCount": 0,
+              "score": 3090
+            }
+          }
+        },
+        "selectedAsBest": false,
+        "appliedBestVariant": false
+      }
+    }
+  ],
+  "episodes": [
+    {
+      "episodeId": "candidate-episode-baseline",
+      "kind": "candidate_observation_episode",
+      "trajectoryId": "candidate-trajectory-baseline",
+      "candidateId": "baseline",
+      "parentCandidateId": null,
+      "status": "keep",
+      "lineageCandidateIds": [
+        "baseline"
+      ],
+      "summary": {
+        "matchedRecordCount": 6,
+        "stepCount": 6,
+        "sourceKindCounts": {
+          "run_state": 2,
+          "run_report": 1,
+          "transcript_event": 2,
+          "handoff_event": 1
+        },
+        "statusCounts": {
+          "Review": 1,
+          "Spec": 1,
+          "READY_FOR_QUALITY_GATE": 1,
+          "success": 3
+        },
+        "toolNames": [
+          "read_file",
+          "grep_search"
+        ],
+        "toolSequence": [
+          "read_file",
+          "grep_search",
+          "read_file"
+        ],
+        "toolCounts": {
+          "read_file": 2,
+          "grep_search": 1
+        },
+        "handoffCount": 1,
+        "observedPattern": "evidence_backed",
+        "terminalStatus": "success"
+      },
+      "steps": [
+        {
+          "stepId": "candidate-episode-baseline-step-01",
+          "sequence": 1,
+          "sourceKind": "run_state",
+          "sourceScope": "current_artifact",
+          "file": "docs/agents/state.json",
+          "recordType": "state.json",
+          "status": "Review",
+          "role": null,
+          "toolName": null,
+          "sourceId": null,
+          "candidateIds": [],
+          "lineageCandidateIds": [],
+          "handoffRefs": [],
+          "transcriptText": null
+        },
+        {
+          "stepId": "candidate-episode-baseline-step-02",
+          "sequence": 2,
+          "sourceKind": "run_state",
+          "sourceScope": "run_snapshot",
+          "file": "docs/agents/runs/20260308-160258/state.json",
+          "recordType": "state.json",
+          "status": "Spec",
+          "role": null,
+          "toolName": null,
+          "sourceId": null,
+          "candidateIds": [],
+          "lineageCandidateIds": [],
+          "handoffRefs": [],
+          "transcriptText": null
+        },
+        {
+          "stepId": "candidate-episode-baseline-step-03",
+          "sequence": 3,
+          "sourceKind": "run_report",
+          "sourceScope": "run_snapshot",
+          "file": "docs/agents/runs/20260308-160258/autoagent-report.md",
+          "recordType": "AutoAgentReport",
+          "status": "READY_FOR_QUALITY_GATE",
+          "role": null,
+          "toolName": null,
+          "sourceId": null,
+          "candidateIds": [],
+          "lineageCandidateIds": [],
+          "handoffRefs": [],
+          "transcriptText": null
+        },
+        {
+          "stepId": "candidate-episode-baseline-step-04",
+          "sequence": 4,
+          "sourceKind": "transcript_event",
+          "sourceScope": "chat_transcript",
+          "file": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/tests/fixtures/autoagent-loop/team-lead-chat-history.json",
+          "recordType": "assistant",
+          "status": "success",
+          "role": "assistant",
+          "toolName": "read_file",
+          "sourceId": "chat-history-1",
+          "candidateIds": [
+            "baseline"
+          ],
+          "lineageCandidateIds": [],
+          "handoffRefs": [],
+          "transcriptText": "baseline reviewed the governed artifacts and kept the deterministic boundary."
+        },
+        {
+          "stepId": "candidate-episode-baseline-step-05",
+          "sequence": 5,
+          "sourceKind": "transcript_event",
+          "sourceScope": "conversation_transcript",
+          "file": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/tests/fixtures/autoagent-loop/team-lead-transcript-history.jsonl",
+          "recordType": "assistant",
+          "status": "success",
+          "role": "assistant",
+          "toolName": "grep_search",
+          "sourceId": "transcript-history-1",
+          "candidateIds": [
+            "baseline"
+          ],
+          "lineageCandidateIds": [],
+          "handoffRefs": [],
+          "transcriptText": "baseline used a focused repo search before keeping the current manager boundary."
+        },
+        {
+          "stepId": "candidate-episode-baseline-step-06",
+          "sequence": 6,
+          "sourceKind": "handoff_event",
+          "sourceScope": "handoff_history",
+          "file": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/tests/fixtures/autoagent-loop/team-lead-handoff-history.jsonl",
+          "recordType": "handoff",
+          "status": "success",
+          "role": "assistant",
+          "toolName": "read_file",
+          "sourceId": "handoff-history-1",
+          "candidateIds": [],
+          "lineageCandidateIds": [],
+          "handoffRefs": [
+            "baseline"
+          ],
+          "transcriptText": "The final reviewed handoff stayed with the baseline path after checking the governed artifacts."
+        }
+      ]
+    },
+    {
+      "episodeId": "candidate-episode-relax-no-product-code-boundary",
+      "kind": "candidate_observation_episode",
+      "trajectoryId": "candidate-trajectory-relax-no-product-code-boundary",
+      "candidateId": "relax-no-product-code-boundary",
+      "parentCandidateId": "baseline",
+      "status": "discard",
+      "lineageCandidateIds": [
+        "baseline",
+        "relax-no-product-code-boundary"
+      ],
+      "summary": {
+        "matchedRecordCount": 3,
+        "stepCount": 3,
+        "sourceKindCounts": {
+          "run_report": 1,
+          "transcript_event": 2
+        },
+        "statusCounts": {
+          "READY_FOR_QUALITY_GATE": 1,
+          "error": 2
+        },
+        "toolNames": [
+          "apply_patch",
+          "read_file"
+        ],
+        "toolSequence": [
+          "apply_patch",
+          "read_file"
+        ],
+        "toolCounts": {
+          "apply_patch": 1,
+          "read_file": 1
+        },
+        "handoffCount": 0,
+        "observedPattern": "evidence_backed",
+        "terminalStatus": "error"
+      },
+      "steps": [
+        {
+          "stepId": "candidate-episode-relax-no-product-code-boundary-step-01",
+          "sequence": 1,
+          "sourceKind": "run_report",
+          "sourceScope": "run_snapshot",
+          "file": "docs/agents/runs/20260308-160258/autoagent-report.md",
+          "recordType": "AutoAgentReport",
+          "status": "READY_FOR_QUALITY_GATE",
+          "role": null,
+          "toolName": null,
+          "sourceId": null,
+          "candidateIds": [],
+          "lineageCandidateIds": [],
+          "handoffRefs": [],
+          "transcriptText": null
+        },
+        {
+          "stepId": "candidate-episode-relax-no-product-code-boundary-step-02",
+          "sequence": 2,
+          "sourceKind": "transcript_event",
+          "sourceScope": "chat_transcript",
+          "file": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/tests/fixtures/autoagent-loop/team-lead-chat-history.json",
+          "recordType": "assistant",
+          "status": "error",
+          "role": "assistant",
+          "toolName": "apply_patch",
+          "sourceId": "chat-history-1",
+          "candidateIds": [
+            "relax-no-product-code-boundary"
+          ],
+          "lineageCandidateIds": [],
+          "handoffRefs": [],
+          "transcriptText": "relax-no-product-code-boundary tried a looser boundary and failed review."
+        },
+        {
+          "stepId": "candidate-episode-relax-no-product-code-boundary-step-03",
+          "sequence": 3,
+          "sourceKind": "transcript_event",
+          "sourceScope": "conversation_transcript",
+          "file": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/tests/fixtures/autoagent-loop/team-lead-transcript-history.jsonl",
+          "recordType": "assistant",
+          "status": "error",
+          "role": "assistant",
+          "toolName": "read_file",
+          "sourceId": "transcript-history-1",
+          "candidateIds": [
+            "relax-no-product-code-boundary"
+          ],
+          "lineageCandidateIds": [],
+          "handoffRefs": [],
+          "transcriptText": "relax-no-product-code-boundary reached a warning after relaxing the product-code restriction."
+        }
+      ]
+    }
+  ],
+  "learning": {
+    "mode": "shadow_only",
+    "episodeCount": 2,
+    "evidenceBackedEpisodeCount": 2,
+    "reasoningPathSignal": {
+      "name": "reasoningPathEfficiencyScore",
+      "sourceBackedPathCount": 2,
+      "transcriptBackedPathCount": 2,
+      "handoffBackedPathCount": 1,
+      "bestObservedScore": 0.808333
+    },
+    "topObservedPaths": [
+      {
+        "episodeId": "candidate-episode-baseline",
+        "trajectoryId": "candidate-trajectory-baseline",
+        "candidateId": "baseline",
+        "classification": "successful_path",
+        "learningScore": 0.870833,
+        "qualityScore": 0.9125,
+        "efficiencyScore": 0.808333,
+        "reasoningPathEfficiencyScore": 0.808333,
+        "terminalStatus": "success",
+        "matchedRecordCount": 6,
+        "handoffCount": 1,
+        "searchDepth": 0,
+        "actionCount": 0,
+        "sourceKinds": [
+          "handoff_event",
+          "run_report",
+          "run_state",
+          "transcript_event"
+        ],
+        "toolNames": [
+          "read_file",
+          "grep_search"
+        ],
+        "toolSequence": [
+          "read_file",
+          "grep_search",
+          "read_file"
+        ],
+        "provenance": {
+          "matchedRecordCount": 6,
+          "sourceKinds": [
+            "handoff_event",
+            "run_report",
+            "run_state",
+            "transcript_event"
+          ],
+          "transcriptRecordCount": 2,
+          "handoffRecordCount": 1,
+          "transcriptBacked": true,
+          "handoffBacked": true
+        },
+        "factors": {
+          "benchmarkQuality": 1.0,
+          "evidenceQuality": 0.75,
+          "terminalOutcomeScore": 1.0,
+          "actionCount": 0,
+          "searchDepth": 0,
+          "stepCount": 6,
+          "handoffCount": 1,
+          "handoffEfficiency": 0.666667,
+          "toolSequenceLength": 3,
+          "repeatedToolCount": 0,
+          "toolChurnScore": 1.0,
+          "reasoningPathEfficiencyScore": 0.808333
+        },
+        "selectedAsBest": true
+      },
+      {
+        "episodeId": "candidate-episode-relax-no-product-code-boundary",
+        "trajectoryId": "candidate-trajectory-relax-no-product-code-boundary",
+        "candidateId": "relax-no-product-code-boundary",
+        "classification": "failure_path",
+        "learningScore": 0.487368,
+        "qualityScore": 0.378947,
+        "efficiencyScore": 0.65,
+        "reasoningPathEfficiencyScore": 0.65,
+        "terminalStatus": "error",
+        "matchedRecordCount": 3,
+        "handoffCount": 0,
+        "searchDepth": 1,
+        "actionCount": 1,
+        "sourceKinds": [
+          "run_report",
+          "transcript_event"
+        ],
+        "toolNames": [
+          "apply_patch",
+          "read_file"
+        ],
+        "toolSequence": [
+          "apply_patch",
+          "read_file"
+        ],
+        "provenance": {
+          "matchedRecordCount": 3,
+          "sourceKinds": [
+            "run_report",
+            "transcript_event"
+          ],
+          "transcriptRecordCount": 2,
+          "handoffRecordCount": 0,
+          "transcriptBacked": true,
+          "handoffBacked": false
+        },
+        "factors": {
+          "benchmarkQuality": 0.842105,
+          "evidenceQuality": 0.0,
+          "terminalOutcomeScore": 0.0,
+          "actionCount": 1,
+          "searchDepth": 1,
+          "stepCount": 3,
+          "handoffCount": 0,
+          "handoffEfficiency": 1.0,
+          "toolSequenceLength": 2,
+          "repeatedToolCount": 0,
+          "toolChurnScore": 1.0,
+          "reasoningPathEfficiencyScore": 0.65
+        },
+        "selectedAsBest": false
+      }
+    ],
+    "benchmarkCandidates": [
+      {
+        "suggestionId": "episode-benchmark-01",
+        "kind": "episode_success_guard",
+        "classification": "successful_path",
+        "observedCount": 1,
+        "learningScore": 0.870833,
+        "exampleCandidateIds": [
+          "baseline"
+        ],
+        "sourceKinds": [
+          "handoff_event",
+          "run_report",
+          "run_state",
+          "transcript_event"
+        ],
+        "handoffCount": 1,
+        "toolNames": [
+          "read_file",
+          "grep_search"
+        ],
+        "terminalStatus": "success",
+        "reasoningPathEfficiencyScore": 0.808333,
+        "provenance": {
+          "matchedRecordCount": 6,
+          "sourceKinds": [
+            "handoff_event",
+            "run_report",
+            "run_state",
+            "transcript_event"
+          ],
+          "transcriptRecordCount": 2,
+          "handoffRecordCount": 1,
+          "transcriptBacked": true,
+          "handoffBacked": true
+        },
+        "factors": {
+          "benchmarkQuality": 1.0,
+          "evidenceQuality": 0.75,
+          "terminalOutcomeScore": 1.0,
+          "actionCount": 0,
+          "searchDepth": 0,
+          "stepCount": 6,
+          "handoffCount": 1,
+          "handoffEfficiency": 0.666667,
+          "toolSequenceLength": 3,
+          "repeatedToolCount": 0,
+          "toolChurnScore": 1.0,
+          "reasoningPathEfficiencyScore": 0.808333
+        },
+        "rationale": "Preserve the observed successful path pattern."
+      },
+      {
+        "suggestionId": "episode-benchmark-02",
+        "kind": "episode_failure_regression",
+        "classification": "failure_path",
+        "observedCount": 1,
+        "learningScore": 0.487368,
+        "exampleCandidateIds": [
+          "relax-no-product-code-boundary"
+        ],
+        "sourceKinds": [
+          "run_report",
+          "transcript_event"
+        ],
+        "handoffCount": 0,
+        "toolNames": [
+          "apply_patch",
+          "read_file"
+        ],
+        "terminalStatus": "error",
+        "reasoningPathEfficiencyScore": 0.65,
+        "provenance": {
+          "matchedRecordCount": 3,
+          "sourceKinds": [
+            "run_report",
+            "transcript_event"
+          ],
+          "transcriptRecordCount": 2,
+          "handoffRecordCount": 0,
+          "transcriptBacked": true,
+          "handoffBacked": false
+        },
+        "factors": {
+          "benchmarkQuality": 0.842105,
+          "evidenceQuality": 0.0,
+          "terminalOutcomeScore": 0.0,
+          "actionCount": 1,
+          "searchDepth": 1,
+          "stepCount": 3,
+          "handoffCount": 0,
+          "handoffEfficiency": 1.0,
+          "toolSequenceLength": 2,
+          "repeatedToolCount": 0,
+          "toolChurnScore": 1.0,
+          "reasoningPathEfficiencyScore": 0.65
+        },
+        "rationale": "Add a regression guard for the observed failing path pattern."
+      }
+    ],
+    "mutationSeedCandidates": [
+      {
+        "seedId": "episode-mutation-seed-01",
+        "kind": "reinforce_success_path",
+        "candidateId": "baseline",
+        "episodeId": "candidate-episode-baseline",
+        "sourceMutationId": null,
+        "sourceKinds": [
+          "handoff_event",
+          "run_report",
+          "run_state",
+          "transcript_event"
+        ],
+        "handoffCount": 1,
+        "toolNames": [
+          "read_file",
+          "grep_search"
+        ],
+        "targetSearchDepth": 0,
+        "targetActionCount": 0,
+        "learningScore": 0.870833,
+        "reasoningPathEfficiencyScore": 0.808333,
+        "provenance": {
+          "matchedRecordCount": 6,
+          "sourceKinds": [
+            "handoff_event",
+            "run_report",
+            "run_state",
+            "transcript_event"
+          ],
+          "transcriptRecordCount": 2,
+          "handoffRecordCount": 1,
+          "transcriptBacked": true,
+          "handoffBacked": true
+        },
+        "factors": {
+          "benchmarkQuality": 1.0,
+          "evidenceQuality": 0.75,
+          "terminalOutcomeScore": 1.0,
+          "actionCount": 0,
+          "searchDepth": 0,
+          "stepCount": 6,
+          "handoffCount": 1,
+          "handoffEfficiency": 0.666667,
+          "toolSequenceLength": 3,
+          "repeatedToolCount": 0,
+          "toolChurnScore": 1.0,
+          "reasoningPathEfficiencyScore": 0.808333
+        },
+        "rationale": "Promote this observed successful path as a future mutation seed."
+      },
+      {
+        "seedId": "episode-mutation-seed-02",
+        "kind": "avoid_failure_path",
+        "candidateId": "relax-no-product-code-boundary",
+        "episodeId": "candidate-episode-relax-no-product-code-boundary",
+        "sourceMutationId": "relax-no-product-code-boundary",
+        "sourceKinds": [
+          "run_report",
+          "transcript_event"
+        ],
+        "handoffCount": 0,
+        "toolNames": [
+          "apply_patch",
+          "read_file"
+        ],
+        "targetSearchDepth": 1,
+        "targetActionCount": 1,
+        "learningScore": 0.487368,
+        "reasoningPathEfficiencyScore": 0.65,
+        "provenance": {
+          "matchedRecordCount": 3,
+          "sourceKinds": [
+            "run_report",
+            "transcript_event"
+          ],
+          "transcriptRecordCount": 2,
+          "handoffRecordCount": 0,
+          "transcriptBacked": true,
+          "handoffBacked": false
+        },
+        "factors": {
+          "benchmarkQuality": 0.842105,
+          "evidenceQuality": 0.0,
+          "terminalOutcomeScore": 0.0,
+          "actionCount": 1,
+          "searchDepth": 1,
+          "stepCount": 3,
+          "handoffCount": 0,
+          "handoffEfficiency": 1.0,
+          "toolSequenceLength": 2,
+          "repeatedToolCount": 0,
+          "toolChurnScore": 1.0,
+          "reasoningPathEfficiencyScore": 0.65
+        },
+        "rationale": "Use this observed failing path to shape a future avoidance mutation."
+      }
+    ],
+    "policyCandidates": [
+      {
+        "policyId": "episode-policy-01",
+        "kind": "preferred_tool_sequence",
+        "classification": "successful_path",
+        "observedCount": 1,
+        "exampleCandidateIds": [
+          "baseline"
+        ],
+        "sourceKinds": [
+          "handoff_event",
+          "run_report",
+          "run_state",
+          "transcript_event"
+        ],
+        "handoffCount": 1,
+        "toolNames": [
+          "read_file",
+          "grep_search"
+        ],
+        "toolSequence": [
+          "read_file",
+          "grep_search",
+          "read_file"
+        ],
+        "terminalStatus": "success",
+        "constraints": {
+          "maxSearchDepth": 0,
+          "maxActionCount": 0
+        },
+        "learningScore": 0.870833,
+        "reasoningPathEfficiencyScore": 0.808333,
+        "provenance": {
+          "matchedRecordCount": 6,
+          "sourceKinds": [
+            "handoff_event",
+            "run_report",
+            "run_state",
+            "transcript_event"
+          ],
+          "transcriptRecordCount": 2,
+          "handoffRecordCount": 1,
+          "transcriptBacked": true,
+          "handoffBacked": true
+        },
+        "factors": {
+          "benchmarkQuality": 1.0,
+          "evidenceQuality": 0.75,
+          "terminalOutcomeScore": 1.0,
+          "actionCount": 0,
+          "searchDepth": 0,
+          "stepCount": 6,
+          "handoffCount": 1,
+          "handoffEfficiency": 0.666667,
+          "toolSequenceLength": 3,
+          "repeatedToolCount": 0,
+          "toolChurnScore": 1.0,
+          "reasoningPathEfficiencyScore": 0.808333
+        },
+        "rationale": "Prefer the observed successful tool sequence for similar paths."
+      },
+      {
+        "policyId": "episode-policy-02",
+        "kind": "escalation_trigger",
+        "classification": "failure_path",
+        "observedCount": 1,
+        "exampleCandidateIds": [
+          "relax-no-product-code-boundary"
+        ],
+        "sourceKinds": [
+          "run_report",
+          "transcript_event"
+        ],
+        "handoffCount": 0,
+        "triggerTools": [
+          "apply_patch",
+          "read_file"
+        ],
+        "terminalStatus": "error",
+        "constraints": {
+          "maxSearchDepth": 1,
+          "maxActionCount": 1
+        },
+        "learningScore": 0.487368,
+        "reasoningPathEfficiencyScore": 0.65,
+        "provenance": {
+          "matchedRecordCount": 3,
+          "sourceKinds": [
+            "run_report",
+            "transcript_event"
+          ],
+          "transcriptRecordCount": 2,
+          "handoffRecordCount": 0,
+          "transcriptBacked": true,
+          "handoffBacked": false
+        },
+        "factors": {
+          "benchmarkQuality": 0.842105,
+          "evidenceQuality": 0.0,
+          "terminalOutcomeScore": 0.0,
+          "actionCount": 1,
+          "searchDepth": 1,
+          "stepCount": 3,
+          "handoffCount": 0,
+          "handoffEfficiency": 1.0,
+          "toolSequenceLength": 2,
+          "repeatedToolCount": 0,
+          "toolChurnScore": 1.0,
+          "reasoningPathEfficiencyScore": 0.65
+        },
+        "rationale": "Escalate or branch away when this observed tool path ends in failure or warning."
+      }
+    ]
+  },
+  "events": [
+    {
+      "eventId": "candidate-evaluation-00-baseline",
+      "kind": "candidate_evaluation",
+      "trajectoryId": "candidate-trajectory-baseline",
+      "iteration": 0,
+      "candidateId": "baseline",
+      "parentCandidateId": null,
+      "mutationId": null,
+      "searchDepth": 0,
+      "status": "keep",
+      "description": "Baseline target agent",
+      "score": 1.0,
+      "trajectoryScore": 0.88,
+      "deltaFromBaseline": 0.0,
+      "passedChecks": 8,
+      "totalChecks": 8,
+      "complexity": {
+        "bodyChars": 2948,
+        "toolCount": 6,
+        "mcpServerCount": 0,
+        "fileCount": 1,
+        "score": 3113,
+        "perTarget": {
+          "team-lead": {
+            "bodyChars": 2948,
+            "toolCount": 6,
+            "mcpServerCount": 0,
+            "score": 3098
+          }
+        }
+      },
+      "touchedTargets": [],
+      "candidatePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-00-baseline.agent.md",
+      "selectedAsBest": true
+    },
+    {
+      "eventId": "candidate-evaluation-01-relax-no-product-code-boundary",
+      "kind": "candidate_evaluation",
+      "trajectoryId": "candidate-trajectory-relax-no-product-code-boundary",
+      "iteration": 1,
+      "candidateId": "relax-no-product-code-boundary",
+      "parentCandidateId": "baseline",
+      "mutationId": "relax-no-product-code-boundary",
+      "searchDepth": 1,
+      "status": "discard",
+      "description": "Loosen the manager scope to prove governance regressions are discarded.",
+      "score": 0.842105,
+      "trajectoryScore": 0.60125,
+      "deltaFromBaseline": -0.157895,
+      "passedChecks": 7,
+      "totalChecks": 8,
+      "complexity": {
+        "bodyChars": 2940,
+        "toolCount": 6,
+        "mcpServerCount": 0,
+        "fileCount": 1,
+        "score": 3105,
+        "perTarget": {
+          "team-lead": {
+            "bodyChars": 2940,
+            "toolCount": 6,
+            "mcpServerCount": 0,
+            "score": 3090
+          }
+        }
+      },
+      "touchedTargets": [
+        "team-lead"
+      ],
+      "candidatePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-01-relax-no-product-code-boundary.agent.md",
+      "selectedAsBest": false,
+      "deltaFromParent": -0.157895
+    },
+    {
+      "eventId": "frontier-snapshot-00",
+      "kind": "frontier_snapshot",
+      "mutationIndex": 0,
+      "mutationId": null,
+      "evaluatedCandidateIds": [
+        "baseline"
+      ],
+      "frontierCandidateIds": [
+        "baseline"
+      ],
+      "bestCandidateId": "baseline"
+    },
+    {
+      "eventId": "frontier-snapshot-01",
+      "kind": "frontier_snapshot",
+      "mutationIndex": 1,
+      "mutationId": "relax-no-product-code-boundary",
+      "evaluatedCandidateIds": [
+        "relax-no-product-code-boundary"
+      ],
+      "frontierCandidateIds": [
+        "baseline"
+      ],
+      "bestCandidateId": "baseline"
+    },
+    {
+      "eventId": "live-evaluation",
+      "kind": "live_evaluation",
+      "status": "disabled",
+      "strategy": "advisory",
+      "provider": "github-models",
+      "model": "gpt-5.4",
+      "sampleCount": 0,
+      "evaluatedCandidateIds": [],
+      "winnerCandidateId": "baseline",
+      "bestCandidateChanged": false,
+      "fallbackToDeterministic": false,
+      "reason": "live_evaluator_disabled",
+      "verdictCounts": {}
+    },
+    {
+      "eventId": "run-outcome",
+      "kind": "run_outcome",
+      "baselineCandidateId": "baseline",
+      "bestCandidateId": "baseline",
+      "outcomeLabel": "unchanged",
+      "improvementDelta": 0.0,
+      "appliedBestVariant": false,
+      "keptCandidateCount": 1,
+      "discardedCandidateCount": 1,
+      "winnerExplanation": {
+        "winnerCandidateId": "baseline",
+        "comparedCandidateId": "relax-no-product-code-boundary",
+        "comparisonMode": "deterministic_ranking",
+        "decisiveSignal": "benchmark_score",
+        "evidenceBacked": false,
+        "summary": "baseline beat relax-no-product-code-boundary on benchmark score (1.0 vs 0.842105).",
+        "evidenceSummary": null,
+        "rankingComparison": {
+          "winnerScore": 1.0,
+          "runnerUpScore": 0.842105,
+          "scoreDelta": 0.157895,
+          "winnerComplexityScore": 3113,
+          "runnerUpComplexityScore": 3105,
+          "complexityAdvantage": -8,
+          "winnerTrajectoryScore": 0.88,
+          "runnerUpTrajectoryScore": 0.60125,
+          "trajectoryScoreDelta": 0.27875
+        },
+        "topTrajectorySignals": [
+          {
+            "signal": "attributedSuccessCount",
+            "preference": "higher_is_better",
+            "winner": 3,
+            "runnerUp": 0,
+            "advantage": 3.0
+          },
+          {
+            "signal": "matchedEvidenceRecords",
+            "preference": "higher_is_better",
+            "winner": 6,
+            "runnerUp": 3,
+            "advantage": 3.0
+          },
+          {
+            "signal": "attributedErrorCount",
+            "preference": "lower_is_better",
+            "winner": 0,
+            "runnerUp": 2,
+            "advantage": 2.0
+          },
+          {
+            "signal": "attributedToolErrorCount",
+            "preference": "lower_is_better",
+            "winner": 0,
+            "runnerUp": 2,
+            "advantage": 2.0
+          },
+          {
+            "signal": "actionEfficiency",
+            "preference": "higher_is_better",
+            "winner": 1.0,
+            "runnerUp": 0.5,
+            "advantage": 0.5
+          }
+        ],
+        "trajectorySummary": "Top trajectory contributors: attributedSuccessCount +3, matchedEvidenceRecords +3, attributedErrorCount lower by 2",
+        "evidenceComparison": {
+          "winnerSourceKinds": {
+            "handoff_event": 1,
+            "run_report": 1,
+            "run_state": 2,
+            "transcript_event": 2
+          },
+          "runnerUpSourceKinds": {
+            "run_report": 1,
+            "transcript_event": 2
+          },
+          "winnerStatuses": {
+            "ready_for_quality_gate": 1,
+            "review": 1,
+            "spec": 1,
+            "success": 3
+          },
+          "runnerUpStatuses": {
+            "error": 2,
+            "ready_for_quality_gate": 1
+          }
+        },
+        "winner": {
+          "candidateId": "baseline",
+          "iteration": 0,
+          "searchDepth": 0,
+          "score": 1.0,
+          "complexityScore": 3113,
+          "trajectoryScore": 0.88,
+          "trajectorySignals": {
+            "validationBreadth": 1.0,
+            "parentProgress": 0.0,
+            "actionEfficiency": 1.0,
+            "targetFocus": 1.0,
+            "lineageEfficiency": 1.0,
+            "matchedEvidenceRecords": 6,
+            "attributedSuccessCount": 3,
+            "attributedWarningCount": 0,
+            "attributedErrorCount": 0,
+            "attributedToolErrorCount": 0,
+            "attributedExternalErrorCount": 0,
+            "evidenceSupport": 0.03,
+            "evidenceIssuePenalty": 0.0,
+            "reviewedPolicyBonus": 0.0,
+            "reviewedPolicyPenalty": 0.0,
+            "liveWinnerBoost": 0.0
+          },
+          "evidence": {
+            "matchedRecordCount": 6,
+            "successCount": 3,
+            "warningCount": 0,
+            "errorCount": 0,
+            "toolErrorCount": 0,
+            "externalErrorCount": 0,
+            "sourceKindCounts": {
+              "handoff_event": 1,
+              "run_report": 1,
+              "run_state": 2,
+              "transcript_event": 2
+            },
+            "statusCounts": {
+              "ready_for_quality_gate": 1,
+              "review": 1,
+              "spec": 1,
+              "success": 3
+            }
+          }
+        },
+        "runnerUp": {
+          "candidateId": "relax-no-product-code-boundary",
+          "iteration": 1,
+          "searchDepth": 1,
+          "score": 0.842105,
+          "complexityScore": 3105,
+          "trajectoryScore": 0.60125,
+          "trajectorySignals": {
+            "validationBreadth": 0.875,
+            "parentProgress": 0.0,
+            "actionEfficiency": 0.5,
+            "targetFocus": 1.0,
+            "lineageEfficiency": 0.5,
+            "matchedEvidenceRecords": 3,
+            "attributedSuccessCount": 0,
+            "attributedWarningCount": 0,
+            "attributedErrorCount": 2,
+            "attributedToolErrorCount": 2,
+            "attributedExternalErrorCount": 0,
+            "evidenceSupport": 0.0,
+            "evidenceIssuePenalty": 0.08,
+            "reviewedPolicyBonus": 0.0,
+            "reviewedPolicyPenalty": 0.0,
+            "liveWinnerBoost": 0.0
+          },
+          "evidence": {
+            "matchedRecordCount": 3,
+            "successCount": 0,
+            "warningCount": 0,
+            "errorCount": 2,
+            "toolErrorCount": 2,
+            "externalErrorCount": 0,
+            "sourceKindCounts": {
+              "run_report": 1,
+              "transcript_event": 2
+            },
+            "statusCounts": {
+              "error": 2,
+              "ready_for_quality_gate": 1
+            }
+          }
+        },
+        "liveEvaluation": null
+      }
+    }
+  ]
+}

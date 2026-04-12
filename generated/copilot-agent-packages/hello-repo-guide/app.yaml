@@ -1,0 +1,9 @@
+command:
+  - "node"
+  - "src/server.js"
+
+env:
+  - name: NODE_ENV
+    value: "production"
+  - name: COPILOT_RUNTIME_MODE
+    value: "mock"

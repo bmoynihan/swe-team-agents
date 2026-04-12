@@ -1,0 +1,7 @@
+{
+  "hook": "postToolUse",
+  "toolName": "bash",
+  "toolArgs": "echo hello",
+  "toolResult": { "exitCode": 0 }
+}
+

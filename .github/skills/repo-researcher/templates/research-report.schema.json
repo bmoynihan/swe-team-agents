@@ -1,0 +1,243 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ResearchReport",
+  "type": "object",
+  "required": [
+    "type",
+    "goal",
+    "constraints",
+    "repro",
+    "hypotheses",
+    "suspectAreas",
+    "acceptanceCriteriaSeeds",
+    "validationPlanSeed",
+    "risks",
+    "blockers"
+  ],
+  "properties": {
+    "type": {
+      "const": "ResearchReport"
+    },
+    "goal": {
+      "type": "string",
+      "minLength": 1
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "repro": {
+      "type": "object",
+      "required": [
+        "status",
+        "steps",
+        "expected",
+        "actual",
+        "notes"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "reproduced",
+            "not_reproduced",
+            "blocked"
+          ]
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "expected": {
+          "type": "string"
+        },
+        "actual": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "hypotheses": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "statement",
+          "confidence",
+          "evidence",
+          "falsification"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "statement": {
+            "type": "string"
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "evidence": {
+            "type": "object",
+            "required": [
+              "files",
+              "observations"
+            ],
+            "properties": {
+              "files": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "observations": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "falsification": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "suspectAreas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "file",
+          "symbols",
+          "why"
+        ],
+        "properties": {
+          "file": {
+            "type": "string"
+          },
+          "symbols": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "why": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "acceptanceCriteriaSeeds": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "statement",
+          "suggestedTests"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "statement": {
+            "type": "string"
+          },
+          "suggestedTests": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "validationPlanSeed": {
+      "type": "object",
+      "required": [
+        "fastSubset",
+        "fullSuite",
+        "notes"
+      ],
+      "properties": {
+        "fastSubset": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "fullSuite": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "risk",
+          "mitigation"
+        ],
+        "properties": {
+          "risk": {
+            "type": "string"
+          },
+          "mitigation": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "category",
+          "evidence",
+          "nextStep"
+        ],
+        "properties": {
+          "category": {
+            "enum": [
+              "setup_failure",
+              "network_block",
+              "tool_denial",
+              "permission_or_governance_block",
+              "test_or_runtime_failure"
+            ]
+          },
+          "evidence": {
+            "type": "string"
+          },
+          "nextStep": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
+

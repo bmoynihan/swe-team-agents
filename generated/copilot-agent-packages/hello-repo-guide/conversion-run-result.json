@@ -1,0 +1,57 @@
+{
+  "sourceAgent": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/.github/agents/hello-repo-guide.agent.md",
+  "packageRoot": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/copilot-agent-packages/hello-repo-guide",
+  "targets": [
+    "copilot-sdk-service",
+    "databricks-app"
+  ],
+  "normalizedSpec": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/copilot-agent-packages/hello-repo-guide/normalized-agent-spec.json",
+  "determinism": "high",
+  "manualReviewReasons": [],
+  "artifacts": {
+    "report": {
+      "requestedPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/copilot-agent-conversion-report.md",
+      "actualPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/copilot-agent-conversion-report.generated.md",
+      "fallbackUsed": true,
+      "warning": "[Errno 13] Permission denied: 'D:\\\\Aon_Projects\\\\00_VSC_Github_Databricks_Coding_Agent\\\\swe_team_agents_template - Rev4\\\\docs\\\\agents\\\\copilot-agent-conversion-report.md'",
+      "runSnapshot": {
+        "requestedPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/runs/20260308-160258/copilot-agent-conversion-report.generated.md",
+        "actualPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/runs/20260308-160258/copilot-agent-conversion-report.generated.md",
+        "fallbackUsed": false,
+        "warning": null
+      }
+    },
+    "artifactLockNote": {
+      "requestedPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/artifact-lock-note.md",
+      "actualPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/artifact-lock-note.md",
+      "fallbackUsed": false,
+      "warning": null,
+      "runSnapshot": {
+        "requestedPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/runs/20260308-160258/artifact-lock-note.md",
+        "actualPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/runs/20260308-160258/artifact-lock-note.md",
+        "fallbackUsed": false,
+        "warning": null
+      }
+    },
+    "smokeTest": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/copilot-agent-packages/hello-repo-guide/smoke-test-result.json",
+    "databricksDeploy": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/copilot-agent-packages/hello-repo-guide/databricks-deploy-result.json",
+    "pipelineResult": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/copilot-agent-packages/hello-repo-guide/conversion-run-result.json"
+  },
+  "validation": [
+    {
+      "check": "npm-install",
+      "result": "pass",
+      "evidence": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/copilot-agent-packages/hello-repo-guide"
+    },
+    {
+      "check": "local-smoke-test",
+      "result": "pass",
+      "evidence": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/copilot-agent-packages/hello-repo-guide/smoke-test-result.json"
+    },
+    {
+      "check": "databricks-app-deploy",
+      "result": "pass",
+      "evidence": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/copilot-agent-packages/hello-repo-guide/databricks-deploy-result.json"
+    }
+  ]
+}

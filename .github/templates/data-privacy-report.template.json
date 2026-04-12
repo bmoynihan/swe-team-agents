@@ -1,0 +1,48 @@
+# Data Privacy Review (Agent)
+
+## Summary (≤12 lines)
+- Goal:
+- Personal data touched:
+- Storage/retention:
+- Sharing:
+- Logging/telemetry:
+- Verdict:
+
+```json
+{
+  "type": "DataPrivacyReport",
+  "status": "PASS",
+  "goal": "",
+  "dataInventory": [],
+  "principlesReview": {
+    "purposeLimitation": {"verdict": "pass", "evidence": ""},
+    "dataMinimization": {"verdict": "pass", "evidence": ""},
+    "storageLimitation": {"verdict": "not_applicable", "evidence": ""},
+    "integrityConfidentiality": {"verdict": "pass", "evidence": ""},
+    "accountabilityDocs": {"verdict": "pass", "evidence": ""}
+  },
+  "privacyByDefault": {
+    "verdict": "pass",
+    "defaults": [],
+    "evidence": ""
+  },
+  "loggingTelemetryHygiene": {
+    "verdict": "pass",
+    "redaction": "unknown",
+    "highCardinalityRisk": "low",
+    "evidence": ""
+  },
+  "nistPrivacyFrameworkNotes": {
+    "identifyP": [],
+    "governP": [],
+    "controlP": [],
+    "communicateP": [],
+    "protectP": []
+  },
+  "blockers": [],
+  "nonBlockingFindings": [],
+  "evidence": [],
+  "readyForQualityGate": true
+}
+```
+

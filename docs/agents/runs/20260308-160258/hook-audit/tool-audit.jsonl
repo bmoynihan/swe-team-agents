@@ -1,0 +1,1 @@
+{"ts":1773443057174,"event":"sessionStart","readiness":{"python":"present","files":{".github/copilot-instructions.md":"present"},"jq":"missing","dirs":{"scripts/hooks":"present",".github/hooks":"present","docs/agents":"present"},"bash":"present"}}

@@ -1,0 +1,93 @@
+{
+  "score": 1.0,
+  "passedChecks": 8,
+  "totalChecks": 8,
+  "checks": [
+    {
+      "id": "sole-coordinator",
+      "type": "contains_text",
+      "targetId": "team-lead",
+      "weight": 1.5,
+      "passed": true,
+      "actual": "the only coordinator"
+    },
+    {
+      "id": "specialists-no-peer-coordination",
+      "type": "contains_text",
+      "targetId": "team-lead",
+      "weight": 1.0,
+      "passed": true,
+      "actual": "specialists do not coordinate with each other"
+    },
+    {
+      "id": "current-run-contract",
+      "type": "contains_text",
+      "targetId": "team-lead",
+      "weight": 1.0,
+      "passed": true,
+      "actual": "`docs/agents/current-run.json`"
+    },
+    {
+      "id": "no-product-code-boundary",
+      "type": "contains_text",
+      "targetId": "team-lead",
+      "weight": 1.5,
+      "passed": true,
+      "actual": "but not product code"
+    },
+    {
+      "id": "quality-gate-flow",
+      "type": "contains_text",
+      "targetId": "team-lead",
+      "weight": 1.0,
+      "passed": true,
+      "actual": "`quality-gate`"
+    },
+    {
+      "id": "review-report-artifact",
+      "type": "contains_text",
+      "targetId": "team-lead",
+      "weight": 1.0,
+      "passed": true,
+      "actual": "`docs/agents/review-report.md`"
+    },
+    {
+      "id": "manager-decision-output",
+      "type": "contains_text",
+      "targetId": "team-lead",
+      "weight": 1.5,
+      "passed": true,
+      "actual": "`ManagerDecision`"
+    },
+    {
+      "id": "tools-exact",
+      "type": "frontmatter_equals",
+      "targetId": "team-lead",
+      "weight": 1.0,
+      "passed": true,
+      "actual": [
+        "read",
+        "search",
+        "execute",
+        "edit",
+        "agent",
+        "github/*"
+      ]
+    }
+  ],
+  "complexity": {
+    "bodyChars": 2958,
+    "toolCount": 6,
+    "mcpServerCount": 0,
+    "fileCount": 1,
+    "score": 3123,
+    "perTarget": {
+      "team-lead": {
+        "bodyChars": 2958,
+        "toolCount": 6,
+        "mcpServerCount": 0,
+        "score": 3108
+      }
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ManagerDecision",
+  "type": "object",
+  "required": [
+    "type",
+    "phase",
+    "next",
+    "goal",
+    "acceptance",
+    "evidence_required"
+  ],
+  "properties": {
+    "type": {
+      "const": "ManagerDecision"
+    },
+    "phase": {
+      "enum": [
+        "Intake",
+        "Research",
+        "Spec",
+        "Implement",
+        "Validate",
+        "Review",
+        "Done"
+      ]
+    },
+    "next": {
+      "enum": [
+        "repo-researcher",
+        "spec-writer",
+        "implementer",
+        "test-engineer",
+        "quality-gate",
+        "human-review"
+      ]
+    },
+    "goal": {
+      "type": "string",
+      "minLength": 1
+    },
+    "acceptance": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_required": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}
+
+

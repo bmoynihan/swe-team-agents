@@ -1,0 +1,40 @@
+{
+    "id": "onboarding-helper-benchmark",
+    "checks": [
+        {
+            "id": "mentions-workflow",
+            "type": "contains_text",
+            "target": "body",
+            "value": "manager-led multi-agent workflow",
+            "weight": 1.0
+        },
+        {
+            "id": "mentions-agents-md",
+            "type": "contains_text",
+            "target": "body",
+            "value": "`AGENTS.md`",
+            "weight": 1.0
+        },
+        {
+            "id": "mentions-task-spec",
+            "type": "contains_text",
+            "target": "body",
+            "value": "`docs/agents/task-spec.md`",
+            "weight": 1.0
+        },
+        {
+            "id": "redirects-team-lead",
+            "type": "contains_text",
+            "target": "body",
+            "value": "`team-lead`",
+            "weight": 1.0
+        },
+        {
+            "id": "keeps-tool-surface-empty",
+            "type": "frontmatter_equals",
+            "key": "tools",
+            "value": [],
+            "weight": 0.5
+        }
+    ]
+}

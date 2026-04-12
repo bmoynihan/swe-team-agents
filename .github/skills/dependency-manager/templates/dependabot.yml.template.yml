@@ -1,0 +1,30 @@
+
+---
+
+## `.github/skills/dependency-manager/templates/dependabot.yml.template`
+
+```yml
+version: 2
+updates:
+  # Example: Node (adjust directory/ecosystem to match your repo)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    groups:
+      minor-and-patch:
+        update-types: ["minor", "patch"]
+        patterns: ["*"]
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+
+  # Add additional ecosystems as needed (examples):
+  # - package-ecosystem: "pip"
+  #   directory: "/"
+  # - package-ecosystem: "github-actions"
+  #   directory: "/"
+```
+
+

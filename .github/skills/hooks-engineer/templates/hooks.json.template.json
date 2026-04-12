@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "hooks": {
+    "sessionStart": [
+      { "type": "command", "bash": "./scripts/hooks/session_start.sh", "timeoutSec": 30 }
+    ],
+    "preToolUse": [
+      { "type": "command", "bash": "./scripts/hooks/pretool_denylist.sh", "timeoutSec": 10 },
+      { "type": "command", "bash": "./scripts/hooks/audit_log.sh", "timeoutSec": 10 }
+    ],
+    "postToolUse": [
+      { "type": "command", "bash": "./scripts/hooks/audit_log.sh", "timeoutSec": 10 }
+    ],
+    "errorOccurred": [
+      { "type": "command", "bash": "./scripts/hooks/audit_log.sh", "timeoutSec": 10 }
+    ],
+    "sessionEnd": [
+      { "type": "command", "bash": "./scripts/hooks/session_end.sh", "timeoutSec": 30 }
+    ]
+  }
+}
+

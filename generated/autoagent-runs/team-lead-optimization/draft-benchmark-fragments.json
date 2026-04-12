@@ -1,0 +1,165 @@
+{
+  "type": "AutoAgentBenchmarkDrafts",
+  "mode": "review_only",
+  "shadowMode": true,
+  "source": {
+    "experimentName": "team-lead-optimization",
+    "benchmarkPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/.github/skills/autoagent-loop/examples/team-lead-benchmark.json",
+    "tracePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/autoagent-trace.json"
+  },
+  "draftFragmentCount": 2,
+  "draftFragments": [
+    {
+      "draftId": "benchmark-fragment-01",
+      "status": "draft",
+      "reviewRequired": true,
+      "sourceSuggestionId": "episode-benchmark-01",
+      "kind": "episode_success_guard",
+      "classification": "successful_path",
+      "fragment": {
+        "name": "episode-episode-success-guard-01",
+        "title": "Episode-derived benchmark fragment 1",
+        "goal": "Preserve the observed successful path pattern.",
+        "observedCount": 1,
+        "learningScore": 0.870833,
+        "reasoningPathEfficiencyScore": 0.808333,
+        "exampleCandidateIds": [
+          "baseline"
+        ],
+        "handoffCount": 1,
+        "traceProvenance": {
+          "matchedRecordCount": 6,
+          "sourceKinds": [
+            "handoff_event",
+            "run_report",
+            "run_state",
+            "transcript_event"
+          ],
+          "transcriptRecordCount": 2,
+          "handoffRecordCount": 1,
+          "transcriptBacked": true,
+          "handoffBacked": true
+        },
+        "factorSummary": {
+          "benchmarkQuality": 1.0,
+          "evidenceQuality": 0.75,
+          "terminalOutcomeScore": 1.0,
+          "actionCount": 0,
+          "searchDepth": 0,
+          "stepCount": 6,
+          "handoffCount": 1,
+          "handoffEfficiency": 0.666667,
+          "toolSequenceLength": 3,
+          "repeatedToolCount": 0,
+          "toolChurnScore": 1.0,
+          "reasoningPathEfficiencyScore": 0.808333
+        },
+        "suggestedChecks": [
+          {
+            "id": "episode-episode-success-guard-01-check",
+            "kind": "episode_observation_guard",
+            "intent": "Preserve the observed successful path pattern.",
+            "sourceKinds": [
+              "handoff_event",
+              "run_report",
+              "run_state",
+              "transcript_event"
+            ],
+            "toolNames": [
+              "read_file",
+              "grep_search"
+            ],
+            "handoffCount": 1,
+            "terminalStatus": "success",
+            "traceProvenance": {
+              "matchedRecordCount": 6,
+              "sourceKinds": [
+                "handoff_event",
+                "run_report",
+                "run_state",
+                "transcript_event"
+              ],
+              "transcriptRecordCount": 2,
+              "handoffRecordCount": 1,
+              "transcriptBacked": true,
+              "handoffBacked": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "draftId": "benchmark-fragment-02",
+      "status": "draft",
+      "reviewRequired": true,
+      "sourceSuggestionId": "episode-benchmark-02",
+      "kind": "episode_failure_regression",
+      "classification": "failure_path",
+      "fragment": {
+        "name": "episode-episode-failure-regression-02",
+        "title": "Episode-derived benchmark fragment 2",
+        "goal": "Add a regression guard for the observed failing path pattern.",
+        "observedCount": 1,
+        "learningScore": 0.487368,
+        "reasoningPathEfficiencyScore": 0.65,
+        "exampleCandidateIds": [
+          "relax-no-product-code-boundary"
+        ],
+        "handoffCount": 0,
+        "traceProvenance": {
+          "matchedRecordCount": 3,
+          "sourceKinds": [
+            "run_report",
+            "transcript_event"
+          ],
+          "transcriptRecordCount": 2,
+          "handoffRecordCount": 0,
+          "transcriptBacked": true,
+          "handoffBacked": false
+        },
+        "factorSummary": {
+          "benchmarkQuality": 0.842105,
+          "evidenceQuality": 0.0,
+          "terminalOutcomeScore": 0.0,
+          "actionCount": 1,
+          "searchDepth": 1,
+          "stepCount": 3,
+          "handoffCount": 0,
+          "handoffEfficiency": 1.0,
+          "toolSequenceLength": 2,
+          "repeatedToolCount": 0,
+          "toolChurnScore": 1.0,
+          "reasoningPathEfficiencyScore": 0.65
+        },
+        "suggestedChecks": [
+          {
+            "id": "episode-episode-failure-regression-02-check",
+            "kind": "episode_observation_guard",
+            "intent": "Add a regression guard for the observed failing path pattern.",
+            "sourceKinds": [
+              "run_report",
+              "transcript_event"
+            ],
+            "toolNames": [
+              "apply_patch",
+              "read_file"
+            ],
+            "handoffCount": 0,
+            "terminalStatus": "error",
+            "traceProvenance": {
+              "matchedRecordCount": 3,
+              "sourceKinds": [
+                "run_report",
+                "transcript_event"
+              ],
+              "transcriptRecordCount": 2,
+              "handoffRecordCount": 0,
+              "transcriptBacked": true,
+              "handoffBacked": false
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

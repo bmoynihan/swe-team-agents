@@ -1,0 +1,22 @@
+{
+  "type": "ResearchRequest",
+  "goal": "Fix/understand <issue>",
+  "context": {
+    "issueUrl": "https://github.com/<org>/<repo>/issues/<n>",
+    "prUrl": "",
+    "observedError": "",
+    "expectedBehavior": "",
+    "notes": ""
+  },
+  "constraints": [
+    "No API changes",
+    "Keep diff minimal",
+    "Do not edit code in research step"
+  ],
+  "definitionOfDoneSignals": [
+    "ResearchReport written with 2\u20133 hypotheses",
+    "Minimal reproduction (or explicit blocker) documented",
+    "Suspect areas + acceptance criteria seeds provided"
+  ]
+}
+

@@ -1,0 +1,18 @@
+{
+  "type": "ReviewRequest",
+  "goal": "",
+  "inputs": {
+    "taskSpecRef": "docs/agents/task-spec.md",
+    "patchRef": "docs/agents/patch-report.md",
+    "testRef": "docs/agents/test-report.md"
+  },
+  "asks": [
+    "PASS/FAIL",
+    "Blockers vs non-blocking",
+    "Evidence (tests/security notes)",
+    "Follow-ups"
+  ],
+  "outputFormat": "Write docs/agents/review-report.md + ReviewReport JSON"
+}
+
+

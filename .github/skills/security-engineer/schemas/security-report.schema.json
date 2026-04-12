@@ -1,0 +1,180 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/security-report.schema.json",
+  "title": "SecurityReport",
+  "type": "object",
+  "required": [
+    "type",
+    "status",
+    "goal",
+    "checksPerformed",
+    "blockers",
+    "recommendations",
+    "filesReviewed",
+    "commandsRun"
+  ],
+  "properties": {
+    "type": {
+      "const": "SecurityReport"
+    },
+    "status": {
+      "enum": [
+        "READY_FOR_QUALITY_GATE",
+        "BLOCKED"
+      ]
+    },
+    "goal": {
+      "type": "string"
+    },
+    "checksPerformed": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "result",
+          "evidence"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "result": {
+            "enum": [
+              "pass",
+              "fail",
+              "not_run",
+              "not_applicable"
+            ]
+          },
+          "evidence": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "category",
+          "summary",
+          "evidence",
+          "recommendedFix"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "category": {
+            "enum": [
+              "secrets",
+              "actions-permissions",
+              "dependency-risk",
+              "code-scanning",
+              "exfiltration-risk",
+              "other"
+            ]
+          },
+          "summary": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "string"
+          },
+          "recommendedFix": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "recommendations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "priority",
+          "summary",
+          "rationale",
+          "suggestedChange"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "priority": {
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "summary": {
+            "type": "string"
+          },
+          "rationale": {
+            "type": "string"
+          },
+          "suggestedChange": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "workflowNotes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "mcpAndSetupStepsNotes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "filesReviewed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "commandsRun": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "command",
+          "result",
+          "notes"
+        ],
+        "properties": {
+          "command": {
+            "type": "string"
+          },
+          "result": {
+            "enum": [
+              "pass",
+              "fail",
+              "not_run"
+            ]
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "notesToTeamLead": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}
+

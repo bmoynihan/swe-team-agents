@@ -1,0 +1,533 @@
+{
+  "type": "AutoAgentCheckpoint",
+  "version": 2,
+  "resumeStage": "post_mutation_search",
+  "experiment": {
+    "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/autoagent-experiment.md",
+    "exists": true,
+    "sha256": "3eb8f52b5587930fbb0effda72bfe7cd10ec4eaf1b077d11223213c9791123ab",
+    "sizeBytes": 7956
+  },
+  "benchmark": {
+    "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/.github/skills/autoagent-loop/examples/hello-repo-guide-benchmark.json",
+    "exists": true,
+    "sha256": "7b0ce645844ee6e5ec4357abbef21afebc347538afeb8c2cc8e4e3bddb81cbcb",
+    "sizeBytes": 1089
+  },
+  "mutationCatalog": {
+    "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/.github/skills/autoagent-loop/examples/hello-repo-guide-mutations.json",
+    "exists": true,
+    "sha256": "dd3d43d9e770fb4d617158dd05820e52d2f0ad77ac5c0bfbbe6c6a5a0ced4413",
+    "sizeBytes": 1570
+  },
+  "candidatePolicy": {
+    "keepStrategy": "score-then-simpler",
+    "searchStrategy": "current_best",
+    "frontierSize": 1
+  },
+  "requestedMutationCount": 3,
+  "totalMutationCount": 3,
+  "completedMutationCount": 3,
+  "nextMutationIndex": 4,
+  "hasRemainingMutations": false,
+  "evaluationIteration": 4,
+  "deterministicBestCandidateId": "trim-intro-paragraph",
+  "currentFrontierCandidateIds": [
+    "trim-intro-paragraph"
+  ],
+  "inlineCandidateIds": [
+    "trim-intro-paragraph"
+  ],
+  "inlineCandidateCount": 1,
+  "snapshotBackedCandidateCount": 3,
+  "keptCandidates": [
+    "baseline",
+    "trim-intro-paragraph"
+  ],
+  "discardedCandidates": [
+    "add-read-tool"
+  ],
+  "rows": [
+    {
+      "iteration": 0,
+      "candidateId": "baseline",
+      "parentCandidateId": null,
+      "searchDepth": 0,
+      "score": 1.0,
+      "passedChecks": 5,
+      "totalChecks": 5,
+      "status": "keep",
+      "description": "Baseline target agent",
+      "complexity": {
+        "bodyChars": 641,
+        "toolCount": 0,
+        "mcpServerCount": 0,
+        "fileCount": 1,
+        "score": 656,
+        "perTarget": {
+          "hello-repo-guide": {
+            "bodyChars": 641,
+            "toolCount": 0,
+            "mcpServerCount": 0,
+            "score": 641
+          }
+        }
+      }
+    },
+    {
+      "iteration": 1,
+      "candidateId": "trim-intro-paragraph",
+      "parentCandidateId": "baseline",
+      "searchDepth": 1,
+      "score": 1.0,
+      "passedChecks": 5,
+      "totalChecks": 5,
+      "status": "keep",
+      "description": "Shorten the introductory paragraph without dropping onboarding scope.",
+      "complexity": {
+        "bodyChars": 528,
+        "toolCount": 0,
+        "mcpServerCount": 0,
+        "fileCount": 1,
+        "score": 543,
+        "perTarget": {
+          "hello-repo-guide": {
+            "bodyChars": 528,
+            "toolCount": 0,
+            "mcpServerCount": 0,
+            "score": 528
+          }
+        }
+      },
+      "touchedTargets": [
+        "hello-repo-guide"
+      ]
+    },
+    {
+      "iteration": 2,
+      "candidateId": "restate-team-lead-redirect",
+      "parentCandidateId": "trim-intro-paragraph",
+      "searchDepth": 2,
+      "score": 1.0,
+      "passedChecks": 5,
+      "totalChecks": 5,
+      "status": "skip",
+      "description": "Reinforce the existing team-lead redirect rule.",
+      "complexity": {
+        "bodyChars": 528,
+        "toolCount": 0,
+        "mcpServerCount": 0,
+        "fileCount": 1,
+        "score": 543,
+        "perTarget": {
+          "hello-repo-guide": {
+            "bodyChars": 528,
+            "toolCount": 0,
+            "mcpServerCount": 0,
+            "score": 528
+          }
+        }
+      },
+      "touchedTargets": []
+    },
+    {
+      "iteration": 3,
+      "candidateId": "add-read-tool",
+      "parentCandidateId": "trim-intro-paragraph",
+      "searchDepth": 2,
+      "score": 0.888889,
+      "passedChecks": 4,
+      "totalChecks": 5,
+      "status": "discard",
+      "description": "Expand the tool surface with a read tool to show that non-simplifying mutations are discarded.",
+      "complexity": {
+        "bodyChars": 528,
+        "toolCount": 1,
+        "mcpServerCount": 0,
+        "fileCount": 1,
+        "score": 568,
+        "perTarget": {
+          "hello-repo-guide": {
+            "bodyChars": 528,
+            "toolCount": 1,
+            "mcpServerCount": 0,
+            "score": 553
+          }
+        }
+      },
+      "touchedTargets": [
+        "hello-repo-guide"
+      ]
+    }
+  ],
+  "candidateRecords": [
+    {
+      "iteration": 0,
+      "candidateId": "baseline",
+      "parentCandidateId": null,
+      "description": "Baseline target agent",
+      "status": "keep",
+      "evaluation": {
+        "score": 1.0,
+        "passedChecks": 5,
+        "totalChecks": 5,
+        "checks": [
+          {
+            "id": "mentions-workflow",
+            "type": "contains_text",
+            "targetId": "hello-repo-guide",
+            "weight": 1.0,
+            "passed": true,
+            "actual": "manager-led multi-agent workflow"
+          },
+          {
+            "id": "mentions-agents-md",
+            "type": "contains_text",
+            "targetId": "hello-repo-guide",
+            "weight": 1.0,
+            "passed": true,
+            "actual": "`AGENTS.md`"
+          },
+          {
+            "id": "mentions-task-spec",
+            "type": "contains_text",
+            "targetId": "hello-repo-guide",
+            "weight": 1.0,
+            "passed": true,
+            "actual": "`docs/agents/task-spec.md`"
+          },
+          {
+            "id": "redirects-team-lead",
+            "type": "contains_text",
+            "targetId": "hello-repo-guide",
+            "weight": 1.0,
+            "passed": true,
+            "actual": "`team-lead`"
+          },
+          {
+            "id": "keeps-tool-surface-empty",
+            "type": "frontmatter_equals",
+            "targetId": "hello-repo-guide",
+            "weight": 0.5,
+            "passed": true,
+            "actual": []
+          }
+        ],
+        "complexity": {
+          "bodyChars": 641,
+          "toolCount": 0,
+          "mcpServerCount": 0,
+          "fileCount": 1,
+          "score": 656,
+          "perTarget": {
+            "hello-repo-guide": {
+              "bodyChars": 641,
+              "toolCount": 0,
+              "mcpServerCount": 0,
+              "score": 641
+            }
+          }
+        }
+      },
+      "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/hello-repo-guide-optimization/candidates/iteration-00-baseline.agent.md",
+      "documentStorage": "candidate_snapshot",
+      "searchDepth": 0,
+      "mutationId": null,
+      "touchedTargets": []
+    },
+    {
+      "iteration": 1,
+      "candidateId": "trim-intro-paragraph",
+      "parentCandidateId": "baseline",
+      "description": "Shorten the introductory paragraph without dropping onboarding scope.",
+      "status": "keep",
+      "evaluation": {
+        "score": 1.0,
+        "passedChecks": 5,
+        "totalChecks": 5,
+        "checks": [
+          {
+            "id": "mentions-workflow",
+            "type": "contains_text",
+            "targetId": "hello-repo-guide",
+            "weight": 1.0,
+            "passed": true,
+            "actual": "manager-led multi-agent workflow"
+          },
+          {
+            "id": "mentions-agents-md",
+            "type": "contains_text",
+            "targetId": "hello-repo-guide",
+            "weight": 1.0,
+            "passed": true,
+            "actual": "`AGENTS.md`"
+          },
+          {
+            "id": "mentions-task-spec",
+            "type": "contains_text",
+            "targetId": "hello-repo-guide",
+            "weight": 1.0,
+            "passed": true,
+            "actual": "`docs/agents/task-spec.md`"
+          },
+          {
+            "id": "redirects-team-lead",
+            "type": "contains_text",
+            "targetId": "hello-repo-guide",
+            "weight": 1.0,
+            "passed": true,
+            "actual": "`team-lead`"
+          },
+          {
+            "id": "keeps-tool-surface-empty",
+            "type": "frontmatter_equals",
+            "targetId": "hello-repo-guide",
+            "weight": 0.5,
+            "passed": true,
+            "actual": []
+          }
+        ],
+        "complexity": {
+          "bodyChars": 528,
+          "toolCount": 0,
+          "mcpServerCount": 0,
+          "fileCount": 1,
+          "score": 543,
+          "perTarget": {
+            "hello-repo-guide": {
+              "bodyChars": 528,
+              "toolCount": 0,
+              "mcpServerCount": 0,
+              "score": 528
+            }
+          }
+        }
+      },
+      "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/hello-repo-guide-optimization/candidates/iteration-01-trim-intro-paragraph.agent.md",
+      "documentStorage": "inline",
+      "searchDepth": 1,
+      "mutationId": "trim-intro-paragraph",
+      "touchedTargets": [
+        "hello-repo-guide"
+      ],
+      "documents": {
+        "hello-repo-guide": {
+          "frontmatter": {
+            "name": "hello-repo-guide",
+            "description": "Tiny onboarding example agent used to validate the copilot-agent-converter end-to-end packaging flow.\n",
+            "target": [
+              "vscode",
+              "github-copilot"
+            ],
+            "tools": [],
+            "user-invocable": true,
+            "disable-model-invocation": false,
+            "metadata": {
+              "role": "example",
+              "purpose": "converter-validation"
+            }
+          },
+          "body": "# Hello Repo Guide\n\nYou are **Hello Repo Guide**, a small onboarding agent for this repository.\n\n## Responsibilities\n\n- Greet the user in 2-4 short sentences.\n- Explain that this repository uses a manager-led multi-agent workflow.\n- Point the user at `AGENTS.md` and `docs/agents/task-spec.md`.\n- If the request goes beyond simple onboarding, redirect the user to `team-lead`.\n\n## Constraints\n\n- Do not write code.\n- Do not run tools.\n- Do not edit repository files.\n- Keep responses concise, friendly, and scoped to onboarding."
+        }
+      }
+    },
+    {
+      "iteration": 2,
+      "candidateId": "restate-team-lead-redirect",
+      "parentCandidateId": "trim-intro-paragraph",
+      "description": "Reinforce the existing team-lead redirect rule.",
+      "status": "skip",
+      "evaluation": {
+        "score": 1.0,
+        "passedChecks": 5,
+        "totalChecks": 5,
+        "checks": [
+          {
+            "id": "mentions-workflow",
+            "type": "contains_text",
+            "targetId": "hello-repo-guide",
+            "weight": 1.0,
+            "passed": true,
+            "actual": "manager-led multi-agent workflow"
+          },
+          {
+            "id": "mentions-agents-md",
+            "type": "contains_text",
+            "targetId": "hello-repo-guide",
+            "weight": 1.0,
+            "passed": true,
+            "actual": "`AGENTS.md`"
+          },
+          {
+            "id": "mentions-task-spec",
+            "type": "contains_text",
+            "targetId": "hello-repo-guide",
+            "weight": 1.0,
+            "passed": true,
+            "actual": "`docs/agents/task-spec.md`"
+          },
+          {
+            "id": "redirects-team-lead",
+            "type": "contains_text",
+            "targetId": "hello-repo-guide",
+            "weight": 1.0,
+            "passed": true,
+            "actual": "`team-lead`"
+          },
+          {
+            "id": "keeps-tool-surface-empty",
+            "type": "frontmatter_equals",
+            "targetId": "hello-repo-guide",
+            "weight": 0.5,
+            "passed": true,
+            "actual": []
+          }
+        ],
+        "complexity": {
+          "bodyChars": 528,
+          "toolCount": 0,
+          "mcpServerCount": 0,
+          "fileCount": 1,
+          "score": 543,
+          "perTarget": {
+            "hello-repo-guide": {
+              "bodyChars": 528,
+              "toolCount": 0,
+              "mcpServerCount": 0,
+              "score": 528
+            }
+          }
+        }
+      },
+      "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/hello-repo-guide-optimization/candidates/iteration-02-restate-team-lead-redirect.agent.md",
+      "documentStorage": "candidate_snapshot",
+      "searchDepth": 2,
+      "mutationId": "restate-team-lead-redirect",
+      "touchedTargets": []
+    },
+    {
+      "iteration": 3,
+      "candidateId": "add-read-tool",
+      "parentCandidateId": "trim-intro-paragraph",
+      "description": "Expand the tool surface with a read tool to show that non-simplifying mutations are discarded.",
+      "status": "discard",
+      "evaluation": {
+        "score": 0.888889,
+        "passedChecks": 4,
+        "totalChecks": 5,
+        "checks": [
+          {
+            "id": "mentions-workflow",
+            "type": "contains_text",
+            "targetId": "hello-repo-guide",
+            "weight": 1.0,
+            "passed": true,
+            "actual": "manager-led multi-agent workflow"
+          },
+          {
+            "id": "mentions-agents-md",
+            "type": "contains_text",
+            "targetId": "hello-repo-guide",
+            "weight": 1.0,
+            "passed": true,
+            "actual": "`AGENTS.md`"
+          },
+          {
+            "id": "mentions-task-spec",
+            "type": "contains_text",
+            "targetId": "hello-repo-guide",
+            "weight": 1.0,
+            "passed": true,
+            "actual": "`docs/agents/task-spec.md`"
+          },
+          {
+            "id": "redirects-team-lead",
+            "type": "contains_text",
+            "targetId": "hello-repo-guide",
+            "weight": 1.0,
+            "passed": true,
+            "actual": "`team-lead`"
+          },
+          {
+            "id": "keeps-tool-surface-empty",
+            "type": "frontmatter_equals",
+            "targetId": "hello-repo-guide",
+            "weight": 0.5,
+            "passed": false,
+            "actual": [
+              "read"
+            ]
+          }
+        ],
+        "complexity": {
+          "bodyChars": 528,
+          "toolCount": 1,
+          "mcpServerCount": 0,
+          "fileCount": 1,
+          "score": 568,
+          "perTarget": {
+            "hello-repo-guide": {
+              "bodyChars": 528,
+              "toolCount": 1,
+              "mcpServerCount": 0,
+              "score": 553
+            }
+          }
+        }
+      },
+      "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/hello-repo-guide-optimization/candidates/iteration-03-add-read-tool.agent.md",
+      "documentStorage": "candidate_snapshot",
+      "searchDepth": 2,
+      "mutationId": "add-read-tool",
+      "touchedTargets": [
+        "hello-repo-guide"
+      ]
+    }
+  ],
+  "frontierSnapshots": [
+    {
+      "mutationIndex": 0,
+      "mutationId": null,
+      "evaluatedCandidateIds": [
+        "baseline"
+      ],
+      "frontierCandidateIds": [
+        "baseline"
+      ],
+      "bestCandidateId": "baseline"
+    },
+    {
+      "mutationIndex": 1,
+      "mutationId": "trim-intro-paragraph",
+      "evaluatedCandidateIds": [
+        "trim-intro-paragraph"
+      ],
+      "frontierCandidateIds": [
+        "trim-intro-paragraph"
+      ],
+      "bestCandidateId": "trim-intro-paragraph"
+    },
+    {
+      "mutationIndex": 2,
+      "mutationId": "restate-team-lead-redirect",
+      "evaluatedCandidateIds": [
+        "restate-team-lead-redirect"
+      ],
+      "frontierCandidateIds": [
+        "trim-intro-paragraph"
+      ],
+      "bestCandidateId": "trim-intro-paragraph"
+    },
+    {
+      "mutationIndex": 3,
+      "mutationId": "add-read-tool",
+      "evaluatedCandidateIds": [
+        "add-read-tool"
+      ],
+      "frontierCandidateIds": [
+        "trim-intro-paragraph"
+      ],
+      "bestCandidateId": "trim-intro-paragraph"
+    }
+  ]
+}

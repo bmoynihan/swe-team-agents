@@ -1,0 +1,72 @@
+{
+  "type": "AutoAgentCheckpointManifest",
+  "version": 1,
+  "experiment": {
+    "name": "hello-repo-guide-optimization",
+    "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/autoagent-experiment.md"
+  },
+  "checkpointPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/hello-repo-guide-optimization/search-checkpoint.json",
+  "checkpointVersion": 2,
+  "resumeStage": "post_mutation_search",
+  "candidatePolicy": {
+    "keepStrategy": "score-then-simpler",
+    "searchStrategy": "current_best",
+    "frontierSize": 1
+  },
+  "currentFrontierCandidateIds": [
+    "trim-intro-paragraph"
+  ],
+  "deterministicBestCandidateId": "trim-intro-paragraph",
+  "inlineCandidateIds": [
+    "trim-intro-paragraph"
+  ],
+  "snapshotCandidateCount": 3,
+  "requiredFileCount": 3,
+  "snapshotCandidates": [
+    {
+      "candidateId": "baseline",
+      "iteration": 0,
+      "parentCandidateId": null,
+      "searchDepth": 0,
+      "candidatePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/hello-repo-guide-optimization/candidates/iteration-00-baseline.agent.md",
+      "requiredFiles": [
+        {
+          "targetId": "hello-repo-guide",
+          "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/hello-repo-guide-optimization/candidates/iteration-00-baseline.agent.md",
+          "kind": "agent_profile",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "candidateId": "restate-team-lead-redirect",
+      "iteration": 2,
+      "parentCandidateId": "trim-intro-paragraph",
+      "searchDepth": 2,
+      "candidatePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/hello-repo-guide-optimization/candidates/iteration-02-restate-team-lead-redirect.agent.md",
+      "requiredFiles": [
+        {
+          "targetId": "hello-repo-guide",
+          "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/hello-repo-guide-optimization/candidates/iteration-02-restate-team-lead-redirect.agent.md",
+          "kind": "agent_profile",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "candidateId": "add-read-tool",
+      "iteration": 3,
+      "parentCandidateId": "trim-intro-paragraph",
+      "searchDepth": 2,
+      "candidatePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/hello-repo-guide-optimization/candidates/iteration-03-add-read-tool.agent.md",
+      "requiredFiles": [
+        {
+          "targetId": "hello-repo-guide",
+          "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/hello-repo-guide-optimization/candidates/iteration-03-add-read-tool.agent.md",
+          "kind": "agent_profile",
+          "primary": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+# This is a Databricks asset bundle definition for swe_team_agents_template - Rev3.
+# The Databricks extension requires databricks.yml configuration file.
+# See https://docs.databricks.com/dev-tools/bundles/index.html for documentation.
+
+bundle:
+  name: swe_team_agents_template - Rev3
+
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace:
+      host: https://adb-225736506851063.3.azuredatabricks.net
+
+  ## Optionally, there could be 'staging' or 'prod' targets here.
+  #
+  # prod:
+  #   workspace:
+  #     host: https://adb-225736506851063.3.azuredatabricks.net

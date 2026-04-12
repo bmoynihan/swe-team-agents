@@ -1,0 +1,16 @@
+{
+  "type": "TestRequest",
+  "goal": "",
+  "inputs": {
+    "taskSpecRef": "docs/agents/task-spec.md",
+    "patchRef": "docs/agents/patch-report.md"
+  },
+  "asks": [
+    "Add/adjust tests aligned to AC",
+    "Avoid flakes",
+    "Provide TestReport w/ commands + evidence"
+  ],
+  "outputFormat": "TestReport JSON + evidence"
+}
+
+

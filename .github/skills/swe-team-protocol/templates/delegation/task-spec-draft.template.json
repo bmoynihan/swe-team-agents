@@ -1,0 +1,17 @@
+{
+  "type": "TaskSpecDraft",
+  "goal": "",
+  "inputs": {
+    "researchReportRef": "",
+    "constraints": []
+  },
+  "asks": [
+    "Acceptance criteria (AC1..ACn) w/ test evidence mapping",
+    "Non-goals",
+    "Risk register + rollback notes",
+    "Validation plan (fast + full)"
+  ],
+  "outputFormat": "Write docs/agents/task-spec.md + include TaskSpecFinal JSON block"
+}
+
+

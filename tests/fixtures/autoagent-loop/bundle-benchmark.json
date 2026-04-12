@@ -1,0 +1,29 @@
+{
+    "id": "onboarding-bundle-benchmark",
+    "checks": [
+        {
+            "id": "primary-mentions-team-lead",
+            "type": "contains_text",
+            "targetId": "primary-agent",
+            "target": "body",
+            "value": "`team-lead`",
+            "weight": 1.0
+        },
+        {
+            "id": "shared-mentions-task-spec",
+            "type": "contains_text",
+            "targetId": "shared-guidance",
+            "target": "body",
+            "value": "`docs/agents/task-spec.md`",
+            "weight": 1.0
+        },
+        {
+            "id": "keeps-tool-surface-empty",
+            "type": "frontmatter_equals",
+            "targetId": "primary-agent",
+            "key": "tools",
+            "value": [],
+            "weight": 0.5
+        }
+    ]
+}

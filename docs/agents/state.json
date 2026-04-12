@@ -1,0 +1,1203 @@
+{
+  "schemaVersion": "1.0",
+  "protocol": "swe-team-v1",
+  "repo": {
+    "name": "swe-team-agents-template",
+    "defaultBranch": "main"
+  },
+  "task": {
+    "id": "manual-autoagent-phase5f-trace-backed-reasoning-path-efficiency-20260412",
+    "title": "Implement transcript-backed reasoning-path efficiency learning for AutoAgent",
+    "goal": "Implement the smallest Phase 5F runtime slice that keeps AutoAgent manual and report_only while enabling explicit chat, transcript, and handoff evidence ingestion plus deterministic reasoning-path efficiency scoring in learning artifacts.",
+    "source": {
+      "type": "manual",
+      "reference": "user request in VS Code chat on 2026-04-12 to define the next concrete slice for real chat and handoff evidence plus straightest reasoning-path learning"
+    },
+    "createdAt": "2026-04-12T18:44:48.0272715-04:00",
+    "updatedAt": "2026-04-12T19:06:24.0343313-04:00"
+  },
+  "phase": "Review",
+  "acceptance_criteria_refs": [
+    "docs/agents/task-spec.md#AC1",
+    "docs/agents/task-spec.md#AC2",
+    "docs/agents/task-spec.md#AC3",
+    "docs/agents/task-spec.md#AC4"
+  ],
+  "constraints": [
+    "Keep execution manual and report_only; do not enable autonomous continuation, autonomous apply-best, schedulers, queues, watchers, approval APIs, or execution-capable orchestration.",
+    "Keep guarded learning promotion review-only; do not auto-import, auto-apply, or auto-activate benchmark, mutation, or policy drafts.",
+    "Limit runtime changes to explicit chat, transcript, and handoff evidence ingestion plus deterministic reasoning-path efficiency scoring and reviewer-facing visibility; do not widen execution authority, auto-apply behavior, or approval authority.",
+    "Preserve existing evidence redaction, truncation, external-path controls, and explicit opt-in evidence-policy behavior from Phase 5A.",
+    "Do not introduce network calls, semantic LLM judging, opaque classifiers, or non-replayable heuristics.",
+    "Do not let the new reasoning-path signal directly bypass benchmark quality, terminal outcome, reviewed-policy runtime boundaries, apply-best authority, or continuation eligibility guardrails.",
+    "Keep validation deterministic and offline.",
+    "Keep governed artifacts under docs/agents/ and mirror touched files into the active run snapshot.",
+    "Do not commit secrets or write outside the governed docs/agents artifact flow."
+  ],
+  "decisions": [
+    {
+      "ts": "2026-04-07T23:42:00-04:00",
+      "by": "team-lead",
+      "summary": "Selected a phased AutoAgent implementation path that starts with the target-bundle schema and loop-engine abstraction.",
+      "details": {
+        "notes": "The user chose the broad future optimization surface, but the implementation will start with the smallest governed slices that unblock later phases."
+      }
+    },
+    {
+      "ts": "2026-04-07T23:59:00-04:00",
+      "by": "implementer",
+      "summary": "Started Phase 1 by extending the AutoAgent loop from a single-target contract to a backward-compatible target-bundle model.",
+      "details": {
+        "notes": "The new contract supports optimizationTargets, target-aware mutations and checks, and bundle-aware apply-best behavior while keeping legacy experiments working."
+      }
+    },
+    {
+      "ts": "2026-04-08T12:20:00-04:00",
+      "by": "implementer",
+      "summary": "Hardened Phase 1 with malformed-bundle and bad-target-reference tests.",
+      "details": {
+        "notes": "Focused tests now assert fail-fast behavior for missing target paths, duplicate target ids, and unknown targetId references in mutations and benchmark checks."
+      }
+    },
+    {
+      "ts": "2026-04-08T13:35:00-04:00",
+      "by": "implementer",
+      "summary": "Added governed evidence ingestion with privacy filtering and parse-error tolerance.",
+      "details": {
+        "notes": "The loop now emits a canonical autoagent-evidence dataset from current artifacts, run snapshots, and hook-audit JSONL while redacting secret-like values, normalizing repo-local paths, and recording malformed JSONL lines as parse errors instead of aborting the run."
+      }
+    },
+    {
+      "ts": "2026-04-08T15:10:00-04:00",
+      "by": "implementer",
+      "summary": "Expanded the Phase 1 experiment and report contract with staged-patch, provenance, richer policy blocks, and optional external debug-log ingestion.",
+      "details": {
+        "notes": "The loop now normalizes richer live-evaluator and continuous policy fields, reports staged-patch and provenance metadata, and can ingest explicitly configured VS Code or Copilot debug logs with the same redaction guarantees as governed evidence sources."
+      }
+    },
+    {
+      "ts": "2026-04-08T15:55:00-04:00",
+      "by": "quality-gate",
+      "summary": "Refreshed the Phase 1 governance artifacts and recorded a PASS quality gate for the schema-expansion slice.",
+      "details": {
+        "notes": "The stale review, patch, and test reports were updated to the current AutoAgent scope, the focused 14-test runner suite remained green, and the canonical AutoAgent artifacts were regenerated from the refreshed governed state."
+      }
+    },
+    {
+      "ts": "2026-04-08T16:20:00-04:00",
+      "by": "team-lead",
+      "summary": "Opened the first Phase 2 planning slice around executable live-evaluator semantics and guardrail coverage.",
+      "details": {
+        "notes": "The new task spec scopes Phase 2 to advisory or tie-breaker evaluator execution, explicit guardrail validation, structured blocked or skipped fallback behavior, and deterministic offline test coverage."
+      }
+    },
+    {
+      "ts": "2026-04-08T18:47:07-04:00",
+      "by": "implementer",
+      "summary": "Implemented the first executable Phase 2 live-evaluator slice with guardrails, bounded advisory or tie-breaker semantics, sanitized runtime reporting, and deterministic fake-runner coverage.",
+      "details": {
+        "notes": "The AutoAgent loop now validates the liveEvaluator contract before execution, runs provider adapters only in stage-for-review mode, preserves deterministic scoring as the primary ranking path, records structured live-evaluation outcomes, and falls back cleanly on runner errors. Focused pytest coverage now exercises invalid configuration, advisory execution, tie-breaker selection, retained-output sanitization, and runtime-failure fallback."
+      }
+    },
+    {
+      "ts": "2026-04-08T19:08:26-04:00",
+      "by": "quality-gate",
+      "summary": "Recorded a PASS quality gate for the first executable Phase 2 live-evaluator slice.",
+      "details": {
+        "notes": "The independent review confirmed AC1-AC4 pass on the current implementation and validation evidence. Remaining findings are non-blocking: repo-wide bash-based fast checks are still unavailable on this machine, the canonical experiment prose still references metadata-only liveEvaluator behavior, and a few unsafe stage-setting permutations remain untested directly."
+      }
+    },
+    {
+      "ts": "2026-04-08T19:18:27-04:00",
+      "by": "team-lead",
+      "summary": "Opened the next Phase 2 cleanup slice for canonical prose alignment and direct unsafe-stage guardrail tests.",
+      "details": {
+        "notes": "This follow-on task narrows scope to the remaining non-blocking findings from the quality gate: update the canonical experiment and regenerated report narrative so they match executable-but-disabled liveEvaluator semantics, and add direct negative tests for stageForReview=false, stagedPatchPolicy.applyOnPass=true, and continuousPolicy.stageOnly=false."
+      }
+    },
+    {
+      "ts": "2026-04-08T19:34:49-04:00",
+      "by": "implementer",
+      "summary": "Implemented the Phase 2 cleanup slice for canonical prose alignment and direct unsafe-stage guardrail coverage.",
+      "details": {
+        "notes": "The canonical experiment narrative now describes guarded liveEvaluator execution while keeping the checked-in sample experiment disabled by choice. Focused tests now assert stageForReview=false, stagedPatchPolicy.applyOnPass=true, and continuousPolicy.stageOnly=false directly. The implementation also fixes experiment loading so an explicit stageForReview value is preserved instead of being overwritten by staged-patch defaults."
+      }
+    },
+    {
+      "ts": "2026-04-08T19:41:07-04:00",
+      "by": "quality-gate",
+      "summary": "Recorded a PASS quality gate for the Phase 2 cleanup slice.",
+      "details": {
+        "notes": "The independent review confirmed AC1-AC3 pass on the current implementation and validation evidence. The only remaining non-blocking issue is that the repo-wide bash-based quick suite is still unavailable on this Windows machine because bash resolves to WSL."
+      }
+    },
+    {
+      "ts": "2026-04-08T19:55:03-04:00",
+      "by": "team-lead",
+      "summary": "Opened the next Phase 2 slice for bounded frontier candidate search and replay metadata.",
+      "details": {
+        "notes": "This slice targets the existing candidatePolicy contract so the loop can branch deterministically from more than one kept candidate without enabling autonomous mutation synthesis, resume checkpoints, or unattended automation."
+      }
+    },
+    {
+      "ts": "2026-04-08T19:55:03-04:00",
+      "by": "implementer",
+      "summary": "Implemented bounded frontier search, candidate-policy normalization, and branching lineage metadata.",
+      "details": {
+        "notes": "The AutoAgent loop now normalizes candidatePolicy into keepStrategy, searchStrategy, and frontierSize, rejects invalid search settings, can evaluate each mutation against a bounded frontier of kept candidates, and records parentCandidateId plus searchDepth in iterations, live-evaluator samples, the report summary, and the results TSV. The canonical experiment now declares explicit current_best defaults, and the focused runner suite adds deterministic frontier-search coverage."
+      }
+    },
+    {
+      "ts": "2026-04-08T20:03:01-04:00",
+      "by": "quality-gate",
+      "summary": "Recorded a PASS quality gate for the bounded frontier-search slice.",
+      "details": {
+        "notes": "The independent review confirmed AC1-AC3 pass on the current implementation and validation evidence. The only remaining non-blocking issue is that the repo-wide bash-based quick suite is still unavailable on this Windows machine because bash resolves to WSL."
+      }
+    },
+    {
+      "ts": "2026-04-08T20:12:08-04:00",
+      "by": "team-lead",
+      "summary": "Opened the next Phase 2 slice for a replay-oriented search ledger artifact.",
+      "details": {
+        "notes": "This slice makes the branching search history durable under generated run artifacts before the project adds resume checkpoints or mutation memory."
+      }
+    },
+    {
+      "ts": "2026-04-08T20:12:08-04:00",
+      "by": "implementer",
+      "summary": "Implemented a dedicated search-ledger artifact and replay metadata wiring.",
+      "details": {
+        "notes": "The AutoAgent loop now emits search-ledger.json under each generated run root, serializing candidate nodes, frontier snapshots, and best-candidate lineage. The result payload and provenance now expose the ledger path directly, the report summary includes ledger node count, and the focused runner suite covers both default-path ledger creation and replayable frontier history on the branching fixture."
+      }
+    },
+    {
+      "ts": "2026-04-08T20:18:41-04:00",
+      "by": "quality-gate",
+      "summary": "Recorded a PASS quality gate for the replay-ledger slice.",
+      "details": {
+        "notes": "The independent review confirmed AC1-AC3 pass on the implementation and validation evidence. The only remaining non-blocking issue is that the repo-wide bash-based quick suite is still unavailable on this Windows machine because bash resolves to WSL."
+      }
+    },
+    {
+      "ts": "2026-04-08T20:54:04-04:00",
+      "by": "team-lead",
+      "summary": "Opened the next Phase 2 slice for a search checkpoint artifact and guarded resume execution.",
+      "details": {
+        "notes": "This slice builds on replay-ledger durability by capturing resumable post-mutation search state under generated run artifacts and allowing explicit maintainer-invoked resume without enabling autonomous continuation."
+      }
+    },
+    {
+      "ts": "2026-04-08T20:54:04-04:00",
+      "by": "implementer",
+      "summary": "Implemented search-checkpoint generation and guarded resume support.",
+      "details": {
+        "notes": "The AutoAgent loop now emits search-checkpoint.json under each generated run root, validates checkpoints against experiment, benchmark, mutation-catalog, and candidate-policy fingerprints, restores resumable search state through resume=True and the --resume CLI flag, and records checkpoint metadata in the result payload, provenance, and canonical report summary. Focused pytest coverage now exercises checkpoint creation, current_best resume equivalence, frontier resume equivalence, and missing-checkpoint failure behavior."
+      }
+    },
+    {
+      "ts": "2026-04-08T20:59:58-04:00",
+      "by": "quality-gate",
+      "summary": "Recorded a PASS quality gate for the checkpoint/resume slice.",
+      "details": {
+        "notes": "The independent review confirmed AC1-AC3 pass on the implementation and validation evidence. Non-blocking findings remain limited to the unavailable bash quick suite on this Windows host and unrelated worktree changes outside the requested AutoAgent slice."
+      }
+    },
+    {
+      "ts": "2026-04-09T09:59:41-04:00",
+      "by": "team-lead",
+      "summary": "Opened the next Phase 2 slice for compact search checkpoints backed by generated candidate snapshots.",
+      "details": {
+        "notes": "This slice keeps the explicit checkpoint and resume contract but removes redundant inline document bodies from historical candidate records by restoring them from the generated candidate snapshots already written under each run root."
+      }
+    },
+    {
+      "ts": "2026-04-09T09:59:41-04:00",
+      "by": "implementer",
+      "summary": "Implemented compact checkpoint serialization and snapshot-backed candidate restore.",
+      "details": {
+        "notes": "The AutoAgent loop now writes version 2 checkpoints that inline documents only for the active frontier and deterministic best candidate, restores older candidates from generated candidate snapshots during resume, records inline versus snapshot-backed storage counts in the result and canonical report, and fails fast when a required compacted candidate snapshot is missing. Focused pytest coverage now exercises compact checkpoint creation, current_best resume equivalence, frontier resume equivalence, and missing snapshot-backed candidate failure behavior."
+      }
+    },
+    {
+      "ts": "2026-04-09T10:08:01-04:00",
+      "by": "quality-gate",
+      "summary": "Recorded a PASS quality gate for the compact checkpoint slice.",
+      "details": {
+        "notes": "The independent review confirmed AC1-AC3 pass on compact checkpoint storage, snapshot-backed restore, and canonical fresh-run defaults. Non-blocking findings remain limited to the unavailable bash quick suite on this Windows host and unrelated worktree changes outside the requested AutoAgent slice."
+      }
+    },
+    {
+      "ts": "2026-04-09T11:07:04-04:00",
+      "by": "team-lead",
+      "summary": "Opened the next Phase 2 slice for a dedicated checkpoint-manifest artifact.",
+      "details": {
+        "notes": "This slice builds on compact checkpoints by emitting a smaller manifest that lists the exact snapshot-backed restore files required for resume without changing checkpoint semantics or enabling autonomous continuation."
+      }
+    },
+    {
+      "ts": "2026-04-09T11:13:04-04:00",
+      "by": "implementer",
+      "summary": "Implemented checkpoint-manifest generation and restore-set wiring.",
+      "details": {
+        "notes": "The AutoAgent loop now emits search-checkpoint-manifest.json, exposes its path through result artifacts and provenance, reports manifest counts in the canonical report, and includes focused tests for single-target and bundle restore-file enumeration."
+      }
+    },
+    {
+      "ts": "2026-04-09T11:13:04-04:00",
+      "by": "quality-gate",
+      "summary": "Recorded a PASS quality gate for the checkpoint-manifest slice.",
+      "details": {
+        "notes": "The independent review confirmed AC1-AC3 pass on manifest emission, exact restore-set enumeration, and canonical fresh-run defaults. The native Windows quick suite now runs far enough to prove the remaining failure is unrelated repo-wide Ruff formatting drift outside this slice."
+      }
+    },
+    {
+      "ts": "2026-04-09T11:34:04-04:00",
+      "by": "team-lead",
+      "summary": "Opened the next Phase 2 slice for the pre-live checkpoint boundary.",
+      "details": {
+        "notes": "This slice formalizes the current post_mutation_search checkpoint boundary so resume remains explicitly deterministic even when reviewed runs enable a live-evaluator tie-breaker."
+      }
+    },
+    {
+      "ts": "2026-04-09T11:34:04-04:00",
+      "by": "implementer",
+      "summary": "Exposed checkpoint-stage metadata and fixed deterministic checkpoint state under tie-breaker runs.",
+      "details": {
+        "notes": "The AutoAgent loop now exposes checkpointStage in runtime resume metadata and provenance, the canonical report surfaces that stage directly, and checkpoint generation freezes the deterministic mutation-search winner before live evaluation can change the final reported best candidate. Focused tests now prove the checkpoint and manifest remain anchored to the deterministic pre-live winner under a live-evaluator tie-breaker."
+      }
+    },
+    {
+      "ts": "2026-04-09T11:42:42-04:00",
+      "by": "quality-gate",
+      "summary": "Recorded a PASS quality gate for the checkpoint-stage boundary slice.",
+      "details": {
+        "notes": "The independent review confirmed AC1-AC3 pass on checkpoint-stage exposure, deterministic pre-live checkpoint state under tie-breaker runs, and canonical documentation of resume as a pre-live boundary. The native Windows quick suite still stops on unrelated six-file Ruff formatting drift outside this slice."
+      }
+    },
+    {
+      "ts": "2026-04-09T11:42:42-04:00",
+      "by": "team-lead",
+      "summary": "Formally closed the Phase 2 AutoAgent slice set.",
+      "details": {
+        "notes": "The bounded frontier, replay ledger, checkpoint, compaction, manifest, and pre-live checkpoint-boundary slices have all passed independent quality gate. Phase 3 should start with a planning slice around review-gated continuation policy and eligibility reporting before any autonomous execution is considered."
+      }
+    },
+    {
+      "ts": "2026-04-09T11:57:19.1286862-04:00",
+      "by": "team-lead",
+      "summary": "Opened the first Phase 3 planning slice for review-gated continuation eligibility reporting.",
+      "details": {
+        "notes": "This slice stays short of autonomous execution. It should define how the engine classifies a continuousPolicy as eligible or blocked for future review-gated continuation, surface that status and its reasons in runtime and canonical artifacts, and keep the checked-in experiment on manual mode by default."
+      }
+    },
+    {
+      "ts": "2026-04-09T12:13:36.6598085-04:00",
+      "by": "implementer",
+      "summary": "Implemented the Phase 3 continuation-eligibility reporting slice and refreshed canonical AutoAgent artifacts.",
+      "details": {
+        "notes": "The AutoAgent loop now derives continuationEligibility from normalized policy, rejects unsafe active continuation settings, surfaces the policy block through runtime results, provenance, and canonical reporting, and keeps execution explicitly report_only. Focused pytest coverage now exercises blocked manual mode, eligible scheduled reviewed continuation, unsafe guardrail permutations, and normalized eligibility metadata. The standard AutoAgent runner regenerated canonical report, results, and evidence artifacts with the new continuation summary lines."
+      }
+    },
+    {
+      "ts": "2026-04-09T12:22:40.2270523-04:00",
+      "by": "quality-gate",
+      "summary": "Recorded a PASS quality gate for the Phase 3 continuation-eligibility reporting slice.",
+      "details": {
+        "notes": "The independent review confirmed AC1-AC3 pass on structured continuation eligibility reporting, fail-fast preservation of active-continuation guardrails, and canonical visibility-only documentation. The broader Windows quick suite still stops on unrelated six-file Ruff formatting drift outside this slice and remains non-blocking."
+      }
+    },
+    {
+      "ts": "2026-04-09T12:22:40.2270523-04:00",
+      "by": "team-lead",
+      "summary": "Closed the first Phase 3 continuation-eligibility reporting slice.",
+      "details": {
+        "notes": "The first Phase 3 slice is complete with refreshed governed artifacts, a PASS review report, and an explicit release-not-required decision. The next recommended step is to open the next bounded Phase 3 AutoAgent slice from the updated governed state."
+      }
+    },
+    {
+      "ts": "2026-04-09T12:35:48.4045878-04:00",
+      "by": "team-lead",
+      "summary": "Opened the next bounded Phase 3 slice for review-aware continuation readiness.",
+      "details": {
+        "notes": "This slice stays short of orchestration. It should build on continuationEligibility by deriving whether a continuation would be ready under the current governed review state, surface deterministic blocked reasons when the latest quality gate is not PASS or cannot be read, and keep execution explicitly report_only and manual by default."
+      }
+    },
+    {
+      "ts": "2026-04-09T14:22:48.2382694-04:00",
+      "by": "implementer",
+      "summary": "Implemented review-aware continuation readiness and refreshed canonical AutoAgent artifacts.",
+      "details": {
+        "notes": "The AutoAgent loop now loads local governed review state from docs/agents/state.json, derives continuationReadiness from continuationEligibility plus quality_gate.status, and surfaces readiness through runtime results, provenance, and canonical reporting while keeping execution report_only. Focused pytest coverage now exercises manual-mode blocked readiness, PASS-governed ready status, non-PASS blocked readiness, missing governed-state handling, and the existing hard continuation guardrails. The standard AutoAgent runner regenerated canonical report, results, and evidence artifacts with readiness metadata and governed review status."
+      }
+    },
+    {
+      "ts": "2026-04-09T14:30:07.1028784-04:00",
+      "by": "quality-gate",
+      "summary": "Recorded a PASS quality gate for the review-aware continuation readiness slice.",
+      "details": {
+        "notes": "The independent review confirmed AC1-AC3 pass on structured readiness reporting, deterministic blocked reasons for non-PASS or missing governed review state, and canonical visibility-only documentation. The broader Windows quick suite still stops on unrelated six-file Ruff formatting drift outside this slice and remains non-blocking."
+      }
+    },
+    {
+      "ts": "2026-04-09T14:30:07.1028784-04:00",
+      "by": "team-lead",
+      "summary": "Closed the bounded Phase 3 review-aware continuation readiness slice.",
+      "details": {
+        "notes": "The readiness slice is complete with refreshed governed artifacts, a PASS review report, and an explicit release-not-required decision. The next recommended step is to open the next bounded Phase 3 AutoAgent slice from the updated governed state."
+      }
+    },
+    {
+      "ts": "2026-04-09T14:35:01.5106229-04:00",
+      "by": "team-lead",
+      "summary": "Opened the next bounded Phase 3 slice for governed review consensus cross-checking.",
+      "details": {
+        "notes": "This slice stays short of orchestration. It should keep continuation readiness report-only, but stop trusting docs/agents/state.json alone by cross-checking it against the JSON ReviewReport payload in docs/agents/review-report.md and surfacing deterministic blocked reasons when the governed artifacts disagree, are missing, or are unreadable."
+      }
+    },
+    {
+      "ts": "2026-04-09T15:52:15.1309128-04:00",
+      "by": "team-lead",
+      "summary": "Opened the next bounded Phase 3 slice for governed lifecycle visibility in AutoAgent artifacts.",
+      "details": {
+        "notes": "This slice stays short of orchestration. It should make the governed task lifecycle from docs/agents/state.json explicit in runtime and canonical AutoAgent artifacts so maintainers do not misread the top-level AutoAgentReport status as the current slice lifecycle after a PASS review has already closed the governed task."
+      }
+    },
+    {
+      "ts": "2026-04-09T16:01:00.8725714-04:00",
+      "by": "implementer",
+      "summary": "Implemented governed lifecycle visibility beside the existing AutoAgent report-status contract.",
+      "details": {
+        "notes": "The AutoAgent loop now derives governedTaskLifecycle from docs/agents/state.json, exposes it through runtime results, provenance, and canonical report rendering, preserves the existing top-level AutoAgentReport status as artifact readiness via reportStatusMeaning, and adds focused deterministic coverage for available, unavailable, and partial lifecycle state."
+      }
+    },
+    {
+      "ts": "2026-04-09T16:01:00.8725714-04:00",
+      "by": "quality-gate",
+      "summary": "Recorded a PASS quality gate for the governed-lifecycle-visibility slice.",
+      "details": {
+        "notes": "The independent review confirmed AC1-AC3 pass on lifecycle visibility wiring, deterministic lifecycle fallback, and canonical documentation of artifact readiness versus governed lifecycle. The broader Windows quick suite remains a non-blocking unrelated Ruff backlog outside this slice."
+      }
+    },
+    {
+      "ts": "2026-04-09T16:01:00.8725714-04:00",
+      "by": "team-lead",
+      "summary": "Closed the bounded Phase 3 governed-lifecycle-visibility slice.",
+      "details": {
+        "notes": "The lifecycle-visibility slice is complete with refreshed governed artifacts, a PASS review report, and an explicit release-not-required decision. The next recommended step is to open the next bounded Phase 3 AutoAgent slice from the updated governed state."
+      }
+    },
+    {
+      "ts": "2026-04-09T16:10:46.4372288-04:00",
+      "by": "team-lead",
+      "summary": "Opened the next bounded Phase 3 slice for a stage-only reviewed continuation handoff contract.",
+      "details": {
+        "notes": "This slice stays short of orchestration. It should define what structured handoff metadata and summary lines AutoAgent emits when policy eligibility, governed readiness, and governed review consensus all align, while keeping execution manual and report_only. It should also document explicit Phase 3 exit criteria so the visibility-only phase has a clear stopping point before any later orchestration work is considered."
+      }
+    },
+    {
+      "ts": "2026-04-09T16:20:23.1332445-04:00",
+      "by": "implementer",
+      "summary": "Implemented the reviewed continuation handoff contract and explicit Phase 3 exit wording.",
+      "details": {
+        "notes": "The AutoAgent loop now derives reviewedContinuationHandoff from eligibility, readiness, consensus, and lifecycle, exposes it through runtime results, provenance, and canonical report rendering, and states that Phase 3 visibility scope is complete while unattended orchestration remains out of scope."
+      }
+    },
+    {
+      "ts": "2026-04-09T16:20:23.1332445-04:00",
+      "by": "quality-gate",
+      "summary": "Recorded a PASS quality gate for the reviewed-continuation-handoff slice.",
+      "details": {
+        "notes": "The independent review confirmed AC1-AC3 pass on reviewed-handoff visibility, deterministic blocked handoff behavior, and explicit Phase 3 exit wording. The broader Windows quick suite remains a non-blocking unrelated Ruff backlog outside this slice."
+      }
+    },
+    {
+      "ts": "2026-04-09T16:20:23.1332445-04:00",
+      "by": "team-lead",
+      "summary": "Closed the bounded Phase 3 reviewed-continuation-handoff slice and marked the visibility-only Phase 3 scope complete.",
+      "details": {
+        "notes": "The reviewed-handoff slice is complete with refreshed governed artifacts, a PASS review report, and an explicit release-not-required decision. No additional Phase 3 visibility work is required; any future scheduler, queue, or unattended continuation work belongs to a later planning track."
+      }
+    },
+    {
+      "ts": "2026-04-09T16:25:49.0036142-04:00",
+      "by": "team-lead",
+      "summary": "Opened a bounded post-Phase-3 planning slice for orchestration guardrails and rollout boundaries.",
+      "details": {
+        "notes": "This slice is planning-only. It should define what later orchestration work would require, what remains explicitly out of scope, and how a later rollout would stay bounded, reviewable, and reversible without changing the current manual/report_only runtime behavior."
+      }
+    },
+    {
+      "ts": "2026-04-09T16:51:59.9774697-04:00",
+      "by": "architecture-reviewer",
+      "summary": "Recorded a PASS architecture review for the orchestration-planning slice.",
+      "details": {
+        "notes": "The planning slice fits one PR, requires no C4 update, and uses a new ADR to define prerequisites, rollout order, and rollback posture before any later orchestration implementation begins."
+      }
+    },
+    {
+      "ts": "2026-04-09T16:51:59.9774697-04:00",
+      "by": "quality-gate",
+      "summary": "Recorded a PASS quality gate for the orchestration-planning slice.",
+      "details": {
+        "notes": "The independent review confirmed AC1-AC3 pass on prerequisite definition, explicit non-goals, and the bounded next implementation step. Validation relied on refreshed governed artifacts and machine-parseable state.json evidence."
+      }
+    },
+    {
+      "ts": "2026-04-09T16:51:59.9774697-04:00",
+      "by": "team-lead",
+      "summary": "Closed the bounded Phase 4 orchestration-planning slice.",
+      "details": {
+        "notes": "The planning slice is complete with a new ADR, a PASS architecture review, refreshed governed reports, a PASS review report, and an explicit release-not-required decision. The next recommended step is to open the first bounded implementation slice for orchestration contract metadata or staged dispatch simulation while preserving manual/report_only semantics."
+      }
+    },
+    {
+      "ts": "2026-04-09T17:03:12.7791876-04:00",
+      "by": "team-lead",
+      "summary": "Opened the first bounded Phase 4 implementation slice for stage-only orchestration contract metadata.",
+      "details": {
+        "notes": "This slice should add an additive orchestration contract layer or staged dispatch simulation derived from the existing reviewed continuation handoff and governed lifecycle signals. It must remain manual, report_only, review-gated, and bounded to metadata only."
+      }
+    },
+    {
+      "ts": "2026-04-09T17:19:14.4364870-04:00",
+      "by": "implementer",
+      "summary": "Implemented the stage-only orchestration contract metadata slice and repaired the damaged checkpoint helpers.",
+      "details": {
+        "notes": "The AutoAgent runtime now derives an additive orchestrationContract block from reviewed handoff and governed lifecycle signals, surfaces it through runtime results, provenance, and canonical report output, and keeps explicit manual/report_only execution boundaries. The runtime helper repairs restored snapshot-backed checkpoint resume compatibility and the focused runner suite passed after the repair."
+      }
+    },
+    {
+      "ts": "2026-04-09T17:19:14.4364870-04:00",
+      "by": "quality-gate",
+      "summary": "Recorded a PASS quality gate for the first bounded Phase 4 implementation slice.",
+      "details": {
+        "notes": "The independent review confirmed AC1-AC3 pass on additive orchestration contract wiring, deterministic blocked or staged behavior, canonical Phase 4 boundary wording, and repaired checkpoint compatibility. The only remaining repo-wide quick-suite issue is unrelated Ruff formatting drift outside the requested AutoAgent files."
+      }
+    },
+    {
+      "ts": "2026-04-09T17:19:14.4364870-04:00",
+      "by": "team-lead",
+      "summary": "Closed the first bounded Phase 4 implementation slice for orchestration contract metadata.",
+      "details": {
+        "notes": "This bounded slice is complete with refreshed governed artifacts, regenerated canonical AutoAgent artifacts, PASS focused validation, PASS quality gate evidence, and explicit release-not-required posture. The next recommended step is a later bounded slice for reviewed dispatch intent or approval metadata only, still without execution authority."
+      }
+    },
+    {
+      "ts": "2026-04-09T17:34:14.6961879-04:00",
+      "by": "team-lead",
+      "summary": "Opened the next bounded Phase 4 slice for reviewed dispatch intent metadata.",
+      "details": {
+        "notes": "This follow-on slice stays short of approval or execution authority. It should derive a structured reviewed dispatch intent from the staged orchestration contract, preserve manual and report_only semantics, and expose approval posture as metadata only rather than execution capability."
+      }
+    },
+    {
+      "ts": "2026-04-09T17:41:22.2500382-04:00",
+      "by": "implementer",
+      "summary": "Implemented reviewed dispatch intent metadata and refreshed focused AutoAgent coverage.",
+      "details": {
+        "notes": "The AutoAgent runtime now derives an additive reviewedDispatchIntent block from orchestration contract, reviewed handoff, and governed lifecycle signals, exposes approval posture as descriptive metadata only, and renders the new Phase 4 boundary lines in the canonical report. Focused pytest coverage now asserts blocked, staged-for-review, approval-pending, unavailable, and partial lifecycle intent states."
+      }
+    },
+    {
+      "ts": "2026-04-09T17:41:22.2500382-04:00",
+      "by": "quality-gate",
+      "summary": "Recorded a PASS quality gate for the reviewed dispatch intent slice.",
+      "details": {
+        "notes": "The independent review confirmed AC1-AC3 pass on additive reviewed dispatch intent wiring, deterministic approval-posture metadata, canonical Phase 4 boundary wording, and preserved manual/report_only execution authority. The only remaining repo-wide quick-suite issue is unrelated Ruff formatting drift outside the requested AutoAgent files."
+      }
+    },
+    {
+      "ts": "2026-04-09T17:41:22.2500382-04:00",
+      "by": "team-lead",
+      "summary": "Closed the reviewed dispatch intent slice and recommended a narrower approval-metadata follow-on.",
+      "details": {
+        "notes": "This bounded slice is complete with refreshed governed artifacts, regenerated canonical AutoAgent artifacts, PASS focused validation, PASS quality gate evidence, and explicit release-not-required posture. The next recommended step is a later bounded Phase 4 slice for governed approval metadata only, still without approval or execution authority."
+      }
+    },
+    {
+      "ts": "2026-04-09T18:21:47.8111446-04:00",
+      "by": "team-lead",
+      "summary": "Opened the next bounded Phase 4 slice for governed approval metadata.",
+      "details": {
+        "notes": "This follow-on slice stays short of approval or execution authority. It should derive a structured governed approval metadata block from the reviewed dispatch intent plus the existing governed review and lifecycle signals so maintainers can see what approval evidence is recorded, missing, or not yet requested without introducing an external approval source of truth."
+      }
+    },
+    {
+      "ts": "2026-04-09T18:35:13.7845665-04:00",
+      "by": "implementer",
+      "summary": "Implemented governed approval metadata and refreshed focused AutoAgent coverage.",
+      "details": {
+        "notes": "The AutoAgent runtime now derives an additive governedApprovalMetadata block from reviewed dispatch intent, governed review consensus, and governed lifecycle signals, exposes it through runtime results, provenance, and canonical report output, and keeps approval posture descriptive only. Focused pytest coverage now asserts blocked, not-requested, ready-for-recording, unavailable, and partial lifecycle approval states."
+      }
+    },
+    {
+      "ts": "2026-04-09T18:35:13.7845665-04:00",
+      "by": "architecture-reviewer",
+      "summary": "Recorded a PASS architecture review for the governed approval metadata slice.",
+      "details": {
+        "notes": "The slice fits one PR, keeps approval metadata additive to reviewed dispatch and governed signals, requires no C4 update, and preserves explicit manual/report_only execution boundaries."
+      }
+    },
+    {
+      "ts": "2026-04-09T18:35:13.7845665-04:00",
+      "by": "quality-gate",
+      "summary": "Recorded a PASS quality gate for the governed approval metadata slice.",
+      "details": {
+        "notes": "The independent review confirmed AC1-AC3 pass on additive governed approval metadata wiring, deterministic blocked or ready-for-recording approval posture, canonical Phase 4 boundary wording, and preserved manual/report_only execution authority. The only remaining repo-wide quick-suite issue is unrelated Ruff formatting drift outside the requested AutoAgent files."
+      }
+    },
+    {
+      "ts": "2026-04-09T18:35:13.7845665-04:00",
+      "by": "team-lead",
+      "summary": "Closed the governed approval metadata slice.",
+      "details": {
+        "notes": "This bounded slice is complete with refreshed governed artifacts, regenerated canonical AutoAgent artifacts, PASS focused validation, PASS architecture and quality-gate evidence, and explicit release-not-required posture. Any later Phase 4 follow-on should remain planning-first if a distinct approval source of truth is ever needed."
+      }
+    },
+    {
+      "ts": "2026-04-09T19:21:44.660424-04:00",
+      "by": "spec-writer",
+      "summary": "Finalized the planning-only approval-source boundary contract.",
+      "details": {
+        "notes": "The governed planning spec now limits future approval-source choices to governed_artifacts_only or a single additive governed_record_artifact, explicitly forbids external and execution-capable sources, and requires a recorded decision gate before any implementation slice may open."
+      }
+    },
+    {
+      "ts": "2026-04-09T19:30:25.871285-04:00",
+      "by": "team-lead",
+      "summary": "Recorded the repository approval-source decision for the planning slice.",
+      "details": {
+        "notes": "This repository will keep governed_artifacts_only as the only approved approval-source model. A separate governed_record_artifact is deferred and unapproved unless a new planning-first slice reopens the question with additional ADR or architecture evidence."
+      }
+    },
+    {
+      "ts": "2026-04-09T19:30:25.871285-04:00",
+      "by": "quality-gate",
+      "summary": "Recorded a PASS quality gate for the approval-source decision slice.",
+      "details": {
+        "notes": "The independent review confirmed the docs-only slice records the conservative governed_artifacts_only decision, preserves the documented future decision gate, mirrors the updated artifacts into the active run snapshot, and leaves runtime behavior unchanged."
+      }
+    },
+    {
+      "ts": "2026-04-09T19:30:25.871285-04:00",
+      "by": "team-lead",
+      "summary": "Closed the approval-source decision slice.",
+      "details": {
+        "notes": "The planning slice is complete with an explicit repository decision to keep governed_artifacts_only, refreshed governed review and release artifacts, and no approved approval-source implementation follow-on. Any future reconsideration must start with a new planning-first slice."
+      }
+    },
+    {
+      "ts": "2026-04-09T19:40:03.339722-04:00",
+      "by": "team-lead",
+      "summary": "Opened a new planning-first slice for governed record artifact architecture evidence.",
+      "details": {
+        "notes": "This slice does not reopen approval-source implementation. It narrows scope to the architecture review questions, ADR requirements, ownership rules, and rejection criteria that would have to be satisfied before a separate governed approval record artifact could ever be reconsidered."
+      }
+    },
+    {
+      "ts": "2026-04-09T20:14:41.484564-04:00",
+      "by": "architecture-reviewer",
+      "summary": "Recorded a PASS architecture review for the governed record artifact architecture-evidence slice.",
+      "details": {
+        "notes": "The review found no current architectural justification for a second governed approval artifact, kept governed_artifacts_only as the preferred model, and concluded that no ADR addendum is required unless a future planning slice introduces concrete new evidence."
+      }
+    },
+    {
+      "ts": "2026-04-09T20:14:41.484564-04:00",
+      "by": "quality-gate",
+      "summary": "Recorded a PASS quality gate for the governed record artifact architecture-evidence slice.",
+      "details": {
+        "notes": "The independent review confirmed AC1-AC3 pass on the refreshed planning spec, architecture review evidence, updated governed state, and mirrored run-scoped artifacts. The slice remains docs-only and does not authorize a second governed approval artifact."
+      }
+    },
+    {
+      "ts": "2026-04-09T20:14:41.484564-04:00",
+      "by": "team-lead",
+      "summary": "Closed the governed record artifact architecture-evidence slice.",
+      "details": {
+        "notes": "The planning slice is complete with refreshed architecture review, review, and release artifacts and no approved governed record artifact implementation follow-on. Any later reconsideration must begin with a new planning-first slice and concrete new evidence."
+      }
+    },
+    {
+      "ts": "2026-04-09T20:36:40.328170-04:00",
+      "by": "team-lead",
+      "summary": "Opened a bounded Phase 4 need-assessment slice for governed record artifact reconsideration.",
+      "details": {
+        "notes": "Because the user asked to proceed after the architecture-evidence slice closed, this slice limits scope to checking whether the live repository now shows any concrete unmet need for a second governed approval artifact before reopening planning."
+      }
+    },
+    {
+      "ts": "2026-04-09T20:36:40.328170-04:00",
+      "by": "repo-researcher",
+      "summary": "Recorded repo-local evidence that no concrete unmet need for a governed record artifact is currently shown.",
+      "details": {
+        "notes": "Current docs, focused tests, and canonical AutoAgent artifacts consistently use governed_artifacts_only, and no matching broader approval-source implementation references were found under src/."
+      }
+    },
+    {
+      "ts": "2026-04-09T20:36:40.328170-04:00",
+      "by": "quality-gate",
+      "summary": "Recorded a PASS quality gate for the governed record artifact need-assessment slice.",
+      "details": {
+        "notes": "The independent review confirmed AC1-AC3 pass on the refreshed need-assessment spec, repo-local research evidence, updated governed state, and mirrored run-scoped artifacts. The slice remains docs-only and does not authorize a second governed approval artifact."
+      }
+    },
+    {
+      "ts": "2026-04-09T20:36:40.328170-04:00",
+      "by": "team-lead",
+      "summary": "Closed the governed record artifact need-assessment slice.",
+      "details": {
+        "notes": "The repo-local need assessment found no concrete unmet need for reopening governed_record_artifact planning. Governed_artifacts_only remains the only approved live model, and no implementation follow-on is approved."
+      }
+    },
+    {
+      "ts": "2026-04-09T21:39:09.405360-04:00",
+      "by": "team-lead",
+      "summary": "Opened a bounded Phase 4 reconsideration-intake-contract slice.",
+      "details": {
+        "notes": "Because the user asked to proceed again after the need-assessment closeout, this slice narrows scope to defining exactly what future reopen requests must provide before governed_record_artifact planning may begin again."
+      }
+    },
+    {
+      "ts": "2026-04-09T21:39:09.405360-04:00",
+      "by": "quality-gate",
+      "summary": "Recorded a PASS quality gate for the governed record artifact reconsideration-intake-contract slice.",
+      "details": {
+        "notes": "The independent review confirmed AC1-AC3 pass on the refreshed intake-contract spec, updated governed state, corrected research report formatting, and mirrored run-scoped artifacts. The slice remains docs-only and does not authorize a second governed approval artifact."
+      }
+    },
+    {
+      "ts": "2026-04-09T21:39:09.405360-04:00",
+      "by": "team-lead",
+      "summary": "Closed the governed record artifact reconsideration-intake-contract slice.",
+      "details": {
+        "notes": "Future reopen requests must satisfy the new intake contract before any planning-first slice may reopen the governed_record_artifact question. Governed_artifacts_only remains the only approved live model."
+      }
+    },
+    {
+      "ts": "2026-04-09T21:51:05.907111-04:00",
+      "by": "team-lead",
+      "summary": "Opened a bounded Phase 4 await-qualifying-evidence hold-state slice.",
+      "details": {
+        "notes": "Because the user asked to proceed again after the intake-contract closeout, this slice narrows scope to recording an explicit hold state so generic proceed requests are treated as no-op inputs unless they include intake-qualified evidence."
+      }
+    },
+    {
+      "ts": "2026-04-09T21:51:05.907111-04:00",
+      "by": "quality-gate",
+      "summary": "Recorded a PASS quality gate for the governed record artifact await-qualifying-evidence hold-state slice.",
+      "details": {
+        "notes": "The independent review confirmed AC1-AC3 pass on the refreshed hold-state spec, updated governed state, repaired review and release reports, and mirrored run-scoped artifacts. The slice remains docs-only and does not authorize a second governed approval artifact."
+      }
+    },
+    {
+      "ts": "2026-04-09T21:51:05.907111-04:00",
+      "by": "team-lead",
+      "summary": "Closed the governed record artifact await-qualifying-evidence hold-state slice.",
+      "details": {
+        "notes": "Phase 4 now remains in an explicit await-qualifying-evidence hold state. Governed_artifacts_only remains the only approved live model, and generic proceed requests are no-ops unless they satisfy the intake contract."
+      }
+    },
+    {
+      "ts": "2026-04-11T00:00:00Z",
+      "by": "team-lead",
+      "summary": "Opened a bounded Phase 4 governance-alignment slice for guarded learning review artifacts.",
+      "details": {
+        "notes": "Because the runtime can now stage guarded-learning-review.generated.json and merge accepted policy drafts into reviewed-policies.json, this slice narrows scope to recording those artifacts as review-only and non-executable in the governed docs set."
+      }
+    },
+    {
+      "ts": "2026-04-11T00:00:00Z",
+      "by": "quality-gate",
+      "summary": "Recorded a PASS quality gate for the guarded learning governance-alignment slice.",
+      "details": {
+        "notes": "The independent review confirmed AC1-AC3 pass on the refreshed guarded-review task spec, updated governed state, updated review and release reports, and mirrored run-scoped artifacts. The slice remains docs-only and does not authorize auto-import, auto-apply, or reviewed-policy runtime consumption."
+      }
+    },
+    {
+      "ts": "2026-04-11T00:00:00Z",
+      "by": "team-lead",
+      "summary": "Closed the guarded learning governance-alignment slice.",
+      "details": {
+        "notes": "Phase 4 now records the guarded learning review manifest and reviewed policy artifact as review-only aids. Governed_artifacts_only remains the only approved live model, and any future reviewed-policy runtime use must start with a planning-first slice."
+      }
+    },
+    {
+      "ts": "2026-04-11T00:00:00Z",
+      "by": "team-lead",
+      "summary": "Opened a bounded Phase 4 reviewed-policy runtime slice.",
+      "details": {
+        "notes": "Because the user asked to proceed after the capability assessment, this slice narrows scope to explicit reviewed-policy runtime loading, additive trajectory-scoring use, and fail-fast benchmark target validation without expanding into autonomous application."
+      }
+    },
+    {
+      "ts": "2026-04-11T00:00:00Z",
+      "by": "implementer",
+      "summary": "Enabled bounded reviewed-policy runtime scoring and strict benchmark target validation.",
+      "details": {
+        "notes": "The runner now normalizes reviewedPolicyRuntime, loads reviewed-policy artifact state, applies additive preferred-sequence bonuses and escalation penalties to trajectory ranking, records reviewed-policy context in result and ledger output, and rejects benchmark checks that reference unknown target ids before evaluation."
+      }
+    },
+    {
+      "ts": "2026-04-11T00:00:00Z",
+      "by": "quality-gate",
+      "summary": "Recorded a PASS quality gate for the reviewed-policy runtime slice.",
+      "details": {
+        "notes": "The independent review confirmed AC1-AC3 pass on the runtime implementation, the passing focused and full runner suites, and the refreshed governed artifacts mirrored into the active run snapshot."
+      }
+    },
+    {
+      "ts": "2026-04-11T00:00:00Z",
+      "by": "team-lead",
+      "summary": "Closed the reviewed-policy runtime slice.",
+      "details": {
+        "notes": "Phase 4 now supports bounded reviewed-policy-informed trajectory scoring for explicitly opted-in experiments while keeping execution manual/report_only and leaving any broader autonomous use to future planning-first work."
+      }
+    },
+    {
+      "ts": "2026-04-11T00:00:00Z",
+      "by": "team-lead",
+      "summary": "Opened a bounded Phase 4 reviewed-policy mutation-prioritization slice.",
+      "details": {
+        "notes": "Because the prior slice only influenced candidate ranking after evaluation, this follow-on slice narrows scope to deriving a static reviewed-policy-backed mutation execution plan from existing lineage metadata while preserving deterministic checkpoint and resume behavior."
+      }
+    },
+    {
+      "ts": "2026-04-11T00:00:00Z",
+      "by": "implementer",
+      "summary": "Implemented static reviewed-policy-guided mutation prioritization and checkpoint plan persistence.",
+      "details": {
+        "notes": "The AutoAgent loop now derives mutationExecutionPlan from reviewed-policy source-candidate lineage, prioritizes matching preferred paths ahead of neutral entries, preserves catalog order when there is no match, records the plan in result and search-ledger output, persists plan tokens into checkpoints, and rejects resume attempts whose stored plan no longer matches the current reviewed-policy-backed plan. Focused and full deterministic runner tests passed."
+      }
+    },
+    {
+      "ts": "2026-04-11T00:00:00Z",
+      "by": "quality-gate",
+      "summary": "Recorded a PASS quality gate for the reviewed-policy mutation-prioritization slice.",
+      "details": {
+        "notes": "The independent review confirmed AC1-AC3 pass on the lineage-based mutation execution plan, deterministic checkpoint/resume preservation, passing focused and full runner suites, and refreshed governed artifacts mirrored into the active run snapshot."
+      }
+    },
+    {
+      "ts": "2026-04-11T00:00:00Z",
+      "by": "team-lead",
+      "summary": "Closed the reviewed-policy mutation-prioritization slice.",
+      "details": {
+        "notes": "Phase 4 now supports bounded reviewed-policy-guided mutation ordering for explicitly opted-in experiments while keeping execution manual/report_only and leaving any broader dynamic replanning, mutation synthesis, or execution authority to future planning-first work."
+      }
+    },
+    {
+      "ts": "2026-04-11T00:00:00Z",
+      "by": "team-lead",
+      "summary": "Opened the next bounded Phase 5 planning and spec slice for trace-backed learning from chat, tool, and handoff history.",
+      "details": {
+        "notes": "Because the user asked for the next task spec and the broader autonomy roadmap, this slice narrows scope to defining the smallest real learning implementation step: explicit handoff-history evidence, deterministic attribution across chat/tool/handoff traces, and review-only path summaries."
+      }
+    },
+    {
+      "ts": "2026-04-11T00:00:00Z",
+      "by": "repo-researcher",
+      "summary": "Recorded runtime evidence and a phased roadmap from bounded reviewed optimization toward safe autonomy.",
+      "details": {
+        "notes": "The research pass confirmed that the runtime already supports chat/transcript/tool evidence ingestion, candidate episodes, and guarded learning review, but still lacks a first-class handoff-history contract and a deterministic attribution hierarchy for multi-agent reasoning paths."
+      }
+    },
+    {
+      "ts": "2026-04-11T00:00:00Z",
+      "by": "spec-writer",
+      "summary": "Drafted the next implementation spec for bounded handoff-aware trace-backed learning.",
+      "details": {
+        "notes": "The new task spec defines explicit handoff-history evidence inputs, deterministic chat/tool/handoff attribution, review-only path summaries, and a validation plan for the next bounded learning slice without widening into autonomous runtime behavior."
+      }
+    },
+    {
+      "ts": "2026-04-12T00:00:00Z",
+      "by": "implementer",
+      "summary": "Implemented the bounded handoff-aware trace-backed learning slice and validated it with focused and full runner coverage.",
+      "details": {
+        "notes": "The runtime now supports explicit handoff-history evidence sources, normalizes handoff_event records, prefers explicit candidate, lineage, and handoff references before text fallback, and records handoffCount across candidate episodes and review-only learning drafts. Focused and full deterministic runner tests passed with workspace-local pytest basetemp overrides because the default Windows temp root is permission-blocked on this machine."
+      }
+    },
+    {
+      "ts": "2026-04-12T00:00:00Z",
+      "by": "quality-gate",
+      "summary": "Recorded a PASS quality gate for the bounded Phase 5A handoff-aware trace-backed learning slice.",
+      "details": {
+        "notes": "Independent review confirmed AC1-AC3 on fresh focused and full runner validation plus direct runtime inspection. The slice remains manual/report_only, explicit-opt-in for handoff history, and review-only for all learning artifacts. The only non-blocking environment wrinkle is that the unsigned PowerShell task-spec validator is blocked by local execution policy on this machine, so an inline equivalent structural check was used instead."
+      }
+    },
+    {
+      "ts": "2026-04-12T00:00:00Z",
+      "by": "team-lead",
+      "summary": "Opened the next Phase 5B planning slice for bounded advisory path-quality metrics.",
+      "details": {
+        "notes": "Phase 5A completed the handoff-aware evidence and attribution boundary. The next bounded step is docs-only: define the current shadow-scoring baseline, the allowed metric refinements, and the guardrails a later implementation slice must preserve."
+      }
+    },
+    {
+      "ts": "2026-04-12T00:00:00Z",
+      "by": "spec-writer",
+      "summary": "Drafted the Phase 5B planning contract for bounded advisory path-quality metrics.",
+      "details": {
+        "notes": "The planning contract records the current qualityScore, efficiencyScore, and learningScore baseline, identifies the remaining gaps around handoff-aware and terminal-outcome-aware semantics, and keeps any later metric refinements advisory-only and deterministic."
+      }
+    },
+    {
+      "ts": "2026-04-12T21:15:00Z",
+      "by": "team-lead",
+      "summary": "Opened the bounded Phase 5C review-only promotion-audit slice.",
+      "details": {
+        "notes": "Phase 5B already established guarded review-only staging and advisory factor summaries. The next bounded step is to preserve staged decision rationale and manual-import auditability without widening promotion authority."
+      }
+    },
+    {
+      "ts": "2026-04-12T21:15:00Z",
+      "by": "implementer",
+      "summary": "Implemented structured guarded-review rationale and manual-import promotion audit output.",
+      "details": {
+        "notes": "The runtime now records stagedDecision and decisionRationale on guarded benchmark and policy review entries, makes deferred policy notes threshold-specific, and emits learning-promotion-audit.json during manual learning-review import with reviewer-override and source-id context. Focused and full deterministic runner tests passed with workspace-local pytest basetemp overrides."
+      }
+    },
+    {
+      "ts": "2026-04-12T21:15:00Z",
+      "by": "quality-gate",
+      "summary": "Recorded a PASS quality gate for the bounded Phase 5C review-only promotion-audit slice.",
+      "details": {
+        "notes": "Independent review confirmed AC1-AC4 on fresh targeted and full runner validation plus refreshed governed artifacts. The slice remains manual and report_only, and the only non-blocking environment issue is that repo-wide quick wrappers are still not useful gating evidence on this host because of unrelated backlog outside the touched files."
+      }
+    },
+    {
+      "ts": "2026-04-12T22:01:02.9937596Z",
+      "by": "team-lead",
+      "summary": "Opened the bounded Phase 5D reviewer-facing promotion-audit visibility slice.",
+      "details": {
+        "notes": "Phase 5C already emits a durable learning-promotion-audit artifact during manual import. The next bounded step is read-only visibility so reruns and canonical reporting can surface that audit context without widening promotion authority."
+      }
+    },
+    {
+      "ts": "2026-04-12T22:01:02.9937596Z",
+      "by": "implementer",
+      "summary": "Implemented read-only promotion-audit summary loading and canonical report visibility.",
+      "details": {
+        "notes": "The runtime now loads learning-promotion-audit.json in read-only mode during reruns, serializes a learningPromotionAudit summary with reviewer override totals and per-kind decision counts, and renders that summary in the canonical AutoAgent report. Focused and full deterministic runner tests passed with workspace-local TMP and TEMP overrides because the default Windows pytest temp root is permission-blocked on this machine."
+      }
+    },
+    {
+      "ts": "2026-04-12T22:01:02.9937596Z",
+      "by": "quality-gate",
+      "summary": "Recorded a PASS quality gate for the bounded Phase 5D reviewer-facing promotion-audit visibility slice.",
+      "details": {
+        "notes": "Independent review confirmed AC1-AC4 on fresh focused and full runner validation, regenerated canonical AutoAgent reporting, and refreshed governed artifacts. The slice remains manual and report_only, and the only non-blocking environment issue is the permission-blocked default pytest temp root on this Windows host, which the recorded commands mitigate with workspace-local TMP and TEMP overrides."
+      }
+    },
+    {
+      "ts": "2026-04-12T22:18:13.3475990Z",
+      "by": "team-lead",
+      "summary": "Opened the bounded Phase 5E blocked-factor aggregation visibility slice.",
+      "details": {
+        "notes": "Phase 5D already exposed promotion-audit summaries during reruns. The next bounded step is to aggregate existing blockedByFactors rationale into reviewer-facing counts without widening promotion authority."
+      }
+    },
+    {
+      "ts": "2026-04-12T22:18:13.3475990Z",
+      "by": "implementer",
+      "summary": "Implemented read-only promotion-audit blocked-factor aggregation and canonical report visibility.",
+      "details": {
+        "notes": "The runtime now derives overall and per-kind blocked-factor maps from learning-promotion-audit decision rationale, serializes them under learningPromotionAudit, and renders them in the canonical AutoAgent report. Focused and full deterministic runner tests passed with workspace-local TMP and TEMP overrides because the default Windows pytest temp root is permission-blocked on this machine."
+      }
+    },
+    {
+      "ts": "2026-04-12T22:18:13.3475990Z",
+      "by": "quality-gate",
+      "summary": "Recorded a PASS quality gate for the bounded Phase 5E blocked-factor aggregation visibility slice.",
+      "details": {
+        "notes": "Independent review confirmed AC1-AC4 on fresh focused and full runner validation, regenerated canonical AutoAgent reporting, and refreshed governed artifacts. The slice remains manual and report_only, and the only non-blocking environment issue is the permission-blocked default pytest temp root on this Windows host, which the recorded commands mitigate with workspace-local TMP and TEMP overrides."
+      }
+    },
+    {
+      "ts": "2026-04-12T18:44:48.0272715-04:00",
+      "by": "team-lead",
+      "summary": "Opened the bounded Phase 5F transcript-backed reasoning-path efficiency slice.",
+      "details": {
+        "notes": "The user wants AutoAgent to ultimately improve the agent team by learning from actual chat, tool, and handoff history and preferring the straightest successful reasoning paths. The next bounded step is to make transcript and handoff evidence explicit and add a deterministic reasoning-path-efficiency signal without widening execution authority."
+      }
+    },
+    {
+      "ts": "2026-04-12T18:44:48.0272715-04:00",
+      "by": "spec-writer",
+      "summary": "Drafted the Phase 5F implementation contract for transcript-backed reasoning-path efficiency learning.",
+      "details": {
+        "notes": "The new task spec narrows scope to explicit repo-local chat, transcript, and handoff evidence ingestion, an explicit deterministic reasoning-path-efficiency signal, reviewer-facing visibility in learning artifacts and canonical reporting, and preserved manual/report_only guardrails."
+      }
+    },
+    {
+      "ts": "2026-04-12T19:06:24.0343313-04:00",
+      "by": "implementer",
+      "summary": "Implemented the Phase 5F transcript-backed reasoning-path efficiency slice.",
+      "details": {
+        "notes": "The checked-in experiment now uses repo-local chat, transcript, and handoff fixtures, learning artifacts expose reasoningPathEfficiencyScore plus trace provenance, and the canonical AutoAgent report now shows transcript and handoff uptake under the existing manual/report_only boundary."
+      }
+    },
+    {
+      "ts": "2026-04-12T19:06:24.0343313-04:00",
+      "by": "quality-gate",
+      "summary": "Recorded a PASS quality gate for the Phase 5F transcript-backed reasoning-path efficiency slice.",
+      "details": {
+        "notes": "Focused transcript, handoff, and reasoning-path coverage passed, the full deterministic runner file passed, canonical AutoAgent artifacts were regenerated successfully, and the slice remains manual and review-only."
+      }
+    }
+  ],
+  "delegations": [],
+  "evidence": {
+    "tests": [
+      "New-Item -ItemType Directory -Force .tmp-pytest | Out-Null; $env:TMP = (Resolve-Path .tmp-pytest).Path; $env:TEMP = $env:TMP; py -3 -m pytest tests/test_autoagent_loop_runner.py -k \"transcript or handoff or reasoning_path\"",
+      "New-Item -ItemType Directory -Force .tmp-pytest | Out-Null; $env:TMP = (Resolve-Path .tmp-pytest).Path; $env:TEMP = $env:TMP; py -3 -m pytest tests/test_autoagent_loop_runner.py",
+      "py -3 .github/skills/autoagent-loop/scripts/autoagent_loop.py --experiment docs/agents/autoagent-experiment.md --output-root generated/autoagent-runs --report docs/agents/autoagent-report.md --results docs/agents/autoagent-results.tsv --evidence docs/agents/autoagent-evidence.json",
+      "py -3 -m json.tool docs/agents/state.json > $null",
+      "py -3 -c \"from pathlib import Path; pairs=[('docs/agents/task-spec.md','docs/agents/runs/20260308-160258/task-spec.md'),('docs/agents/state.json','docs/agents/runs/20260308-160258/state.json'),('docs/agents/patch-report.md','docs/agents/runs/20260308-160258/patch-report.md'),('docs/agents/test-report.md','docs/agents/runs/20260308-160258/test-report.md'),('docs/agents/review-report.md','docs/agents/runs/20260308-160258/review-report.md'),('docs/agents/release-report.md','docs/agents/runs/20260308-160258/release-report.md'),('docs/agents/autoagent-experiment.md','docs/agents/runs/20260308-160258/autoagent-experiment.md'),('docs/agents/autoagent-report.md','docs/agents/runs/20260308-160258/autoagent-report.md'),('docs/agents/autoagent-results.tsv','docs/agents/runs/20260308-160258/autoagent-results.tsv'),('docs/agents/autoagent-evidence.json','docs/agents/runs/20260308-160258/autoagent-evidence.json')];\nfor left,right in pairs:\n    assert Path(left).read_text(encoding='utf-8') == Path(right).read_text(encoding='utf-8')\""
+    ],
+    "reports": {
+      "taskSpec": "docs/agents/task-spec.md",
+      "patchReport": "docs/agents/patch-report.md",
+      "testReport": "docs/agents/test-report.md",
+      "reviewReport": "docs/agents/review-report.md",
+      "releaseReport": "docs/agents/release-report.md",
+      "ciReport": "docs/agents/ci-report.md",
+      "securityReport": "docs/agents/security-report.md",
+      "observabilityReport": "docs/agents/observability-report.md",
+      "performanceReport": "docs/agents/performance-report.md",
+      "dependencyReport": "docs/agents/dependency-report.md",
+      "backlogReport": "docs/agents/backlog-report.md",
+      "architectureReport": "docs/agents/architecture-review-report.md",
+      "agentArchitectureAuditReport": "docs/agents/agent-architecture-audit-report.md",
+      "sreReport": "docs/agents/sre-report.md",
+      "uxReport": "docs/agents/ux-review-report.md",
+      "privacyReport": "docs/agents/data-privacy-report.md",
+      "complianceReport": "docs/agents/compliance-report.md",
+      "mcpReport": "docs/agents/mcp-report.md",
+      "hooksReport": "docs/agents/hooks-report.md",
+      "skillsReport": "docs/agents/skills-report.md",
+      "copilotAgentConversionReport": "docs/agents/copilot-agent-conversion-report.md"
+    }
+  },
+  "failures": [
+    {
+      "ts": "2026-04-07T23:52:00-04:00",
+      "category": "other",
+      "summary": "The shell-based quick test wrapper is not runnable on this Windows machine because bash resolves to WSL and WSL is unavailable.",
+      "evidence": "bash ./scripts/ci/quick_test.sh -> WSL2 is not supported with your current machine configuration",
+      "retryCount": 1,
+      "nextStep": "Use the focused Python validation command for this slice and defer the shell wrapper until bash is available without WSL."
+    },
+    {
+      "ts": "2026-04-07T23:54:00-04:00",
+      "category": "other",
+      "summary": "The repo-wide Python guard is already blocked by unrelated committed __pycache__ directories, so it is not suitable as a clean baseline for this AutoAgent work.",
+      "evidence": "python scripts/ci/check_agent_system.py -> ERROR: Remove committed __pycache__ directories: ...",
+      "retryCount": 1,
+      "nextStep": "Treat the __pycache__ cleanup as separate repo hygiene work and use the focused AutoAgent validation path for this change."
+    },
+    {
+      "ts": "2026-04-09T11:13:04-04:00",
+      "category": "other",
+      "summary": "The native Windows quick suite now runs, but repo-wide Ruff format drift outside this slice still prevents it from passing end-to-end.",
+      "evidence": "python scripts/ci/quick_test.py -> ruff format --check src scripts tests reported unrelated files that would be reformatted",
+      "retryCount": 1,
+      "nextStep": "Treat the Ruff backlog as separate repo-wide cleanup and keep the checkpoint-manifest slice gated on the focused pytest run plus canonical AutoAgent runner evidence."
+    },
+    {
+      "ts": "2026-04-09T11:34:04-04:00",
+      "category": "other",
+      "summary": "The native Windows quick suite still fails on repo-wide Ruff format drift, but the remaining files are outside the checkpoint-stage slice after formatting the touched test file.",
+      "evidence": "python scripts/ci/quick_test.py -> ruff format --check src scripts tests reported six unrelated files that would be reformatted",
+      "retryCount": 1,
+      "nextStep": "Treat the remaining six-file Ruff backlog as separate repo-wide cleanup and keep this slice gated on the focused pytest run plus canonical AutoAgent runner evidence."
+    },
+    {
+      "ts": "2026-04-09T12:13:36.6598085-04:00",
+      "category": "other",
+      "summary": "The native Windows quick suite still fails on the same unrelated six-file Ruff format drift outside the continuation-eligibility slice.",
+      "evidence": "python scripts/ci/quick_test.py -> ruff format --check src scripts tests reported the same six unrelated files that would be reformatted",
+      "retryCount": 1,
+      "nextStep": "Treat the remaining Ruff backlog as separate repo-wide cleanup and keep this slice gated on the focused pytest run plus canonical AutoAgent runner evidence."
+    },
+    {
+      "ts": "2026-04-09T14:22:48.2382694-04:00",
+      "category": "other",
+      "summary": "The native Windows quick suite still fails on the same unrelated six-file Ruff format drift outside the review-aware readiness slice.",
+      "evidence": "python scripts/ci/quick_test.py -> ruff format --check src scripts tests reported scripts/package_copilot_agent_converter_portable.py, scripts/run_copilot_agent_conversion.py, tests/__init__.py, tests/test_copilot_agent_scaffold_emitter.py, tests/test_package_copilot_agent_converter_portable.py, and tests/test_smoke.py",
+      "retryCount": 1,
+      "nextStep": "Treat the remaining Ruff backlog as separate repo-wide cleanup and keep this slice gated on the focused pytest run plus canonical AutoAgent runner evidence."
+    },
+    {
+      "ts": "2026-04-09T18:35:13.7845665-04:00",
+      "category": "other",
+      "summary": "The native Windows quick suite still fails on the same unrelated six-file Ruff format drift outside the governed approval metadata slice.",
+      "evidence": "python scripts/ci/quick_test.py -> ruff format --check src scripts tests reported scripts/package_copilot_agent_converter_portable.py, scripts/run_copilot_agent_conversion.py, tests/__init__.py, tests/test_copilot_agent_scaffold_emitter.py, tests/test_package_copilot_agent_converter_portable.py, and tests/test_smoke.py",
+      "retryCount": 1,
+      "nextStep": "Treat the remaining Ruff backlog as separate repo-wide cleanup and keep this slice gated on the focused pytest run plus canonical AutoAgent runner evidence."
+    }
+  ],
+  "risk_register": [
+    {
+      "id": "R1",
+      "risk": "Live evaluator execution could introduce network-dependent flakiness or CI coupling.",
+      "impact": "high",
+      "likelihood": "medium",
+      "mitigation": "Use an injectable evaluator adapter and fake implementation in tests; keep real provider calls out of deterministic test paths.",
+      "owner": "implementer",
+      "status": "open"
+    },
+    {
+      "id": "R2",
+      "risk": "Evaluator output could override deterministic scoring in unsafe or opaque ways.",
+      "impact": "high",
+      "likelihood": "low",
+      "mitigation": "Limit execution to advisory and bounded tie-breaker semantics with deterministic scoring remaining primary.",
+      "owner": "team-lead",
+      "status": "open"
+    },
+    {
+      "id": "R3",
+      "risk": "Raw evaluator outputs could leak sensitive or noisy content into governed artifacts.",
+      "impact": "high",
+      "likelihood": "medium",
+      "mitigation": "Keep raw output off by default and sanitize or truncate any retained content before serialization.",
+      "owner": "implementer",
+      "status": "open"
+    },
+    {
+      "id": "R4",
+      "risk": "Frontier search could multiply candidate evaluations and generated artifacts faster than maintainers expect.",
+      "impact": "medium",
+      "likelihood": "medium",
+      "mitigation": "Keep frontier search bounded by candidatePolicy.frontierSize and leave current_best as the canonical default.",
+      "owner": "team-lead",
+      "status": "open"
+    },
+    {
+      "id": "R5",
+      "risk": "The replay ledger could drift from the report payload if later slices update search metadata in only one place.",
+      "impact": "medium",
+      "likelihood": "medium",
+      "mitigation": "Build the ledger from the same candidate records and frontier snapshots used by the main result object and keep focused assertions on both paths.",
+      "owner": "implementer",
+      "status": "open"
+    },
+    {
+      "id": "R6",
+      "risk": "Resume checkpoints could drift from in-memory search state or accept stale experiment inputs, producing incorrect resumed results.",
+      "impact": "high",
+      "likelihood": "low",
+      "mitigation": "Build checkpoints from the live candidate records and frontier snapshots, and validate experiment, benchmark, mutation-catalog, and candidate-policy fingerprints before restoring state.",
+      "owner": "implementer",
+      "status": "open"
+    },
+    {
+      "id": "R7",
+      "risk": "Compact checkpoints could reference generated candidate snapshots that are later deleted or moved, causing resume failures or partial restore.",
+      "impact": "medium",
+      "likelihood": "medium",
+      "mitigation": "Fail fast when a snapshot-backed candidate artifact is missing and keep the checkpoint contract scoped to the generated run root that owns those candidate snapshots.",
+      "owner": "implementer",
+      "status": "open"
+    },
+    {
+      "id": "R8",
+      "risk": "The checkpoint manifest could drift from the actual resume restore contract or omit bundle target files if snapshot-path rules diverge.",
+      "impact": "medium",
+      "likelihood": "medium",
+      "mitigation": "Build the manifest from the same live checkpoint and candidate state used by resume and reuse the existing candidate snapshot-path helper for bundle expansion.",
+      "owner": "implementer",
+      "status": "open"
+    },
+    {
+      "id": "R9",
+      "risk": "Checkpoint generation could accidentally capture post-live-evaluator winner state again, causing resume artifacts to drift from deterministic mutation-search semantics.",
+      "impact": "high",
+      "likelihood": "low",
+      "mitigation": "Freeze the deterministic best candidate before live evaluation runs and keep focused tie-breaker regression coverage that inspects emitted checkpoint and manifest artifacts directly.",
+      "owner": "implementer",
+      "status": "open"
+    },
+    {
+      "id": "R10",
+      "risk": "Derived continuation readiness could drift from the governed review artifacts or silently treat unreadable review state as ready.",
+      "impact": "high",
+      "likelihood": "medium",
+      "mitigation": "Use the machine-parseable governed state as the primary readiness source, classify unreadable or non-PASS review state with explicit blocked reasons, and keep focused regression coverage on missing or non-PASS review inputs.",
+      "owner": "implementer",
+      "status": "open"
+    },
+    {
+      "id": "R11",
+      "risk": "docs/agents/state.json and docs/agents/review-report.md could diverge, causing continuation readiness to look approved even though the governed artifacts disagree.",
+      "impact": "high",
+      "likelihood": "medium",
+      "mitigation": "Cross-check the machine-readable state and ReviewReport JSON block, surface explicit mismatch reasons, and keep readiness blocked unless the governed artifacts agree on PASS.",
+      "owner": "implementer",
+      "status": "mitigated"
+    },
+    {
+      "id": "R12",
+      "risk": "Maintainers could misread the top-level AutoAgentReport status as the current governed slice lifecycle even after docs/agents/state.json has already moved to Done and PASS.",
+      "impact": "medium",
+      "likelihood": "medium",
+      "mitigation": "Expose a separate governed lifecycle signal sourced from docs/agents/state.json and explain the distinction between artifact readiness and task lifecycle in canonical AutoAgent output.",
+      "owner": "implementer",
+      "status": "mitigated"
+    },
+    {
+      "id": "R13",
+      "risk": "Phase 3 could remain open-ended if the repository keeps adding visibility slices without a clear reviewed-handoff contract and explicit exit criteria.",
+      "impact": "medium",
+      "likelihood": "medium",
+      "mitigation": "Define a single stage-only reviewed continuation handoff contract and document explicit Phase 3 exit criteria that preserve manual/report_only behavior.",
+      "owner": "team-lead",
+      "status": "mitigated"
+    },
+    {
+      "id": "R14",
+      "risk": "Post-Phase-3 orchestration work could blur planning and implementation boundaries, causing the repo to enable execution behavior before prerequisites and rollback constraints are explicit.",
+      "impact": "high",
+      "likelihood": "medium",
+      "mitigation": "Use a planning-only slice to define prerequisites, rollout boundaries, and hard non-goals before any orchestration implementation is considered.",
+      "owner": "team-lead",
+      "status": "mitigated"
+    },
+    {
+      "id": "R15",
+      "risk": "A staged orchestration contract could be misread as execution authority if the new metadata does not explicitly preserve manual and report_only semantics.",
+      "impact": "high",
+      "likelihood": "medium",
+      "mitigation": "Keep the new orchestration layer additive, stage-only, and derived from reviewed handoff signals while exposing explicit blocked reasons, manual-only semantics, and out-of-scope execution wording in canonical artifacts.",
+      "owner": "implementer",
+      "status": "mitigated"
+    },
+    {
+      "id": "R16",
+      "risk": "Reviewed dispatch intent or approval posture metadata could be mistaken for an executable approval or dispatch workflow if the new slice does not keep approval state descriptive only.",
+      "impact": "high",
+      "likelihood": "medium",
+      "mitigation": "Keep reviewedDispatchIntent and governedApprovalMetadata additive, manual, and report_only; expose approval metadata as governed-artifacts-only descriptive state; and keep explicit out-of-scope execution wording in canonical output.",
+      "owner": "implementer",
+      "status": "mitigated"
+    }
+  ],
+  "quality_gate": {
+    "status": "PASS",
+    "lastReviewAt": "2026-04-12T23:06:34.5477007Z",
+    "reviewReportRef": "docs/agents/review-report.md",
+    "blockers": []
+  },
+  "next_action": {
+    "owner": "team-lead",
+    "summary": "Present the implemented Phase 5F transcript-backed reasoning-path slice for maintainer review, then decide whether the next bounded follow-on should refine reviewer-facing learning summaries or open a separate autonomy-planning slice.",
+    "agent": "team-lead",
+    "due": "2026-04-13"
+  },
+  "meta": {
+    "notes": "Do not store secrets. Keep this file stable and machine-parseable."
+  }
+}

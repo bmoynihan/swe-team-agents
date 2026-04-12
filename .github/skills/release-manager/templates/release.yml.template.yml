@@ -1,0 +1,41 @@
+# .github/release.yml
+# GitHub automatically generated release notes configuration.
+# See: https://docs.github.com/en/repositories/releasing-projects-on-github/automatically-generated-release-notes
+
+changelog:
+  exclude:
+    labels:
+      - ignore-for-release
+      - skip-changelog
+    authors:
+      - dependabot
+      - dependabot[bot]
+  categories:
+    - title: "Breaking Changes"
+      labels:
+        - "Semver-Major"
+        - "breaking-change"
+        - "breaking"
+    - title: "Features"
+      labels:
+        - "Semver-Minor"
+        - "feature"
+        - "enhancement"
+    - title: "Fixes"
+      labels:
+        - "Semver-Patch"
+        - "bug"
+        - "bugfix"
+        - "fix"
+    - title: "Docs"
+      labels:
+        - "documentation"
+        - "docs"
+    - title: "Dependencies"
+      labels:
+        - "dependencies"
+    - title: "Other Changes"
+      labels:
+        - "*"
+
+

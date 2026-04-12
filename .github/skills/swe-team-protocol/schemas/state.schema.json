@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "swe-team-v1 state",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "protocol",
+    "phase",
+    "task",
+    "decisions",
+    "delegations",
+    "failures",
+    "next_action"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": [
+        "string",
+        "integer"
+      ]
+    },
+    "protocol": {
+      "type": "string",
+      "const": "swe-team-v1"
+    },
+    "phase": {
+      "type": "string",
+      "enum": [
+        "Intake",
+        "Research",
+        "Spec",
+        "Implement",
+        "Validate",
+        "Review",
+        "Done"
+      ]
+    },
+    "repo": {
+      "type": "object"
+    },
+    "task": {
+      "type": "object"
+    },
+    "acceptance_criteria_refs": {
+      "type": "array"
+    },
+    "constraints": {
+      "type": "array"
+    },
+    "decisions": {
+      "type": "array"
+    },
+    "delegations": {
+      "type": "array"
+    },
+    "evidence": {
+      "type": "object"
+    },
+    "failures": {
+      "type": "array"
+    },
+    "quality_gate": {
+      "type": "object"
+    },
+    "next_action": {
+      "type": [
+        "string",
+        "object"
+      ]
+    },
+    "meta": {
+      "type": "object"
+    }
+  }
+}
+
+

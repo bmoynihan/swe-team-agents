@@ -1,0 +1,42 @@
+{
+    "mutations": [
+        {
+            "id": "add-team-lead-redirect",
+            "description": "Add the missing team-lead redirect to the primary agent.",
+            "operations": [
+                {
+                    "type": "ensure_bullet",
+                    "targetId": "primary-agent",
+                    "section": "Responsibilities",
+                    "value": "If the request goes beyond simple onboarding, redirect the user to `team-lead`."
+                }
+            ]
+        },
+        {
+            "id": "add-shared-task-spec-reference",
+            "description": "Add the canonical task-spec reference to the shared guidance target.",
+            "operations": [
+                {
+                    "type": "ensure_bullet",
+                    "targetId": "shared-guidance",
+                    "section": "Requirements",
+                    "value": "Point users to `docs/agents/task-spec.md` when they need the current working contract."
+                }
+            ]
+        },
+        {
+            "id": "add-read-tool",
+            "description": "Broaden the tool surface on the primary agent to prove higher-complexity candidates are discarded.",
+            "operations": [
+                {
+                    "type": "merge_list",
+                    "targetId": "primary-agent",
+                    "key": "tools",
+                    "values": [
+                        "read"
+                    ]
+                }
+            ]
+        }
+    ]
+}

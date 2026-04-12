@@ -1,0 +1,195 @@
+{
+  "type": "AutoAgentSearchLedger",
+  "experiment": {
+    "name": "hello-repo-guide-optimization",
+    "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/autoagent-experiment.md"
+  },
+  "candidatePolicy": {
+    "keepStrategy": "score-then-simpler",
+    "searchStrategy": "current_best",
+    "frontierSize": 1
+  },
+  "baselineCandidateId": "baseline",
+  "bestCandidateId": "trim-intro-paragraph",
+  "bestCandidateLineage": [
+    "baseline",
+    "trim-intro-paragraph"
+  ],
+  "maxSearchDepth": 2,
+  "candidateCount": 4,
+  "frontierSnapshotCount": 4,
+  "liveEvaluation": {
+    "enabled": false,
+    "status": "disabled",
+    "winnerCandidateId": "trim-intro-paragraph",
+    "bestCandidateChanged": false
+  },
+  "nodes": [
+    {
+      "candidateId": "baseline",
+      "parentCandidateId": null,
+      "mutationId": null,
+      "iteration": 0,
+      "searchDepth": 0,
+      "status": "keep",
+      "description": "Baseline target agent",
+      "score": 1.0,
+      "passedChecks": 5,
+      "totalChecks": 5,
+      "complexity": {
+        "bodyChars": 641,
+        "toolCount": 0,
+        "mcpServerCount": 0,
+        "fileCount": 1,
+        "score": 656,
+        "perTarget": {
+          "hello-repo-guide": {
+            "bodyChars": 641,
+            "toolCount": 0,
+            "mcpServerCount": 0,
+            "score": 641
+          }
+        }
+      },
+      "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/hello-repo-guide-optimization/candidates/iteration-00-baseline.agent.md",
+      "touchedTargets": []
+    },
+    {
+      "candidateId": "trim-intro-paragraph",
+      "parentCandidateId": "baseline",
+      "mutationId": "trim-intro-paragraph",
+      "iteration": 1,
+      "searchDepth": 1,
+      "status": "keep",
+      "description": "Shorten the introductory paragraph without dropping onboarding scope.",
+      "score": 1.0,
+      "passedChecks": 5,
+      "totalChecks": 5,
+      "complexity": {
+        "bodyChars": 528,
+        "toolCount": 0,
+        "mcpServerCount": 0,
+        "fileCount": 1,
+        "score": 543,
+        "perTarget": {
+          "hello-repo-guide": {
+            "bodyChars": 528,
+            "toolCount": 0,
+            "mcpServerCount": 0,
+            "score": 528
+          }
+        }
+      },
+      "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/hello-repo-guide-optimization/candidates/iteration-01-trim-intro-paragraph.agent.md",
+      "touchedTargets": [
+        "hello-repo-guide"
+      ]
+    },
+    {
+      "candidateId": "restate-team-lead-redirect",
+      "parentCandidateId": "trim-intro-paragraph",
+      "mutationId": "restate-team-lead-redirect",
+      "iteration": 2,
+      "searchDepth": 2,
+      "status": "skip",
+      "description": "Reinforce the existing team-lead redirect rule.",
+      "score": 1.0,
+      "passedChecks": 5,
+      "totalChecks": 5,
+      "complexity": {
+        "bodyChars": 528,
+        "toolCount": 0,
+        "mcpServerCount": 0,
+        "fileCount": 1,
+        "score": 543,
+        "perTarget": {
+          "hello-repo-guide": {
+            "bodyChars": 528,
+            "toolCount": 0,
+            "mcpServerCount": 0,
+            "score": 528
+          }
+        }
+      },
+      "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/hello-repo-guide-optimization/candidates/iteration-02-restate-team-lead-redirect.agent.md",
+      "touchedTargets": []
+    },
+    {
+      "candidateId": "add-read-tool",
+      "parentCandidateId": "trim-intro-paragraph",
+      "mutationId": "add-read-tool",
+      "iteration": 3,
+      "searchDepth": 2,
+      "status": "discard",
+      "description": "Expand the tool surface with a read tool to show that non-simplifying mutations are discarded.",
+      "score": 0.888889,
+      "passedChecks": 4,
+      "totalChecks": 5,
+      "complexity": {
+        "bodyChars": 528,
+        "toolCount": 1,
+        "mcpServerCount": 0,
+        "fileCount": 1,
+        "score": 568,
+        "perTarget": {
+          "hello-repo-guide": {
+            "bodyChars": 528,
+            "toolCount": 1,
+            "mcpServerCount": 0,
+            "score": 553
+          }
+        }
+      },
+      "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/hello-repo-guide-optimization/candidates/iteration-03-add-read-tool.agent.md",
+      "touchedTargets": [
+        "hello-repo-guide"
+      ]
+    }
+  ],
+  "frontierSnapshots": [
+    {
+      "mutationIndex": 0,
+      "mutationId": null,
+      "evaluatedCandidateIds": [
+        "baseline"
+      ],
+      "frontierCandidateIds": [
+        "baseline"
+      ],
+      "bestCandidateId": "baseline"
+    },
+    {
+      "mutationIndex": 1,
+      "mutationId": "trim-intro-paragraph",
+      "evaluatedCandidateIds": [
+        "trim-intro-paragraph"
+      ],
+      "frontierCandidateIds": [
+        "trim-intro-paragraph"
+      ],
+      "bestCandidateId": "trim-intro-paragraph"
+    },
+    {
+      "mutationIndex": 2,
+      "mutationId": "restate-team-lead-redirect",
+      "evaluatedCandidateIds": [
+        "restate-team-lead-redirect"
+      ],
+      "frontierCandidateIds": [
+        "trim-intro-paragraph"
+      ],
+      "bestCandidateId": "trim-intro-paragraph"
+    },
+    {
+      "mutationIndex": 3,
+      "mutationId": "add-read-tool",
+      "evaluatedCandidateIds": [
+        "add-read-tool"
+      ],
+      "frontierCandidateIds": [
+        "trim-intro-paragraph"
+      ],
+      "bestCandidateId": "trim-intro-paragraph"
+    }
+  ]
+}

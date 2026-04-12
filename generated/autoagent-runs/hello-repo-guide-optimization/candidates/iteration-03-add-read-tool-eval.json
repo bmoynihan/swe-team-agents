@@ -1,0 +1,64 @@
+{
+  "score": 0.888889,
+  "passedChecks": 4,
+  "totalChecks": 5,
+  "checks": [
+    {
+      "id": "mentions-workflow",
+      "type": "contains_text",
+      "targetId": "hello-repo-guide",
+      "weight": 1.0,
+      "passed": true,
+      "actual": "manager-led multi-agent workflow"
+    },
+    {
+      "id": "mentions-agents-md",
+      "type": "contains_text",
+      "targetId": "hello-repo-guide",
+      "weight": 1.0,
+      "passed": true,
+      "actual": "`AGENTS.md`"
+    },
+    {
+      "id": "mentions-task-spec",
+      "type": "contains_text",
+      "targetId": "hello-repo-guide",
+      "weight": 1.0,
+      "passed": true,
+      "actual": "`docs/agents/task-spec.md`"
+    },
+    {
+      "id": "redirects-team-lead",
+      "type": "contains_text",
+      "targetId": "hello-repo-guide",
+      "weight": 1.0,
+      "passed": true,
+      "actual": "`team-lead`"
+    },
+    {
+      "id": "keeps-tool-surface-empty",
+      "type": "frontmatter_equals",
+      "targetId": "hello-repo-guide",
+      "weight": 0.5,
+      "passed": false,
+      "actual": [
+        "read"
+      ]
+    }
+  ],
+  "complexity": {
+    "bodyChars": 528,
+    "toolCount": 1,
+    "mcpServerCount": 0,
+    "fileCount": 1,
+    "score": 568,
+    "perTarget": {
+      "hello-repo-guide": {
+        "bodyChars": 528,
+        "toolCount": 1,
+        "mcpServerCount": 0,
+        "score": 553
+      }
+    }
+  }
+}

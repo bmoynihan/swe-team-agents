@@ -1,0 +1,31 @@
+{
+  "bundleName": "copilot-agent-converter-portable",
+  "bundleRoot": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/transfer-bundles/copilot-agent-converter-portable",
+  "zipPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/transfer-bundles/copilot-agent-converter-portable.zip",
+  "requiredFiles": [
+    ".github/agents/copilot-agent-converter.agent.md",
+    ".github/prompts/convert-agent-to-databricks-app.prompt.md",
+    ".github/skills/copilot-agent-converter/SKILL.md",
+    ".github/skills/copilot-agent-converter/scripts/normalize_agent_profile.py",
+    ".github/skills/copilot-agent-converter/scripts/emit_target_scaffolds.py",
+    "scripts/run_copilot_agent_conversion.py",
+    ".vscode/settings.json"
+  ],
+  "optionalFiles": [
+    ".github/agents/hello-repo-guide.agent.md",
+    "tests/test_copilot_agent_converter.py",
+    "tests/test_copilot_agent_scaffold_emitter.py",
+    "tests/test_copilot_agent_conversion_runner.py",
+    "tests/fixtures/copilot-agent-converter/planner.agent.md",
+    "tests/fixtures/copilot-agent-converter/db-helper.agent.md"
+  ],
+  "excludedSensitiveFiles": [
+    ".databrickscfg",
+    ".env",
+    ".databricks.env",
+    "databricks-deploy-result.json",
+    "smoke-test-result.json",
+    "conversion-run-result.json"
+  ],
+  "installGuide": "INSTALL.md"
+}
