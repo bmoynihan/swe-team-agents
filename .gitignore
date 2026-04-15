@@ -21,6 +21,11 @@ env/
 .coverage
 .coverage.*
 htmlcov/
+.pytest-temp/
+.pytest_logs/
+.pytest_tmp*/
+.tmp-pytest*/
+.tmp-*
 
 # OS/editor
 .DS_Store
@@ -35,5 +40,12 @@ Thumbs.db
 .databricks.env
 .databricks-resources.json
 .tmp/
+docs/agents/runs/*/autoagent-regeneration.log
+docs/agents/runs/*/copilot-chat-export.json
+docs/agents/runs/*/copilot-handoff-export.jsonl
+docs/agents/runs/*/copilot-transcript-export.jsonl
+docs/agents/runs/*/phase*-agent-system.log
+docs/agents/runs/*/phase*-quick-test.log
+docs/agents/runs/*/phase*-regeneration.log
 generated/**/node_modules/
 generated/**/.copilot-state/
