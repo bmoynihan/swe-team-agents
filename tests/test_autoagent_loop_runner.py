@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+from copy import deepcopy
 from inspect import cleandoc
 from pathlib import Path
 
@@ -427,9 +428,75 @@ stagedPatchPolicy:
         "searchStrategy": "current_best",
         "frontierSize": 1,
     }
-    assert loaded["stagedPatchPolicy"]["reviewerHints"] == [
-        "Review the candidate before applying it.",
+
+
+def test_checked_in_autoagent_experiment_uses_manager_bundle_targets() -> None:
+    module = load_module()
+
+    experiment_path = ROOT / "docs" / "agents" / "autoagent-experiment.md"
+    benchmark_path = (
+        ROOT / ".github" / "skills" / "autoagent-loop" / "examples" / "team-lead-benchmark.json"
+    )
+    mutation_path = (
+        ROOT / ".github" / "skills" / "autoagent-loop" / "examples" / "team-lead-mutations.json"
+    )
+
+    loaded = module.load_experiment(experiment_path)
+    benchmark = json.loads(benchmark_path.read_text(encoding="utf-8"))
+    mutations = json.loads(mutation_path.read_text(encoding="utf-8"))
+
+    assert [target["id"] for target in loaded["targets"]] == [
+        "team-lead",
+        "team-lead-skill",
+        "agent-operating-guide",
     ]
+    assert loaded["primaryTargetId"] == "team-lead"
+    assert loaded["continuousPolicy"]["mode"] == "manual"
+    assert loaded["continuousPolicy"]["stageOnly"] is True
+    assert loaded["continuousPolicy"]["requireReviewPass"] is True
+    assert loaded["evaluationMode"]["liveEvaluator"]["enabled"] is False
+    assert loaded["evidencePolicy"]["includeChatHistory"] is True
+    assert loaded["evidencePolicy"]["includeTranscriptHistory"] is True
+    assert loaded["evidencePolicy"]["includeHandoffHistory"] is True
+    assert loaded["evidencePolicy"]["allowExternalPaths"] is False
+
+    checks_by_id = {check["id"]: check for check in benchmark["checks"]}
+    assert checks_by_id["skill-current-run-contract"]["targetId"] == "team-lead-skill"
+    assert checks_by_id["skill-no-product-code-boundary"]["value"] == (
+        "The manager does not implement product code."
+    )
+    assert checks_by_id["skill-snapshot-contract"]["targetId"] == "team-lead-skill"
+    assert checks_by_id["guide-current-run-contract"]["targetId"] == "agent-operating-guide"
+    assert checks_by_id["guide-live-shared-root"]["value"] == (
+        "`docs/agents/` is the only live shared artifact root."
+    )
+    assert checks_by_id["guide-no-hook-bypass"]["targetId"] == "agent-operating-guide"
+
+    boundary_operations = mutations["mutations"][0]["operations"]
+    assert {operation["targetId"] for operation in boundary_operations} == {
+        "team-lead",
+        "team-lead-skill",
+    }
+    assert any(
+        operation["old"] == "- The manager does not implement product code."
+        and operation["new"] == "- The manager may implement product code."
+        for operation in boundary_operations
+    )
+
+    guide_operations = mutations["mutations"][1]["operations"]
+    assert {operation["targetId"] for operation in guide_operations} == {
+        "agent-operating-guide",
+    }
+    assert any(
+        operation["old"] == "- `docs/agents/` is the only live shared artifact root."
+        and operation["new"] == "- `docs/agents/` is a preferred live shared artifact root."
+        for operation in guide_operations
+    )
+    assert any(
+        operation["old"] == "- Do not bypass hook denials."
+        and operation["new"] == "- Do not bypass hook denials when local iteration needs it."
+        for operation in guide_operations
+    )
     assert loaded["stageForReview"] is True
 
 
@@ -2833,6 +2900,8 @@ def test_autoagent_loop_imports_approved_learning_drafts_with_review_manifest(
     )
     module.ROOT = tmp_path
     module.DOCS_AGENTS_DIR = docs_agents
+    write_governed_state(docs_agents / "state.json", "PASS")
+    write_governed_review_report(docs_agents / "review-report.md", "PASS")
 
     working_dir = tmp_path / "work"
     working_dir.mkdir(parents=True, exist_ok=True)
@@ -2964,6 +3033,28 @@ def test_autoagent_loop_imports_approved_learning_drafts_with_review_manifest(
         max_iterations=0,
         apply_best=False,
     )
+    assert result["reviewedContinuationPackage"] == {
+        "status": "artifact_missing",
+        "bundlePath": (
+            output_root / experiment.stem / "reviewed-continuation-bundle.json"
+        ).as_posix(),
+        "bundleFound": False,
+        "acceptedBenchmarkDraftCount": 0,
+        "acceptedMutationDraftCount": 0,
+        "acceptedPolicyDraftCount": 0,
+        "acceptedTotalCount": 0,
+        "traceSourceOrigins": [],
+        "governedTraceExportRunIds": [],
+        "manualDispatchStatus": "artifact_missing",
+        "manualDispatchPath": (
+            output_root / experiment.stem / "manual-dispatch.generated.json"
+        ).as_posix(),
+        "manualDispatchFound": False,
+        "manualDispatchBlockedReasons": [],
+        "requiredHumanAction": None,
+        "followOnExperimentPath": None,
+        "launchCommand": None,
+    }
 
     benchmark_drafts = json.loads(
         Path(result["learningArtifacts"]["benchmarkDraftsPath"]).read_text(encoding="utf-8")
@@ -3158,6 +3249,74 @@ def test_autoagent_loop_imports_approved_learning_drafts_with_review_manifest(
     ]
     assert Path(import_result["artifacts"]["importReport"]["actualPath"]).exists()
     assert Path(import_result["artifacts"]["promotionAudit"]["actualPath"]).exists()
+    assert Path(import_result["artifacts"]["continuationBundle"]["actualPath"]).exists()
+    assert Path(import_result["artifacts"]["manualDispatchManifest"]["actualPath"]).exists()
+    assert Path(import_result["artifacts"]["followOnExperiment"]["actualPath"]).exists()
+
+    continuation_bundle = json.loads(
+        Path(import_result["artifacts"]["continuationBundle"]["actualPath"]).read_text(
+            encoding="utf-8"
+        )
+    )
+    assert continuation_bundle["type"] == "AutoAgentReviewedContinuationBundle"
+    assert continuation_bundle["status"] == "ready"
+    assert continuation_bundle["summary"] == {
+        "acceptedBenchmarkDraftCount": 1,
+        "acceptedMutationDraftCount": 1,
+        "acceptedPolicyDraftCount": 1,
+        "acceptedTotalCount": 3,
+        "targetCount": 1,
+        "targetIds": ["primary"],
+    }
+    assert continuation_bundle["experiment"]["primaryTargetId"] == "primary"
+    assert continuation_bundle["accepted"]["benchmarkDrafts"][0]["traceProvenance"] == deepcopy(
+        accepted_benchmark_draft["fragment"]["traceProvenance"]
+    )
+    assert continuation_bundle["accepted"]["mutationDrafts"][0]["traceProvenance"] == deepcopy(
+        accepted_mutation_draft["entry"]["traceProvenance"]
+    )
+    assert continuation_bundle["accepted"]["policyDrafts"][0]["traceProvenance"] == deepcopy(
+        accepted_policy_draft["entry"]["traceProvenance"]
+    )
+
+    manual_dispatch_manifest = json.loads(
+        Path(import_result["artifacts"]["manualDispatchManifest"]["actualPath"]).read_text(
+            encoding="utf-8"
+        )
+    )
+    assert manual_dispatch_manifest["type"] == "AutoAgentManualDispatchManifest"
+    assert manual_dispatch_manifest["status"] == "ready_for_manual_dispatch"
+    assert manual_dispatch_manifest["blockedReasons"] == []
+    assert manual_dispatch_manifest["manualOnly"] is True
+    assert manual_dispatch_manifest["reportOnly"] is True
+    assert manual_dispatch_manifest["requiresHumanLaunch"] is True
+    assert manual_dispatch_manifest["approvalSource"] == "governed_artifacts_only"
+    assert (
+        manual_dispatch_manifest["bundlePath"]
+        == import_result["artifacts"]["continuationBundle"]["actualPath"]
+    )
+    assert (
+        manual_dispatch_manifest["followOnExperimentPath"]
+        == import_result["artifacts"]["followOnExperiment"]["actualPath"]
+    )
+    assert "--experiment" in str(manual_dispatch_manifest["launchCommand"])
+
+    follow_on_experiment = module.load_experiment(
+        Path(import_result["artifacts"]["followOnExperiment"]["actualPath"])
+    )
+    assert (
+        follow_on_experiment["benchmarkPath"].as_posix()
+        == import_result["artifacts"]["promotedBenchmark"]["actualPath"]
+    )
+    assert (
+        follow_on_experiment["mutationCatalogPath"].as_posix()
+        == import_result["artifacts"]["promotedMutations"]["actualPath"]
+    )
+    assert follow_on_experiment["reviewedPolicyRuntime"]["enabled"] is True
+    assert (
+        follow_on_experiment["reviewedPolicyRuntime"]["artifactPath"].as_posix()
+        == import_result["artifacts"]["promotedPolicies"]["actualPath"]
+    )
 
     promotion_audit = json.loads(
         Path(import_result["artifacts"]["promotionAudit"]["actualPath"]).read_text(encoding="utf-8")
@@ -3254,6 +3413,27 @@ def test_autoagent_loop_imports_approved_learning_drafts_with_review_manifest(
         "mutationBlockedFactorCounts": {},
         "policyBlockedFactorCounts": {"observedCount": 1},
     }
+    assert rerun_result["reviewedContinuationPackage"] == {
+        "status": "ready",
+        "bundlePath": import_result["artifacts"]["continuationBundle"]["actualPath"],
+        "bundleFound": True,
+        "acceptedBenchmarkDraftCount": 1,
+        "acceptedMutationDraftCount": 1,
+        "acceptedPolicyDraftCount": 1,
+        "acceptedTotalCount": 3,
+        "traceSourceOrigins": [],
+        "governedTraceExportRunIds": [],
+        "manualDispatchStatus": "ready_for_manual_dispatch",
+        "manualDispatchPath": import_result["artifacts"]["manualDispatchManifest"]["actualPath"],
+        "manualDispatchFound": True,
+        "manualDispatchBlockedReasons": [],
+        "requiredHumanAction": (
+            "Review the generated follow-on experiment and launch it manually "
+            "with the provided command."
+        ),
+        "followOnExperimentPath": import_result["artifacts"]["followOnExperiment"]["actualPath"],
+        "launchCommand": manual_dispatch_manifest["launchCommand"],
+    }
 
     report_text = (docs_agents / "autoagent-report.md").read_text(encoding="utf-8")
     assert "- Learning promotion audit: ready" in report_text
@@ -3278,6 +3458,28 @@ def test_autoagent_loop_imports_approved_learning_drafts_with_review_manifest(
     assert "- Learning promotion audit blocked factors: observedCount 1" in report_text
     assert "- Learning promotion audit benchmark blocked factors: none" in report_text
     assert "- Learning promotion audit mutation blocked factors: none" in report_text
+    assert "- Reviewed continuation package: ready" in report_text
+    assert (
+        "- Reviewed continuation bundle artifact: "
+        f"{import_result['artifacts']['continuationBundle']['actualPath']}"
+    ) in report_text
+    assert (
+        "- Reviewed continuation accepted items: benchmark 1, mutations 1, policies 1"
+        in report_text
+    )
+    assert "- Reviewed continuation trace origins: none" in report_text
+    assert "- Manual dispatch manifest: ready_for_manual_dispatch" in report_text
+    assert "- Manual dispatch blocked reasons: none" in report_text
+    assert (
+        "- Manual dispatch required action: "
+        "Review the generated follow-on experiment and launch it manually with the "
+        "provided command." in report_text
+    )
+    assert (
+        "- Manual dispatch follow-on experiment: "
+        f"{import_result['artifacts']['followOnExperiment']['actualPath']}"
+    ) in report_text
+    assert "- Manual dispatch launch command: py -3 " in report_text
     assert "- Learning promotion audit policy blocked factors: observedCount 1" in report_text
 
 
@@ -4549,7 +4751,7 @@ def test_autoagent_loop_uses_first_class_chat_history_json_exports_to_break_exac
     target = working_dir / "chat-history-evidence-rank.agent.md"
     target.write_text("---\nname: Chat History Evidence Rank\n---\n\nBASE\n", encoding="utf-8")
 
-    chat_export_path = tmp_path / "history" / "copilot-chat-export.json"
+    chat_export_path = docs_agents / "runs" / "20260411-010101" / "copilot-chat-export.json"
     chat_export_path.parent.mkdir(parents=True, exist_ok=True)
     chat_export_path.write_text(
         json.dumps(
@@ -4710,13 +4912,20 @@ def test_autoagent_loop_uses_first_class_chat_history_json_exports_to_break_exac
     evidence = json.loads((docs_agents / "autoagent-evidence.json").read_text(encoding="utf-8"))
     assert evidence["summary"]["transcriptRecordCount"] == 2
     assert evidence["summary"]["externalSourceCount"] == 1
+    assert evidence["summary"]["governedTraceExportRecordCount"] == 2
+    assert evidence["summary"]["governedTraceExportSourceCount"] == 1
+    assert evidence["summary"]["fixtureExternalLogRecordCount"] == 0
     assert evidence["summary"]["recordsByKind"]["transcript_event"] == 2
     assert evidence["sources"]["transcriptSources"][0]["kind"] == "chat_transcript"
     assert evidence["sources"]["transcriptSources"][0]["recordKind"] == "transcript_event"
+    assert evidence["sources"]["transcriptSources"][0]["sourceOrigin"] == "governed_run_export"
+    assert evidence["sources"]["transcriptSources"][0]["sourceRunId"] == "20260411-010101"
 
     transcript_records = [
         record for record in evidence["records"] if record["sourceKind"] == "transcript_event"
     ]
+    assert transcript_records[0]["sourceOrigin"] == "governed_run_export"
+    assert transcript_records[0]["sourceRunId"] == "20260411-010101"
     assert transcript_records[0]["toolName"] == "apply_patch"
     assert transcript_records[0]["status"] == "error"
     assert transcript_records[1]["toolName"] == "read_file"
@@ -4729,11 +4938,15 @@ def test_autoagent_loop_uses_first_class_chat_history_json_exports_to_break_exac
     assert learning_summary["reasoningPathSignal"]["handoffBackedPathCount"] == 0
     assert top_observed_path["provenance"]["transcriptBacked"] is True
     assert top_observed_path["provenance"]["handoffBacked"] is False
+    assert top_observed_path["provenance"]["sourceOrigins"] == ["governed_run_export"]
+    assert top_observed_path["provenance"]["governedRunIds"] == ["20260411-010101"]
     assert top_observed_path["reasoningPathEfficiencyScore"] == pytest.approx(
         top_observed_path["factors"]["reasoningPathEfficiencyScore"]
     )
 
     report_text = (docs_agents / "autoagent-report.md").read_text(encoding="utf-8")
+    assert "- Governed trace export records: 2" in report_text
+    assert "- Fixture-backed external log records: 0" in report_text
     assert "- Transcript evidence records: 2" in report_text
     assert "- Handoff evidence records: 0" in report_text
     assert "- Learning reasoning-path signal: reasoningPathEfficiencyScore" in report_text
@@ -5388,8 +5601,7 @@ def test_autoagent_loop_uses_handoff_history_to_attribute_branched_candidates(
         and fragment["fragment"]["factorSummary"]["reasoningPathEfficiencyScore"]
         == pytest.approx(top_observed_path["reasoningPathEfficiencyScore"])
         and fragment["fragment"]["suggestedChecks"][0]["handoffCount"] == 1
-        and fragment["fragment"]["suggestedChecks"][0]["traceProvenance"]["handoffBacked"]
-        is True
+        and fragment["fragment"]["suggestedChecks"][0]["traceProvenance"]["handoffBacked"] is True
         for fragment in benchmark_drafts["draftFragments"]
     )
     assert any(
@@ -6467,13 +6679,83 @@ def test_autoagent_loop_report_includes_staged_patch_and_provenance(tmp_path: Pa
     assert result["stagedPatch"]["changedTargetCount"] == 2
     changed_ids = {target["targetId"] for target in result["stagedPatch"]["changedTargets"]}
     assert changed_ids == {"primary-agent", "shared-guidance"}
+    assert result["stagedPatchReviewBundle"] == {
+        "status": "ready",
+        "bundlePath": result["artifacts"]["stagedPatchBundle"]["actualPath"],
+        "bundleFound": True,
+        "candidateId": result["stagedPatch"]["candidateId"],
+        "changedTargetCount": 2,
+        "changedTargetIds": ["primary-agent", "shared-guidance"],
+        "primaryChangedTargetIds": ["primary-agent"],
+        "reviewerHints": ["Review both bundle targets before apply-best."],
+        "requiredHumanAction": (
+            "Review the staged patch bundle and governed artifacts before choosing the next "
+            "bounded step."
+        ),
+    }
+    staged_patch_bundle = json.loads(
+        Path(result["artifacts"]["stagedPatchBundle"]["actualPath"]).read_text(encoding="utf-8")
+    )
+    assert staged_patch_bundle["type"] == "AutoAgentStagedPatchReviewBundle"
+    assert staged_patch_bundle["status"] == "ready"
+    assert staged_patch_bundle["summary"] == {
+        "changedTargetCount": 2,
+        "changedTargetIds": ["primary-agent", "shared-guidance"],
+        "primaryChangedTargetIds": ["primary-agent"],
+        "hasChanges": True,
+    }
+    assert staged_patch_bundle["candidate"] == {
+        "candidateId": result["stagedPatch"]["candidateId"],
+        "candidatePath": result["stagedPatch"]["candidatePath"],
+        "changedTargetCount": 2,
+    }
+    assert staged_patch_bundle["changedTargets"] == [
+        {
+            "targetId": "primary-agent",
+            "sourcePath": (working_dir / "onboarding-helper.agent.md").as_posix(),
+            "primary": True,
+            "kind": "agent_profile",
+            "mutableRegions": ["body", "frontmatter.tools"],
+            "candidateSnapshotPath": result["stagedPatch"]["changedTargets"][0][
+                "candidateSnapshotPath"
+            ],
+            "changedRegions": ["body"],
+            "frontmatterChangedKeys": [],
+        },
+        {
+            "targetId": "shared-guidance",
+            "sourcePath": (working_dir / "shared-guidance.md").as_posix(),
+            "primary": False,
+            "kind": "markdown_document",
+            "mutableRegions": ["body"],
+            "candidateSnapshotPath": result["stagedPatch"]["changedTargets"][1][
+                "candidateSnapshotPath"
+            ],
+            "changedRegions": ["body"],
+            "frontmatterChangedKeys": [],
+        },
+    ]
     assert result["provenance"]["inputs"]["experiment"]["path"].endswith(
         "bundle-extended-experiment.md"
     )
     assert len(result["provenance"]["inputs"]["experiment"]["sha256"]) == 64
     assert result["provenance"]["inputs"]["liveEvaluatorPrompt"]["path"].endswith("judge-prompt.md")
     assert result["provenance"]["evidence"]["sources"]["runSnapshots"] == ["test-run"]
+    assert result["provenance"]["artifacts"]["stagedPatchBundlePath"].endswith(
+        "staged-patch-review-bundle.json"
+    )
     assert result["provenance"]["artifacts"]["reportPath"].endswith("autoagent-report.md")
+
+    report_text = (docs_agents / "autoagent-report.md").read_text(encoding="utf-8")
+    assert "- Staged patch bundle: ready" in report_text
+    assert (
+        f"- Staged patch bundle artifact: {result['artifacts']['stagedPatchBundle']['actualPath']}"
+    ) in report_text
+    assert "- Staged patch bundle targets: primary-agent, shared-guidance" in report_text
+    assert (
+        "- Staged patch bundle required action: Review the staged patch bundle and governed "
+        "artifacts before choosing the next bounded step."
+    ) in report_text
 
 
 def test_autoagent_loop_collects_optional_debug_logs(tmp_path: Path) -> None:

@@ -1,0 +1,2675 @@
+{
+  "type": "AutoAgentTrace",
+  "version": 1,
+  "traceKind": "optimization_run",
+  "experiment": {
+    "name": "team-lead-optimization-reviewed-continuation-replacement-mutation",
+    "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/reviewed-continuation-experiment.replacement.generated.md",
+    "description": "Generated replacement-mutation experiment for team-lead-optimization-reviewed-continuation. Manual launch only.",
+    "primaryTargetId": "team-lead",
+    "targetBundle": [
+      {
+        "id": "team-lead",
+        "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/.github/agents/team-lead.agent.md",
+        "kind": "agent_profile",
+        "primary": true,
+        "mutableRegions": [
+          "body"
+        ],
+        "weight": 1.0
+      }
+    ],
+    "benchmark": {
+      "id": "team-lead-benchmark",
+      "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/reviewed-benchmark.json",
+      "checkCount": 9
+    },
+    "mutationCatalog": {
+      "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/reviewed-mutations-replacement.json",
+      "mutationCount": 1
+    }
+  },
+  "inputs": {
+    "experiment": {
+      "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/reviewed-continuation-experiment.replacement.generated.md",
+      "exists": true,
+      "sha256": "f7b546a59de257342eb3f951477934ca22f06e6047782a089f5fa2cd95a33d28",
+      "sizeBytes": 4892
+    },
+    "resumeCheckpoint": null,
+    "liveEvaluatorPrompt": null,
+    "liveEvaluatorRubrics": []
+  },
+  "policies": {
+    "candidatePolicy": {
+      "keepStrategy": "score-then-simpler",
+      "searchStrategy": "current_best",
+      "frontierSize": 1
+    },
+    "evaluationMode": {
+      "deterministic": true,
+      "live": false,
+      "liveEvaluator": {
+        "enabled": false,
+        "strategy": "advisory",
+        "provider": "github-models",
+        "model": "gpt-5.4",
+        "promptArtifactPath": null,
+        "rubricPaths": [],
+        "maxSamples": 0,
+        "recordRawOutputs": false,
+        "requireDeterministicPass": true,
+        "temperature": 0.0
+      }
+    },
+    "continuousPolicy": {
+      "enabled": false,
+      "mode": "manual",
+      "scheduleCron": null,
+      "triggerOn": [
+        "review_failure"
+      ],
+      "minSignalCount": 2,
+      "maxQueuedRuns": 1,
+      "maxRunsPerSweep": 1,
+      "learningWindowDays": 30,
+      "stageOnly": true,
+      "requireReviewPass": true
+    },
+    "stagedPatchPolicy": {
+      "enabled": true,
+      "mode": "review_bundle",
+      "applyOnPass": false,
+      "includeTargetSnapshots": true,
+      "includeDiffSummary": true,
+      "reviewerHints": [],
+      "manifestFormat": "candidate_snapshot"
+    },
+    "evidencePolicy": {
+      "enabled": true,
+      "runsDir": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/runs",
+      "currentFiles": [
+        "state.json",
+        "patch-report.md",
+        "test-report.md",
+        "review-report.md"
+      ],
+      "reportFiles": [
+        "state.json",
+        "patch-report.md",
+        "test-report.md",
+        "review-report.md",
+        "autoagent-report.md"
+      ],
+      "includeCurrentArtifacts": true,
+      "includeHookAudit": true,
+      "includeChatHistory": true,
+      "chatHistoryPaths": [
+        "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/runs/20260308-160258/copilot-chat-export.json"
+      ],
+      "includeTranscriptHistory": true,
+      "transcriptHistoryPaths": [
+        "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/runs/20260308-160258/copilot-transcript-export.jsonl"
+      ],
+      "includeHandoffHistory": true,
+      "handoffHistoryPaths": [
+        "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/runs/20260308-160258/copilot-handoff-export.jsonl"
+      ],
+      "includeVsCodeLogs": false,
+      "vsCodeLogPaths": [],
+      "externalLogSources": [
+        {
+          "id": "chat-history-1",
+          "kind": "chat_transcript",
+          "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/runs/20260308-160258/copilot-chat-export.json",
+          "format": "json",
+          "optional": true,
+          "includeLinePatterns": [],
+          "excludeLinePatterns": [],
+          "maxRecords": 200,
+          "maxLineLength": 400
+        },
+        {
+          "id": "transcript-history-1",
+          "kind": "conversation_transcript",
+          "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/runs/20260308-160258/copilot-transcript-export.jsonl",
+          "format": "jsonl",
+          "optional": true,
+          "includeLinePatterns": [],
+          "excludeLinePatterns": [],
+          "maxRecords": 200,
+          "maxLineLength": 400
+        },
+        {
+          "id": "handoff-history-1",
+          "kind": "handoff_history",
+          "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/runs/20260308-160258/copilot-handoff-export.jsonl",
+          "format": "jsonl",
+          "optional": true,
+          "includeLinePatterns": [],
+          "excludeLinePatterns": [],
+          "maxRecords": 200,
+          "maxLineLength": 400
+        }
+      ],
+      "maxRuns": 5,
+      "maxRecordsPerFile": 200,
+      "maxExternalLogLineLength": 400,
+      "redactSensitive": true,
+      "allowExternalPaths": false
+    },
+    "reviewedPolicyRuntime": {
+      "enabled": true,
+      "artifactPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/reviewed-policies.json",
+      "preferredSequenceBonus": 0.04,
+      "escalationPenalty": 0.05
+    },
+    "reviewedPolicyRuntimeState": {
+      "enabled": true,
+      "status": "ready",
+      "artifactPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/reviewed-policies.json",
+      "artifactFound": true,
+      "policyCount": 1,
+      "activePolicyCount": 1,
+      "approvedLearningDraftCount": 1
+    }
+  },
+  "summary": {
+    "baseline": {
+      "candidateId": "baseline",
+      "score": 1.0,
+      "trajectoryScore": 0.88,
+      "trajectoryScoreBreakdown": {
+        "validationBreadth": 1.0,
+        "parentProgress": 0.0,
+        "actionEfficiency": 1.0,
+        "targetFocus": 1.0,
+        "lineageEfficiency": 1.0,
+        "matchedEvidenceRecords": 12,
+        "attributedSuccessCount": 3,
+        "attributedWarningCount": 0,
+        "attributedErrorCount": 0,
+        "attributedToolErrorCount": 0,
+        "attributedExternalErrorCount": 0,
+        "evidenceSupport": 0.03,
+        "evidenceIssuePenalty": 0.0,
+        "reviewedPolicyBonus": 0.0,
+        "reviewedPolicyPenalty": 0.0,
+        "liveWinnerBoost": 0.0
+      },
+      "trajectoryEvidenceContext": {
+        "aliases": [
+          "baseline",
+          "candidate-trajectory-baseline"
+        ],
+        "matchedRecordCount": 12,
+        "errorCount": 0,
+        "warningCount": 0,
+        "successCount": 3,
+        "toolErrorCount": 0,
+        "externalErrorCount": 0,
+        "sourceKindCounts": {
+          "run_state": 2,
+          "run_report": 7,
+          "transcript_event": 2,
+          "handoff_event": 1
+        },
+        "statusCounts": {
+          "done": 2,
+          "ready_for_quality_gate": 5,
+          "pass": 2,
+          "success": 3
+        }
+      },
+      "reviewedPolicyContext": {
+        "enabled": true,
+        "status": "ready",
+        "artifactPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/reviewed-policies.json",
+        "policyCount": 1,
+        "matchedPolicyCount": 0,
+        "preferredSequenceMatchCount": 0,
+        "escalationMatchCount": 0,
+        "bonus": 0.0,
+        "penalty": 0.0,
+        "matchedPolicyIds": [],
+        "matchedPolicies": []
+      },
+      "passedChecks": 9,
+      "totalChecks": 9,
+      "complexity": {
+        "bodyChars": 2948,
+        "toolCount": 6,
+        "mcpServerCount": 0,
+        "fileCount": 1,
+        "score": 3113,
+        "perTarget": {
+          "team-lead": {
+            "bodyChars": 2948,
+            "toolCount": 6,
+            "mcpServerCount": 0,
+            "score": 3098
+          }
+        }
+      }
+    },
+    "bestCandidate": {
+      "candidateId": "baseline",
+      "score": 1.0,
+      "trajectoryScore": 0.88,
+      "trajectoryScoreBreakdown": {
+        "validationBreadth": 1.0,
+        "parentProgress": 0.0,
+        "actionEfficiency": 1.0,
+        "targetFocus": 1.0,
+        "lineageEfficiency": 1.0,
+        "matchedEvidenceRecords": 12,
+        "attributedSuccessCount": 3,
+        "attributedWarningCount": 0,
+        "attributedErrorCount": 0,
+        "attributedToolErrorCount": 0,
+        "attributedExternalErrorCount": 0,
+        "evidenceSupport": 0.03,
+        "evidenceIssuePenalty": 0.0,
+        "reviewedPolicyBonus": 0.0,
+        "reviewedPolicyPenalty": 0.0,
+        "liveWinnerBoost": 0.0
+      },
+      "trajectoryEvidenceContext": {
+        "aliases": [
+          "baseline",
+          "candidate-trajectory-baseline"
+        ],
+        "matchedRecordCount": 12,
+        "errorCount": 0,
+        "warningCount": 0,
+        "successCount": 3,
+        "toolErrorCount": 0,
+        "externalErrorCount": 0,
+        "sourceKindCounts": {
+          "run_state": 2,
+          "run_report": 7,
+          "transcript_event": 2,
+          "handoff_event": 1
+        },
+        "statusCounts": {
+          "done": 2,
+          "ready_for_quality_gate": 5,
+          "pass": 2,
+          "success": 3
+        }
+      },
+      "reviewedPolicyContext": {
+        "enabled": true,
+        "status": "ready",
+        "artifactPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/reviewed-policies.json",
+        "policyCount": 1,
+        "matchedPolicyCount": 0,
+        "preferredSequenceMatchCount": 0,
+        "escalationMatchCount": 0,
+        "bonus": 0.0,
+        "penalty": 0.0,
+        "matchedPolicyIds": [],
+        "matchedPolicies": []
+      },
+      "passedChecks": 9,
+      "totalChecks": 9,
+      "complexity": {
+        "bodyChars": 2948,
+        "toolCount": 6,
+        "mcpServerCount": 0,
+        "fileCount": 1,
+        "score": 3113,
+        "perTarget": {
+          "team-lead": {
+            "bodyChars": 2948,
+            "toolCount": 6,
+            "mcpServerCount": 0,
+            "score": 3098
+          }
+        }
+      },
+      "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation-replacement-mutation/candidates/iteration-00-baseline.agent.md"
+    },
+    "liveEvaluation": {
+      "enabled": false,
+      "status": "disabled",
+      "strategy": "advisory",
+      "provider": "github-models",
+      "model": "gpt-5.4",
+      "sampleCount": 0,
+      "evaluatedCandidateIds": [],
+      "winnerCandidateId": "baseline",
+      "bestCandidateChanged": false,
+      "tieBreakerApplied": false,
+      "fallbackToDeterministic": false,
+      "reason": "live_evaluator_disabled",
+      "verdictCounts": {},
+      "judgments": []
+    },
+    "resume": {
+      "requested": false,
+      "resumed": false,
+      "checkpointStage": "post_mutation_search",
+      "startingMutationIndex": 1,
+      "completedMutationCount": 1,
+      "requestedMutationCount": 1,
+      "totalMutationCount": 1,
+      "nextMutationIndex": 2,
+      "hasRemainingMutations": false,
+      "inlineCandidateCount": 1,
+      "snapshotBackedCandidateCount": 1,
+      "checkpointPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation-replacement-mutation/search-checkpoint.json",
+      "checkpointManifestPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation-replacement-mutation/search-checkpoint-manifest.json",
+      "manifestSnapshotCandidateCount": 1,
+      "manifestRequiredFileCount": 1
+    },
+    "candidateSearch": {
+      "strategy": "current_best",
+      "frontierSize": 1,
+      "keepStrategy": "score-then-simpler",
+      "rankingSignals": [
+        "benchmark_score",
+        "complexity",
+        "trajectory_score"
+      ],
+      "mutationExecutionPlan": [
+        {
+          "plannedIndex": 1,
+          "catalogIndex": 1,
+          "planToken": "1:replace-investigate-with-read-and-search-first-01",
+          "mutationId": "replace-investigate-with-read-and-search-first-01",
+          "description": "Make the research step explicitly favor read_file and grep_search first while simplifying surrounding wording so the candidate can compete on score-then-simpler without breaking the manager boundary.",
+          "priorityStatus": "neutral",
+          "priorityScore": 0.0,
+          "bonus": 0.0,
+          "penalty": 0.0,
+          "matchedPolicyCount": 0,
+          "matchedPolicyIds": [],
+          "sourceCandidateIds": []
+        }
+      ],
+      "maxSearchDepth": 1,
+      "ledgerNodeCount": 2,
+      "searchLedgerPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation-replacement-mutation/search-ledger.json",
+      "bestCandidateLineage": [
+        "baseline"
+      ],
+      "finalFrontierCandidateIds": [
+        "baseline"
+      ],
+      "winnerExplanation": {
+        "winnerCandidateId": "baseline",
+        "comparedCandidateId": "replace-investigate-with-read-and-search-first-01",
+        "comparisonMode": "deterministic_ranking",
+        "decisiveSignal": "benchmark_score",
+        "evidenceBacked": false,
+        "summary": "baseline beat replace-investigate-with-read-and-search-first-01 on benchmark score (1.0 vs 0.974359).",
+        "evidenceSummary": null,
+        "rankingComparison": {
+          "winnerScore": 1.0,
+          "runnerUpScore": 0.974359,
+          "scoreDelta": 0.025641,
+          "winnerComplexityScore": 3113,
+          "runnerUpComplexityScore": 3106,
+          "complexityAdvantage": -7,
+          "winnerTrajectoryScore": 0.88,
+          "runnerUpTrajectoryScore": 0.643889,
+          "trajectoryScoreDelta": 0.236111
+        },
+        "topTrajectorySignals": [
+          {
+            "signal": "matchedEvidenceRecords",
+            "preference": "higher_is_better",
+            "winner": 12,
+            "runnerUp": 1,
+            "advantage": 11.0
+          },
+          {
+            "signal": "attributedSuccessCount",
+            "preference": "higher_is_better",
+            "winner": 3,
+            "runnerUp": 0,
+            "advantage": 3.0
+          },
+          {
+            "signal": "actionEfficiency",
+            "preference": "higher_is_better",
+            "winner": 1.0,
+            "runnerUp": 0.2,
+            "advantage": 0.8
+          },
+          {
+            "signal": "lineageEfficiency",
+            "preference": "higher_is_better",
+            "winner": 1.0,
+            "runnerUp": 0.5,
+            "advantage": 0.5
+          },
+          {
+            "signal": "validationBreadth",
+            "preference": "higher_is_better",
+            "winner": 1.0,
+            "runnerUp": 0.888889,
+            "advantage": 0.111111
+          }
+        ],
+        "trajectorySummary": "Top trajectory contributors: matchedEvidenceRecords +11, attributedSuccessCount +3, actionEfficiency +0.8",
+        "evidenceComparison": {
+          "winnerSourceKinds": {
+            "handoff_event": 1,
+            "run_report": 7,
+            "run_state": 2,
+            "transcript_event": 2
+          },
+          "runnerUpSourceKinds": {
+            "run_report": 1
+          },
+          "winnerStatuses": {
+            "done": 2,
+            "pass": 2,
+            "ready_for_quality_gate": 5,
+            "success": 3
+          },
+          "runnerUpStatuses": {
+            "ready_for_quality_gate": 1
+          }
+        },
+        "winner": {
+          "candidateId": "baseline",
+          "iteration": 0,
+          "searchDepth": 0,
+          "score": 1.0,
+          "complexityScore": 3113,
+          "trajectoryScore": 0.88,
+          "trajectorySignals": {
+            "validationBreadth": 1.0,
+            "parentProgress": 0.0,
+            "actionEfficiency": 1.0,
+            "targetFocus": 1.0,
+            "lineageEfficiency": 1.0,
+            "matchedEvidenceRecords": 12,
+            "attributedSuccessCount": 3,
+            "attributedWarningCount": 0,
+            "attributedErrorCount": 0,
+            "attributedToolErrorCount": 0,
+            "attributedExternalErrorCount": 0,
+            "evidenceSupport": 0.03,
+            "evidenceIssuePenalty": 0.0,
+            "reviewedPolicyBonus": 0.0,
+            "reviewedPolicyPenalty": 0.0,
+            "liveWinnerBoost": 0.0
+          },
+          "evidence": {
+            "matchedRecordCount": 12,
+            "successCount": 3,
+            "warningCount": 0,
+            "errorCount": 0,
+            "toolErrorCount": 0,
+            "externalErrorCount": 0,
+            "sourceKindCounts": {
+              "handoff_event": 1,
+              "run_report": 7,
+              "run_state": 2,
+              "transcript_event": 2
+            },
+            "statusCounts": {
+              "done": 2,
+              "pass": 2,
+              "ready_for_quality_gate": 5,
+              "success": 3
+            }
+          }
+        },
+        "runnerUp": {
+          "candidateId": "replace-investigate-with-read-and-search-first-01",
+          "iteration": 1,
+          "searchDepth": 1,
+          "score": 0.974359,
+          "complexityScore": 3106,
+          "trajectoryScore": 0.643889,
+          "trajectorySignals": {
+            "validationBreadth": 0.888889,
+            "parentProgress": 0.0,
+            "actionEfficiency": 0.2,
+            "targetFocus": 1.0,
+            "lineageEfficiency": 0.5,
+            "matchedEvidenceRecords": 1,
+            "attributedSuccessCount": 0,
+            "attributedWarningCount": 0,
+            "attributedErrorCount": 0,
+            "attributedToolErrorCount": 0,
+            "attributedExternalErrorCount": 0,
+            "evidenceSupport": 0.0,
+            "evidenceIssuePenalty": 0.0,
+            "reviewedPolicyBonus": 0.0,
+            "reviewedPolicyPenalty": 0.0,
+            "liveWinnerBoost": 0.0
+          },
+          "evidence": {
+            "matchedRecordCount": 1,
+            "successCount": 0,
+            "warningCount": 0,
+            "errorCount": 0,
+            "toolErrorCount": 0,
+            "externalErrorCount": 0,
+            "sourceKindCounts": {
+              "run_report": 1
+            },
+            "statusCounts": {
+              "ready_for_quality_gate": 1
+            }
+          }
+        },
+        "liveEvaluation": null
+      }
+    },
+    "evidenceSummary": {
+      "recordCount": 26,
+      "runCount": 3,
+      "recordsByKind": {
+        "run_state": 3,
+        "run_report": 8,
+        "hook_event": 5,
+        "session_event": 5,
+        "transcript_event": 4,
+        "handoff_event": 1
+      },
+      "statuses": {
+        "Done": 2,
+        "READY_FOR_QUALITY_GATE": 5,
+        "PASS": 3,
+        "Intake": 1,
+        "success": 3,
+        "error": 2
+      },
+      "reportFailureCount": 0,
+      "toolErrorCount": 0,
+      "parseErrorCount": 0,
+      "sessionRecordCount": 5,
+      "transcriptRecordCount": 4,
+      "handoffRecordCount": 1,
+      "externalLogRecordCount": 5,
+      "externalSourceCount": 3,
+      "governedTraceExportRecordCount": 5,
+      "governedTraceExportSourceCount": 3,
+      "fixtureExternalLogRecordCount": 0,
+      "fixtureExternalSourceCount": 0
+    },
+    "stagedPatch": {
+      "enabled": true,
+      "mode": "review_bundle",
+      "applyOnPass": false,
+      "candidateId": "baseline",
+      "candidatePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation-replacement-mutation/candidates/iteration-00-baseline.agent.md",
+      "changedTargetCount": 0,
+      "changedTargets": [],
+      "reviewerHints": [],
+      "manifestFormat": "candidate_snapshot",
+      "includeTargetSnapshots": true,
+      "includeDiffSummary": true
+    },
+    "outcomeLabel": "unchanged",
+    "improvementDelta": 0.0,
+    "appliedBestVariant": false,
+    "appliedPaths": [],
+    "keptCandidateCount": 1,
+    "discardedCandidateCount": 1,
+    "trajectoryCount": 2,
+    "episodeCount": 2,
+    "evidenceBackedEpisodeCount": 2,
+    "bestTrajectoryId": "candidate-trajectory-baseline",
+    "bestTrajectoryScore": 0.88,
+    "bestTrajectoryEvidenceMatches": 12,
+    "rankingSignals": [
+      "benchmark_score",
+      "complexity",
+      "trajectory_score"
+    ],
+    "winnerExplanation": {
+      "winnerCandidateId": "baseline",
+      "comparedCandidateId": "replace-investigate-with-read-and-search-first-01",
+      "comparisonMode": "deterministic_ranking",
+      "decisiveSignal": "benchmark_score",
+      "evidenceBacked": false,
+      "summary": "baseline beat replace-investigate-with-read-and-search-first-01 on benchmark score (1.0 vs 0.974359).",
+      "evidenceSummary": null,
+      "rankingComparison": {
+        "winnerScore": 1.0,
+        "runnerUpScore": 0.974359,
+        "scoreDelta": 0.025641,
+        "winnerComplexityScore": 3113,
+        "runnerUpComplexityScore": 3106,
+        "complexityAdvantage": -7,
+        "winnerTrajectoryScore": 0.88,
+        "runnerUpTrajectoryScore": 0.643889,
+        "trajectoryScoreDelta": 0.236111
+      },
+      "topTrajectorySignals": [
+        {
+          "signal": "matchedEvidenceRecords",
+          "preference": "higher_is_better",
+          "winner": 12,
+          "runnerUp": 1,
+          "advantage": 11.0
+        },
+        {
+          "signal": "attributedSuccessCount",
+          "preference": "higher_is_better",
+          "winner": 3,
+          "runnerUp": 0,
+          "advantage": 3.0
+        },
+        {
+          "signal": "actionEfficiency",
+          "preference": "higher_is_better",
+          "winner": 1.0,
+          "runnerUp": 0.2,
+          "advantage": 0.8
+        },
+        {
+          "signal": "lineageEfficiency",
+          "preference": "higher_is_better",
+          "winner": 1.0,
+          "runnerUp": 0.5,
+          "advantage": 0.5
+        },
+        {
+          "signal": "validationBreadth",
+          "preference": "higher_is_better",
+          "winner": 1.0,
+          "runnerUp": 0.888889,
+          "advantage": 0.111111
+        }
+      ],
+      "trajectorySummary": "Top trajectory contributors: matchedEvidenceRecords +11, attributedSuccessCount +3, actionEfficiency +0.8",
+      "evidenceComparison": {
+        "winnerSourceKinds": {
+          "handoff_event": 1,
+          "run_report": 7,
+          "run_state": 2,
+          "transcript_event": 2
+        },
+        "runnerUpSourceKinds": {
+          "run_report": 1
+        },
+        "winnerStatuses": {
+          "done": 2,
+          "pass": 2,
+          "ready_for_quality_gate": 5,
+          "success": 3
+        },
+        "runnerUpStatuses": {
+          "ready_for_quality_gate": 1
+        }
+      },
+      "winner": {
+        "candidateId": "baseline",
+        "iteration": 0,
+        "searchDepth": 0,
+        "score": 1.0,
+        "complexityScore": 3113,
+        "trajectoryScore": 0.88,
+        "trajectorySignals": {
+          "validationBreadth": 1.0,
+          "parentProgress": 0.0,
+          "actionEfficiency": 1.0,
+          "targetFocus": 1.0,
+          "lineageEfficiency": 1.0,
+          "matchedEvidenceRecords": 12,
+          "attributedSuccessCount": 3,
+          "attributedWarningCount": 0,
+          "attributedErrorCount": 0,
+          "attributedToolErrorCount": 0,
+          "attributedExternalErrorCount": 0,
+          "evidenceSupport": 0.03,
+          "evidenceIssuePenalty": 0.0,
+          "reviewedPolicyBonus": 0.0,
+          "reviewedPolicyPenalty": 0.0,
+          "liveWinnerBoost": 0.0
+        },
+        "evidence": {
+          "matchedRecordCount": 12,
+          "successCount": 3,
+          "warningCount": 0,
+          "errorCount": 0,
+          "toolErrorCount": 0,
+          "externalErrorCount": 0,
+          "sourceKindCounts": {
+            "handoff_event": 1,
+            "run_report": 7,
+            "run_state": 2,
+            "transcript_event": 2
+          },
+          "statusCounts": {
+            "done": 2,
+            "pass": 2,
+            "ready_for_quality_gate": 5,
+            "success": 3
+          }
+        }
+      },
+      "runnerUp": {
+        "candidateId": "replace-investigate-with-read-and-search-first-01",
+        "iteration": 1,
+        "searchDepth": 1,
+        "score": 0.974359,
+        "complexityScore": 3106,
+        "trajectoryScore": 0.643889,
+        "trajectorySignals": {
+          "validationBreadth": 0.888889,
+          "parentProgress": 0.0,
+          "actionEfficiency": 0.2,
+          "targetFocus": 1.0,
+          "lineageEfficiency": 0.5,
+          "matchedEvidenceRecords": 1,
+          "attributedSuccessCount": 0,
+          "attributedWarningCount": 0,
+          "attributedErrorCount": 0,
+          "attributedToolErrorCount": 0,
+          "attributedExternalErrorCount": 0,
+          "evidenceSupport": 0.0,
+          "evidenceIssuePenalty": 0.0,
+          "reviewedPolicyBonus": 0.0,
+          "reviewedPolicyPenalty": 0.0,
+          "liveWinnerBoost": 0.0
+        },
+        "evidence": {
+          "matchedRecordCount": 1,
+          "successCount": 0,
+          "warningCount": 0,
+          "errorCount": 0,
+          "toolErrorCount": 0,
+          "externalErrorCount": 0,
+          "sourceKindCounts": {
+            "run_report": 1
+          },
+          "statusCounts": {
+            "ready_for_quality_gate": 1
+          }
+        }
+      },
+      "liveEvaluation": null
+    }
+  },
+  "artifacts": {
+    "tracePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation-replacement-mutation/autoagent-trace.json",
+    "runRoot": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation-replacement-mutation",
+    "resultsPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/autoagent-results.tsv",
+    "evidencePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/autoagent-evidence.json",
+    "checkpointPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation-replacement-mutation/search-checkpoint.json",
+    "checkpointManifestPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation-replacement-mutation/search-checkpoint-manifest.json",
+    "searchLedgerPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation-replacement-mutation/search-ledger.json",
+    "benchmarkDraftsPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation-replacement-mutation/draft-benchmark-fragments.json",
+    "mutationDraftsPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation-replacement-mutation/draft-mutation-catalog.json",
+    "policyDraftsPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation-replacement-mutation/draft-policy-catalog.json"
+  },
+  "trajectories": [
+    {
+      "trajectoryId": "candidate-trajectory-baseline",
+      "kind": "candidate_journey",
+      "candidateId": "baseline",
+      "parentCandidateId": null,
+      "mutationId": null,
+      "description": "Baseline target agent",
+      "searchDepth": 0,
+      "status": "keep",
+      "context": {
+        "experimentName": "team-lead-optimization-reviewed-continuation-replacement-mutation",
+        "experimentDescription": "Generated replacement-mutation experiment for team-lead-optimization-reviewed-continuation. Manual launch only.",
+        "benchmarkId": "team-lead-benchmark",
+        "primaryTargetId": "team-lead",
+        "candidatePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation-replacement-mutation/candidates/iteration-00-baseline.agent.md",
+        "touchedTargets": [],
+        "lineageCandidateIds": [
+          "baseline"
+        ],
+        "evidence": {
+          "aliases": [
+            "baseline",
+            "candidate-trajectory-baseline"
+          ],
+          "matchedRecordCount": 12,
+          "errorCount": 0,
+          "warningCount": 0,
+          "successCount": 3,
+          "toolErrorCount": 0,
+          "externalErrorCount": 0,
+          "sourceKindCounts": {
+            "run_state": 2,
+            "run_report": 7,
+            "transcript_event": 2,
+            "handoff_event": 1
+          },
+          "statusCounts": {
+            "done": 2,
+            "ready_for_quality_gate": 5,
+            "pass": 2,
+            "success": 3
+          }
+        },
+        "reviewedPolicies": {
+          "enabled": true,
+          "status": "ready",
+          "artifactPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/reviewed-policies.json",
+          "policyCount": 1,
+          "matchedPolicyCount": 0,
+          "preferredSequenceMatchCount": 0,
+          "escalationMatchCount": 0,
+          "bonus": 0.0,
+          "penalty": 0.0,
+          "matchedPolicyIds": [],
+          "matchedPolicies": []
+        },
+        "mutation": null
+      },
+      "actionSequence": [],
+      "validationAttempts": [
+        {
+          "attemptType": "deterministic_benchmark",
+          "attemptIndex": 1,
+          "benchmarkId": "team-lead-benchmark",
+          "passedChecks": 9,
+          "totalChecks": 9,
+          "checks": [
+            {
+              "id": "sole-coordinator",
+              "type": "contains_text",
+              "targetId": "team-lead",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.5,
+              "passed": true,
+              "expected": "the only coordinator",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2948
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2948
+              }
+            },
+            {
+              "id": "specialists-no-peer-coordination",
+              "type": "contains_text",
+              "targetId": "team-lead",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.0,
+              "passed": true,
+              "expected": "specialists do not coordinate with each other",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2948
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2948
+              }
+            },
+            {
+              "id": "current-run-contract",
+              "type": "contains_text",
+              "targetId": "team-lead",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.0,
+              "passed": true,
+              "expected": "`docs/agents/current-run.json`",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2948
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2948
+              }
+            },
+            {
+              "id": "no-product-code-boundary",
+              "type": "contains_text",
+              "targetId": "team-lead",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.5,
+              "passed": true,
+              "expected": "but not product code",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2948
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2948
+              }
+            },
+            {
+              "id": "quality-gate-flow",
+              "type": "contains_text",
+              "targetId": "team-lead",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.0,
+              "passed": true,
+              "expected": "`quality-gate`",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2948
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2948
+              }
+            },
+            {
+              "id": "review-report-artifact",
+              "type": "contains_text",
+              "targetId": "team-lead",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.0,
+              "passed": true,
+              "expected": "`docs/agents/review-report.md`",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2948
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2948
+              }
+            },
+            {
+              "id": "manager-decision-output",
+              "type": "contains_text",
+              "targetId": "team-lead",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.5,
+              "passed": true,
+              "expected": "`ManagerDecision`",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2948
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2948
+              }
+            },
+            {
+              "id": "tools-exact",
+              "type": "frontmatter_equals",
+              "targetId": "team-lead",
+              "target": null,
+              "key": "tools",
+              "comparator": "equals",
+              "weight": 1.0,
+              "passed": true,
+              "expected": [
+                "read",
+                "search",
+                "execute",
+                "edit",
+                "agent",
+                "github/*"
+              ],
+              "observed": [
+                "read",
+                "search",
+                "execute",
+                "edit",
+                "agent",
+                "github/*"
+              ],
+              "actual": [
+                "read",
+                "search",
+                "execute",
+                "edit",
+                "agent",
+                "github/*"
+              ]
+            },
+            {
+              "id": "episode-episode-success-guard-01-check",
+              "type": "episode_observation_guard",
+              "targetId": "team-lead",
+              "target": null,
+              "key": null,
+              "comparator": "episode_matches",
+              "weight": 0.25,
+              "passed": true,
+              "expected": {
+                "minMatchedRecordCount": 1,
+                "sourceKinds": [
+                  "handoff_event",
+                  "run_report",
+                  "run_state",
+                  "transcript_event"
+                ],
+                "toolNames": [
+                  "read_file",
+                  "grep_search"
+                ],
+                "terminalStatus": "success"
+              },
+              "observed": {
+                "episodeId": "candidate-episode-baseline",
+                "matchedRecordCount": 12,
+                "sourceKinds": [
+                  "handoff_event",
+                  "run_report",
+                  "run_state",
+                  "transcript_event"
+                ],
+                "toolNames": [
+                  "read_file",
+                  "grep_search"
+                ],
+                "terminalStatus": "success",
+                "sourceKindCounts": {
+                  "run_state": 2,
+                  "run_report": 7,
+                  "transcript_event": 2,
+                  "handoff_event": 1
+                },
+                "statusCounts": {
+                  "Done": 2,
+                  "READY_FOR_QUALITY_GATE": 5,
+                  "PASS": 2,
+                  "success": 3
+                },
+                "sourceKindsMatch": true,
+                "toolNamesMatch": true,
+                "terminalStatusMatch": true
+              },
+              "actual": {
+                "episodeId": "candidate-episode-baseline",
+                "matchedRecordCount": 12,
+                "sourceKinds": [
+                  "handoff_event",
+                  "run_report",
+                  "run_state",
+                  "transcript_event"
+                ],
+                "toolNames": [
+                  "read_file",
+                  "grep_search"
+                ],
+                "terminalStatus": "success",
+                "sourceKindCounts": {
+                  "run_state": 2,
+                  "run_report": 7,
+                  "transcript_event": 2,
+                  "handoff_event": 1
+                },
+                "statusCounts": {
+                  "Done": 2,
+                  "READY_FOR_QUALITY_GATE": 5,
+                  "PASS": 2,
+                  "success": 3
+                },
+                "sourceKindsMatch": true,
+                "toolNamesMatch": true,
+                "terminalStatusMatch": true
+              }
+            }
+          ]
+        }
+      ],
+      "ranking": {
+        "trajectoryScore": 0.88,
+        "signals": {
+          "validationBreadth": 1.0,
+          "parentProgress": 0.0,
+          "actionEfficiency": 1.0,
+          "targetFocus": 1.0,
+          "lineageEfficiency": 1.0,
+          "matchedEvidenceRecords": 12,
+          "attributedSuccessCount": 3,
+          "attributedWarningCount": 0,
+          "attributedErrorCount": 0,
+          "attributedToolErrorCount": 0,
+          "attributedExternalErrorCount": 0,
+          "evidenceSupport": 0.03,
+          "evidenceIssuePenalty": 0.0,
+          "reviewedPolicyBonus": 0.0,
+          "reviewedPolicyPenalty": 0.0,
+          "liveWinnerBoost": 0.0
+        }
+      },
+      "outcome": {
+        "status": "keep",
+        "score": 1.0,
+        "deltaFromBaseline": 0.0,
+        "deltaFromParent": null,
+        "passedChecks": 9,
+        "totalChecks": 9,
+        "complexity": {
+          "bodyChars": 2948,
+          "toolCount": 6,
+          "mcpServerCount": 0,
+          "fileCount": 1,
+          "score": 3113,
+          "perTarget": {
+            "team-lead": {
+              "bodyChars": 2948,
+              "toolCount": 6,
+              "mcpServerCount": 0,
+              "score": 3098
+            }
+          }
+        },
+        "selectedAsBest": true,
+        "appliedBestVariant": false
+      }
+    },
+    {
+      "trajectoryId": "candidate-trajectory-replace-investigate-with-read-and-search-first-01",
+      "kind": "candidate_journey",
+      "candidateId": "replace-investigate-with-read-and-search-first-01",
+      "parentCandidateId": "baseline",
+      "mutationId": "replace-investigate-with-read-and-search-first-01",
+      "description": "Make the research step explicitly favor read_file and grep_search first while simplifying surrounding wording so the candidate can compete on score-then-simpler without breaking the manager boundary.",
+      "searchDepth": 1,
+      "status": "discard",
+      "context": {
+        "experimentName": "team-lead-optimization-reviewed-continuation-replacement-mutation",
+        "experimentDescription": "Generated replacement-mutation experiment for team-lead-optimization-reviewed-continuation. Manual launch only.",
+        "benchmarkId": "team-lead-benchmark",
+        "primaryTargetId": "team-lead",
+        "candidatePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation-replacement-mutation/candidates/iteration-01-replace-investigate-with-read-and-search-first-01.agent.md",
+        "touchedTargets": [
+          "team-lead"
+        ],
+        "lineageCandidateIds": [
+          "baseline",
+          "replace-investigate-with-read-and-search-first-01"
+        ],
+        "evidence": {
+          "aliases": [
+            "candidate-trajectory-replace-investigate-with-read-and-search-first-01",
+            "replace-investigate-with-read-and-search-first-01"
+          ],
+          "matchedRecordCount": 1,
+          "errorCount": 0,
+          "warningCount": 0,
+          "successCount": 0,
+          "toolErrorCount": 0,
+          "externalErrorCount": 0,
+          "sourceKindCounts": {
+            "run_report": 1
+          },
+          "statusCounts": {
+            "ready_for_quality_gate": 1
+          }
+        },
+        "reviewedPolicies": {
+          "enabled": true,
+          "status": "ready",
+          "artifactPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/reviewed-policies.json",
+          "policyCount": 1,
+          "matchedPolicyCount": 0,
+          "preferredSequenceMatchCount": 0,
+          "escalationMatchCount": 0,
+          "bonus": 0.0,
+          "penalty": 0.0,
+          "matchedPolicyIds": [],
+          "matchedPolicies": []
+        },
+        "mutation": {
+          "id": "replace-investigate-with-read-and-search-first-01",
+          "description": "Make the research step explicitly favor read_file and grep_search first while simplifying surrounding wording so the candidate can compete on score-then-simpler without breaking the manager boundary.",
+          "operationCount": 4
+        }
+      },
+      "actionSequence": [
+        {
+          "actionId": "mutation-operation-01",
+          "actionType": "mutation_operation",
+          "operationIndex": 1,
+          "operation": {
+            "type": "replace_text",
+            "target": "body",
+            "old": "2. Research -> `repo-researcher`",
+            "new": "2. Research -> `read_file` + `grep_search` first; `repo-researcher` only if needed",
+            "targetId": "team-lead"
+          }
+        },
+        {
+          "actionId": "mutation-operation-02",
+          "actionType": "mutation_operation",
+          "operationIndex": 2,
+          "operation": {
+            "type": "replace_text",
+            "target": "body",
+            "old": "If the Quality Gate fails, return to Implement with the blocker batch and iterate.",
+            "new": "If the Quality Gate fails, return to Implement and iterate.",
+            "targetId": "team-lead"
+          }
+        },
+        {
+          "actionId": "mutation-operation-03",
+          "actionType": "mutation_operation",
+          "operationIndex": 3,
+          "operation": {
+            "type": "replace_text",
+            "target": "body",
+            "old": "All specialist requests and results must include:\n\n1. A short human summary.\n2. One machine-parseable JSON object inside a fenced code block.\n\nStandard requests:",
+            "new": "All specialist requests and results must include a short human summary and one machine-parseable JSON object.\n\nStandard requests:",
+            "targetId": "team-lead"
+          }
+        },
+        {
+          "actionId": "mutation-operation-04",
+          "actionType": "mutation_operation",
+          "operationIndex": 4,
+          "operation": {
+            "type": "replace_text",
+            "target": "body",
+            "old": "7. Release Prep -> `release-manager` when release evidence is required",
+            "new": "7. Release Prep -> `release-manager` if release evidence is required",
+            "targetId": "team-lead"
+          }
+        }
+      ],
+      "validationAttempts": [
+        {
+          "attemptType": "deterministic_benchmark",
+          "attemptIndex": 1,
+          "benchmarkId": "team-lead-benchmark",
+          "passedChecks": 8,
+          "totalChecks": 9,
+          "checks": [
+            {
+              "id": "sole-coordinator",
+              "type": "contains_text",
+              "targetId": "team-lead",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.5,
+              "passed": true,
+              "expected": "the only coordinator",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2941
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2941
+              }
+            },
+            {
+              "id": "specialists-no-peer-coordination",
+              "type": "contains_text",
+              "targetId": "team-lead",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.0,
+              "passed": true,
+              "expected": "specialists do not coordinate with each other",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2941
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2941
+              }
+            },
+            {
+              "id": "current-run-contract",
+              "type": "contains_text",
+              "targetId": "team-lead",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.0,
+              "passed": true,
+              "expected": "`docs/agents/current-run.json`",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2941
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2941
+              }
+            },
+            {
+              "id": "no-product-code-boundary",
+              "type": "contains_text",
+              "targetId": "team-lead",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.5,
+              "passed": true,
+              "expected": "but not product code",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2941
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2941
+              }
+            },
+            {
+              "id": "quality-gate-flow",
+              "type": "contains_text",
+              "targetId": "team-lead",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.0,
+              "passed": true,
+              "expected": "`quality-gate`",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2941
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2941
+              }
+            },
+            {
+              "id": "review-report-artifact",
+              "type": "contains_text",
+              "targetId": "team-lead",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.0,
+              "passed": true,
+              "expected": "`docs/agents/review-report.md`",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2941
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2941
+              }
+            },
+            {
+              "id": "manager-decision-output",
+              "type": "contains_text",
+              "targetId": "team-lead",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.5,
+              "passed": true,
+              "expected": "`ManagerDecision`",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2941
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2941
+              }
+            },
+            {
+              "id": "tools-exact",
+              "type": "frontmatter_equals",
+              "targetId": "team-lead",
+              "target": null,
+              "key": "tools",
+              "comparator": "equals",
+              "weight": 1.0,
+              "passed": true,
+              "expected": [
+                "read",
+                "search",
+                "execute",
+                "edit",
+                "agent",
+                "github/*"
+              ],
+              "observed": [
+                "read",
+                "search",
+                "execute",
+                "edit",
+                "agent",
+                "github/*"
+              ],
+              "actual": [
+                "read",
+                "search",
+                "execute",
+                "edit",
+                "agent",
+                "github/*"
+              ]
+            },
+            {
+              "id": "episode-episode-success-guard-01-check",
+              "type": "episode_observation_guard",
+              "targetId": "team-lead",
+              "target": null,
+              "key": null,
+              "comparator": "episode_matches",
+              "weight": 0.25,
+              "passed": false,
+              "expected": {
+                "minMatchedRecordCount": 1,
+                "sourceKinds": [
+                  "handoff_event",
+                  "run_report",
+                  "run_state",
+                  "transcript_event"
+                ],
+                "toolNames": [
+                  "read_file",
+                  "grep_search"
+                ],
+                "terminalStatus": "success"
+              },
+              "observed": {
+                "episodeId": "candidate-episode-replace-investigate-with-read-and-search-first-01",
+                "matchedRecordCount": 1,
+                "sourceKinds": [
+                  "run_report"
+                ],
+                "toolNames": [],
+                "terminalStatus": "READY_FOR_QUALITY_GATE",
+                "sourceKindCounts": {
+                  "run_report": 1
+                },
+                "statusCounts": {
+                  "READY_FOR_QUALITY_GATE": 1
+                },
+                "sourceKindsMatch": false,
+                "toolNamesMatch": false,
+                "terminalStatusMatch": false
+              },
+              "actual": {
+                "episodeId": "candidate-episode-replace-investigate-with-read-and-search-first-01",
+                "matchedRecordCount": 1,
+                "sourceKinds": [
+                  "run_report"
+                ],
+                "toolNames": [],
+                "terminalStatus": "READY_FOR_QUALITY_GATE",
+                "sourceKindCounts": {
+                  "run_report": 1
+                },
+                "statusCounts": {
+                  "READY_FOR_QUALITY_GATE": 1
+                },
+                "sourceKindsMatch": false,
+                "toolNamesMatch": false,
+                "terminalStatusMatch": false
+              }
+            }
+          ]
+        }
+      ],
+      "ranking": {
+        "trajectoryScore": 0.643889,
+        "signals": {
+          "validationBreadth": 0.888889,
+          "parentProgress": 0.0,
+          "actionEfficiency": 0.2,
+          "targetFocus": 1.0,
+          "lineageEfficiency": 0.5,
+          "matchedEvidenceRecords": 1,
+          "attributedSuccessCount": 0,
+          "attributedWarningCount": 0,
+          "attributedErrorCount": 0,
+          "attributedToolErrorCount": 0,
+          "attributedExternalErrorCount": 0,
+          "evidenceSupport": 0.0,
+          "evidenceIssuePenalty": 0.0,
+          "reviewedPolicyBonus": 0.0,
+          "reviewedPolicyPenalty": 0.0,
+          "liveWinnerBoost": 0.0
+        }
+      },
+      "outcome": {
+        "status": "discard",
+        "score": 0.974359,
+        "deltaFromBaseline": -0.025641,
+        "deltaFromParent": -0.025641,
+        "passedChecks": 8,
+        "totalChecks": 9,
+        "complexity": {
+          "bodyChars": 2941,
+          "toolCount": 6,
+          "mcpServerCount": 0,
+          "fileCount": 1,
+          "score": 3106,
+          "perTarget": {
+            "team-lead": {
+              "bodyChars": 2941,
+              "toolCount": 6,
+              "mcpServerCount": 0,
+              "score": 3091
+            }
+          }
+        },
+        "selectedAsBest": false,
+        "appliedBestVariant": false
+      }
+    }
+  ],
+  "episodes": [
+    {
+      "episodeId": "candidate-episode-baseline",
+      "kind": "candidate_observation_episode",
+      "trajectoryId": "candidate-trajectory-baseline",
+      "candidateId": "baseline",
+      "parentCandidateId": null,
+      "status": "keep",
+      "lineageCandidateIds": [
+        "baseline"
+      ],
+      "summary": {
+        "matchedRecordCount": 12,
+        "stepCount": 12,
+        "sourceKindCounts": {
+          "run_state": 2,
+          "run_report": 7,
+          "transcript_event": 2,
+          "handoff_event": 1
+        },
+        "sourceOriginCounts": {
+          "governed_run_export": 3
+        },
+        "sourceScopes": [
+          "current_artifact",
+          "run_snapshot",
+          "chat_transcript",
+          "conversation_transcript",
+          "handoff_history"
+        ],
+        "sourceIds": [
+          "chat-history-1",
+          "transcript-history-1",
+          "handoff-history-1"
+        ],
+        "governedRunIds": [
+          "20260308-160258"
+        ],
+        "statusCounts": {
+          "Done": 2,
+          "READY_FOR_QUALITY_GATE": 5,
+          "PASS": 2,
+          "success": 3
+        },
+        "toolNames": [
+          "read_file",
+          "grep_search"
+        ],
+        "toolSequence": [
+          "read_file",
+          "grep_search",
+          "read_file"
+        ],
+        "toolCounts": {
+          "read_file": 2,
+          "grep_search": 1
+        },
+        "handoffCount": 1,
+        "observedPattern": "evidence_backed",
+        "terminalStatus": "success"
+      },
+      "steps": [
+        {
+          "stepId": "candidate-episode-baseline-step-01",
+          "sequence": 1,
+          "sourceKind": "run_state",
+          "sourceScope": "current_artifact",
+          "sourceOrigin": null,
+          "sourceRunId": null,
+          "file": "docs/agents/state.json",
+          "recordType": "state.json",
+          "status": "Done",
+          "role": null,
+          "toolName": null,
+          "sourceId": null,
+          "candidateIds": [],
+          "lineageCandidateIds": [],
+          "handoffRefs": [],
+          "transcriptText": null
+        },
+        {
+          "stepId": "candidate-episode-baseline-step-02",
+          "sequence": 2,
+          "sourceKind": "run_report",
+          "sourceScope": "current_artifact",
+          "sourceOrigin": null,
+          "sourceRunId": null,
+          "file": "docs/agents/patch-report.md",
+          "recordType": "PatchReport",
+          "status": "READY_FOR_QUALITY_GATE",
+          "role": null,
+          "toolName": null,
+          "sourceId": null,
+          "candidateIds": [],
+          "lineageCandidateIds": [],
+          "handoffRefs": [],
+          "transcriptText": null
+        },
+        {
+          "stepId": "candidate-episode-baseline-step-03",
+          "sequence": 3,
+          "sourceKind": "run_report",
+          "sourceScope": "current_artifact",
+          "sourceOrigin": null,
+          "sourceRunId": null,
+          "file": "docs/agents/test-report.md",
+          "recordType": "TestReport",
+          "status": "READY_FOR_QUALITY_GATE",
+          "role": null,
+          "toolName": null,
+          "sourceId": null,
+          "candidateIds": [],
+          "lineageCandidateIds": [],
+          "handoffRefs": [],
+          "transcriptText": null
+        },
+        {
+          "stepId": "candidate-episode-baseline-step-04",
+          "sequence": 4,
+          "sourceKind": "run_report",
+          "sourceScope": "current_artifact",
+          "sourceOrigin": null,
+          "sourceRunId": null,
+          "file": "docs/agents/review-report.md",
+          "recordType": "ReviewReport",
+          "status": "PASS",
+          "role": null,
+          "toolName": null,
+          "sourceId": null,
+          "candidateIds": [],
+          "lineageCandidateIds": [],
+          "handoffRefs": [],
+          "transcriptText": null
+        },
+        {
+          "stepId": "candidate-episode-baseline-step-05",
+          "sequence": 5,
+          "sourceKind": "run_state",
+          "sourceScope": "run_snapshot",
+          "sourceOrigin": null,
+          "sourceRunId": null,
+          "file": "docs/agents/runs/20260308-160258/state.json",
+          "recordType": "state.json",
+          "status": "Done",
+          "role": null,
+          "toolName": null,
+          "sourceId": null,
+          "candidateIds": [],
+          "lineageCandidateIds": [],
+          "handoffRefs": [],
+          "transcriptText": null
+        },
+        {
+          "stepId": "candidate-episode-baseline-step-06",
+          "sequence": 6,
+          "sourceKind": "run_report",
+          "sourceScope": "run_snapshot",
+          "sourceOrigin": null,
+          "sourceRunId": null,
+          "file": "docs/agents/runs/20260308-160258/patch-report.md",
+          "recordType": "PatchReport",
+          "status": "READY_FOR_QUALITY_GATE",
+          "role": null,
+          "toolName": null,
+          "sourceId": null,
+          "candidateIds": [],
+          "lineageCandidateIds": [],
+          "handoffRefs": [],
+          "transcriptText": null
+        },
+        {
+          "stepId": "candidate-episode-baseline-step-07",
+          "sequence": 7,
+          "sourceKind": "run_report",
+          "sourceScope": "run_snapshot",
+          "sourceOrigin": null,
+          "sourceRunId": null,
+          "file": "docs/agents/runs/20260308-160258/test-report.md",
+          "recordType": "TestReport",
+          "status": "READY_FOR_QUALITY_GATE",
+          "role": null,
+          "toolName": null,
+          "sourceId": null,
+          "candidateIds": [],
+          "lineageCandidateIds": [],
+          "handoffRefs": [],
+          "transcriptText": null
+        },
+        {
+          "stepId": "candidate-episode-baseline-step-08",
+          "sequence": 8,
+          "sourceKind": "run_report",
+          "sourceScope": "run_snapshot",
+          "sourceOrigin": null,
+          "sourceRunId": null,
+          "file": "docs/agents/runs/20260308-160258/review-report.md",
+          "recordType": "ReviewReport",
+          "status": "PASS",
+          "role": null,
+          "toolName": null,
+          "sourceId": null,
+          "candidateIds": [],
+          "lineageCandidateIds": [],
+          "handoffRefs": [],
+          "transcriptText": null
+        },
+        {
+          "stepId": "candidate-episode-baseline-step-09",
+          "sequence": 9,
+          "sourceKind": "run_report",
+          "sourceScope": "run_snapshot",
+          "sourceOrigin": null,
+          "sourceRunId": null,
+          "file": "docs/agents/runs/20260308-160258/autoagent-report.md",
+          "recordType": "AutoAgentReport",
+          "status": "READY_FOR_QUALITY_GATE",
+          "role": null,
+          "toolName": null,
+          "sourceId": null,
+          "candidateIds": [],
+          "lineageCandidateIds": [],
+          "handoffRefs": [],
+          "transcriptText": null
+        },
+        {
+          "stepId": "candidate-episode-baseline-step-10",
+          "sequence": 10,
+          "sourceKind": "transcript_event",
+          "sourceScope": "chat_transcript",
+          "sourceOrigin": "governed_run_export",
+          "sourceRunId": "20260308-160258",
+          "file": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/runs/20260308-160258/copilot-chat-export.json",
+          "recordType": "assistant",
+          "status": "success",
+          "role": "assistant",
+          "toolName": "read_file",
+          "sourceId": "chat-history-1",
+          "candidateIds": [
+            "baseline"
+          ],
+          "lineageCandidateIds": [],
+          "handoffRefs": [],
+          "transcriptText": "baseline reviewed the governed artifacts and kept the deterministic boundary."
+        },
+        {
+          "stepId": "candidate-episode-baseline-step-11",
+          "sequence": 11,
+          "sourceKind": "transcript_event",
+          "sourceScope": "conversation_transcript",
+          "sourceOrigin": "governed_run_export",
+          "sourceRunId": "20260308-160258",
+          "file": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/runs/20260308-160258/copilot-transcript-export.jsonl",
+          "recordType": "assistant",
+          "status": "success",
+          "role": "assistant",
+          "toolName": "grep_search",
+          "sourceId": "transcript-history-1",
+          "candidateIds": [
+            "baseline"
+          ],
+          "lineageCandidateIds": [],
+          "handoffRefs": [],
+          "transcriptText": "baseline used a focused repo search before keeping the current manager boundary."
+        },
+        {
+          "stepId": "candidate-episode-baseline-step-12",
+          "sequence": 12,
+          "sourceKind": "handoff_event",
+          "sourceScope": "handoff_history",
+          "sourceOrigin": "governed_run_export",
+          "sourceRunId": "20260308-160258",
+          "file": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/runs/20260308-160258/copilot-handoff-export.jsonl",
+          "recordType": "handoff",
+          "status": "success",
+          "role": "assistant",
+          "toolName": "read_file",
+          "sourceId": "handoff-history-1",
+          "candidateIds": [],
+          "lineageCandidateIds": [],
+          "handoffRefs": [
+            "baseline"
+          ],
+          "transcriptText": "The final reviewed handoff stayed with the baseline path after checking the governed artifacts."
+        }
+      ]
+    },
+    {
+      "episodeId": "candidate-episode-replace-investigate-with-read-and-search-first-01",
+      "kind": "candidate_observation_episode",
+      "trajectoryId": "candidate-trajectory-replace-investigate-with-read-and-search-first-01",
+      "candidateId": "replace-investigate-with-read-and-search-first-01",
+      "parentCandidateId": "baseline",
+      "status": "discard",
+      "lineageCandidateIds": [
+        "baseline",
+        "replace-investigate-with-read-and-search-first-01"
+      ],
+      "summary": {
+        "matchedRecordCount": 1,
+        "stepCount": 1,
+        "sourceKindCounts": {
+          "run_report": 1
+        },
+        "sourceOriginCounts": {},
+        "sourceScopes": [
+          "run_snapshot"
+        ],
+        "sourceIds": [],
+        "governedRunIds": [],
+        "statusCounts": {
+          "READY_FOR_QUALITY_GATE": 1
+        },
+        "toolNames": [],
+        "toolSequence": [],
+        "toolCounts": {},
+        "handoffCount": 0,
+        "observedPattern": "evidence_backed",
+        "terminalStatus": "READY_FOR_QUALITY_GATE"
+      },
+      "steps": [
+        {
+          "stepId": "candidate-episode-replace-investigate-with-read-and-search-first-01-step-01",
+          "sequence": 1,
+          "sourceKind": "run_report",
+          "sourceScope": "run_snapshot",
+          "sourceOrigin": null,
+          "sourceRunId": null,
+          "file": "docs/agents/runs/20260308-160258/autoagent-report.md",
+          "recordType": "AutoAgentReport",
+          "status": "READY_FOR_QUALITY_GATE",
+          "role": null,
+          "toolName": null,
+          "sourceId": null,
+          "candidateIds": [],
+          "lineageCandidateIds": [],
+          "handoffRefs": [],
+          "transcriptText": null
+        }
+      ]
+    }
+  ],
+  "learning": {
+    "mode": "shadow_only",
+    "episodeCount": 2,
+    "evidenceBackedEpisodeCount": 2,
+    "reasoningPathSignal": {
+      "name": "reasoningPathEfficiencyScore",
+      "sourceBackedPathCount": 2,
+      "transcriptBackedPathCount": 1,
+      "handoffBackedPathCount": 1,
+      "bestObservedScore": 0.795833
+    },
+    "topObservedPaths": [
+      {
+        "episodeId": "candidate-episode-baseline",
+        "trajectoryId": "candidate-trajectory-baseline",
+        "candidateId": "baseline",
+        "classification": "successful_path",
+        "learningScore": 0.839583,
+        "qualityScore": 0.86875,
+        "efficiencyScore": 0.795833,
+        "reasoningPathEfficiencyScore": 0.795833,
+        "terminalStatus": "success",
+        "matchedRecordCount": 12,
+        "handoffCount": 1,
+        "searchDepth": 0,
+        "actionCount": 0,
+        "sourceKinds": [
+          "handoff_event",
+          "run_report",
+          "run_state",
+          "transcript_event"
+        ],
+        "toolNames": [
+          "read_file",
+          "grep_search"
+        ],
+        "toolSequence": [
+          "read_file",
+          "grep_search",
+          "read_file"
+        ],
+        "provenance": {
+          "matchedRecordCount": 12,
+          "sourceKinds": [
+            "handoff_event",
+            "run_report",
+            "run_state",
+            "transcript_event"
+          ],
+          "sourceOrigins": [
+            "governed_run_export"
+          ],
+          "sourceOriginCounts": {
+            "governed_run_export": 3
+          },
+          "sourceScopes": [
+            "current_artifact",
+            "run_snapshot",
+            "chat_transcript",
+            "conversation_transcript",
+            "handoff_history"
+          ],
+          "sourceIds": [
+            "chat-history-1",
+            "transcript-history-1",
+            "handoff-history-1"
+          ],
+          "governedRunIds": [
+            "20260308-160258"
+          ],
+          "transcriptRecordCount": 2,
+          "handoffRecordCount": 1,
+          "transcriptBacked": true,
+          "handoffBacked": true
+        },
+        "factors": {
+          "benchmarkQuality": 1.0,
+          "evidenceQuality": 0.625,
+          "terminalOutcomeScore": 1.0,
+          "actionCount": 0,
+          "searchDepth": 0,
+          "stepCount": 12,
+          "handoffCount": 1,
+          "handoffEfficiency": 0.666667,
+          "toolSequenceLength": 3,
+          "repeatedToolCount": 0,
+          "toolChurnScore": 1.0,
+          "reasoningPathEfficiencyScore": 0.795833
+        },
+        "selectedAsBest": true
+      },
+      {
+        "episodeId": "candidate-episode-replace-investigate-with-read-and-search-first-01",
+        "trajectoryId": "candidate-trajectory-replace-investigate-with-read-and-search-first-01",
+        "candidateId": "replace-investigate-with-read-and-search-first-01",
+        "classification": "observed_path",
+        "learningScore": 0.710077,
+        "qualityScore": 0.733462,
+        "efficiencyScore": 0.675,
+        "reasoningPathEfficiencyScore": 0.675,
+        "terminalStatus": "READY_FOR_QUALITY_GATE",
+        "matchedRecordCount": 1,
+        "handoffCount": 0,
+        "searchDepth": 1,
+        "actionCount": 4,
+        "sourceKinds": [
+          "run_report"
+        ],
+        "toolNames": [],
+        "toolSequence": [],
+        "provenance": {
+          "matchedRecordCount": 1,
+          "sourceKinds": [
+            "run_report"
+          ],
+          "sourceOrigins": [],
+          "sourceOriginCounts": {},
+          "sourceScopes": [
+            "run_snapshot"
+          ],
+          "sourceIds": [],
+          "governedRunIds": [],
+          "transcriptRecordCount": 0,
+          "handoffRecordCount": 0,
+          "transcriptBacked": false,
+          "handoffBacked": false
+        },
+        "factors": {
+          "benchmarkQuality": 0.974359,
+          "evidenceQuality": 0.5,
+          "terminalOutcomeScore": 0.6,
+          "actionCount": 4,
+          "searchDepth": 1,
+          "stepCount": 1,
+          "handoffCount": 0,
+          "handoffEfficiency": 1.0,
+          "toolSequenceLength": 0,
+          "repeatedToolCount": 0,
+          "toolChurnScore": 1.0,
+          "reasoningPathEfficiencyScore": 0.675
+        },
+        "selectedAsBest": false
+      }
+    ],
+    "benchmarkCandidates": [
+      {
+        "suggestionId": "episode-benchmark-01",
+        "kind": "episode_success_guard",
+        "classification": "successful_path",
+        "observedCount": 1,
+        "learningScore": 0.839583,
+        "exampleCandidateIds": [
+          "baseline"
+        ],
+        "sourceKinds": [
+          "handoff_event",
+          "run_report",
+          "run_state",
+          "transcript_event"
+        ],
+        "handoffCount": 1,
+        "toolNames": [
+          "read_file",
+          "grep_search"
+        ],
+        "terminalStatus": "success",
+        "reasoningPathEfficiencyScore": 0.795833,
+        "provenance": {
+          "matchedRecordCount": 12,
+          "sourceKinds": [
+            "handoff_event",
+            "run_report",
+            "run_state",
+            "transcript_event"
+          ],
+          "sourceOrigins": [
+            "governed_run_export"
+          ],
+          "sourceOriginCounts": {
+            "governed_run_export": 3
+          },
+          "sourceScopes": [
+            "current_artifact",
+            "run_snapshot",
+            "chat_transcript",
+            "conversation_transcript",
+            "handoff_history"
+          ],
+          "sourceIds": [
+            "chat-history-1",
+            "transcript-history-1",
+            "handoff-history-1"
+          ],
+          "governedRunIds": [
+            "20260308-160258"
+          ],
+          "transcriptRecordCount": 2,
+          "handoffRecordCount": 1,
+          "transcriptBacked": true,
+          "handoffBacked": true
+        },
+        "factors": {
+          "benchmarkQuality": 1.0,
+          "evidenceQuality": 0.625,
+          "terminalOutcomeScore": 1.0,
+          "actionCount": 0,
+          "searchDepth": 0,
+          "stepCount": 12,
+          "handoffCount": 1,
+          "handoffEfficiency": 0.666667,
+          "toolSequenceLength": 3,
+          "repeatedToolCount": 0,
+          "toolChurnScore": 1.0,
+          "reasoningPathEfficiencyScore": 0.795833
+        },
+        "rationale": "Preserve the observed successful path pattern."
+      },
+      {
+        "suggestionId": "episode-benchmark-02",
+        "kind": "episode_success_guard",
+        "classification": "observed_path",
+        "observedCount": 1,
+        "learningScore": 0.710077,
+        "exampleCandidateIds": [
+          "replace-investigate-with-read-and-search-first-01"
+        ],
+        "sourceKinds": [
+          "run_report"
+        ],
+        "handoffCount": 0,
+        "toolNames": [],
+        "terminalStatus": "READY_FOR_QUALITY_GATE",
+        "reasoningPathEfficiencyScore": 0.675,
+        "provenance": {
+          "matchedRecordCount": 1,
+          "sourceKinds": [
+            "run_report"
+          ],
+          "sourceOrigins": [],
+          "sourceOriginCounts": {},
+          "sourceScopes": [
+            "run_snapshot"
+          ],
+          "sourceIds": [],
+          "governedRunIds": [],
+          "transcriptRecordCount": 0,
+          "handoffRecordCount": 0,
+          "transcriptBacked": false,
+          "handoffBacked": false
+        },
+        "factors": {
+          "benchmarkQuality": 0.974359,
+          "evidenceQuality": 0.5,
+          "terminalOutcomeScore": 0.6,
+          "actionCount": 4,
+          "searchDepth": 1,
+          "stepCount": 1,
+          "handoffCount": 0,
+          "handoffEfficiency": 1.0,
+          "toolSequenceLength": 0,
+          "repeatedToolCount": 0,
+          "toolChurnScore": 1.0,
+          "reasoningPathEfficiencyScore": 0.675
+        },
+        "rationale": "Preserve the observed successful path pattern."
+      }
+    ],
+    "mutationSeedCandidates": [
+      {
+        "seedId": "episode-mutation-seed-01",
+        "kind": "reinforce_success_path",
+        "candidateId": "baseline",
+        "episodeId": "candidate-episode-baseline",
+        "sourceMutationId": null,
+        "sourceKinds": [
+          "handoff_event",
+          "run_report",
+          "run_state",
+          "transcript_event"
+        ],
+        "handoffCount": 1,
+        "toolNames": [
+          "read_file",
+          "grep_search"
+        ],
+        "targetSearchDepth": 0,
+        "targetActionCount": 0,
+        "learningScore": 0.839583,
+        "reasoningPathEfficiencyScore": 0.795833,
+        "provenance": {
+          "matchedRecordCount": 12,
+          "sourceKinds": [
+            "handoff_event",
+            "run_report",
+            "run_state",
+            "transcript_event"
+          ],
+          "sourceOrigins": [
+            "governed_run_export"
+          ],
+          "sourceOriginCounts": {
+            "governed_run_export": 3
+          },
+          "sourceScopes": [
+            "current_artifact",
+            "run_snapshot",
+            "chat_transcript",
+            "conversation_transcript",
+            "handoff_history"
+          ],
+          "sourceIds": [
+            "chat-history-1",
+            "transcript-history-1",
+            "handoff-history-1"
+          ],
+          "governedRunIds": [
+            "20260308-160258"
+          ],
+          "transcriptRecordCount": 2,
+          "handoffRecordCount": 1,
+          "transcriptBacked": true,
+          "handoffBacked": true
+        },
+        "factors": {
+          "benchmarkQuality": 1.0,
+          "evidenceQuality": 0.625,
+          "terminalOutcomeScore": 1.0,
+          "actionCount": 0,
+          "searchDepth": 0,
+          "stepCount": 12,
+          "handoffCount": 1,
+          "handoffEfficiency": 0.666667,
+          "toolSequenceLength": 3,
+          "repeatedToolCount": 0,
+          "toolChurnScore": 1.0,
+          "reasoningPathEfficiencyScore": 0.795833
+        },
+        "rationale": "Promote this observed successful path as a future mutation seed."
+      },
+      {
+        "seedId": "episode-mutation-seed-02",
+        "kind": "investigate_observed_path",
+        "candidateId": "replace-investigate-with-read-and-search-first-01",
+        "episodeId": "candidate-episode-replace-investigate-with-read-and-search-first-01",
+        "sourceMutationId": "replace-investigate-with-read-and-search-first-01",
+        "sourceKinds": [
+          "run_report"
+        ],
+        "handoffCount": 0,
+        "toolNames": [],
+        "targetSearchDepth": 1,
+        "targetActionCount": 4,
+        "learningScore": 0.710077,
+        "reasoningPathEfficiencyScore": 0.675,
+        "provenance": {
+          "matchedRecordCount": 1,
+          "sourceKinds": [
+            "run_report"
+          ],
+          "sourceOrigins": [],
+          "sourceOriginCounts": {},
+          "sourceScopes": [
+            "run_snapshot"
+          ],
+          "sourceIds": [],
+          "governedRunIds": [],
+          "transcriptRecordCount": 0,
+          "handoffRecordCount": 0,
+          "transcriptBacked": false,
+          "handoffBacked": false
+        },
+        "factors": {
+          "benchmarkQuality": 0.974359,
+          "evidenceQuality": 0.5,
+          "terminalOutcomeScore": 0.6,
+          "actionCount": 4,
+          "searchDepth": 1,
+          "stepCount": 1,
+          "handoffCount": 0,
+          "handoffEfficiency": 1.0,
+          "toolSequenceLength": 0,
+          "repeatedToolCount": 0,
+          "toolChurnScore": 1.0,
+          "reasoningPathEfficiencyScore": 0.675
+        },
+        "rationale": "Investigate this observed path before turning it into a mutation."
+      }
+    ],
+    "policyCandidates": [
+      {
+        "policyId": "episode-policy-01",
+        "kind": "preferred_tool_sequence",
+        "classification": "successful_path",
+        "observedCount": 1,
+        "exampleCandidateIds": [
+          "baseline"
+        ],
+        "sourceKinds": [
+          "handoff_event",
+          "run_report",
+          "run_state",
+          "transcript_event"
+        ],
+        "handoffCount": 1,
+        "toolNames": [
+          "read_file",
+          "grep_search"
+        ],
+        "toolSequence": [
+          "read_file",
+          "grep_search",
+          "read_file"
+        ],
+        "terminalStatus": "success",
+        "constraints": {
+          "maxSearchDepth": 0,
+          "maxActionCount": 0
+        },
+        "learningScore": 0.839583,
+        "reasoningPathEfficiencyScore": 0.795833,
+        "provenance": {
+          "matchedRecordCount": 12,
+          "sourceKinds": [
+            "handoff_event",
+            "run_report",
+            "run_state",
+            "transcript_event"
+          ],
+          "sourceOrigins": [
+            "governed_run_export"
+          ],
+          "sourceOriginCounts": {
+            "governed_run_export": 3
+          },
+          "sourceScopes": [
+            "current_artifact",
+            "run_snapshot",
+            "chat_transcript",
+            "conversation_transcript",
+            "handoff_history"
+          ],
+          "sourceIds": [
+            "chat-history-1",
+            "transcript-history-1",
+            "handoff-history-1"
+          ],
+          "governedRunIds": [
+            "20260308-160258"
+          ],
+          "transcriptRecordCount": 2,
+          "handoffRecordCount": 1,
+          "transcriptBacked": true,
+          "handoffBacked": true
+        },
+        "factors": {
+          "benchmarkQuality": 1.0,
+          "evidenceQuality": 0.625,
+          "terminalOutcomeScore": 1.0,
+          "actionCount": 0,
+          "searchDepth": 0,
+          "stepCount": 12,
+          "handoffCount": 1,
+          "handoffEfficiency": 0.666667,
+          "toolSequenceLength": 3,
+          "repeatedToolCount": 0,
+          "toolChurnScore": 1.0,
+          "reasoningPathEfficiencyScore": 0.795833
+        },
+        "rationale": "Prefer the observed successful tool sequence for similar paths."
+      }
+    ]
+  },
+  "events": [
+    {
+      "eventId": "candidate-evaluation-00-baseline",
+      "kind": "candidate_evaluation",
+      "trajectoryId": "candidate-trajectory-baseline",
+      "iteration": 0,
+      "candidateId": "baseline",
+      "parentCandidateId": null,
+      "mutationId": null,
+      "searchDepth": 0,
+      "status": "keep",
+      "description": "Baseline target agent",
+      "score": 1.0,
+      "trajectoryScore": 0.88,
+      "deltaFromBaseline": 0.0,
+      "passedChecks": 9,
+      "totalChecks": 9,
+      "complexity": {
+        "bodyChars": 2948,
+        "toolCount": 6,
+        "mcpServerCount": 0,
+        "fileCount": 1,
+        "score": 3113,
+        "perTarget": {
+          "team-lead": {
+            "bodyChars": 2948,
+            "toolCount": 6,
+            "mcpServerCount": 0,
+            "score": 3098
+          }
+        }
+      },
+      "touchedTargets": [],
+      "candidatePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation-replacement-mutation/candidates/iteration-00-baseline.agent.md",
+      "selectedAsBest": true
+    },
+    {
+      "eventId": "candidate-evaluation-01-replace-investigate-with-read-and-search-first-01",
+      "kind": "candidate_evaluation",
+      "trajectoryId": "candidate-trajectory-replace-investigate-with-read-and-search-first-01",
+      "iteration": 1,
+      "candidateId": "replace-investigate-with-read-and-search-first-01",
+      "parentCandidateId": "baseline",
+      "mutationId": "replace-investigate-with-read-and-search-first-01",
+      "searchDepth": 1,
+      "status": "discard",
+      "description": "Make the research step explicitly favor read_file and grep_search first while simplifying surrounding wording so the candidate can compete on score-then-simpler without breaking the manager boundary.",
+      "score": 0.974359,
+      "trajectoryScore": 0.643889,
+      "deltaFromBaseline": -0.025641,
+      "passedChecks": 8,
+      "totalChecks": 9,
+      "complexity": {
+        "bodyChars": 2941,
+        "toolCount": 6,
+        "mcpServerCount": 0,
+        "fileCount": 1,
+        "score": 3106,
+        "perTarget": {
+          "team-lead": {
+            "bodyChars": 2941,
+            "toolCount": 6,
+            "mcpServerCount": 0,
+            "score": 3091
+          }
+        }
+      },
+      "touchedTargets": [
+        "team-lead"
+      ],
+      "candidatePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation-replacement-mutation/candidates/iteration-01-replace-investigate-with-read-and-search-first-01.agent.md",
+      "selectedAsBest": false,
+      "deltaFromParent": -0.025641
+    },
+    {
+      "eventId": "frontier-snapshot-00",
+      "kind": "frontier_snapshot",
+      "mutationIndex": 0,
+      "mutationId": null,
+      "evaluatedCandidateIds": [
+        "baseline"
+      ],
+      "frontierCandidateIds": [
+        "baseline"
+      ],
+      "bestCandidateId": "baseline"
+    },
+    {
+      "eventId": "frontier-snapshot-01",
+      "kind": "frontier_snapshot",
+      "mutationIndex": 1,
+      "mutationId": "replace-investigate-with-read-and-search-first-01",
+      "evaluatedCandidateIds": [
+        "replace-investigate-with-read-and-search-first-01"
+      ],
+      "frontierCandidateIds": [
+        "baseline"
+      ],
+      "bestCandidateId": "baseline"
+    },
+    {
+      "eventId": "live-evaluation",
+      "kind": "live_evaluation",
+      "status": "disabled",
+      "strategy": "advisory",
+      "provider": "github-models",
+      "model": "gpt-5.4",
+      "sampleCount": 0,
+      "evaluatedCandidateIds": [],
+      "winnerCandidateId": "baseline",
+      "bestCandidateChanged": false,
+      "fallbackToDeterministic": false,
+      "reason": "live_evaluator_disabled",
+      "verdictCounts": {}
+    },
+    {
+      "eventId": "run-outcome",
+      "kind": "run_outcome",
+      "baselineCandidateId": "baseline",
+      "bestCandidateId": "baseline",
+      "outcomeLabel": "unchanged",
+      "improvementDelta": 0.0,
+      "appliedBestVariant": false,
+      "keptCandidateCount": 1,
+      "discardedCandidateCount": 1,
+      "winnerExplanation": {
+        "winnerCandidateId": "baseline",
+        "comparedCandidateId": "replace-investigate-with-read-and-search-first-01",
+        "comparisonMode": "deterministic_ranking",
+        "decisiveSignal": "benchmark_score",
+        "evidenceBacked": false,
+        "summary": "baseline beat replace-investigate-with-read-and-search-first-01 on benchmark score (1.0 vs 0.974359).",
+        "evidenceSummary": null,
+        "rankingComparison": {
+          "winnerScore": 1.0,
+          "runnerUpScore": 0.974359,
+          "scoreDelta": 0.025641,
+          "winnerComplexityScore": 3113,
+          "runnerUpComplexityScore": 3106,
+          "complexityAdvantage": -7,
+          "winnerTrajectoryScore": 0.88,
+          "runnerUpTrajectoryScore": 0.643889,
+          "trajectoryScoreDelta": 0.236111
+        },
+        "topTrajectorySignals": [
+          {
+            "signal": "matchedEvidenceRecords",
+            "preference": "higher_is_better",
+            "winner": 12,
+            "runnerUp": 1,
+            "advantage": 11.0
+          },
+          {
+            "signal": "attributedSuccessCount",
+            "preference": "higher_is_better",
+            "winner": 3,
+            "runnerUp": 0,
+            "advantage": 3.0
+          },
+          {
+            "signal": "actionEfficiency",
+            "preference": "higher_is_better",
+            "winner": 1.0,
+            "runnerUp": 0.2,
+            "advantage": 0.8
+          },
+          {
+            "signal": "lineageEfficiency",
+            "preference": "higher_is_better",
+            "winner": 1.0,
+            "runnerUp": 0.5,
+            "advantage": 0.5
+          },
+          {
+            "signal": "validationBreadth",
+            "preference": "higher_is_better",
+            "winner": 1.0,
+            "runnerUp": 0.888889,
+            "advantage": 0.111111
+          }
+        ],
+        "trajectorySummary": "Top trajectory contributors: matchedEvidenceRecords +11, attributedSuccessCount +3, actionEfficiency +0.8",
+        "evidenceComparison": {
+          "winnerSourceKinds": {
+            "handoff_event": 1,
+            "run_report": 7,
+            "run_state": 2,
+            "transcript_event": 2
+          },
+          "runnerUpSourceKinds": {
+            "run_report": 1
+          },
+          "winnerStatuses": {
+            "done": 2,
+            "pass": 2,
+            "ready_for_quality_gate": 5,
+            "success": 3
+          },
+          "runnerUpStatuses": {
+            "ready_for_quality_gate": 1
+          }
+        },
+        "winner": {
+          "candidateId": "baseline",
+          "iteration": 0,
+          "searchDepth": 0,
+          "score": 1.0,
+          "complexityScore": 3113,
+          "trajectoryScore": 0.88,
+          "trajectorySignals": {
+            "validationBreadth": 1.0,
+            "parentProgress": 0.0,
+            "actionEfficiency": 1.0,
+            "targetFocus": 1.0,
+            "lineageEfficiency": 1.0,
+            "matchedEvidenceRecords": 12,
+            "attributedSuccessCount": 3,
+            "attributedWarningCount": 0,
+            "attributedErrorCount": 0,
+            "attributedToolErrorCount": 0,
+            "attributedExternalErrorCount": 0,
+            "evidenceSupport": 0.03,
+            "evidenceIssuePenalty": 0.0,
+            "reviewedPolicyBonus": 0.0,
+            "reviewedPolicyPenalty": 0.0,
+            "liveWinnerBoost": 0.0
+          },
+          "evidence": {
+            "matchedRecordCount": 12,
+            "successCount": 3,
+            "warningCount": 0,
+            "errorCount": 0,
+            "toolErrorCount": 0,
+            "externalErrorCount": 0,
+            "sourceKindCounts": {
+              "handoff_event": 1,
+              "run_report": 7,
+              "run_state": 2,
+              "transcript_event": 2
+            },
+            "statusCounts": {
+              "done": 2,
+              "pass": 2,
+              "ready_for_quality_gate": 5,
+              "success": 3
+            }
+          }
+        },
+        "runnerUp": {
+          "candidateId": "replace-investigate-with-read-and-search-first-01",
+          "iteration": 1,
+          "searchDepth": 1,
+          "score": 0.974359,
+          "complexityScore": 3106,
+          "trajectoryScore": 0.643889,
+          "trajectorySignals": {
+            "validationBreadth": 0.888889,
+            "parentProgress": 0.0,
+            "actionEfficiency": 0.2,
+            "targetFocus": 1.0,
+            "lineageEfficiency": 0.5,
+            "matchedEvidenceRecords": 1,
+            "attributedSuccessCount": 0,
+            "attributedWarningCount": 0,
+            "attributedErrorCount": 0,
+            "attributedToolErrorCount": 0,
+            "attributedExternalErrorCount": 0,
+            "evidenceSupport": 0.0,
+            "evidenceIssuePenalty": 0.0,
+            "reviewedPolicyBonus": 0.0,
+            "reviewedPolicyPenalty": 0.0,
+            "liveWinnerBoost": 0.0
+          },
+          "evidence": {
+            "matchedRecordCount": 1,
+            "successCount": 0,
+            "warningCount": 0,
+            "errorCount": 0,
+            "toolErrorCount": 0,
+            "externalErrorCount": 0,
+            "sourceKindCounts": {
+              "run_report": 1
+            },
+            "statusCounts": {
+              "ready_for_quality_gate": 1
+            }
+          }
+        },
+        "liveEvaluation": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,246 @@
+{
+  "type": "AutoAgentLearningDraftImport",
+  "mode": "manual_review_import",
+  "experiment": {
+    "name": "team-lead-optimization-reviewed-continuation",
+    "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/reviewed-continuation-experiment.generated.md",
+    "benchmarkPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/reviewed-benchmark.json",
+    "mutationCatalogPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/reviewed-mutations.json"
+  },
+  "review": {
+    "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/manual-learning-review.json",
+    "reviewer": "human-maintainer",
+    "reviewedAt": "2026-04-13T17:46:43.1942132-04:00",
+    "summary": "Accept only the recurring escalation-trigger policy from the exercised continuation run and reject or defer duplicate, weak-provenance, or unsafe draft artifacts."
+  },
+  "sources": {
+    "benchmarkDraftsPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/draft-benchmark-fragments.json",
+    "mutationDraftsPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/draft-mutation-catalog.json",
+    "policyDraftsPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/draft-policy-catalog.json"
+  },
+  "summary": {
+    "reviewedBenchmarkDraftCount": 3,
+    "acceptedBenchmarkDraftCount": 0,
+    "importedBenchmarkCheckCount": 0,
+    "reviewedMutationDraftCount": 3,
+    "acceptedMutationDraftCount": 0,
+    "importedMutationCount": 0,
+    "reviewedPolicyDraftCount": 2,
+    "acceptedPolicyDraftCount": 1,
+    "importedPolicyCount": 1
+  },
+  "benchmarkReview": [
+    {
+      "draftId": "benchmark-fragment-01",
+      "stagedDecision": "reject",
+      "decision": "reject",
+      "reviewerOverride": false,
+      "decisionRationale": {
+        "observedCount": 1,
+        "observedCountThreshold": 1,
+        "observedCountPass": true,
+        "observedCountDelta": 0,
+        "blockedByFactors": [
+          "duplicateCheckId"
+        ],
+        "primaryBlockedFactor": "duplicateCheckId"
+      },
+      "notes": "Reject because the exercised run re-emitted the same benchmark check id already promoted in the Phase 6A reviewed benchmark artifact.",
+      "sourceSuggestionId": "episode-benchmark-01",
+      "importStatus": "rejected"
+    },
+    {
+      "draftId": "benchmark-fragment-02",
+      "stagedDecision": "defer",
+      "decision": "defer",
+      "reviewerOverride": false,
+      "decisionRationale": {
+        "observedCount": 1,
+        "observedCountThreshold": 1,
+        "observedCountPass": true,
+        "observedCountDelta": 0,
+        "blockedByFactors": [
+          "missingGovernedTraceOrigin"
+        ],
+        "primaryBlockedFactor": "missingGovernedTraceOrigin"
+      },
+      "notes": "Defer because the observed-path fragment is sourced only from a run report snapshot and does not yet carry governed trace-export provenance.",
+      "sourceSuggestionId": "episode-benchmark-02",
+      "importStatus": "deferred"
+    },
+    {
+      "draftId": "benchmark-fragment-03",
+      "stagedDecision": "reject",
+      "decision": "reject",
+      "reviewerOverride": false,
+      "decisionRationale": {
+        "observedCount": 1,
+        "observedCountThreshold": 1,
+        "observedCountPass": true,
+        "observedCountDelta": 0,
+        "blockedByFactors": [
+          "failurePathBenchmarkReward"
+        ],
+        "primaryBlockedFactor": "failurePathBenchmarkReward"
+      },
+      "notes": "Reject because promoting an episode_observation_guard keyed to terminalStatus=error would reward the failure trajectory instead of guarding against it.",
+      "sourceSuggestionId": "episode-benchmark-03",
+      "importStatus": "rejected"
+    }
+  ],
+  "mutationReview": [
+    {
+      "draftId": "mutation-draft-01",
+      "stagedDecision": "defer",
+      "decision": "defer",
+      "reviewerOverride": false,
+      "decisionRationale": {
+        "blockedByFactors": [
+          "missingSourceMutation"
+        ],
+        "primaryBlockedFactor": "missingSourceMutation"
+      },
+      "notes": "Defer because the success-path seed is promising but has no source mutation id to clone and this slice does not invent a new mutation payload by hand.",
+      "sourceSeedId": "episode-mutation-seed-01",
+      "sourceMutationId": null,
+      "importStatus": "deferred"
+    },
+    {
+      "draftId": "mutation-draft-02",
+      "stagedDecision": "reject",
+      "decision": "reject",
+      "reviewerOverride": false,
+      "decisionRationale": {
+        "sourceMutationId": "episode-avoid-failure-path-02",
+        "blockedByFactors": [
+          "missingGovernedTraceOrigin",
+          "duplicateLineage"
+        ],
+        "primaryBlockedFactor": "missingGovernedTraceOrigin"
+      },
+      "notes": "Reject because the investigate-observed-path draft lacks governed trace provenance and only revisits an already promoted avoidance lineage without adding incremental signal.",
+      "sourceSeedId": "episode-mutation-seed-02",
+      "sourceMutationId": "episode-avoid-failure-path-02",
+      "importStatus": "rejected"
+    },
+    {
+      "draftId": "mutation-draft-03",
+      "stagedDecision": "reject",
+      "decision": "reject",
+      "reviewerOverride": false,
+      "decisionRationale": {
+        "sourceMutationId": "relax-no-product-code-boundary",
+        "blockedByFactors": [
+          "duplicateSemantics",
+          "lowerSignal"
+        ],
+        "primaryBlockedFactor": "duplicateSemantics"
+      },
+      "notes": "Reject because it repeats the already reviewed avoidance mutation pattern with weaker signal than the previously promoted mutation.",
+      "sourceSeedId": "episode-mutation-seed-03",
+      "sourceMutationId": "relax-no-product-code-boundary",
+      "importStatus": "rejected"
+    }
+  ],
+  "policyReview": [
+    {
+      "draftId": "policy-draft-01",
+      "stagedDecision": "reject",
+      "decision": "reject",
+      "reviewerOverride": false,
+      "decisionRationale": {
+        "observedCount": 1,
+        "observedCountThreshold": 1,
+        "observedCountPass": true,
+        "observedCountDelta": 0,
+        "learningScore": 0.839583,
+        "learningScoreThreshold": 0.7,
+        "learningScorePass": true,
+        "learningScoreDelta": 0.139583,
+        "blockedByFactors": [
+          "duplicatePolicyId"
+        ],
+        "primaryBlockedFactor": "duplicatePolicyId"
+      },
+      "notes": "Reject because the preferred tool sequence policy id is already promoted in the Phase 6A reviewed policies artifact.",
+      "sourcePolicyId": "episode-policy-01",
+      "importStatus": "rejected"
+    },
+    {
+      "draftId": "policy-draft-02",
+      "stagedDecision": "defer",
+      "decision": "accept",
+      "reviewerOverride": true,
+      "decisionRationale": {
+        "observedCount": 1,
+        "observedCountThreshold": 2,
+        "observedCountPass": false,
+        "observedCountDelta": -1,
+        "learningScore": 0.481539,
+        "learningScoreThreshold": 0.7,
+        "learningScorePass": false,
+        "learningScoreDelta": -0.218461,
+        "blockedByFactors": [
+          "observedCount",
+          "learningScore"
+        ],
+        "primaryBlockedFactor": "learningScore"
+      },
+      "notes": "Promote by reviewer override because the same governed transcript-backed failure path resurfaced across both the original and exercised continuation runs, and as an escalation trigger it penalizes the unsafe apply_patch/read_file error path instead of rewarding it.",
+      "sourcePolicyId": "episode-policy-02",
+      "importStatus": "promoted_policy",
+      "promotedPolicyId": "episode-policy-escalation-trigger-02"
+    }
+  ],
+  "artifacts": {
+    "promotedBenchmark": {
+      "requestedPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/reviewed-benchmark.json",
+      "actualPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/reviewed-benchmark.json",
+      "fallbackUsed": false,
+      "warning": null
+    },
+    "promotedMutations": {
+      "requestedPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/reviewed-mutations.json",
+      "actualPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/reviewed-mutations.json",
+      "fallbackUsed": false,
+      "warning": null
+    },
+    "promotedPolicies": {
+      "requestedPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/reviewed-policies.json",
+      "actualPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/reviewed-policies.json",
+      "fallbackUsed": false,
+      "warning": null
+    },
+    "promotionAudit": {
+      "requestedPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/learning-promotion-audit.json",
+      "actualPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/learning-promotion-audit.json",
+      "fallbackUsed": false,
+      "warning": null
+    },
+    "continuationBundle": {
+      "requestedPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/reviewed-continuation-bundle.json",
+      "actualPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/reviewed-continuation-bundle.json",
+      "fallbackUsed": false,
+      "warning": null
+    },
+    "followOnExperiment": {
+      "requestedPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/reviewed-continuation-experiment.generated.md",
+      "actualPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/reviewed-continuation-experiment.generated.md",
+      "fallbackUsed": false,
+      "warning": null
+    },
+    "manualDispatchManifest": {
+      "requestedPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/manual-dispatch.generated.json",
+      "actualPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/manual-dispatch.generated.json",
+      "fallbackUsed": false,
+      "warning": null
+    }
+  },
+  "continuation": {
+    "bundleStatus": "ready",
+    "acceptedTotalCount": 1,
+    "manualDispatchStatus": "ready_for_manual_dispatch",
+    "manualDispatchBlockedReasons": [],
+    "followOnExperimentPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/reviewed-continuation-experiment.generated.md"
+  }
+}

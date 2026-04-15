@@ -1,0 +1,112 @@
+{
+  "type": "AutoAgentLearningPromotionAudit",
+  "mode": "manual_review_import",
+  "promotionSourceMode": "manual_review",
+  "review": {
+    "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/manual-learning-review.json",
+    "reviewer": "human-maintainer",
+    "reviewedAt": "2026-03-08T16:20:00Z",
+    "summary": "Approve governed-export-backed benchmark, mutation, and policy drafts for reviewed continuation packaging."
+  },
+  "experiment": {
+    "name": "team-lead-optimization",
+    "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/autoagent-experiment.md",
+    "benchmarkPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/.github/skills/autoagent-loop/examples/team-lead-benchmark.json",
+    "mutationCatalogPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/.github/skills/autoagent-loop/examples/team-lead-mutations.json"
+  },
+  "sources": {
+    "benchmarkDraftsPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/draft-benchmark-fragments.json",
+    "mutationDraftsPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/draft-mutation-catalog.json",
+    "policyDraftsPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/draft-policy-catalog.json"
+  },
+  "summary": {
+    "reviewedBenchmarkDraftCount": 1,
+    "acceptedBenchmarkDraftCount": 1,
+    "rejectedBenchmarkDraftCount": 0,
+    "deferredBenchmarkDraftCount": 0,
+    "reviewedMutationDraftCount": 1,
+    "acceptedMutationDraftCount": 1,
+    "rejectedMutationDraftCount": 0,
+    "deferredMutationDraftCount": 0,
+    "reviewedPolicyDraftCount": 1,
+    "acceptedPolicyDraftCount": 1,
+    "rejectedPolicyDraftCount": 0,
+    "deferredPolicyDraftCount": 0,
+    "importedBenchmarkCheckCount": 1,
+    "importedMutationCount": 1,
+    "importedPolicyCount": 1
+  },
+  "guardrails": {
+    "reviewRequired": true,
+    "runtimeEffect": "review_only",
+    "autoApplyEnabled": false
+  },
+  "decisions": {
+    "benchmarkDrafts": [
+      {
+        "draftId": "benchmark-fragment-01",
+        "stagedDecision": "accept",
+        "decision": "accept",
+        "reviewerOverride": false,
+        "decisionRationale": {
+          "observedCount": 1,
+          "observedCountThreshold": 1,
+          "observedCountPass": true,
+          "observedCountDelta": 0,
+          "blockedByFactors": [],
+          "primaryBlockedFactor": null
+        },
+        "notes": "Promote the governed-export-backed successful path benchmark fragment.",
+        "sourceSuggestionId": "episode-benchmark-01",
+        "importStatus": "merged_checks",
+        "addedCheckIds": [
+          "episode-episode-success-guard-01-check"
+        ]
+      }
+    ],
+    "mutationDrafts": [
+      {
+        "draftId": "mutation-draft-02",
+        "stagedDecision": "accept",
+        "decision": "accept",
+        "reviewerOverride": false,
+        "decisionRationale": {
+          "sourceMutationId": "relax-no-product-code-boundary",
+          "blockedByFactors": [],
+          "primaryBlockedFactor": null
+        },
+        "notes": "Promote the reviewed avoidance mutation because it preserves an explicit source mutation id.",
+        "sourceSeedId": "episode-mutation-seed-02",
+        "sourceMutationId": "relax-no-product-code-boundary",
+        "importStatus": "cloned_mutation",
+        "promotedMutationId": "episode-avoid-failure-path-02"
+      }
+    ],
+    "policyDrafts": [
+      {
+        "draftId": "policy-draft-01",
+        "stagedDecision": "defer",
+        "decision": "accept",
+        "reviewerOverride": true,
+        "decisionRationale": {
+          "observedCount": 1,
+          "observedCountThreshold": 2,
+          "observedCountPass": false,
+          "observedCountDelta": -1,
+          "learningScore": 0.855208,
+          "learningScoreThreshold": 0.7,
+          "learningScorePass": true,
+          "learningScoreDelta": 0.155208,
+          "blockedByFactors": [
+            "observedCount"
+          ],
+          "primaryBlockedFactor": "observedCount"
+        },
+        "notes": "Promote the preferred tool sequence by explicit reviewer override so the continuation package captures the governed successful path.",
+        "sourcePolicyId": "episode-policy-01",
+        "importStatus": "promoted_policy",
+        "promotedPolicyId": "episode-policy-preferred-tool-sequence-01"
+      }
+    ]
+  }
+}

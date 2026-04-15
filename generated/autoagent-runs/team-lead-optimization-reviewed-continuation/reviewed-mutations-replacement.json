@@ -1,0 +1,47 @@
+{
+    "mutations": [
+        {
+            "id": "replace-investigate-with-read-and-search-first-01",
+            "description": "Make the research step explicitly favor read_file and grep_search first while simplifying surrounding wording so the candidate can compete on score-then-simpler without breaking the manager boundary.",
+            "operations": [
+                {
+                    "type": "replace_text",
+                    "target": "body",
+                    "old": "2. Research -> `repo-researcher`",
+                    "new": "2. Research -> `read_file` + `grep_search` first; `repo-researcher` only if needed"
+                },
+                {
+                    "type": "replace_text",
+                    "target": "body",
+                    "old": "If the Quality Gate fails, return to Implement with the blocker batch and iterate.",
+                    "new": "If the Quality Gate fails, return to Implement and iterate."
+                },
+                {
+                    "type": "replace_text",
+                    "target": "body",
+                    "old": "All specialist requests and results must include:\n\n1. A short human summary.\n2. One machine-parseable JSON object inside a fenced code block.\n\nStandard requests:",
+                    "new": "All specialist requests and results must include a short human summary and one machine-parseable JSON object.\n\nStandard requests:"
+                },
+                {
+                    "type": "replace_text",
+                    "target": "body",
+                    "old": "7. Release Prep -> `release-manager` when release evidence is required",
+                    "new": "7. Release Prep -> `release-manager` if release evidence is required"
+                }
+            ],
+            "manualReplacementMetadata": {
+                "authoredBy": "GitHub Copilot",
+                "authoredAt": "2026-04-14T00:20:00Z",
+                "supersedesMutationId": "episode-avoid-failure-path-02",
+                "supersedesSourceMutationId": "relax-no-product-code-boundary",
+                "rationale": "The old reviewed avoidance mutation copied the product-code relaxation and could not satisfy the reviewed benchmark. This replacement keeps the manager boundary intact, adds explicit read_file plus grep_search guidance, and reduces body length so it can compete fairly under score-then-simpler."
+            }
+        }
+    ],
+    "manualReplacementContext": {
+        "preservedHistoricalReviewManifest": "generated/autoagent-runs/team-lead-optimization/manual-learning-review.json",
+        "preservedReviewedMutationCatalog": "generated/autoagent-runs/team-lead-optimization-reviewed-continuation/reviewed-mutations.json",
+        "replacementIntent": "author_one_boundary_safe_replacement_mutation",
+        "notes": "This additive replacement catalog does not rewrite the historical review decision. It creates one new bounded retry asset outside the bad mutation lineage."
+    }
+}

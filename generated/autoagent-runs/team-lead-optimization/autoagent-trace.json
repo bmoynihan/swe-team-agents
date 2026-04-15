@@ -5,7 +5,7 @@
   "experiment": {
     "name": "team-lead-optimization",
     "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/autoagent-experiment.md",
-    "description": "Conservative first-pass AutoAgent experiment for this repository. It benchmarks the `team-lead` agent profile, tests a small mutation catalog, and keeps only variants that improve score or preserve score with lower complexity while staging review-oriented run metadata.\n",
+    "description": "Conservative first-pass AutoAgent experiment for this repository. It benchmarks a small governed manager bundle anchored on the `team-lead` agent profile, the shared Team Lead orchestration skill, and the repo-level `AGENTS.md` operating guide, tests a small mutation catalog, and keeps only variants that improve score or preserve score with lower complexity while staging review-oriented run metadata.\n",
     "primaryTargetId": "team-lead",
     "targetBundle": [
       {
@@ -17,24 +17,44 @@
           "body"
         ],
         "weight": 1.0
+      },
+      {
+        "id": "team-lead-skill",
+        "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/.github/skills/team-lead/SKILL.md",
+        "kind": "markdown_document",
+        "primary": false,
+        "mutableRegions": [
+          "body"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "agent-operating-guide",
+        "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/AGENTS.md",
+        "kind": "markdown_document",
+        "primary": false,
+        "mutableRegions": [
+          "body"
+        ],
+        "weight": 1.0
       }
     ],
     "benchmark": {
       "id": "team-lead-benchmark",
       "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/.github/skills/autoagent-loop/examples/team-lead-benchmark.json",
-      "checkCount": 8
+      "checkCount": 14
     },
     "mutationCatalog": {
       "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/.github/skills/autoagent-loop/examples/team-lead-mutations.json",
-      "mutationCount": 1
+      "mutationCount": 2
     }
   },
   "inputs": {
     "experiment": {
       "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/autoagent-experiment.md",
       "exists": true,
-      "sha256": "4fdfba58c95ea72fac6e4e6aa0c82dc34e1d3eb934735dddfe9a6869e4052c15",
-      "sizeBytes": 8968
+      "sha256": "135cc204b15cf9388c3a849b431f609395c9774041a21e933c605d9f8c8d0cd5",
+      "sizeBytes": 9844
     },
     "resumeCheckpoint": null,
     "liveEvaluatorPrompt": null,
@@ -105,15 +125,15 @@
       "includeHookAudit": true,
       "includeChatHistory": true,
       "chatHistoryPaths": [
-        "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/tests/fixtures/autoagent-loop/team-lead-chat-history.json"
+        "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/runs/20260308-160258/copilot-chat-export.json"
       ],
       "includeTranscriptHistory": true,
       "transcriptHistoryPaths": [
-        "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/tests/fixtures/autoagent-loop/team-lead-transcript-history.jsonl"
+        "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/runs/20260308-160258/copilot-transcript-export.jsonl"
       ],
       "includeHandoffHistory": true,
       "handoffHistoryPaths": [
-        "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/tests/fixtures/autoagent-loop/team-lead-handoff-history.jsonl"
+        "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/runs/20260308-160258/copilot-handoff-export.jsonl"
       ],
       "includeVsCodeLogs": false,
       "vsCodeLogPaths": [],
@@ -121,7 +141,7 @@
         {
           "id": "chat-history-1",
           "kind": "chat_transcript",
-          "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/tests/fixtures/autoagent-loop/team-lead-chat-history.json",
+          "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/runs/20260308-160258/copilot-chat-export.json",
           "format": "json",
           "optional": true,
           "includeLinePatterns": [],
@@ -132,7 +152,7 @@
         {
           "id": "transcript-history-1",
           "kind": "conversation_transcript",
-          "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/tests/fixtures/autoagent-loop/team-lead-transcript-history.jsonl",
+          "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/runs/20260308-160258/copilot-transcript-export.jsonl",
           "format": "jsonl",
           "optional": true,
           "includeLinePatterns": [],
@@ -143,7 +163,7 @@
         {
           "id": "handoff-history-1",
           "kind": "handoff_history",
-          "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/tests/fixtures/autoagent-loop/team-lead-handoff-history.jsonl",
+          "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/runs/20260308-160258/copilot-handoff-export.jsonl",
           "format": "jsonl",
           "optional": true,
           "includeLinePatterns": [],
@@ -185,7 +205,7 @@
         "actionEfficiency": 1.0,
         "targetFocus": 1.0,
         "lineageEfficiency": 1.0,
-        "matchedEvidenceRecords": 6,
+        "matchedEvidenceRecords": 12,
         "attributedSuccessCount": 3,
         "attributedWarningCount": 0,
         "attributedErrorCount": 0,
@@ -202,7 +222,7 @@
           "baseline",
           "candidate-trajectory-baseline"
         ],
-        "matchedRecordCount": 6,
+        "matchedRecordCount": 12,
         "errorCount": 0,
         "warningCount": 0,
         "successCount": 3,
@@ -210,14 +230,15 @@
         "externalErrorCount": 0,
         "sourceKindCounts": {
           "run_state": 2,
-          "run_report": 1,
+          "run_report": 7,
           "transcript_event": 2,
           "handoff_event": 1
         },
         "statusCounts": {
-          "review": 1,
-          "spec": 1,
-          "ready_for_quality_gate": 1,
+          "implement": 1,
+          "ready_for_quality_gate": 5,
+          "pass": 2,
+          "done": 1,
           "success": 3
         }
       },
@@ -234,20 +255,32 @@
         "matchedPolicyIds": [],
         "matchedPolicies": []
       },
-      "passedChecks": 8,
-      "totalChecks": 8,
+      "passedChecks": 14,
+      "totalChecks": 14,
       "complexity": {
-        "bodyChars": 2948,
+        "bodyChars": 8659,
         "toolCount": 6,
         "mcpServerCount": 0,
-        "fileCount": 1,
-        "score": 3113,
+        "fileCount": 3,
+        "score": 8854,
         "perTarget": {
           "team-lead": {
             "bodyChars": 2948,
             "toolCount": 6,
             "mcpServerCount": 0,
             "score": 3098
+          },
+          "team-lead-skill": {
+            "bodyChars": 3535,
+            "toolCount": 0,
+            "mcpServerCount": 0,
+            "score": 3535
+          },
+          "agent-operating-guide": {
+            "bodyChars": 2176,
+            "toolCount": 0,
+            "mcpServerCount": 0,
+            "score": 2176
           }
         }
       }
@@ -262,7 +295,7 @@
         "actionEfficiency": 1.0,
         "targetFocus": 1.0,
         "lineageEfficiency": 1.0,
-        "matchedEvidenceRecords": 6,
+        "matchedEvidenceRecords": 12,
         "attributedSuccessCount": 3,
         "attributedWarningCount": 0,
         "attributedErrorCount": 0,
@@ -279,7 +312,7 @@
           "baseline",
           "candidate-trajectory-baseline"
         ],
-        "matchedRecordCount": 6,
+        "matchedRecordCount": 12,
         "errorCount": 0,
         "warningCount": 0,
         "successCount": 3,
@@ -287,14 +320,15 @@
         "externalErrorCount": 0,
         "sourceKindCounts": {
           "run_state": 2,
-          "run_report": 1,
+          "run_report": 7,
           "transcript_event": 2,
           "handoff_event": 1
         },
         "statusCounts": {
-          "review": 1,
-          "spec": 1,
-          "ready_for_quality_gate": 1,
+          "implement": 1,
+          "ready_for_quality_gate": 5,
+          "pass": 2,
+          "done": 1,
           "success": 3
         }
       },
@@ -311,24 +345,36 @@
         "matchedPolicyIds": [],
         "matchedPolicies": []
       },
-      "passedChecks": 8,
-      "totalChecks": 8,
+      "passedChecks": 14,
+      "totalChecks": 14,
       "complexity": {
-        "bodyChars": 2948,
+        "bodyChars": 8659,
         "toolCount": 6,
         "mcpServerCount": 0,
-        "fileCount": 1,
-        "score": 3113,
+        "fileCount": 3,
+        "score": 8854,
         "perTarget": {
           "team-lead": {
             "bodyChars": 2948,
             "toolCount": 6,
             "mcpServerCount": 0,
             "score": 3098
+          },
+          "team-lead-skill": {
+            "bodyChars": 3535,
+            "toolCount": 0,
+            "mcpServerCount": 0,
+            "score": 3535
+          },
+          "agent-operating-guide": {
+            "bodyChars": 2176,
+            "toolCount": 0,
+            "mcpServerCount": 0,
+            "score": 2176
           }
         }
       },
-      "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-00-baseline.agent.md"
+      "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-00-baseline"
     },
     "liveEvaluation": {
       "enabled": false,
@@ -351,17 +397,17 @@
       "resumed": false,
       "checkpointStage": "post_mutation_search",
       "startingMutationIndex": 1,
-      "completedMutationCount": 1,
-      "requestedMutationCount": 1,
-      "totalMutationCount": 1,
-      "nextMutationIndex": 2,
+      "completedMutationCount": 2,
+      "requestedMutationCount": 2,
+      "totalMutationCount": 2,
+      "nextMutationIndex": 3,
       "hasRemainingMutations": false,
       "inlineCandidateCount": 1,
-      "snapshotBackedCandidateCount": 1,
+      "snapshotBackedCandidateCount": 2,
       "checkpointPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/search-checkpoint.json",
       "checkpointManifestPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/search-checkpoint-manifest.json",
-      "manifestSnapshotCandidateCount": 1,
-      "manifestRequiredFileCount": 1
+      "manifestSnapshotCandidateCount": 2,
+      "manifestRequiredFileCount": 6
     },
     "candidateSearch": {
       "strategy": "current_best",
@@ -378,7 +424,21 @@
           "catalogIndex": 1,
           "planToken": "1:relax-no-product-code-boundary",
           "mutationId": "relax-no-product-code-boundary",
-          "description": "Loosen the manager scope to prove governance regressions are discarded.",
+          "description": "Loosen the manager scope across the manager bundle to prove governance regressions are discarded.",
+          "priorityStatus": "neutral",
+          "priorityScore": 0.0,
+          "bonus": 0.0,
+          "penalty": 0.0,
+          "matchedPolicyCount": 0,
+          "matchedPolicyIds": [],
+          "sourceCandidateIds": []
+        },
+        {
+          "plannedIndex": 2,
+          "catalogIndex": 2,
+          "planToken": "2:weaken-agent-guide-governance",
+          "mutationId": "weaken-agent-guide-governance",
+          "description": "Weaken the shared AGENTS governance contract to prove the broader governed bundle rejects drift.",
           "priorityStatus": "neutral",
           "priorityScore": 0.0,
           "bonus": 0.0,
@@ -389,7 +449,7 @@
         }
       ],
       "maxSearchDepth": 1,
-      "ledgerNodeCount": 2,
+      "ledgerNodeCount": 3,
       "searchLedgerPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/search-ledger.json",
       "bestCandidateLineage": [
         "baseline"
@@ -399,24 +459,31 @@
       ],
       "winnerExplanation": {
         "winnerCandidateId": "baseline",
-        "comparedCandidateId": "relax-no-product-code-boundary",
+        "comparedCandidateId": "weaken-agent-guide-governance",
         "comparisonMode": "deterministic_ranking",
         "decisiveSignal": "benchmark_score",
         "evidenceBacked": false,
-        "summary": "baseline beat relax-no-product-code-boundary on benchmark score (1.0 vs 0.842105).",
+        "summary": "baseline beat weaken-agent-guide-governance on benchmark score (1.0 vs 0.848485).",
         "evidenceSummary": null,
         "rankingComparison": {
           "winnerScore": 1.0,
-          "runnerUpScore": 0.842105,
-          "scoreDelta": 0.157895,
-          "winnerComplexityScore": 3113,
-          "runnerUpComplexityScore": 3105,
-          "complexityAdvantage": -8,
+          "runnerUpScore": 0.848485,
+          "scoreDelta": 0.151515,
+          "winnerComplexityScore": 8854,
+          "runnerUpComplexityScore": 8887,
+          "complexityAdvantage": 33,
           "winnerTrajectoryScore": 0.88,
-          "runnerUpTrajectoryScore": 0.60125,
-          "trajectoryScoreDelta": 0.27875
+          "runnerUpTrajectoryScore": 0.646429,
+          "trajectoryScoreDelta": 0.233571
         },
         "topTrajectorySignals": [
+          {
+            "signal": "matchedEvidenceRecords",
+            "preference": "higher_is_better",
+            "winner": 12,
+            "runnerUp": 1,
+            "advantage": 11.0
+          },
           {
             "signal": "attributedSuccessCount",
             "preference": "higher_is_better",
@@ -425,54 +492,46 @@
             "advantage": 3.0
           },
           {
-            "signal": "matchedEvidenceRecords",
-            "preference": "higher_is_better",
-            "winner": 6,
-            "runnerUp": 3,
-            "advantage": 3.0
-          },
-          {
-            "signal": "attributedErrorCount",
-            "preference": "lower_is_better",
-            "winner": 0,
-            "runnerUp": 2,
-            "advantage": 2.0
-          },
-          {
-            "signal": "attributedToolErrorCount",
-            "preference": "lower_is_better",
-            "winner": 0,
-            "runnerUp": 2,
-            "advantage": 2.0
-          },
-          {
             "signal": "actionEfficiency",
+            "preference": "higher_is_better",
+            "winner": 1.0,
+            "runnerUp": 0.333333,
+            "advantage": 0.666667
+          },
+          {
+            "signal": "lineageEfficiency",
             "preference": "higher_is_better",
             "winner": 1.0,
             "runnerUp": 0.5,
             "advantage": 0.5
+          },
+          {
+            "signal": "validationBreadth",
+            "preference": "higher_is_better",
+            "winner": 1.0,
+            "runnerUp": 0.857143,
+            "advantage": 0.142857
           }
         ],
-        "trajectorySummary": "Top trajectory contributors: attributedSuccessCount +3, matchedEvidenceRecords +3, attributedErrorCount lower by 2",
+        "trajectorySummary": "Top trajectory contributors: matchedEvidenceRecords +11, attributedSuccessCount +3, actionEfficiency +0.666667",
         "evidenceComparison": {
           "winnerSourceKinds": {
             "handoff_event": 1,
-            "run_report": 1,
+            "run_report": 7,
             "run_state": 2,
             "transcript_event": 2
           },
           "runnerUpSourceKinds": {
-            "run_report": 1,
-            "transcript_event": 2
+            "run_report": 1
           },
           "winnerStatuses": {
-            "ready_for_quality_gate": 1,
-            "review": 1,
-            "spec": 1,
+            "done": 1,
+            "implement": 1,
+            "pass": 2,
+            "ready_for_quality_gate": 5,
             "success": 3
           },
           "runnerUpStatuses": {
-            "error": 2,
             "ready_for_quality_gate": 1
           }
         },
@@ -481,7 +540,7 @@
           "iteration": 0,
           "searchDepth": 0,
           "score": 1.0,
-          "complexityScore": 3113,
+          "complexityScore": 8854,
           "trajectoryScore": 0.88,
           "trajectorySignals": {
             "validationBreadth": 1.0,
@@ -489,7 +548,7 @@
             "actionEfficiency": 1.0,
             "targetFocus": 1.0,
             "lineageEfficiency": 1.0,
-            "matchedEvidenceRecords": 6,
+            "matchedEvidenceRecords": 12,
             "attributedSuccessCount": 3,
             "attributedWarningCount": 0,
             "attributedErrorCount": 0,
@@ -502,7 +561,7 @@
             "liveWinnerBoost": 0.0
           },
           "evidence": {
-            "matchedRecordCount": 6,
+            "matchedRecordCount": 12,
             "successCount": 3,
             "warningCount": 0,
             "errorCount": 0,
@@ -510,56 +569,55 @@
             "externalErrorCount": 0,
             "sourceKindCounts": {
               "handoff_event": 1,
-              "run_report": 1,
+              "run_report": 7,
               "run_state": 2,
               "transcript_event": 2
             },
             "statusCounts": {
-              "ready_for_quality_gate": 1,
-              "review": 1,
-              "spec": 1,
+              "done": 1,
+              "implement": 1,
+              "pass": 2,
+              "ready_for_quality_gate": 5,
               "success": 3
             }
           }
         },
         "runnerUp": {
-          "candidateId": "relax-no-product-code-boundary",
-          "iteration": 1,
+          "candidateId": "weaken-agent-guide-governance",
+          "iteration": 2,
           "searchDepth": 1,
-          "score": 0.842105,
-          "complexityScore": 3105,
-          "trajectoryScore": 0.60125,
+          "score": 0.848485,
+          "complexityScore": 8887,
+          "trajectoryScore": 0.646429,
           "trajectorySignals": {
-            "validationBreadth": 0.875,
+            "validationBreadth": 0.857143,
             "parentProgress": 0.0,
-            "actionEfficiency": 0.5,
+            "actionEfficiency": 0.333333,
             "targetFocus": 1.0,
             "lineageEfficiency": 0.5,
-            "matchedEvidenceRecords": 3,
+            "matchedEvidenceRecords": 1,
             "attributedSuccessCount": 0,
             "attributedWarningCount": 0,
-            "attributedErrorCount": 2,
-            "attributedToolErrorCount": 2,
+            "attributedErrorCount": 0,
+            "attributedToolErrorCount": 0,
             "attributedExternalErrorCount": 0,
             "evidenceSupport": 0.0,
-            "evidenceIssuePenalty": 0.08,
+            "evidenceIssuePenalty": 0.0,
             "reviewedPolicyBonus": 0.0,
             "reviewedPolicyPenalty": 0.0,
             "liveWinnerBoost": 0.0
           },
           "evidence": {
-            "matchedRecordCount": 3,
+            "matchedRecordCount": 1,
             "successCount": 0,
             "warningCount": 0,
-            "errorCount": 2,
-            "toolErrorCount": 2,
+            "errorCount": 0,
+            "toolErrorCount": 0,
             "externalErrorCount": 0,
             "sourceKindCounts": {
-              "run_report": 1,
-              "transcript_event": 2
+              "run_report": 1
             },
             "statusCounts": {
-              "error": 2,
               "ready_for_quality_gate": 1
             }
           }
@@ -579,10 +637,10 @@
         "handoff_event": 1
       },
       "statuses": {
-        "Review": 1,
+        "Implement": 1,
         "READY_FOR_QUALITY_GATE": 5,
         "PASS": 3,
-        "Spec": 1,
+        "Done": 1,
         "Intake": 1,
         "success": 3,
         "error": 2
@@ -594,14 +652,18 @@
       "transcriptRecordCount": 4,
       "handoffRecordCount": 1,
       "externalLogRecordCount": 5,
-      "externalSourceCount": 3
+      "externalSourceCount": 3,
+      "governedTraceExportRecordCount": 5,
+      "governedTraceExportSourceCount": 3,
+      "fixtureExternalLogRecordCount": 0,
+      "fixtureExternalSourceCount": 0
     },
     "stagedPatch": {
       "enabled": true,
       "mode": "review_bundle",
       "applyOnPass": false,
       "candidateId": "baseline",
-      "candidatePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-00-baseline.agent.md",
+      "candidatePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-00-baseline",
       "changedTargetCount": 0,
       "changedTargets": [],
       "reviewerHints": [],
@@ -609,18 +671,29 @@
       "includeTargetSnapshots": true,
       "includeDiffSummary": true
     },
+    "stagedPatchReviewBundle": {
+      "status": "ready_no_changes",
+      "bundlePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/staged-patch-review-bundle.json",
+      "bundleFound": true,
+      "candidateId": "baseline",
+      "changedTargetCount": 0,
+      "changedTargetIds": [],
+      "primaryChangedTargetIds": [],
+      "reviewerHints": [],
+      "requiredHumanAction": "Review the staged patch bundle and governed artifacts before choosing the next bounded step."
+    },
     "outcomeLabel": "unchanged",
     "improvementDelta": 0.0,
     "appliedBestVariant": false,
     "appliedPaths": [],
     "keptCandidateCount": 1,
-    "discardedCandidateCount": 1,
-    "trajectoryCount": 2,
-    "episodeCount": 2,
-    "evidenceBackedEpisodeCount": 2,
+    "discardedCandidateCount": 2,
+    "trajectoryCount": 3,
+    "episodeCount": 3,
+    "evidenceBackedEpisodeCount": 3,
     "bestTrajectoryId": "candidate-trajectory-baseline",
     "bestTrajectoryScore": 0.88,
-    "bestTrajectoryEvidenceMatches": 6,
+    "bestTrajectoryEvidenceMatches": 12,
     "rankingSignals": [
       "benchmark_score",
       "complexity",
@@ -628,24 +701,31 @@
     ],
     "winnerExplanation": {
       "winnerCandidateId": "baseline",
-      "comparedCandidateId": "relax-no-product-code-boundary",
+      "comparedCandidateId": "weaken-agent-guide-governance",
       "comparisonMode": "deterministic_ranking",
       "decisiveSignal": "benchmark_score",
       "evidenceBacked": false,
-      "summary": "baseline beat relax-no-product-code-boundary on benchmark score (1.0 vs 0.842105).",
+      "summary": "baseline beat weaken-agent-guide-governance on benchmark score (1.0 vs 0.848485).",
       "evidenceSummary": null,
       "rankingComparison": {
         "winnerScore": 1.0,
-        "runnerUpScore": 0.842105,
-        "scoreDelta": 0.157895,
-        "winnerComplexityScore": 3113,
-        "runnerUpComplexityScore": 3105,
-        "complexityAdvantage": -8,
+        "runnerUpScore": 0.848485,
+        "scoreDelta": 0.151515,
+        "winnerComplexityScore": 8854,
+        "runnerUpComplexityScore": 8887,
+        "complexityAdvantage": 33,
         "winnerTrajectoryScore": 0.88,
-        "runnerUpTrajectoryScore": 0.60125,
-        "trajectoryScoreDelta": 0.27875
+        "runnerUpTrajectoryScore": 0.646429,
+        "trajectoryScoreDelta": 0.233571
       },
       "topTrajectorySignals": [
+        {
+          "signal": "matchedEvidenceRecords",
+          "preference": "higher_is_better",
+          "winner": 12,
+          "runnerUp": 1,
+          "advantage": 11.0
+        },
         {
           "signal": "attributedSuccessCount",
           "preference": "higher_is_better",
@@ -654,54 +734,46 @@
           "advantage": 3.0
         },
         {
-          "signal": "matchedEvidenceRecords",
-          "preference": "higher_is_better",
-          "winner": 6,
-          "runnerUp": 3,
-          "advantage": 3.0
-        },
-        {
-          "signal": "attributedErrorCount",
-          "preference": "lower_is_better",
-          "winner": 0,
-          "runnerUp": 2,
-          "advantage": 2.0
-        },
-        {
-          "signal": "attributedToolErrorCount",
-          "preference": "lower_is_better",
-          "winner": 0,
-          "runnerUp": 2,
-          "advantage": 2.0
-        },
-        {
           "signal": "actionEfficiency",
+          "preference": "higher_is_better",
+          "winner": 1.0,
+          "runnerUp": 0.333333,
+          "advantage": 0.666667
+        },
+        {
+          "signal": "lineageEfficiency",
           "preference": "higher_is_better",
           "winner": 1.0,
           "runnerUp": 0.5,
           "advantage": 0.5
+        },
+        {
+          "signal": "validationBreadth",
+          "preference": "higher_is_better",
+          "winner": 1.0,
+          "runnerUp": 0.857143,
+          "advantage": 0.142857
         }
       ],
-      "trajectorySummary": "Top trajectory contributors: attributedSuccessCount +3, matchedEvidenceRecords +3, attributedErrorCount lower by 2",
+      "trajectorySummary": "Top trajectory contributors: matchedEvidenceRecords +11, attributedSuccessCount +3, actionEfficiency +0.666667",
       "evidenceComparison": {
         "winnerSourceKinds": {
           "handoff_event": 1,
-          "run_report": 1,
+          "run_report": 7,
           "run_state": 2,
           "transcript_event": 2
         },
         "runnerUpSourceKinds": {
-          "run_report": 1,
-          "transcript_event": 2
+          "run_report": 1
         },
         "winnerStatuses": {
-          "ready_for_quality_gate": 1,
-          "review": 1,
-          "spec": 1,
+          "done": 1,
+          "implement": 1,
+          "pass": 2,
+          "ready_for_quality_gate": 5,
           "success": 3
         },
         "runnerUpStatuses": {
-          "error": 2,
           "ready_for_quality_gate": 1
         }
       },
@@ -710,7 +782,7 @@
         "iteration": 0,
         "searchDepth": 0,
         "score": 1.0,
-        "complexityScore": 3113,
+        "complexityScore": 8854,
         "trajectoryScore": 0.88,
         "trajectorySignals": {
           "validationBreadth": 1.0,
@@ -718,7 +790,7 @@
           "actionEfficiency": 1.0,
           "targetFocus": 1.0,
           "lineageEfficiency": 1.0,
-          "matchedEvidenceRecords": 6,
+          "matchedEvidenceRecords": 12,
           "attributedSuccessCount": 3,
           "attributedWarningCount": 0,
           "attributedErrorCount": 0,
@@ -731,7 +803,7 @@
           "liveWinnerBoost": 0.0
         },
         "evidence": {
-          "matchedRecordCount": 6,
+          "matchedRecordCount": 12,
           "successCount": 3,
           "warningCount": 0,
           "errorCount": 0,
@@ -739,56 +811,55 @@
           "externalErrorCount": 0,
           "sourceKindCounts": {
             "handoff_event": 1,
-            "run_report": 1,
+            "run_report": 7,
             "run_state": 2,
             "transcript_event": 2
           },
           "statusCounts": {
-            "ready_for_quality_gate": 1,
-            "review": 1,
-            "spec": 1,
+            "done": 1,
+            "implement": 1,
+            "pass": 2,
+            "ready_for_quality_gate": 5,
             "success": 3
           }
         }
       },
       "runnerUp": {
-        "candidateId": "relax-no-product-code-boundary",
-        "iteration": 1,
+        "candidateId": "weaken-agent-guide-governance",
+        "iteration": 2,
         "searchDepth": 1,
-        "score": 0.842105,
-        "complexityScore": 3105,
-        "trajectoryScore": 0.60125,
+        "score": 0.848485,
+        "complexityScore": 8887,
+        "trajectoryScore": 0.646429,
         "trajectorySignals": {
-          "validationBreadth": 0.875,
+          "validationBreadth": 0.857143,
           "parentProgress": 0.0,
-          "actionEfficiency": 0.5,
+          "actionEfficiency": 0.333333,
           "targetFocus": 1.0,
           "lineageEfficiency": 0.5,
-          "matchedEvidenceRecords": 3,
+          "matchedEvidenceRecords": 1,
           "attributedSuccessCount": 0,
           "attributedWarningCount": 0,
-          "attributedErrorCount": 2,
-          "attributedToolErrorCount": 2,
+          "attributedErrorCount": 0,
+          "attributedToolErrorCount": 0,
           "attributedExternalErrorCount": 0,
           "evidenceSupport": 0.0,
-          "evidenceIssuePenalty": 0.08,
+          "evidenceIssuePenalty": 0.0,
           "reviewedPolicyBonus": 0.0,
           "reviewedPolicyPenalty": 0.0,
           "liveWinnerBoost": 0.0
         },
         "evidence": {
-          "matchedRecordCount": 3,
+          "matchedRecordCount": 1,
           "successCount": 0,
           "warningCount": 0,
-          "errorCount": 2,
-          "toolErrorCount": 2,
+          "errorCount": 0,
+          "toolErrorCount": 0,
           "externalErrorCount": 0,
           "sourceKindCounts": {
-            "run_report": 1,
-            "transcript_event": 2
+            "run_report": 1
           },
           "statusCounts": {
-            "error": 2,
             "ready_for_quality_gate": 1
           }
         }
@@ -806,7 +877,8 @@
     "searchLedgerPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/search-ledger.json",
     "benchmarkDraftsPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/draft-benchmark-fragments.json",
     "mutationDraftsPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/draft-mutation-catalog.json",
-    "policyDraftsPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/draft-policy-catalog.json"
+    "policyDraftsPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/draft-policy-catalog.json",
+    "stagedPatchBundlePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/staged-patch-review-bundle.json"
   },
   "trajectories": [
     {
@@ -820,10 +892,10 @@
       "status": "keep",
       "context": {
         "experimentName": "team-lead-optimization",
-        "experimentDescription": "Conservative first-pass AutoAgent experiment for this repository. It benchmarks the `team-lead` agent profile, tests a small mutation catalog, and keeps only variants that improve score or preserve score with lower complexity while staging review-oriented run metadata.\n",
+        "experimentDescription": "Conservative first-pass AutoAgent experiment for this repository. It benchmarks a small governed manager bundle anchored on the `team-lead` agent profile, the shared Team Lead orchestration skill, and the repo-level `AGENTS.md` operating guide, tests a small mutation catalog, and keeps only variants that improve score or preserve score with lower complexity while staging review-oriented run metadata.\n",
         "benchmarkId": "team-lead-benchmark",
         "primaryTargetId": "team-lead",
-        "candidatePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-00-baseline.agent.md",
+        "candidatePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-00-baseline",
         "touchedTargets": [],
         "lineageCandidateIds": [
           "baseline"
@@ -833,7 +905,7 @@
             "baseline",
             "candidate-trajectory-baseline"
           ],
-          "matchedRecordCount": 6,
+          "matchedRecordCount": 12,
           "errorCount": 0,
           "warningCount": 0,
           "successCount": 3,
@@ -841,14 +913,15 @@
           "externalErrorCount": 0,
           "sourceKindCounts": {
             "run_state": 2,
-            "run_report": 1,
+            "run_report": 7,
             "transcript_event": 2,
             "handoff_event": 1
           },
           "statusCounts": {
-            "review": 1,
-            "spec": 1,
-            "ready_for_quality_gate": 1,
+            "implement": 1,
+            "ready_for_quality_gate": 5,
+            "pass": 2,
+            "done": 1,
             "success": 3
           }
         },
@@ -873,8 +946,8 @@
           "attemptType": "deterministic_benchmark",
           "attemptIndex": 1,
           "benchmarkId": "team-lead-benchmark",
-          "passedChecks": 8,
-          "totalChecks": 8,
+          "passedChecks": 14,
+          "totalChecks": 14,
           "checks": [
             {
               "id": "sole-coordinator",
@@ -1042,6 +1115,120 @@
                 "agent",
                 "github/*"
               ]
+            },
+            {
+              "id": "skill-current-run-contract",
+              "type": "contains_text",
+              "targetId": "team-lead-skill",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.0,
+              "passed": true,
+              "expected": "`docs/agents/current-run.json`",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 3535
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 3535
+              }
+            },
+            {
+              "id": "skill-no-product-code-boundary",
+              "type": "contains_text",
+              "targetId": "team-lead-skill",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.5,
+              "passed": true,
+              "expected": "The manager does not implement product code.",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 3535
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 3535
+              }
+            },
+            {
+              "id": "skill-snapshot-contract",
+              "type": "contains_text",
+              "targetId": "team-lead-skill",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.0,
+              "passed": true,
+              "expected": "Snapshot every mutable file under `docs/agents/`",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 3535
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 3535
+              }
+            },
+            {
+              "id": "guide-current-run-contract",
+              "type": "contains_text",
+              "targetId": "agent-operating-guide",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.0,
+              "passed": true,
+              "expected": "`docs/agents/current-run.json`",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2176
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2176
+              }
+            },
+            {
+              "id": "guide-live-shared-root",
+              "type": "contains_text",
+              "targetId": "agent-operating-guide",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.5,
+              "passed": true,
+              "expected": "`docs/agents/` is the only live shared artifact root.",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2176
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2176
+              }
+            },
+            {
+              "id": "guide-no-hook-bypass",
+              "type": "contains_text",
+              "targetId": "agent-operating-guide",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.0,
+              "passed": true,
+              "expected": "Do not bypass hook denials.",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2176
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2176
+              }
             }
           ]
         }
@@ -1054,7 +1241,7 @@
           "actionEfficiency": 1.0,
           "targetFocus": 1.0,
           "lineageEfficiency": 1.0,
-          "matchedEvidenceRecords": 6,
+          "matchedEvidenceRecords": 12,
           "attributedSuccessCount": 3,
           "attributedWarningCount": 0,
           "attributedErrorCount": 0,
@@ -1072,20 +1259,32 @@
         "score": 1.0,
         "deltaFromBaseline": 0.0,
         "deltaFromParent": null,
-        "passedChecks": 8,
-        "totalChecks": 8,
+        "passedChecks": 14,
+        "totalChecks": 14,
         "complexity": {
-          "bodyChars": 2948,
+          "bodyChars": 8659,
           "toolCount": 6,
           "mcpServerCount": 0,
-          "fileCount": 1,
-          "score": 3113,
+          "fileCount": 3,
+          "score": 8854,
           "perTarget": {
             "team-lead": {
               "bodyChars": 2948,
               "toolCount": 6,
               "mcpServerCount": 0,
               "score": 3098
+            },
+            "team-lead-skill": {
+              "bodyChars": 3535,
+              "toolCount": 0,
+              "mcpServerCount": 0,
+              "score": 3535
+            },
+            "agent-operating-guide": {
+              "bodyChars": 2176,
+              "toolCount": 0,
+              "mcpServerCount": 0,
+              "score": 2176
             }
           }
         },
@@ -1099,17 +1298,18 @@
       "candidateId": "relax-no-product-code-boundary",
       "parentCandidateId": "baseline",
       "mutationId": "relax-no-product-code-boundary",
-      "description": "Loosen the manager scope to prove governance regressions are discarded.",
+      "description": "Loosen the manager scope across the manager bundle to prove governance regressions are discarded.",
       "searchDepth": 1,
       "status": "discard",
       "context": {
         "experimentName": "team-lead-optimization",
-        "experimentDescription": "Conservative first-pass AutoAgent experiment for this repository. It benchmarks the `team-lead` agent profile, tests a small mutation catalog, and keeps only variants that improve score or preserve score with lower complexity while staging review-oriented run metadata.\n",
+        "experimentDescription": "Conservative first-pass AutoAgent experiment for this repository. It benchmarks a small governed manager bundle anchored on the `team-lead` agent profile, the shared Team Lead orchestration skill, and the repo-level `AGENTS.md` operating guide, tests a small mutation catalog, and keeps only variants that improve score or preserve score with lower complexity while staging review-oriented run metadata.\n",
         "benchmarkId": "team-lead-benchmark",
         "primaryTargetId": "team-lead",
-        "candidatePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-01-relax-no-product-code-boundary.agent.md",
+        "candidatePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-01-relax-no-product-code-boundary",
         "touchedTargets": [
-          "team-lead"
+          "team-lead",
+          "team-lead-skill"
         ],
         "lineageCandidateIds": [
           "baseline",
@@ -1150,8 +1350,8 @@
         },
         "mutation": {
           "id": "relax-no-product-code-boundary",
-          "description": "Loosen the manager scope to prove governance regressions are discarded.",
-          "operationCount": 1
+          "description": "Loosen the manager scope across the manager bundle to prove governance regressions are discarded.",
+          "operationCount": 2
         }
       },
       "actionSequence": [
@@ -1161,10 +1361,22 @@
           "operationIndex": 1,
           "operation": {
             "type": "replace_text",
+            "targetId": "team-lead",
             "target": "body",
             "old": "You may edit coordination artifacts, templates, and lightweight workflow wiring, but not product code.",
-            "new": "You may edit coordination artifacts, templates, lightweight workflow wiring, and product code.",
-            "targetId": "team-lead"
+            "new": "You may edit coordination artifacts, templates, lightweight workflow wiring, and product code."
+          }
+        },
+        {
+          "actionId": "mutation-operation-02",
+          "actionType": "mutation_operation",
+          "operationIndex": 2,
+          "operation": {
+            "type": "replace_text",
+            "targetId": "team-lead-skill",
+            "target": "body",
+            "old": "- The manager does not implement product code.",
+            "new": "- The manager may implement product code."
           }
         }
       ],
@@ -1173,8 +1385,8 @@
           "attemptType": "deterministic_benchmark",
           "attemptIndex": 1,
           "benchmarkId": "team-lead-benchmark",
-          "passedChecks": 7,
-          "totalChecks": 8,
+          "passedChecks": 12,
+          "totalChecks": 14,
           "checks": [
             {
               "id": "sole-coordinator",
@@ -1342,17 +1554,131 @@
                 "agent",
                 "github/*"
               ]
+            },
+            {
+              "id": "skill-current-run-contract",
+              "type": "contains_text",
+              "targetId": "team-lead-skill",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.0,
+              "passed": true,
+              "expected": "`docs/agents/current-run.json`",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 3530
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 3530
+              }
+            },
+            {
+              "id": "skill-no-product-code-boundary",
+              "type": "contains_text",
+              "targetId": "team-lead-skill",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.5,
+              "passed": false,
+              "expected": "The manager does not implement product code.",
+              "observed": {
+                "containsExpected": false,
+                "targetLength": 3530
+              },
+              "actual": {
+                "containsExpected": false,
+                "targetLength": 3530
+              }
+            },
+            {
+              "id": "skill-snapshot-contract",
+              "type": "contains_text",
+              "targetId": "team-lead-skill",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.0,
+              "passed": true,
+              "expected": "Snapshot every mutable file under `docs/agents/`",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 3530
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 3530
+              }
+            },
+            {
+              "id": "guide-current-run-contract",
+              "type": "contains_text",
+              "targetId": "agent-operating-guide",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.0,
+              "passed": true,
+              "expected": "`docs/agents/current-run.json`",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2176
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2176
+              }
+            },
+            {
+              "id": "guide-live-shared-root",
+              "type": "contains_text",
+              "targetId": "agent-operating-guide",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.5,
+              "passed": true,
+              "expected": "`docs/agents/` is the only live shared artifact root.",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2176
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2176
+              }
+            },
+            {
+              "id": "guide-no-hook-bypass",
+              "type": "contains_text",
+              "targetId": "agent-operating-guide",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.0,
+              "passed": true,
+              "expected": "Do not bypass hook denials.",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2176
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2176
+              }
             }
           ]
         }
       ],
       "ranking": {
-        "trajectoryScore": 0.60125,
+        "trajectoryScore": 0.516429,
         "signals": {
-          "validationBreadth": 0.875,
+          "validationBreadth": 0.857143,
           "parentProgress": 0.0,
-          "actionEfficiency": 0.5,
-          "targetFocus": 1.0,
+          "actionEfficiency": 0.333333,
+          "targetFocus": 0.5,
           "lineageEfficiency": 0.5,
           "matchedEvidenceRecords": 3,
           "attributedSuccessCount": 0,
@@ -1369,23 +1695,471 @@
       },
       "outcome": {
         "status": "discard",
-        "score": 0.842105,
-        "deltaFromBaseline": -0.157895,
-        "deltaFromParent": -0.157895,
-        "passedChecks": 7,
-        "totalChecks": 8,
+        "score": 0.818182,
+        "deltaFromBaseline": -0.181818,
+        "deltaFromParent": -0.181818,
+        "passedChecks": 12,
+        "totalChecks": 14,
         "complexity": {
-          "bodyChars": 2940,
+          "bodyChars": 8646,
           "toolCount": 6,
           "mcpServerCount": 0,
-          "fileCount": 1,
-          "score": 3105,
+          "fileCount": 3,
+          "score": 8841,
           "perTarget": {
             "team-lead": {
               "bodyChars": 2940,
               "toolCount": 6,
               "mcpServerCount": 0,
               "score": 3090
+            },
+            "team-lead-skill": {
+              "bodyChars": 3530,
+              "toolCount": 0,
+              "mcpServerCount": 0,
+              "score": 3530
+            },
+            "agent-operating-guide": {
+              "bodyChars": 2176,
+              "toolCount": 0,
+              "mcpServerCount": 0,
+              "score": 2176
+            }
+          }
+        },
+        "selectedAsBest": false,
+        "appliedBestVariant": false
+      }
+    },
+    {
+      "trajectoryId": "candidate-trajectory-weaken-agent-guide-governance",
+      "kind": "candidate_journey",
+      "candidateId": "weaken-agent-guide-governance",
+      "parentCandidateId": "baseline",
+      "mutationId": "weaken-agent-guide-governance",
+      "description": "Weaken the shared AGENTS governance contract to prove the broader governed bundle rejects drift.",
+      "searchDepth": 1,
+      "status": "discard",
+      "context": {
+        "experimentName": "team-lead-optimization",
+        "experimentDescription": "Conservative first-pass AutoAgent experiment for this repository. It benchmarks a small governed manager bundle anchored on the `team-lead` agent profile, the shared Team Lead orchestration skill, and the repo-level `AGENTS.md` operating guide, tests a small mutation catalog, and keeps only variants that improve score or preserve score with lower complexity while staging review-oriented run metadata.\n",
+        "benchmarkId": "team-lead-benchmark",
+        "primaryTargetId": "team-lead",
+        "candidatePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-02-weaken-agent-guide-governance",
+        "touchedTargets": [
+          "agent-operating-guide"
+        ],
+        "lineageCandidateIds": [
+          "baseline",
+          "weaken-agent-guide-governance"
+        ],
+        "evidence": {
+          "aliases": [
+            "candidate-trajectory-weaken-agent-guide-governance",
+            "weaken-agent-guide-governance"
+          ],
+          "matchedRecordCount": 1,
+          "errorCount": 0,
+          "warningCount": 0,
+          "successCount": 0,
+          "toolErrorCount": 0,
+          "externalErrorCount": 0,
+          "sourceKindCounts": {
+            "run_report": 1
+          },
+          "statusCounts": {
+            "ready_for_quality_gate": 1
+          }
+        },
+        "reviewedPolicies": {
+          "enabled": false,
+          "status": "disabled",
+          "artifactPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/reviewed-policies.json",
+          "policyCount": 0,
+          "matchedPolicyCount": 0,
+          "preferredSequenceMatchCount": 0,
+          "escalationMatchCount": 0,
+          "bonus": 0.0,
+          "penalty": 0.0,
+          "matchedPolicyIds": [],
+          "matchedPolicies": []
+        },
+        "mutation": {
+          "id": "weaken-agent-guide-governance",
+          "description": "Weaken the shared AGENTS governance contract to prove the broader governed bundle rejects drift.",
+          "operationCount": 2
+        }
+      },
+      "actionSequence": [
+        {
+          "actionId": "mutation-operation-01",
+          "actionType": "mutation_operation",
+          "operationIndex": 1,
+          "operation": {
+            "type": "replace_text",
+            "targetId": "agent-operating-guide",
+            "target": "body",
+            "old": "- `docs/agents/` is the only live shared artifact root.",
+            "new": "- `docs/agents/` is a preferred live shared artifact root."
+          }
+        },
+        {
+          "actionId": "mutation-operation-02",
+          "actionType": "mutation_operation",
+          "operationIndex": 2,
+          "operation": {
+            "type": "replace_text",
+            "targetId": "agent-operating-guide",
+            "target": "body",
+            "old": "- Do not bypass hook denials.",
+            "new": "- Do not bypass hook denials when local iteration needs it."
+          }
+        }
+      ],
+      "validationAttempts": [
+        {
+          "attemptType": "deterministic_benchmark",
+          "attemptIndex": 1,
+          "benchmarkId": "team-lead-benchmark",
+          "passedChecks": 12,
+          "totalChecks": 14,
+          "checks": [
+            {
+              "id": "sole-coordinator",
+              "type": "contains_text",
+              "targetId": "team-lead",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.5,
+              "passed": true,
+              "expected": "the only coordinator",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2948
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2948
+              }
+            },
+            {
+              "id": "specialists-no-peer-coordination",
+              "type": "contains_text",
+              "targetId": "team-lead",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.0,
+              "passed": true,
+              "expected": "specialists do not coordinate with each other",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2948
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2948
+              }
+            },
+            {
+              "id": "current-run-contract",
+              "type": "contains_text",
+              "targetId": "team-lead",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.0,
+              "passed": true,
+              "expected": "`docs/agents/current-run.json`",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2948
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2948
+              }
+            },
+            {
+              "id": "no-product-code-boundary",
+              "type": "contains_text",
+              "targetId": "team-lead",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.5,
+              "passed": true,
+              "expected": "but not product code",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2948
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2948
+              }
+            },
+            {
+              "id": "quality-gate-flow",
+              "type": "contains_text",
+              "targetId": "team-lead",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.0,
+              "passed": true,
+              "expected": "`quality-gate`",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2948
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2948
+              }
+            },
+            {
+              "id": "review-report-artifact",
+              "type": "contains_text",
+              "targetId": "team-lead",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.0,
+              "passed": true,
+              "expected": "`docs/agents/review-report.md`",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2948
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2948
+              }
+            },
+            {
+              "id": "manager-decision-output",
+              "type": "contains_text",
+              "targetId": "team-lead",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.5,
+              "passed": true,
+              "expected": "`ManagerDecision`",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2948
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2948
+              }
+            },
+            {
+              "id": "tools-exact",
+              "type": "frontmatter_equals",
+              "targetId": "team-lead",
+              "target": null,
+              "key": "tools",
+              "comparator": "equals",
+              "weight": 1.0,
+              "passed": true,
+              "expected": [
+                "read",
+                "search",
+                "execute",
+                "edit",
+                "agent",
+                "github/*"
+              ],
+              "observed": [
+                "read",
+                "search",
+                "execute",
+                "edit",
+                "agent",
+                "github/*"
+              ],
+              "actual": [
+                "read",
+                "search",
+                "execute",
+                "edit",
+                "agent",
+                "github/*"
+              ]
+            },
+            {
+              "id": "skill-current-run-contract",
+              "type": "contains_text",
+              "targetId": "team-lead-skill",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.0,
+              "passed": true,
+              "expected": "`docs/agents/current-run.json`",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 3535
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 3535
+              }
+            },
+            {
+              "id": "skill-no-product-code-boundary",
+              "type": "contains_text",
+              "targetId": "team-lead-skill",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.5,
+              "passed": true,
+              "expected": "The manager does not implement product code.",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 3535
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 3535
+              }
+            },
+            {
+              "id": "skill-snapshot-contract",
+              "type": "contains_text",
+              "targetId": "team-lead-skill",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.0,
+              "passed": true,
+              "expected": "Snapshot every mutable file under `docs/agents/`",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 3535
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 3535
+              }
+            },
+            {
+              "id": "guide-current-run-contract",
+              "type": "contains_text",
+              "targetId": "agent-operating-guide",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.0,
+              "passed": true,
+              "expected": "`docs/agents/current-run.json`",
+              "observed": {
+                "containsExpected": true,
+                "targetLength": 2209
+              },
+              "actual": {
+                "containsExpected": true,
+                "targetLength": 2209
+              }
+            },
+            {
+              "id": "guide-live-shared-root",
+              "type": "contains_text",
+              "targetId": "agent-operating-guide",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.5,
+              "passed": false,
+              "expected": "`docs/agents/` is the only live shared artifact root.",
+              "observed": {
+                "containsExpected": false,
+                "targetLength": 2209
+              },
+              "actual": {
+                "containsExpected": false,
+                "targetLength": 2209
+              }
+            },
+            {
+              "id": "guide-no-hook-bypass",
+              "type": "contains_text",
+              "targetId": "agent-operating-guide",
+              "target": "body",
+              "key": null,
+              "comparator": "contains",
+              "weight": 1.0,
+              "passed": false,
+              "expected": "Do not bypass hook denials.",
+              "observed": {
+                "containsExpected": false,
+                "targetLength": 2209
+              },
+              "actual": {
+                "containsExpected": false,
+                "targetLength": 2209
+              }
+            }
+          ]
+        }
+      ],
+      "ranking": {
+        "trajectoryScore": 0.646429,
+        "signals": {
+          "validationBreadth": 0.857143,
+          "parentProgress": 0.0,
+          "actionEfficiency": 0.333333,
+          "targetFocus": 1.0,
+          "lineageEfficiency": 0.5,
+          "matchedEvidenceRecords": 1,
+          "attributedSuccessCount": 0,
+          "attributedWarningCount": 0,
+          "attributedErrorCount": 0,
+          "attributedToolErrorCount": 0,
+          "attributedExternalErrorCount": 0,
+          "evidenceSupport": 0.0,
+          "evidenceIssuePenalty": 0.0,
+          "reviewedPolicyBonus": 0.0,
+          "reviewedPolicyPenalty": 0.0,
+          "liveWinnerBoost": 0.0
+        }
+      },
+      "outcome": {
+        "status": "discard",
+        "score": 0.848485,
+        "deltaFromBaseline": -0.151515,
+        "deltaFromParent": -0.151515,
+        "passedChecks": 12,
+        "totalChecks": 14,
+        "complexity": {
+          "bodyChars": 8692,
+          "toolCount": 6,
+          "mcpServerCount": 0,
+          "fileCount": 3,
+          "score": 8887,
+          "perTarget": {
+            "team-lead": {
+              "bodyChars": 2948,
+              "toolCount": 6,
+              "mcpServerCount": 0,
+              "score": 3098
+            },
+            "team-lead-skill": {
+              "bodyChars": 3535,
+              "toolCount": 0,
+              "mcpServerCount": 0,
+              "score": 3535
+            },
+            "agent-operating-guide": {
+              "bodyChars": 2209,
+              "toolCount": 0,
+              "mcpServerCount": 0,
+              "score": 2209
             }
           }
         },
@@ -1406,18 +2180,37 @@
         "baseline"
       ],
       "summary": {
-        "matchedRecordCount": 6,
-        "stepCount": 6,
+        "matchedRecordCount": 12,
+        "stepCount": 12,
         "sourceKindCounts": {
           "run_state": 2,
-          "run_report": 1,
+          "run_report": 7,
           "transcript_event": 2,
           "handoff_event": 1
         },
+        "sourceOriginCounts": {
+          "governed_run_export": 3
+        },
+        "sourceScopes": [
+          "current_artifact",
+          "run_snapshot",
+          "chat_transcript",
+          "conversation_transcript",
+          "handoff_history"
+        ],
+        "sourceIds": [
+          "chat-history-1",
+          "transcript-history-1",
+          "handoff-history-1"
+        ],
+        "governedRunIds": [
+          "20260308-160258"
+        ],
         "statusCounts": {
-          "Review": 1,
-          "Spec": 1,
-          "READY_FOR_QUALITY_GATE": 1,
+          "Implement": 1,
+          "READY_FOR_QUALITY_GATE": 5,
+          "PASS": 2,
+          "Done": 1,
           "success": 3
         },
         "toolNames": [
@@ -1443,9 +2236,11 @@
           "sequence": 1,
           "sourceKind": "run_state",
           "sourceScope": "current_artifact",
+          "sourceOrigin": null,
+          "sourceRunId": null,
           "file": "docs/agents/state.json",
           "recordType": "state.json",
-          "status": "Review",
+          "status": "Implement",
           "role": null,
           "toolName": null,
           "sourceId": null,
@@ -1457,11 +2252,13 @@
         {
           "stepId": "candidate-episode-baseline-step-02",
           "sequence": 2,
-          "sourceKind": "run_state",
-          "sourceScope": "run_snapshot",
-          "file": "docs/agents/runs/20260308-160258/state.json",
-          "recordType": "state.json",
-          "status": "Spec",
+          "sourceKind": "run_report",
+          "sourceScope": "current_artifact",
+          "sourceOrigin": null,
+          "sourceRunId": null,
+          "file": "docs/agents/patch-report.md",
+          "recordType": "PatchReport",
+          "status": "READY_FOR_QUALITY_GATE",
           "role": null,
           "toolName": null,
           "sourceId": null,
@@ -1474,9 +2271,11 @@
           "stepId": "candidate-episode-baseline-step-03",
           "sequence": 3,
           "sourceKind": "run_report",
-          "sourceScope": "run_snapshot",
-          "file": "docs/agents/runs/20260308-160258/autoagent-report.md",
-          "recordType": "AutoAgentReport",
+          "sourceScope": "current_artifact",
+          "sourceOrigin": null,
+          "sourceRunId": null,
+          "file": "docs/agents/test-report.md",
+          "recordType": "TestReport",
           "status": "READY_FOR_QUALITY_GATE",
           "role": null,
           "toolName": null,
@@ -1489,9 +2288,119 @@
         {
           "stepId": "candidate-episode-baseline-step-04",
           "sequence": 4,
+          "sourceKind": "run_report",
+          "sourceScope": "current_artifact",
+          "sourceOrigin": null,
+          "sourceRunId": null,
+          "file": "docs/agents/review-report.md",
+          "recordType": "ReviewReport",
+          "status": "PASS",
+          "role": null,
+          "toolName": null,
+          "sourceId": null,
+          "candidateIds": [],
+          "lineageCandidateIds": [],
+          "handoffRefs": [],
+          "transcriptText": null
+        },
+        {
+          "stepId": "candidate-episode-baseline-step-05",
+          "sequence": 5,
+          "sourceKind": "run_state",
+          "sourceScope": "run_snapshot",
+          "sourceOrigin": null,
+          "sourceRunId": null,
+          "file": "docs/agents/runs/20260308-160258/state.json",
+          "recordType": "state.json",
+          "status": "Done",
+          "role": null,
+          "toolName": null,
+          "sourceId": null,
+          "candidateIds": [],
+          "lineageCandidateIds": [],
+          "handoffRefs": [],
+          "transcriptText": null
+        },
+        {
+          "stepId": "candidate-episode-baseline-step-06",
+          "sequence": 6,
+          "sourceKind": "run_report",
+          "sourceScope": "run_snapshot",
+          "sourceOrigin": null,
+          "sourceRunId": null,
+          "file": "docs/agents/runs/20260308-160258/patch-report.md",
+          "recordType": "PatchReport",
+          "status": "READY_FOR_QUALITY_GATE",
+          "role": null,
+          "toolName": null,
+          "sourceId": null,
+          "candidateIds": [],
+          "lineageCandidateIds": [],
+          "handoffRefs": [],
+          "transcriptText": null
+        },
+        {
+          "stepId": "candidate-episode-baseline-step-07",
+          "sequence": 7,
+          "sourceKind": "run_report",
+          "sourceScope": "run_snapshot",
+          "sourceOrigin": null,
+          "sourceRunId": null,
+          "file": "docs/agents/runs/20260308-160258/test-report.md",
+          "recordType": "TestReport",
+          "status": "READY_FOR_QUALITY_GATE",
+          "role": null,
+          "toolName": null,
+          "sourceId": null,
+          "candidateIds": [],
+          "lineageCandidateIds": [],
+          "handoffRefs": [],
+          "transcriptText": null
+        },
+        {
+          "stepId": "candidate-episode-baseline-step-08",
+          "sequence": 8,
+          "sourceKind": "run_report",
+          "sourceScope": "run_snapshot",
+          "sourceOrigin": null,
+          "sourceRunId": null,
+          "file": "docs/agents/runs/20260308-160258/review-report.md",
+          "recordType": "ReviewReport",
+          "status": "PASS",
+          "role": null,
+          "toolName": null,
+          "sourceId": null,
+          "candidateIds": [],
+          "lineageCandidateIds": [],
+          "handoffRefs": [],
+          "transcriptText": null
+        },
+        {
+          "stepId": "candidate-episode-baseline-step-09",
+          "sequence": 9,
+          "sourceKind": "run_report",
+          "sourceScope": "run_snapshot",
+          "sourceOrigin": null,
+          "sourceRunId": null,
+          "file": "docs/agents/runs/20260308-160258/autoagent-report.md",
+          "recordType": "AutoAgentReport",
+          "status": "READY_FOR_QUALITY_GATE",
+          "role": null,
+          "toolName": null,
+          "sourceId": null,
+          "candidateIds": [],
+          "lineageCandidateIds": [],
+          "handoffRefs": [],
+          "transcriptText": null
+        },
+        {
+          "stepId": "candidate-episode-baseline-step-10",
+          "sequence": 10,
           "sourceKind": "transcript_event",
           "sourceScope": "chat_transcript",
-          "file": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/tests/fixtures/autoagent-loop/team-lead-chat-history.json",
+          "sourceOrigin": "governed_run_export",
+          "sourceRunId": "20260308-160258",
+          "file": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/runs/20260308-160258/copilot-chat-export.json",
           "recordType": "assistant",
           "status": "success",
           "role": "assistant",
@@ -1505,11 +2414,13 @@
           "transcriptText": "baseline reviewed the governed artifacts and kept the deterministic boundary."
         },
         {
-          "stepId": "candidate-episode-baseline-step-05",
-          "sequence": 5,
+          "stepId": "candidate-episode-baseline-step-11",
+          "sequence": 11,
           "sourceKind": "transcript_event",
           "sourceScope": "conversation_transcript",
-          "file": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/tests/fixtures/autoagent-loop/team-lead-transcript-history.jsonl",
+          "sourceOrigin": "governed_run_export",
+          "sourceRunId": "20260308-160258",
+          "file": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/runs/20260308-160258/copilot-transcript-export.jsonl",
           "recordType": "assistant",
           "status": "success",
           "role": "assistant",
@@ -1523,11 +2434,13 @@
           "transcriptText": "baseline used a focused repo search before keeping the current manager boundary."
         },
         {
-          "stepId": "candidate-episode-baseline-step-06",
-          "sequence": 6,
+          "stepId": "candidate-episode-baseline-step-12",
+          "sequence": 12,
           "sourceKind": "handoff_event",
           "sourceScope": "handoff_history",
-          "file": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/tests/fixtures/autoagent-loop/team-lead-handoff-history.jsonl",
+          "sourceOrigin": "governed_run_export",
+          "sourceRunId": "20260308-160258",
+          "file": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/runs/20260308-160258/copilot-handoff-export.jsonl",
           "recordType": "handoff",
           "status": "success",
           "role": "assistant",
@@ -1560,6 +2473,21 @@
           "run_report": 1,
           "transcript_event": 2
         },
+        "sourceOriginCounts": {
+          "governed_run_export": 2
+        },
+        "sourceScopes": [
+          "run_snapshot",
+          "chat_transcript",
+          "conversation_transcript"
+        ],
+        "sourceIds": [
+          "chat-history-1",
+          "transcript-history-1"
+        ],
+        "governedRunIds": [
+          "20260308-160258"
+        ],
         "statusCounts": {
           "READY_FOR_QUALITY_GATE": 1,
           "error": 2
@@ -1586,6 +2514,8 @@
           "sequence": 1,
           "sourceKind": "run_report",
           "sourceScope": "run_snapshot",
+          "sourceOrigin": null,
+          "sourceRunId": null,
           "file": "docs/agents/runs/20260308-160258/autoagent-report.md",
           "recordType": "AutoAgentReport",
           "status": "READY_FOR_QUALITY_GATE",
@@ -1602,7 +2532,9 @@
           "sequence": 2,
           "sourceKind": "transcript_event",
           "sourceScope": "chat_transcript",
-          "file": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/tests/fixtures/autoagent-loop/team-lead-chat-history.json",
+          "sourceOrigin": "governed_run_export",
+          "sourceRunId": "20260308-160258",
+          "file": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/runs/20260308-160258/copilot-chat-export.json",
           "recordType": "assistant",
           "status": "error",
           "role": "assistant",
@@ -1620,7 +2552,9 @@
           "sequence": 3,
           "sourceKind": "transcript_event",
           "sourceScope": "conversation_transcript",
-          "file": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/tests/fixtures/autoagent-loop/team-lead-transcript-history.jsonl",
+          "sourceOrigin": "governed_run_export",
+          "sourceRunId": "20260308-160258",
+          "file": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/runs/20260308-160258/copilot-transcript-export.jsonl",
           "recordType": "assistant",
           "status": "error",
           "role": "assistant",
@@ -1634,18 +2568,72 @@
           "transcriptText": "relax-no-product-code-boundary reached a warning after relaxing the product-code restriction."
         }
       ]
+    },
+    {
+      "episodeId": "candidate-episode-weaken-agent-guide-governance",
+      "kind": "candidate_observation_episode",
+      "trajectoryId": "candidate-trajectory-weaken-agent-guide-governance",
+      "candidateId": "weaken-agent-guide-governance",
+      "parentCandidateId": "baseline",
+      "status": "discard",
+      "lineageCandidateIds": [
+        "baseline",
+        "weaken-agent-guide-governance"
+      ],
+      "summary": {
+        "matchedRecordCount": 1,
+        "stepCount": 1,
+        "sourceKindCounts": {
+          "run_report": 1
+        },
+        "sourceOriginCounts": {},
+        "sourceScopes": [
+          "run_snapshot"
+        ],
+        "sourceIds": [],
+        "governedRunIds": [],
+        "statusCounts": {
+          "READY_FOR_QUALITY_GATE": 1
+        },
+        "toolNames": [],
+        "toolSequence": [],
+        "toolCounts": {},
+        "handoffCount": 0,
+        "observedPattern": "evidence_backed",
+        "terminalStatus": "READY_FOR_QUALITY_GATE"
+      },
+      "steps": [
+        {
+          "stepId": "candidate-episode-weaken-agent-guide-governance-step-01",
+          "sequence": 1,
+          "sourceKind": "run_report",
+          "sourceScope": "run_snapshot",
+          "sourceOrigin": null,
+          "sourceRunId": null,
+          "file": "docs/agents/runs/20260308-160258/autoagent-report.md",
+          "recordType": "AutoAgentReport",
+          "status": "READY_FOR_QUALITY_GATE",
+          "role": null,
+          "toolName": null,
+          "sourceId": null,
+          "candidateIds": [],
+          "lineageCandidateIds": [],
+          "handoffRefs": [],
+          "transcriptText": null
+        }
+      ]
     }
   ],
   "learning": {
     "mode": "shadow_only",
-    "episodeCount": 2,
-    "evidenceBackedEpisodeCount": 2,
+    "episodeCount": 3,
+    "evidenceBackedEpisodeCount": 3,
     "reasoningPathSignal": {
       "name": "reasoningPathEfficiencyScore",
-      "sourceBackedPathCount": 2,
+      "sourceBackedPathCount": 3,
       "transcriptBackedPathCount": 2,
       "handoffBackedPathCount": 1,
-      "bestObservedScore": 0.808333
+      "bestObservedScore": 0.795833
     },
     "topObservedPaths": [
       {
@@ -1653,12 +2641,12 @@
         "trajectoryId": "candidate-trajectory-baseline",
         "candidateId": "baseline",
         "classification": "successful_path",
-        "learningScore": 0.870833,
-        "qualityScore": 0.9125,
-        "efficiencyScore": 0.808333,
-        "reasoningPathEfficiencyScore": 0.808333,
+        "learningScore": 0.839583,
+        "qualityScore": 0.86875,
+        "efficiencyScore": 0.795833,
+        "reasoningPathEfficiencyScore": 0.795833,
         "terminalStatus": "success",
-        "matchedRecordCount": 6,
+        "matchedRecordCount": 12,
         "handoffCount": 1,
         "searchDepth": 0,
         "actionCount": 0,
@@ -1678,12 +2666,33 @@
           "read_file"
         ],
         "provenance": {
-          "matchedRecordCount": 6,
+          "matchedRecordCount": 12,
           "sourceKinds": [
             "handoff_event",
             "run_report",
             "run_state",
             "transcript_event"
+          ],
+          "sourceOrigins": [
+            "governed_run_export"
+          ],
+          "sourceOriginCounts": {
+            "governed_run_export": 3
+          },
+          "sourceScopes": [
+            "current_artifact",
+            "run_snapshot",
+            "chat_transcript",
+            "conversation_transcript",
+            "handoff_history"
+          ],
+          "sourceIds": [
+            "chat-history-1",
+            "transcript-history-1",
+            "handoff-history-1"
+          ],
+          "governedRunIds": [
+            "20260308-160258"
           ],
           "transcriptRecordCount": 2,
           "handoffRecordCount": 1,
@@ -1692,34 +2701,86 @@
         },
         "factors": {
           "benchmarkQuality": 1.0,
-          "evidenceQuality": 0.75,
+          "evidenceQuality": 0.625,
           "terminalOutcomeScore": 1.0,
           "actionCount": 0,
           "searchDepth": 0,
-          "stepCount": 6,
+          "stepCount": 12,
           "handoffCount": 1,
           "handoffEfficiency": 0.666667,
           "toolSequenceLength": 3,
           "repeatedToolCount": 0,
           "toolChurnScore": 1.0,
-          "reasoningPathEfficiencyScore": 0.808333
+          "reasoningPathEfficiencyScore": 0.795833
         },
         "selectedAsBest": true
+      },
+      {
+        "episodeId": "candidate-episode-weaken-agent-guide-governance",
+        "trajectoryId": "candidate-trajectory-weaken-agent-guide-governance",
+        "candidateId": "weaken-agent-guide-governance",
+        "classification": "observed_path",
+        "learningScore": 0.689424,
+        "qualityScore": 0.676818,
+        "efficiencyScore": 0.708333,
+        "reasoningPathEfficiencyScore": 0.708333,
+        "terminalStatus": "READY_FOR_QUALITY_GATE",
+        "matchedRecordCount": 1,
+        "handoffCount": 0,
+        "searchDepth": 1,
+        "actionCount": 2,
+        "sourceKinds": [
+          "run_report"
+        ],
+        "toolNames": [],
+        "toolSequence": [],
+        "provenance": {
+          "matchedRecordCount": 1,
+          "sourceKinds": [
+            "run_report"
+          ],
+          "sourceOrigins": [],
+          "sourceOriginCounts": {},
+          "sourceScopes": [
+            "run_snapshot"
+          ],
+          "sourceIds": [],
+          "governedRunIds": [],
+          "transcriptRecordCount": 0,
+          "handoffRecordCount": 0,
+          "transcriptBacked": false,
+          "handoffBacked": false
+        },
+        "factors": {
+          "benchmarkQuality": 0.848485,
+          "evidenceQuality": 0.5,
+          "terminalOutcomeScore": 0.6,
+          "actionCount": 2,
+          "searchDepth": 1,
+          "stepCount": 1,
+          "handoffCount": 0,
+          "handoffEfficiency": 1.0,
+          "toolSequenceLength": 0,
+          "repeatedToolCount": 0,
+          "toolChurnScore": 1.0,
+          "reasoningPathEfficiencyScore": 0.708333
+        },
+        "selectedAsBest": false
       },
       {
         "episodeId": "candidate-episode-relax-no-product-code-boundary",
         "trajectoryId": "candidate-trajectory-relax-no-product-code-boundary",
         "candidateId": "relax-no-product-code-boundary",
         "classification": "failure_path",
-        "learningScore": 0.487368,
-        "qualityScore": 0.378947,
-        "efficiencyScore": 0.65,
-        "reasoningPathEfficiencyScore": 0.65,
+        "learningScore": 0.464242,
+        "qualityScore": 0.368182,
+        "efficiencyScore": 0.608333,
+        "reasoningPathEfficiencyScore": 0.608333,
         "terminalStatus": "error",
         "matchedRecordCount": 3,
         "handoffCount": 0,
         "searchDepth": 1,
-        "actionCount": 1,
+        "actionCount": 2,
         "sourceKinds": [
           "run_report",
           "transcript_event"
@@ -1738,16 +2799,34 @@
             "run_report",
             "transcript_event"
           ],
+          "sourceOrigins": [
+            "governed_run_export"
+          ],
+          "sourceOriginCounts": {
+            "governed_run_export": 2
+          },
+          "sourceScopes": [
+            "run_snapshot",
+            "chat_transcript",
+            "conversation_transcript"
+          ],
+          "sourceIds": [
+            "chat-history-1",
+            "transcript-history-1"
+          ],
+          "governedRunIds": [
+            "20260308-160258"
+          ],
           "transcriptRecordCount": 2,
           "handoffRecordCount": 0,
           "transcriptBacked": true,
           "handoffBacked": false
         },
         "factors": {
-          "benchmarkQuality": 0.842105,
+          "benchmarkQuality": 0.818182,
           "evidenceQuality": 0.0,
           "terminalOutcomeScore": 0.0,
-          "actionCount": 1,
+          "actionCount": 2,
           "searchDepth": 1,
           "stepCount": 3,
           "handoffCount": 0,
@@ -1755,7 +2834,7 @@
           "toolSequenceLength": 2,
           "repeatedToolCount": 0,
           "toolChurnScore": 1.0,
-          "reasoningPathEfficiencyScore": 0.65
+          "reasoningPathEfficiencyScore": 0.608333
         },
         "selectedAsBest": false
       }
@@ -1766,7 +2845,7 @@
         "kind": "episode_success_guard",
         "classification": "successful_path",
         "observedCount": 1,
-        "learningScore": 0.870833,
+        "learningScore": 0.839583,
         "exampleCandidateIds": [
           "baseline"
         ],
@@ -1782,14 +2861,35 @@
           "grep_search"
         ],
         "terminalStatus": "success",
-        "reasoningPathEfficiencyScore": 0.808333,
+        "reasoningPathEfficiencyScore": 0.795833,
         "provenance": {
-          "matchedRecordCount": 6,
+          "matchedRecordCount": 12,
           "sourceKinds": [
             "handoff_event",
             "run_report",
             "run_state",
             "transcript_event"
+          ],
+          "sourceOrigins": [
+            "governed_run_export"
+          ],
+          "sourceOriginCounts": {
+            "governed_run_export": 3
+          },
+          "sourceScopes": [
+            "current_artifact",
+            "run_snapshot",
+            "chat_transcript",
+            "conversation_transcript",
+            "handoff_history"
+          ],
+          "sourceIds": [
+            "chat-history-1",
+            "transcript-history-1",
+            "handoff-history-1"
+          ],
+          "governedRunIds": [
+            "20260308-160258"
           ],
           "transcriptRecordCount": 2,
           "handoffRecordCount": 1,
@@ -1798,26 +2898,75 @@
         },
         "factors": {
           "benchmarkQuality": 1.0,
-          "evidenceQuality": 0.75,
+          "evidenceQuality": 0.625,
           "terminalOutcomeScore": 1.0,
           "actionCount": 0,
           "searchDepth": 0,
-          "stepCount": 6,
+          "stepCount": 12,
           "handoffCount": 1,
           "handoffEfficiency": 0.666667,
           "toolSequenceLength": 3,
           "repeatedToolCount": 0,
           "toolChurnScore": 1.0,
-          "reasoningPathEfficiencyScore": 0.808333
+          "reasoningPathEfficiencyScore": 0.795833
         },
         "rationale": "Preserve the observed successful path pattern."
       },
       {
         "suggestionId": "episode-benchmark-02",
+        "kind": "episode_success_guard",
+        "classification": "observed_path",
+        "observedCount": 1,
+        "learningScore": 0.689424,
+        "exampleCandidateIds": [
+          "weaken-agent-guide-governance"
+        ],
+        "sourceKinds": [
+          "run_report"
+        ],
+        "handoffCount": 0,
+        "toolNames": [],
+        "terminalStatus": "READY_FOR_QUALITY_GATE",
+        "reasoningPathEfficiencyScore": 0.708333,
+        "provenance": {
+          "matchedRecordCount": 1,
+          "sourceKinds": [
+            "run_report"
+          ],
+          "sourceOrigins": [],
+          "sourceOriginCounts": {},
+          "sourceScopes": [
+            "run_snapshot"
+          ],
+          "sourceIds": [],
+          "governedRunIds": [],
+          "transcriptRecordCount": 0,
+          "handoffRecordCount": 0,
+          "transcriptBacked": false,
+          "handoffBacked": false
+        },
+        "factors": {
+          "benchmarkQuality": 0.848485,
+          "evidenceQuality": 0.5,
+          "terminalOutcomeScore": 0.6,
+          "actionCount": 2,
+          "searchDepth": 1,
+          "stepCount": 1,
+          "handoffCount": 0,
+          "handoffEfficiency": 1.0,
+          "toolSequenceLength": 0,
+          "repeatedToolCount": 0,
+          "toolChurnScore": 1.0,
+          "reasoningPathEfficiencyScore": 0.708333
+        },
+        "rationale": "Preserve the observed successful path pattern."
+      },
+      {
+        "suggestionId": "episode-benchmark-03",
         "kind": "episode_failure_regression",
         "classification": "failure_path",
         "observedCount": 1,
-        "learningScore": 0.487368,
+        "learningScore": 0.464242,
         "exampleCandidateIds": [
           "relax-no-product-code-boundary"
         ],
@@ -1831,12 +2980,30 @@
           "read_file"
         ],
         "terminalStatus": "error",
-        "reasoningPathEfficiencyScore": 0.65,
+        "reasoningPathEfficiencyScore": 0.608333,
         "provenance": {
           "matchedRecordCount": 3,
           "sourceKinds": [
             "run_report",
             "transcript_event"
+          ],
+          "sourceOrigins": [
+            "governed_run_export"
+          ],
+          "sourceOriginCounts": {
+            "governed_run_export": 2
+          },
+          "sourceScopes": [
+            "run_snapshot",
+            "chat_transcript",
+            "conversation_transcript"
+          ],
+          "sourceIds": [
+            "chat-history-1",
+            "transcript-history-1"
+          ],
+          "governedRunIds": [
+            "20260308-160258"
           ],
           "transcriptRecordCount": 2,
           "handoffRecordCount": 0,
@@ -1844,10 +3011,10 @@
           "handoffBacked": false
         },
         "factors": {
-          "benchmarkQuality": 0.842105,
+          "benchmarkQuality": 0.818182,
           "evidenceQuality": 0.0,
           "terminalOutcomeScore": 0.0,
-          "actionCount": 1,
+          "actionCount": 2,
           "searchDepth": 1,
           "stepCount": 3,
           "handoffCount": 0,
@@ -1855,7 +3022,7 @@
           "toolSequenceLength": 2,
           "repeatedToolCount": 0,
           "toolChurnScore": 1.0,
-          "reasoningPathEfficiencyScore": 0.65
+          "reasoningPathEfficiencyScore": 0.608333
         },
         "rationale": "Add a regression guard for the observed failing path pattern."
       }
@@ -1880,15 +3047,36 @@
         ],
         "targetSearchDepth": 0,
         "targetActionCount": 0,
-        "learningScore": 0.870833,
-        "reasoningPathEfficiencyScore": 0.808333,
+        "learningScore": 0.839583,
+        "reasoningPathEfficiencyScore": 0.795833,
         "provenance": {
-          "matchedRecordCount": 6,
+          "matchedRecordCount": 12,
           "sourceKinds": [
             "handoff_event",
             "run_report",
             "run_state",
             "transcript_event"
+          ],
+          "sourceOrigins": [
+            "governed_run_export"
+          ],
+          "sourceOriginCounts": {
+            "governed_run_export": 3
+          },
+          "sourceScopes": [
+            "current_artifact",
+            "run_snapshot",
+            "chat_transcript",
+            "conversation_transcript",
+            "handoff_history"
+          ],
+          "sourceIds": [
+            "chat-history-1",
+            "transcript-history-1",
+            "handoff-history-1"
+          ],
+          "governedRunIds": [
+            "20260308-160258"
           ],
           "transcriptRecordCount": 2,
           "handoffRecordCount": 1,
@@ -1897,22 +3085,70 @@
         },
         "factors": {
           "benchmarkQuality": 1.0,
-          "evidenceQuality": 0.75,
+          "evidenceQuality": 0.625,
           "terminalOutcomeScore": 1.0,
           "actionCount": 0,
           "searchDepth": 0,
-          "stepCount": 6,
+          "stepCount": 12,
           "handoffCount": 1,
           "handoffEfficiency": 0.666667,
           "toolSequenceLength": 3,
           "repeatedToolCount": 0,
           "toolChurnScore": 1.0,
-          "reasoningPathEfficiencyScore": 0.808333
+          "reasoningPathEfficiencyScore": 0.795833
         },
         "rationale": "Promote this observed successful path as a future mutation seed."
       },
       {
         "seedId": "episode-mutation-seed-02",
+        "kind": "investigate_observed_path",
+        "candidateId": "weaken-agent-guide-governance",
+        "episodeId": "candidate-episode-weaken-agent-guide-governance",
+        "sourceMutationId": "weaken-agent-guide-governance",
+        "sourceKinds": [
+          "run_report"
+        ],
+        "handoffCount": 0,
+        "toolNames": [],
+        "targetSearchDepth": 1,
+        "targetActionCount": 2,
+        "learningScore": 0.689424,
+        "reasoningPathEfficiencyScore": 0.708333,
+        "provenance": {
+          "matchedRecordCount": 1,
+          "sourceKinds": [
+            "run_report"
+          ],
+          "sourceOrigins": [],
+          "sourceOriginCounts": {},
+          "sourceScopes": [
+            "run_snapshot"
+          ],
+          "sourceIds": [],
+          "governedRunIds": [],
+          "transcriptRecordCount": 0,
+          "handoffRecordCount": 0,
+          "transcriptBacked": false,
+          "handoffBacked": false
+        },
+        "factors": {
+          "benchmarkQuality": 0.848485,
+          "evidenceQuality": 0.5,
+          "terminalOutcomeScore": 0.6,
+          "actionCount": 2,
+          "searchDepth": 1,
+          "stepCount": 1,
+          "handoffCount": 0,
+          "handoffEfficiency": 1.0,
+          "toolSequenceLength": 0,
+          "repeatedToolCount": 0,
+          "toolChurnScore": 1.0,
+          "reasoningPathEfficiencyScore": 0.708333
+        },
+        "rationale": "Investigate this observed path before turning it into a mutation."
+      },
+      {
+        "seedId": "episode-mutation-seed-03",
         "kind": "avoid_failure_path",
         "candidateId": "relax-no-product-code-boundary",
         "episodeId": "candidate-episode-relax-no-product-code-boundary",
@@ -1927,14 +3163,32 @@
           "read_file"
         ],
         "targetSearchDepth": 1,
-        "targetActionCount": 1,
-        "learningScore": 0.487368,
-        "reasoningPathEfficiencyScore": 0.65,
+        "targetActionCount": 2,
+        "learningScore": 0.464242,
+        "reasoningPathEfficiencyScore": 0.608333,
         "provenance": {
           "matchedRecordCount": 3,
           "sourceKinds": [
             "run_report",
             "transcript_event"
+          ],
+          "sourceOrigins": [
+            "governed_run_export"
+          ],
+          "sourceOriginCounts": {
+            "governed_run_export": 2
+          },
+          "sourceScopes": [
+            "run_snapshot",
+            "chat_transcript",
+            "conversation_transcript"
+          ],
+          "sourceIds": [
+            "chat-history-1",
+            "transcript-history-1"
+          ],
+          "governedRunIds": [
+            "20260308-160258"
           ],
           "transcriptRecordCount": 2,
           "handoffRecordCount": 0,
@@ -1942,10 +3196,10 @@
           "handoffBacked": false
         },
         "factors": {
-          "benchmarkQuality": 0.842105,
+          "benchmarkQuality": 0.818182,
           "evidenceQuality": 0.0,
           "terminalOutcomeScore": 0.0,
-          "actionCount": 1,
+          "actionCount": 2,
           "searchDepth": 1,
           "stepCount": 3,
           "handoffCount": 0,
@@ -1953,7 +3207,7 @@
           "toolSequenceLength": 2,
           "repeatedToolCount": 0,
           "toolChurnScore": 1.0,
-          "reasoningPathEfficiencyScore": 0.65
+          "reasoningPathEfficiencyScore": 0.608333
         },
         "rationale": "Use this observed failing path to shape a future avoidance mutation."
       }
@@ -1988,15 +3242,36 @@
           "maxSearchDepth": 0,
           "maxActionCount": 0
         },
-        "learningScore": 0.870833,
-        "reasoningPathEfficiencyScore": 0.808333,
+        "learningScore": 0.839583,
+        "reasoningPathEfficiencyScore": 0.795833,
         "provenance": {
-          "matchedRecordCount": 6,
+          "matchedRecordCount": 12,
           "sourceKinds": [
             "handoff_event",
             "run_report",
             "run_state",
             "transcript_event"
+          ],
+          "sourceOrigins": [
+            "governed_run_export"
+          ],
+          "sourceOriginCounts": {
+            "governed_run_export": 3
+          },
+          "sourceScopes": [
+            "current_artifact",
+            "run_snapshot",
+            "chat_transcript",
+            "conversation_transcript",
+            "handoff_history"
+          ],
+          "sourceIds": [
+            "chat-history-1",
+            "transcript-history-1",
+            "handoff-history-1"
+          ],
+          "governedRunIds": [
+            "20260308-160258"
           ],
           "transcriptRecordCount": 2,
           "handoffRecordCount": 1,
@@ -2005,17 +3280,17 @@
         },
         "factors": {
           "benchmarkQuality": 1.0,
-          "evidenceQuality": 0.75,
+          "evidenceQuality": 0.625,
           "terminalOutcomeScore": 1.0,
           "actionCount": 0,
           "searchDepth": 0,
-          "stepCount": 6,
+          "stepCount": 12,
           "handoffCount": 1,
           "handoffEfficiency": 0.666667,
           "toolSequenceLength": 3,
           "repeatedToolCount": 0,
           "toolChurnScore": 1.0,
-          "reasoningPathEfficiencyScore": 0.808333
+          "reasoningPathEfficiencyScore": 0.795833
         },
         "rationale": "Prefer the observed successful tool sequence for similar paths."
       },
@@ -2039,15 +3314,33 @@
         "terminalStatus": "error",
         "constraints": {
           "maxSearchDepth": 1,
-          "maxActionCount": 1
+          "maxActionCount": 2
         },
-        "learningScore": 0.487368,
-        "reasoningPathEfficiencyScore": 0.65,
+        "learningScore": 0.464242,
+        "reasoningPathEfficiencyScore": 0.608333,
         "provenance": {
           "matchedRecordCount": 3,
           "sourceKinds": [
             "run_report",
             "transcript_event"
+          ],
+          "sourceOrigins": [
+            "governed_run_export"
+          ],
+          "sourceOriginCounts": {
+            "governed_run_export": 2
+          },
+          "sourceScopes": [
+            "run_snapshot",
+            "chat_transcript",
+            "conversation_transcript"
+          ],
+          "sourceIds": [
+            "chat-history-1",
+            "transcript-history-1"
+          ],
+          "governedRunIds": [
+            "20260308-160258"
           ],
           "transcriptRecordCount": 2,
           "handoffRecordCount": 0,
@@ -2055,10 +3348,10 @@
           "handoffBacked": false
         },
         "factors": {
-          "benchmarkQuality": 0.842105,
+          "benchmarkQuality": 0.818182,
           "evidenceQuality": 0.0,
           "terminalOutcomeScore": 0.0,
-          "actionCount": 1,
+          "actionCount": 2,
           "searchDepth": 1,
           "stepCount": 3,
           "handoffCount": 0,
@@ -2066,7 +3359,7 @@
           "toolSequenceLength": 2,
           "repeatedToolCount": 0,
           "toolChurnScore": 1.0,
-          "reasoningPathEfficiencyScore": 0.65
+          "reasoningPathEfficiencyScore": 0.608333
         },
         "rationale": "Escalate or branch away when this observed tool path ends in failure or warning."
       }
@@ -2087,25 +3380,37 @@
       "score": 1.0,
       "trajectoryScore": 0.88,
       "deltaFromBaseline": 0.0,
-      "passedChecks": 8,
-      "totalChecks": 8,
+      "passedChecks": 14,
+      "totalChecks": 14,
       "complexity": {
-        "bodyChars": 2948,
+        "bodyChars": 8659,
         "toolCount": 6,
         "mcpServerCount": 0,
-        "fileCount": 1,
-        "score": 3113,
+        "fileCount": 3,
+        "score": 8854,
         "perTarget": {
           "team-lead": {
             "bodyChars": 2948,
             "toolCount": 6,
             "mcpServerCount": 0,
             "score": 3098
+          },
+          "team-lead-skill": {
+            "bodyChars": 3535,
+            "toolCount": 0,
+            "mcpServerCount": 0,
+            "score": 3535
+          },
+          "agent-operating-guide": {
+            "bodyChars": 2176,
+            "toolCount": 0,
+            "mcpServerCount": 0,
+            "score": 2176
           }
         }
       },
       "touchedTargets": [],
-      "candidatePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-00-baseline.agent.md",
+      "candidatePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-00-baseline",
       "selectedAsBest": true
     },
     {
@@ -2118,33 +3423,96 @@
       "mutationId": "relax-no-product-code-boundary",
       "searchDepth": 1,
       "status": "discard",
-      "description": "Loosen the manager scope to prove governance regressions are discarded.",
-      "score": 0.842105,
-      "trajectoryScore": 0.60125,
-      "deltaFromBaseline": -0.157895,
-      "passedChecks": 7,
-      "totalChecks": 8,
+      "description": "Loosen the manager scope across the manager bundle to prove governance regressions are discarded.",
+      "score": 0.818182,
+      "trajectoryScore": 0.516429,
+      "deltaFromBaseline": -0.181818,
+      "passedChecks": 12,
+      "totalChecks": 14,
       "complexity": {
-        "bodyChars": 2940,
+        "bodyChars": 8646,
         "toolCount": 6,
         "mcpServerCount": 0,
-        "fileCount": 1,
-        "score": 3105,
+        "fileCount": 3,
+        "score": 8841,
         "perTarget": {
           "team-lead": {
             "bodyChars": 2940,
             "toolCount": 6,
             "mcpServerCount": 0,
             "score": 3090
+          },
+          "team-lead-skill": {
+            "bodyChars": 3530,
+            "toolCount": 0,
+            "mcpServerCount": 0,
+            "score": 3530
+          },
+          "agent-operating-guide": {
+            "bodyChars": 2176,
+            "toolCount": 0,
+            "mcpServerCount": 0,
+            "score": 2176
           }
         }
       },
       "touchedTargets": [
-        "team-lead"
+        "team-lead",
+        "team-lead-skill"
       ],
-      "candidatePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-01-relax-no-product-code-boundary.agent.md",
+      "candidatePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-01-relax-no-product-code-boundary",
       "selectedAsBest": false,
-      "deltaFromParent": -0.157895
+      "deltaFromParent": -0.181818
+    },
+    {
+      "eventId": "candidate-evaluation-02-weaken-agent-guide-governance",
+      "kind": "candidate_evaluation",
+      "trajectoryId": "candidate-trajectory-weaken-agent-guide-governance",
+      "iteration": 2,
+      "candidateId": "weaken-agent-guide-governance",
+      "parentCandidateId": "baseline",
+      "mutationId": "weaken-agent-guide-governance",
+      "searchDepth": 1,
+      "status": "discard",
+      "description": "Weaken the shared AGENTS governance contract to prove the broader governed bundle rejects drift.",
+      "score": 0.848485,
+      "trajectoryScore": 0.646429,
+      "deltaFromBaseline": -0.151515,
+      "passedChecks": 12,
+      "totalChecks": 14,
+      "complexity": {
+        "bodyChars": 8692,
+        "toolCount": 6,
+        "mcpServerCount": 0,
+        "fileCount": 3,
+        "score": 8887,
+        "perTarget": {
+          "team-lead": {
+            "bodyChars": 2948,
+            "toolCount": 6,
+            "mcpServerCount": 0,
+            "score": 3098
+          },
+          "team-lead-skill": {
+            "bodyChars": 3535,
+            "toolCount": 0,
+            "mcpServerCount": 0,
+            "score": 3535
+          },
+          "agent-operating-guide": {
+            "bodyChars": 2209,
+            "toolCount": 0,
+            "mcpServerCount": 0,
+            "score": 2209
+          }
+        }
+      },
+      "touchedTargets": [
+        "agent-operating-guide"
+      ],
+      "candidatePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-02-weaken-agent-guide-governance",
+      "selectedAsBest": false,
+      "deltaFromParent": -0.151515
     },
     {
       "eventId": "frontier-snapshot-00",
@@ -2166,6 +3534,19 @@
       "mutationId": "relax-no-product-code-boundary",
       "evaluatedCandidateIds": [
         "relax-no-product-code-boundary"
+      ],
+      "frontierCandidateIds": [
+        "baseline"
+      ],
+      "bestCandidateId": "baseline"
+    },
+    {
+      "eventId": "frontier-snapshot-02",
+      "kind": "frontier_snapshot",
+      "mutationIndex": 2,
+      "mutationId": "weaken-agent-guide-governance",
+      "evaluatedCandidateIds": [
+        "weaken-agent-guide-governance"
       ],
       "frontierCandidateIds": [
         "baseline"
@@ -2196,27 +3577,34 @@
       "improvementDelta": 0.0,
       "appliedBestVariant": false,
       "keptCandidateCount": 1,
-      "discardedCandidateCount": 1,
+      "discardedCandidateCount": 2,
       "winnerExplanation": {
         "winnerCandidateId": "baseline",
-        "comparedCandidateId": "relax-no-product-code-boundary",
+        "comparedCandidateId": "weaken-agent-guide-governance",
         "comparisonMode": "deterministic_ranking",
         "decisiveSignal": "benchmark_score",
         "evidenceBacked": false,
-        "summary": "baseline beat relax-no-product-code-boundary on benchmark score (1.0 vs 0.842105).",
+        "summary": "baseline beat weaken-agent-guide-governance on benchmark score (1.0 vs 0.848485).",
         "evidenceSummary": null,
         "rankingComparison": {
           "winnerScore": 1.0,
-          "runnerUpScore": 0.842105,
-          "scoreDelta": 0.157895,
-          "winnerComplexityScore": 3113,
-          "runnerUpComplexityScore": 3105,
-          "complexityAdvantage": -8,
+          "runnerUpScore": 0.848485,
+          "scoreDelta": 0.151515,
+          "winnerComplexityScore": 8854,
+          "runnerUpComplexityScore": 8887,
+          "complexityAdvantage": 33,
           "winnerTrajectoryScore": 0.88,
-          "runnerUpTrajectoryScore": 0.60125,
-          "trajectoryScoreDelta": 0.27875
+          "runnerUpTrajectoryScore": 0.646429,
+          "trajectoryScoreDelta": 0.233571
         },
         "topTrajectorySignals": [
+          {
+            "signal": "matchedEvidenceRecords",
+            "preference": "higher_is_better",
+            "winner": 12,
+            "runnerUp": 1,
+            "advantage": 11.0
+          },
           {
             "signal": "attributedSuccessCount",
             "preference": "higher_is_better",
@@ -2225,54 +3613,46 @@
             "advantage": 3.0
           },
           {
-            "signal": "matchedEvidenceRecords",
-            "preference": "higher_is_better",
-            "winner": 6,
-            "runnerUp": 3,
-            "advantage": 3.0
-          },
-          {
-            "signal": "attributedErrorCount",
-            "preference": "lower_is_better",
-            "winner": 0,
-            "runnerUp": 2,
-            "advantage": 2.0
-          },
-          {
-            "signal": "attributedToolErrorCount",
-            "preference": "lower_is_better",
-            "winner": 0,
-            "runnerUp": 2,
-            "advantage": 2.0
-          },
-          {
             "signal": "actionEfficiency",
+            "preference": "higher_is_better",
+            "winner": 1.0,
+            "runnerUp": 0.333333,
+            "advantage": 0.666667
+          },
+          {
+            "signal": "lineageEfficiency",
             "preference": "higher_is_better",
             "winner": 1.0,
             "runnerUp": 0.5,
             "advantage": 0.5
+          },
+          {
+            "signal": "validationBreadth",
+            "preference": "higher_is_better",
+            "winner": 1.0,
+            "runnerUp": 0.857143,
+            "advantage": 0.142857
           }
         ],
-        "trajectorySummary": "Top trajectory contributors: attributedSuccessCount +3, matchedEvidenceRecords +3, attributedErrorCount lower by 2",
+        "trajectorySummary": "Top trajectory contributors: matchedEvidenceRecords +11, attributedSuccessCount +3, actionEfficiency +0.666667",
         "evidenceComparison": {
           "winnerSourceKinds": {
             "handoff_event": 1,
-            "run_report": 1,
+            "run_report": 7,
             "run_state": 2,
             "transcript_event": 2
           },
           "runnerUpSourceKinds": {
-            "run_report": 1,
-            "transcript_event": 2
+            "run_report": 1
           },
           "winnerStatuses": {
-            "ready_for_quality_gate": 1,
-            "review": 1,
-            "spec": 1,
+            "done": 1,
+            "implement": 1,
+            "pass": 2,
+            "ready_for_quality_gate": 5,
             "success": 3
           },
           "runnerUpStatuses": {
-            "error": 2,
             "ready_for_quality_gate": 1
           }
         },
@@ -2281,7 +3661,7 @@
           "iteration": 0,
           "searchDepth": 0,
           "score": 1.0,
-          "complexityScore": 3113,
+          "complexityScore": 8854,
           "trajectoryScore": 0.88,
           "trajectorySignals": {
             "validationBreadth": 1.0,
@@ -2289,7 +3669,7 @@
             "actionEfficiency": 1.0,
             "targetFocus": 1.0,
             "lineageEfficiency": 1.0,
-            "matchedEvidenceRecords": 6,
+            "matchedEvidenceRecords": 12,
             "attributedSuccessCount": 3,
             "attributedWarningCount": 0,
             "attributedErrorCount": 0,
@@ -2302,7 +3682,7 @@
             "liveWinnerBoost": 0.0
           },
           "evidence": {
-            "matchedRecordCount": 6,
+            "matchedRecordCount": 12,
             "successCount": 3,
             "warningCount": 0,
             "errorCount": 0,
@@ -2310,56 +3690,55 @@
             "externalErrorCount": 0,
             "sourceKindCounts": {
               "handoff_event": 1,
-              "run_report": 1,
+              "run_report": 7,
               "run_state": 2,
               "transcript_event": 2
             },
             "statusCounts": {
-              "ready_for_quality_gate": 1,
-              "review": 1,
-              "spec": 1,
+              "done": 1,
+              "implement": 1,
+              "pass": 2,
+              "ready_for_quality_gate": 5,
               "success": 3
             }
           }
         },
         "runnerUp": {
-          "candidateId": "relax-no-product-code-boundary",
-          "iteration": 1,
+          "candidateId": "weaken-agent-guide-governance",
+          "iteration": 2,
           "searchDepth": 1,
-          "score": 0.842105,
-          "complexityScore": 3105,
-          "trajectoryScore": 0.60125,
+          "score": 0.848485,
+          "complexityScore": 8887,
+          "trajectoryScore": 0.646429,
           "trajectorySignals": {
-            "validationBreadth": 0.875,
+            "validationBreadth": 0.857143,
             "parentProgress": 0.0,
-            "actionEfficiency": 0.5,
+            "actionEfficiency": 0.333333,
             "targetFocus": 1.0,
             "lineageEfficiency": 0.5,
-            "matchedEvidenceRecords": 3,
+            "matchedEvidenceRecords": 1,
             "attributedSuccessCount": 0,
             "attributedWarningCount": 0,
-            "attributedErrorCount": 2,
-            "attributedToolErrorCount": 2,
+            "attributedErrorCount": 0,
+            "attributedToolErrorCount": 0,
             "attributedExternalErrorCount": 0,
             "evidenceSupport": 0.0,
-            "evidenceIssuePenalty": 0.08,
+            "evidenceIssuePenalty": 0.0,
             "reviewedPolicyBonus": 0.0,
             "reviewedPolicyPenalty": 0.0,
             "liveWinnerBoost": 0.0
           },
           "evidence": {
-            "matchedRecordCount": 3,
+            "matchedRecordCount": 1,
             "successCount": 0,
             "warningCount": 0,
-            "errorCount": 2,
-            "toolErrorCount": 2,
+            "errorCount": 0,
+            "toolErrorCount": 0,
             "externalErrorCount": 0,
             "sourceKindCounts": {
-              "run_report": 1,
-              "transcript_event": 2
+              "run_report": 1
             },
             "statusCounts": {
-              "error": 2,
               "ready_for_quality_gate": 1
             }
           }

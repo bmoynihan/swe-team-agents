@@ -3,6 +3,7 @@
     "checks": [
         {
             "id": "sole-coordinator",
+            "targetId": "team-lead",
             "type": "contains_text",
             "target": "body",
             "value": "the only coordinator",
@@ -10,6 +11,7 @@
         },
         {
             "id": "specialists-no-peer-coordination",
+            "targetId": "team-lead",
             "type": "contains_text",
             "target": "body",
             "value": "specialists do not coordinate with each other",
@@ -17,6 +19,7 @@
         },
         {
             "id": "current-run-contract",
+            "targetId": "team-lead",
             "type": "contains_text",
             "target": "body",
             "value": "`docs/agents/current-run.json`",
@@ -24,6 +27,7 @@
         },
         {
             "id": "no-product-code-boundary",
+            "targetId": "team-lead",
             "type": "contains_text",
             "target": "body",
             "value": "but not product code",
@@ -31,6 +35,7 @@
         },
         {
             "id": "quality-gate-flow",
+            "targetId": "team-lead",
             "type": "contains_text",
             "target": "body",
             "value": "`quality-gate`",
@@ -38,6 +43,7 @@
         },
         {
             "id": "review-report-artifact",
+            "targetId": "team-lead",
             "type": "contains_text",
             "target": "body",
             "value": "`docs/agents/review-report.md`",
@@ -45,6 +51,7 @@
         },
         {
             "id": "manager-decision-output",
+            "targetId": "team-lead",
             "type": "contains_text",
             "target": "body",
             "value": "`ManagerDecision`",
@@ -52,6 +59,7 @@
         },
         {
             "id": "tools-exact",
+            "targetId": "team-lead",
             "type": "frontmatter_equals",
             "key": "tools",
             "value": [
@@ -62,6 +70,54 @@
                 "agent",
                 "github/*"
             ],
+            "weight": 1.0
+        },
+        {
+            "id": "skill-current-run-contract",
+            "targetId": "team-lead-skill",
+            "type": "contains_text",
+            "target": "body",
+            "value": "`docs/agents/current-run.json`",
+            "weight": 1.0
+        },
+        {
+            "id": "skill-no-product-code-boundary",
+            "targetId": "team-lead-skill",
+            "type": "contains_text",
+            "target": "body",
+            "value": "The manager does not implement product code.",
+            "weight": 1.5
+        },
+        {
+            "id": "skill-snapshot-contract",
+            "targetId": "team-lead-skill",
+            "type": "contains_text",
+            "target": "body",
+            "value": "Snapshot every mutable file under `docs/agents/`",
+            "weight": 1.0
+        },
+        {
+            "id": "guide-current-run-contract",
+            "targetId": "agent-operating-guide",
+            "type": "contains_text",
+            "target": "body",
+            "value": "`docs/agents/current-run.json`",
+            "weight": 1.0
+        },
+        {
+            "id": "guide-live-shared-root",
+            "targetId": "agent-operating-guide",
+            "type": "contains_text",
+            "target": "body",
+            "value": "`docs/agents/` is the only live shared artifact root.",
+            "weight": 1.5
+        },
+        {
+            "id": "guide-no-hook-bypass",
+            "targetId": "agent-operating-guide",
+            "type": "contains_text",
+            "target": "body",
+            "value": "Do not bypass hook denials.",
             "weight": 1.0
         }
     ]

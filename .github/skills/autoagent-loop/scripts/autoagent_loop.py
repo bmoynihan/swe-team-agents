@@ -2695,9 +2695,7 @@ def _serialize_learning_promotion_audit_state(state: dict[str, Any]) -> dict[str
         "rejectedPolicyDraftCount": int(state.get("rejectedPolicyDraftCount") or 0),
         "deferredPolicyDraftCount": int(state.get("deferredPolicyDraftCount") or 0),
         "reviewerOverrideCount": int(state.get("reviewerOverrideCount") or 0),
-        "benchmarkReviewerOverrideCount": int(
-            state.get("benchmarkReviewerOverrideCount") or 0
-        ),
+        "benchmarkReviewerOverrideCount": int(state.get("benchmarkReviewerOverrideCount") or 0),
         "mutationReviewerOverrideCount": int(state.get("mutationReviewerOverrideCount") or 0),
         "policyReviewerOverrideCount": int(state.get("policyReviewerOverrideCount") or 0),
         "blockedFactorCounts": _normalize_named_count_map(state.get("blockedFactorCounts")),
@@ -2789,7 +2787,9 @@ def _load_learning_promotion_audit_state(run_root: Path) -> dict[str, Any]:
         policy_blocked_factor_counts,
     ):
         for factor_name, factor_count in counts.items():
-            blocked_factor_counts[factor_name] = blocked_factor_counts.get(factor_name, 0) + factor_count
+            blocked_factor_counts[factor_name] = (
+                blocked_factor_counts.get(factor_name, 0) + factor_count
+            )
     blocked_factor_counts = _normalize_named_count_map(blocked_factor_counts)
 
     state.update(
@@ -2833,6 +2833,488 @@ def _load_learning_promotion_audit_state(run_root: Path) -> dict[str, Any]:
             "policyBlockedFactorCounts": policy_blocked_factor_counts,
         }
     )
+    return state
+
+
+def _aggregate_reviewed_continuation_trace_provenance(
+    provenance_items: list[dict[str, Any]],
+) -> dict[str, Any]:
+    source_kinds: set[str] = set()
+    source_origins: set[str] = set()
+    source_scopes: set[str] = set()
+    source_ids: set[str] = set()
+    governed_run_ids: set[str] = set()
+    matched_record_count = 0
+    transcript_record_count = 0
+    handoff_record_count = 0
+    transcript_backed_item_count = 0
+    handoff_backed_item_count = 0
+
+    for provenance in provenance_items:
+        if not isinstance(provenance, dict):
+            continue
+        matched_record_count += int(provenance.get("matchedRecordCount") or 0)
+        transcript_record_count += int(provenance.get("transcriptRecordCount") or 0)
+        handoff_record_count += int(provenance.get("handoffRecordCount") or 0)
+        if bool(provenance.get("transcriptBacked")):
+            transcript_backed_item_count += 1
+        if bool(provenance.get("handoffBacked")):
+            handoff_backed_item_count += 1
+        source_kinds.update(_non_empty_scalar_texts(provenance.get("sourceKinds") or []))
+        source_origins.update(_non_empty_scalar_texts(provenance.get("sourceOrigins") or []))
+        source_scopes.update(_non_empty_scalar_texts(provenance.get("sourceScopes") or []))
+        source_ids.update(_non_empty_scalar_texts(provenance.get("sourceIds") or []))
+        governed_run_ids.update(_non_empty_scalar_texts(provenance.get("governedRunIds") or []))
+
+    return {
+        "matchedRecordCount": matched_record_count,
+        "transcriptRecordCount": transcript_record_count,
+        "handoffRecordCount": handoff_record_count,
+        "transcriptBackedItemCount": transcript_backed_item_count,
+        "handoffBackedItemCount": handoff_backed_item_count,
+        "sourceKinds": sorted(source_kinds),
+        "sourceOrigins": sorted(source_origins),
+        "sourceScopes": sorted(source_scopes),
+        "sourceIds": sorted(source_ids),
+        "governedRunIds": sorted(governed_run_ids),
+        "governedTraceExportBacked": "governed_run_export" in source_origins,
+    }
+
+
+def _build_reviewed_continuation_bundle(
+    experiment: dict[str, Any],
+    review_manifest: dict[str, Any],
+    benchmark_review_results: list[dict[str, Any]],
+    mutation_review_results: list[dict[str, Any]],
+    policy_review_results: list[dict[str, Any]],
+    benchmark_drafts_by_id: dict[str, dict[str, Any]],
+    mutation_drafts_by_id: dict[str, dict[str, Any]],
+    policy_drafts_by_id: dict[str, dict[str, Any]],
+    *,
+    promoted_benchmark_path: Path,
+    promoted_mutations_path: Path,
+    promoted_policies_path: Path | None,
+    import_report_path: Path,
+    promotion_audit_path: Path,
+) -> dict[str, Any]:
+    accepted_benchmark_drafts: list[dict[str, Any]] = []
+    accepted_mutation_drafts: list[dict[str, Any]] = []
+    accepted_policy_drafts: list[dict[str, Any]] = []
+    trace_provenance_items: list[dict[str, Any]] = []
+
+    for review_record in benchmark_review_results:
+        if review_record.get("decision") != "accept":
+            continue
+        draft = benchmark_drafts_by_id.get(str(review_record.get("draftId")))
+        if draft is None:
+            continue
+        fragment = draft.get("fragment") or {}
+        suggested_checks = [
+            check for check in (fragment.get("suggestedChecks") or []) if isinstance(check, dict)
+        ]
+        trace_provenance = deepcopy(fragment.get("traceProvenance") or {})
+        trace_provenance_items.append(trace_provenance)
+        accepted_benchmark_drafts.append(
+            {
+                "draftId": str(review_record.get("draftId")),
+                "sourceSuggestionId": draft.get("sourceSuggestionId"),
+                "kind": draft.get("kind"),
+                "classification": draft.get("classification"),
+                "addedCheckIds": list(review_record.get("addedCheckIds") or []),
+                "observedCount": int(fragment.get("observedCount") or 0),
+                "learningScore": float(fragment.get("learningScore") or 0.0),
+                REASONING_PATH_EFFICIENCY_SIGNAL_NAME: float(
+                    fragment.get(REASONING_PATH_EFFICIENCY_SIGNAL_NAME) or 0.0
+                ),
+                "sourceKinds": sorted(
+                    {
+                        *(
+                            source_kind
+                            for check in suggested_checks
+                            for source_kind in _non_empty_scalar_texts(
+                                check.get("sourceKinds") or []
+                            )
+                        )
+                    }
+                ),
+                "toolNames": sorted(
+                    {
+                        *(
+                            tool_name
+                            for check in suggested_checks
+                            for tool_name in _non_empty_scalar_texts(check.get("toolNames") or [])
+                        )
+                    }
+                ),
+                "traceProvenance": trace_provenance,
+                "factorSummary": deepcopy(fragment.get("factorSummary") or {}),
+            }
+        )
+
+    for review_record in mutation_review_results:
+        if review_record.get("decision") != "accept":
+            continue
+        draft = mutation_drafts_by_id.get(str(review_record.get("draftId")))
+        if draft is None:
+            continue
+        entry = draft.get("entry") or {}
+        trace_provenance = deepcopy(entry.get("traceProvenance") or {})
+        trace_provenance_items.append(trace_provenance)
+        accepted_mutation_drafts.append(
+            {
+                "draftId": str(review_record.get("draftId")),
+                "sourceSeedId": draft.get("sourceSeedId"),
+                "kind": draft.get("kind"),
+                "promotedMutationId": review_record.get("promotedMutationId"),
+                "sourceMutationId": entry.get("sourceMutationId"),
+                "sourceCandidateId": entry.get("sourceCandidateId"),
+                "sourceEpisodeId": entry.get("sourceEpisodeId"),
+                "preferredSourceKinds": _non_empty_scalar_texts(
+                    entry.get("preferredSourceKinds") or []
+                ),
+                "preferredTools": _non_empty_scalar_texts(entry.get("preferredTools") or []),
+                "constraints": deepcopy(entry.get("constraints") or {}),
+                "learningScore": float(entry.get("learningScore") or 0.0),
+                REASONING_PATH_EFFICIENCY_SIGNAL_NAME: float(
+                    entry.get(REASONING_PATH_EFFICIENCY_SIGNAL_NAME) or 0.0
+                ),
+                "traceProvenance": trace_provenance,
+                "factorSummary": deepcopy(entry.get("factorSummary") or {}),
+            }
+        )
+
+    for review_record in policy_review_results:
+        if review_record.get("decision") != "accept":
+            continue
+        draft = policy_drafts_by_id.get(str(review_record.get("draftId")))
+        if draft is None:
+            continue
+        entry = draft.get("entry") or {}
+        trace_provenance = deepcopy(entry.get("traceProvenance") or {})
+        trace_provenance_items.append(trace_provenance)
+        accepted_policy_drafts.append(
+            {
+                "draftId": str(review_record.get("draftId")),
+                "sourcePolicyId": draft.get("sourcePolicyId"),
+                "kind": draft.get("kind"),
+                "promotedPolicyId": review_record.get("promotedPolicyId"),
+                "preferredSourceKinds": _non_empty_scalar_texts(
+                    entry.get("preferredSourceKinds") or []
+                ),
+                "preferredToolSequence": _non_empty_scalar_texts(
+                    entry.get("preferredToolSequence") or []
+                ),
+                "preferredTools": _non_empty_scalar_texts(entry.get("preferredTools") or []),
+                "triggerTools": _non_empty_scalar_texts(entry.get("triggerTools") or []),
+                "constraints": deepcopy(entry.get("constraints") or {}),
+                "learningScore": float(entry.get("learningScore") or 0.0),
+                REASONING_PATH_EFFICIENCY_SIGNAL_NAME: float(
+                    entry.get(REASONING_PATH_EFFICIENCY_SIGNAL_NAME) or 0.0
+                ),
+                "traceProvenance": trace_provenance,
+                "factorSummary": deepcopy(entry.get("factorSummary") or {}),
+            }
+        )
+
+    trace_provenance_summary = _aggregate_reviewed_continuation_trace_provenance(
+        trace_provenance_items
+    )
+    accepted_total_count = (
+        len(accepted_benchmark_drafts) + len(accepted_mutation_drafts) + len(accepted_policy_drafts)
+    )
+    return {
+        "type": "AutoAgentReviewedContinuationBundle",
+        "mode": "review_only",
+        "status": "ready" if accepted_total_count > 0 else "ready_empty",
+        "dispatchScope": "bounded_follow_on_slice",
+        "manualOnly": True,
+        "reportOnly": True,
+        "requiresHumanLaunch": True,
+        "approvalSource": "governed_artifacts_only",
+        "experiment": {
+            "name": experiment["name"],
+            "path": experiment["path"].as_posix(),
+            "primaryTargetId": experiment["primaryTargetId"],
+            "targetBundle": _serialize_targets(experiment["targets"]),
+        },
+        "review": {
+            "reviewer": review_manifest.get("reviewer"),
+            "reviewedAt": review_manifest.get("reviewedAt"),
+            "summary": review_manifest.get("summary"),
+        },
+        "summary": {
+            "acceptedBenchmarkDraftCount": len(accepted_benchmark_drafts),
+            "acceptedMutationDraftCount": len(accepted_mutation_drafts),
+            "acceptedPolicyDraftCount": len(accepted_policy_drafts),
+            "acceptedTotalCount": accepted_total_count,
+            "targetCount": len(experiment["targets"]),
+            "targetIds": [str(target["id"]) for target in experiment["targets"]],
+        },
+        "traceProvenance": trace_provenance_summary,
+        "accepted": {
+            "benchmarkDrafts": accepted_benchmark_drafts,
+            "mutationDrafts": accepted_mutation_drafts,
+            "policyDrafts": accepted_policy_drafts,
+        },
+        "artifacts": {
+            "promotedBenchmarkPath": promoted_benchmark_path.as_posix(),
+            "promotedMutationsPath": promoted_mutations_path.as_posix(),
+            "promotedPoliciesPath": (
+                promoted_policies_path.as_posix() if promoted_policies_path is not None else None
+            ),
+            "importReportPath": import_report_path.as_posix(),
+            "promotionAuditPath": promotion_audit_path.as_posix(),
+        },
+    }
+
+
+def _build_reviewed_continuation_experiment_document(
+    experiment: dict[str, Any],
+    *,
+    reviewed_benchmark_path: Path,
+    reviewed_mutations_path: Path,
+    reviewed_policies_path: Path | None,
+    continuation_bundle_path: str,
+) -> str:
+    evaluation_mode = _serialize_evaluation_mode(experiment["evaluationMode"])
+    evaluation_mode["live"] = False
+    live_evaluator = deepcopy(evaluation_mode.get("liveEvaluator") or {})
+    live_evaluator.update(
+        {
+            "enabled": False,
+            "promptArtifactPath": None,
+            "rubricPaths": [],
+            "maxSamples": 0,
+            "recordRawOutputs": False,
+        }
+    )
+    evaluation_mode["liveEvaluator"] = live_evaluator
+
+    continuous_policy = _serialize_continuous_policy(experiment["continuousPolicy"])
+    continuous_policy["mode"] = "manual"
+    continuous_policy["stageOnly"] = True
+    continuous_policy["requireReviewPass"] = True
+
+    reviewed_policy_runtime = _serialize_reviewed_policy_runtime(
+        experiment["reviewedPolicyRuntime"]
+    )
+    if reviewed_policies_path is not None:
+        reviewed_policy_runtime["enabled"] = True
+        reviewed_policy_runtime["artifactPath"] = reviewed_policies_path.as_posix()
+
+    frontmatter = {
+        "name": f"{experiment['name']}-reviewed-continuation",
+        "description": (
+            f"Generated reviewed continuation experiment for {experiment['name']}. "
+            "Manual dispatch only."
+        ),
+        "optimizationTargets": _serialize_targets(experiment["targets"]),
+        "benchmarkPath": reviewed_benchmark_path.as_posix(),
+        "mutationCatalogPath": reviewed_mutations_path.as_posix(),
+        "maxIterations": int(experiment["maxIterations"]),
+        "applyBestCandidate": False,
+        "stageForReview": True,
+        "evaluationMode": evaluation_mode,
+        "continuousPolicy": continuous_policy,
+        "candidatePolicy": deepcopy(experiment["candidatePolicy"]),
+        "stagedPatchPolicy": _serialize_staged_patch_policy(experiment["stagedPatchPolicy"]),
+        "evidencePolicy": _serialize_evidence_policy(experiment["evidencePolicy"]),
+        "reviewedPolicyRuntime": reviewed_policy_runtime,
+    }
+    body = (
+        "Generated from a reviewed continuation bundle. Launch this experiment manually only after "
+        f"confirming the governed artifacts and continuation package at {continuation_bundle_path}."
+    )
+    return render_markdown_document(frontmatter, body)
+
+
+def _build_manual_dispatch_manifest(
+    experiment: dict[str, Any],
+    continuation_bundle: dict[str, Any],
+    *,
+    continuation_bundle_path: str,
+    follow_on_experiment_path: str | None,
+    output_root: Path,
+) -> dict[str, Any]:
+    lifecycle = _derive_governed_task_lifecycle()
+    governed_review_consensus = _derive_governed_review_consensus()
+    blocked_reasons: list[str] = []
+
+    if lifecycle["status"] == "unavailable":
+        blocked_reasons.append("governed_task_lifecycle_unavailable")
+    elif lifecycle["status"] == "partial":
+        blocked_reasons.append("governed_task_lifecycle_partial")
+    if lifecycle.get("phase") != "Done":
+        blocked_reasons.append("governed_task_not_done")
+    if governed_review_consensus["status"] != "consistent":
+        if governed_review_consensus["blockedReasons"]:
+            blocked_reasons.extend(governed_review_consensus["blockedReasons"])
+        else:
+            blocked_reasons.append("governed_review_consensus_inconsistent")
+    if (
+        governed_review_consensus.get("stateStatus") != "PASS"
+        or governed_review_consensus.get("reviewReportStatus") != "PASS"
+    ):
+        blocked_reasons.append("governed_review_not_pass")
+    if int(continuation_bundle["summary"].get("acceptedTotalCount") or 0) == 0:
+        blocked_reasons.append("no_accepted_learning_drafts")
+    if not follow_on_experiment_path:
+        blocked_reasons.append("follow_on_experiment_missing")
+    blocked_reasons = list(dict.fromkeys(blocked_reasons))
+
+    ready = not blocked_reasons
+    report_path = (DOCS_AGENTS_DIR / "autoagent-report.md").as_posix()
+    results_path = (DOCS_AGENTS_DIR / "autoagent-results.tsv").as_posix()
+    evidence_path = (DOCS_AGENTS_DIR / "autoagent-evidence.json").as_posix()
+    launch_command = None
+    if follow_on_experiment_path:
+        launch_command = (
+            f'py -3 "{Path(__file__).resolve().as_posix()}" '
+            f'--experiment "{follow_on_experiment_path}" '
+            f'--output-root "{output_root.as_posix()}" '
+            f'--report "{report_path}" '
+            f'--results "{results_path}" '
+            f'--evidence "{evidence_path}"'
+        )
+
+    return {
+        "type": "AutoAgentManualDispatchManifest",
+        "mode": "reviewed_manual_dispatch",
+        "status": "ready_for_manual_dispatch" if ready else "blocked",
+        "blockedReasons": blocked_reasons,
+        "manualOnly": True,
+        "reportOnly": True,
+        "requiresHumanLaunch": True,
+        "requiresExplicitApproval": True,
+        "approvalSource": "governed_artifacts_only",
+        "executionAuthority": "human_invoked_only",
+        "dispatchScope": "bounded_follow_on_slice",
+        "continuationEligibilityStatus": experiment["continuationEligibility"]["status"],
+        "governedTaskLifecycle": _serialize_governed_task_lifecycle(lifecycle),
+        "governedReviewConsensus": _serialize_governed_review_consensus(governed_review_consensus),
+        "acceptedTotalCount": int(continuation_bundle["summary"].get("acceptedTotalCount") or 0),
+        "targetIds": list(continuation_bundle["summary"].get("targetIds") or []),
+        "traceProvenance": deepcopy(continuation_bundle.get("traceProvenance") or {}),
+        "bundlePath": continuation_bundle_path,
+        "followOnExperimentPath": follow_on_experiment_path,
+        "launchCommand": launch_command,
+        "summary": (
+            "Manual dispatch package is ready for a human-invoked follow-on run."
+            if ready
+            else "Manual dispatch package is blocked until governed review and continuation artifacts align."
+        ),
+        "requiredHumanAction": (
+            "Review the generated follow-on experiment and launch it manually with the provided command."
+            if ready
+            else "Resolve the blocked reasons and regenerate the manual dispatch package."
+        ),
+        "artifactRefs": {
+            "state": lifecycle["sourcePath"],
+            "reviewReport": governed_review_consensus["reviewReportSourcePath"],
+            "report": report_path,
+        },
+    }
+
+
+def _serialize_reviewed_continuation_package_state(state: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "status": str(state.get("status") or "artifact_missing"),
+        "bundlePath": state.get("bundlePath"),
+        "bundleFound": bool(state.get("bundleFound")),
+        "acceptedBenchmarkDraftCount": int(state.get("acceptedBenchmarkDraftCount") or 0),
+        "acceptedMutationDraftCount": int(state.get("acceptedMutationDraftCount") or 0),
+        "acceptedPolicyDraftCount": int(state.get("acceptedPolicyDraftCount") or 0),
+        "acceptedTotalCount": int(state.get("acceptedTotalCount") or 0),
+        "traceSourceOrigins": _non_empty_scalar_texts(state.get("traceSourceOrigins") or []),
+        "governedTraceExportRunIds": _non_empty_scalar_texts(
+            state.get("governedTraceExportRunIds") or []
+        ),
+        "manualDispatchStatus": str(state.get("manualDispatchStatus") or "artifact_missing"),
+        "manualDispatchPath": state.get("manualDispatchPath"),
+        "manualDispatchFound": bool(state.get("manualDispatchFound")),
+        "manualDispatchBlockedReasons": _non_empty_scalar_texts(
+            state.get("manualDispatchBlockedReasons") or []
+        ),
+        "requiredHumanAction": state.get("requiredHumanAction"),
+        "followOnExperimentPath": state.get("followOnExperimentPath"),
+        "launchCommand": state.get("launchCommand"),
+    }
+
+
+def _load_reviewed_continuation_package_state(run_root: Path) -> dict[str, Any]:
+    bundle_path = run_root / "reviewed-continuation-bundle.json"
+    manifest_path = run_root / "manual-dispatch.generated.json"
+    state = {
+        "status": "artifact_missing",
+        "bundlePath": bundle_path.as_posix(),
+        "bundleFound": False,
+        "acceptedBenchmarkDraftCount": 0,
+        "acceptedMutationDraftCount": 0,
+        "acceptedPolicyDraftCount": 0,
+        "acceptedTotalCount": 0,
+        "traceSourceOrigins": [],
+        "governedTraceExportRunIds": [],
+        "manualDispatchStatus": "artifact_missing",
+        "manualDispatchPath": manifest_path.as_posix(),
+        "manualDispatchFound": False,
+        "manualDispatchBlockedReasons": [],
+        "requiredHumanAction": None,
+        "followOnExperimentPath": None,
+        "launchCommand": None,
+    }
+
+    if bundle_path.exists():
+        payload = load_json(bundle_path)
+        if not isinstance(payload, dict):
+            raise ValueError(f"{bundle_path.as_posix()} must contain a JSON object.")
+        if payload.get("type") != "AutoAgentReviewedContinuationBundle":
+            raise ValueError(
+                f"Unsupported reviewed continuation bundle type in {bundle_path.as_posix()}."
+            )
+        summary = payload.get("summary") or {}
+        trace_provenance = payload.get("traceProvenance") or {}
+        if not isinstance(summary, dict):
+            raise ValueError(f"{bundle_path.as_posix()} field 'summary' must be an object.")
+        if not isinstance(trace_provenance, dict):
+            raise ValueError(f"{bundle_path.as_posix()} field 'traceProvenance' must be an object.")
+        state.update(
+            {
+                "status": str(payload.get("status") or "ready_empty"),
+                "bundleFound": True,
+                "acceptedBenchmarkDraftCount": int(summary.get("acceptedBenchmarkDraftCount") or 0),
+                "acceptedMutationDraftCount": int(summary.get("acceptedMutationDraftCount") or 0),
+                "acceptedPolicyDraftCount": int(summary.get("acceptedPolicyDraftCount") or 0),
+                "acceptedTotalCount": int(summary.get("acceptedTotalCount") or 0),
+                "traceSourceOrigins": _non_empty_scalar_texts(
+                    trace_provenance.get("sourceOrigins") or []
+                ),
+                "governedTraceExportRunIds": _non_empty_scalar_texts(
+                    trace_provenance.get("governedRunIds") or []
+                ),
+            }
+        )
+
+    if manifest_path.exists():
+        payload = load_json(manifest_path)
+        if not isinstance(payload, dict):
+            raise ValueError(f"{manifest_path.as_posix()} must contain a JSON object.")
+        if payload.get("type") != "AutoAgentManualDispatchManifest":
+            raise ValueError(
+                f"Unsupported manual dispatch manifest type in {manifest_path.as_posix()}."
+            )
+        state.update(
+            {
+                "manualDispatchStatus": str(payload.get("status") or "blocked"),
+                "manualDispatchFound": True,
+                "manualDispatchBlockedReasons": _non_empty_scalar_texts(
+                    payload.get("blockedReasons") or []
+                ),
+                "requiredHumanAction": payload.get("requiredHumanAction"),
+                "followOnExperimentPath": payload.get("followOnExperimentPath"),
+                "launchCommand": payload.get("launchCommand"),
+            }
+        )
+
     return state
 
 
@@ -2893,6 +3375,35 @@ def _safe_path(path: Path) -> str:
         return path.resolve().relative_to(ROOT.resolve()).as_posix()
     except (OSError, ValueError):
         return path.as_posix()
+
+
+def _external_log_source_origin(source_path: Path) -> tuple[str, str | None]:
+    try:
+        resolved = source_path.resolve()
+    except OSError:
+        return "external_path", None
+
+    runs_root = (DOCS_AGENTS_DIR / "runs").resolve()
+    try:
+        relative_to_runs = resolved.relative_to(runs_root)
+    except ValueError:
+        relative_to_runs = None
+    if relative_to_runs is not None and relative_to_runs.parts:
+        return "governed_run_export", str(relative_to_runs.parts[0])
+
+    fixtures_root = (ROOT / "tests" / "fixtures").resolve()
+    try:
+        resolved.relative_to(fixtures_root)
+    except ValueError:
+        pass
+    else:
+        return "repo_fixture", None
+
+    try:
+        resolved.relative_to(ROOT.resolve())
+    except ValueError:
+        return "external_path", None
+    return "repo_local", None
 
 
 def _collect_json_artifact_record(
@@ -3162,6 +3673,7 @@ def _collect_external_log_records(
 
     for source in policy["externalLogSources"]:
         source_path = source["path"]
+        source_origin, source_run_id = _external_log_source_origin(source_path)
         if not source_path.exists():
             if not source["optional"]:
                 parse_errors.append(
@@ -3261,6 +3773,8 @@ def _collect_external_log_records(
                     {
                         "sourceKind": record_kind,
                         "sourceScope": source["kind"],
+                        "sourceOrigin": source_origin,
+                        "sourceRunId": source_run_id,
                         "runId": f"external:{source['id']}",
                         "file": source_path.as_posix(),
                         "recordType": (
@@ -3313,6 +3827,8 @@ def _collect_external_log_records(
                     {
                         "sourceKind": "external_log",
                         "sourceScope": source["kind"],
+                        "sourceOrigin": source_origin,
+                        "sourceRunId": source_run_id,
                         "runId": f"external:{source['id']}",
                         "file": source_path.as_posix(),
                         "recordType": source["kind"],
@@ -3334,6 +3850,8 @@ def _collect_external_log_records(
                 "id": source["id"],
                 "kind": source["kind"],
                 "path": source_path.as_posix(),
+                "sourceOrigin": source_origin,
+                "sourceRunId": source_run_id,
                 "recordCount": source_count,
                 "recordKind": (
                     _external_log_record_kind(source["kind"])
@@ -3435,6 +3953,20 @@ def build_evidence_dataset(policy: dict[str, Any]) -> dict[str, Any]:
     handoff_sources = [
         summary for summary in external_log_sources if summary.get("recordKind") == "handoff_event"
     ]
+    governed_trace_export_sources = [
+        summary
+        for summary in external_log_sources
+        if summary.get("sourceOrigin") == "governed_run_export"
+    ]
+    fixture_external_sources = [
+        summary for summary in external_log_sources if summary.get("sourceOrigin") == "repo_fixture"
+    ]
+    governed_trace_export_record_count = sum(
+        1 for record in external_records if record.get("sourceOrigin") == "governed_run_export"
+    )
+    fixture_external_log_record_count = sum(
+        1 for record in external_records if record.get("sourceOrigin") == "repo_fixture"
+    )
 
     records_by_kind: dict[str, int] = {}
     statuses: dict[str, int] = {}
@@ -3467,6 +3999,8 @@ def build_evidence_dataset(policy: dict[str, Any]) -> dict[str, Any]:
             "externalLogs": external_log_sources,
             "transcriptSources": transcript_sources,
             "handoffSources": handoff_sources,
+            "governedTraceExportSources": governed_trace_export_sources,
+            "fixtureExternalSources": fixture_external_sources,
         },
         "records": records,
         "summary": {
@@ -3482,6 +4016,10 @@ def build_evidence_dataset(policy: dict[str, Any]) -> dict[str, Any]:
             "handoffRecordCount": handoff_record_count,
             "externalLogRecordCount": len(external_records),
             "externalSourceCount": len(external_log_sources),
+            "governedTraceExportRecordCount": governed_trace_export_record_count,
+            "governedTraceExportSourceCount": len(governed_trace_export_sources),
+            "fixtureExternalLogRecordCount": fixture_external_log_record_count,
+            "fixtureExternalSourceCount": len(fixture_external_sources),
         },
         "parseErrors": parse_errors,
     }
@@ -4974,6 +5512,102 @@ def _staged_patch_metadata(
     }
 
 
+def _build_staged_patch_review_bundle(
+    experiment_path: Path,
+    experiment: dict[str, Any],
+    staged_patch: dict[str, Any],
+    *,
+    report_path: Path,
+    results_path: Path,
+    evidence_path: Path,
+) -> dict[str, Any]:
+    include_target_snapshots = bool(staged_patch.get("includeTargetSnapshots"))
+    include_diff_summary = bool(staged_patch.get("includeDiffSummary"))
+    changed_targets: list[dict[str, Any]] = []
+    changed_target_ids: list[str] = []
+    primary_changed_target_ids: list[str] = []
+    for changed_target in staged_patch.get("changedTargets") or []:
+        target_id = str(changed_target.get("targetId") or "")
+        if not target_id:
+            continue
+        bundle_target = {
+            "targetId": target_id,
+            "sourcePath": changed_target.get("sourcePath"),
+            "primary": bool(changed_target.get("primary")),
+            "kind": changed_target.get("kind"),
+            "mutableRegions": _non_empty_scalar_texts(changed_target.get("mutableRegions") or []),
+        }
+        if include_target_snapshots:
+            bundle_target["candidateSnapshotPath"] = changed_target.get("candidateSnapshotPath")
+        if include_diff_summary:
+            bundle_target["changedRegions"] = _non_empty_scalar_texts(
+                changed_target.get("changedRegions") or []
+            )
+            bundle_target["frontmatterChangedKeys"] = _non_empty_scalar_texts(
+                changed_target.get("frontmatterChangedKeys") or []
+            )
+        changed_targets.append(bundle_target)
+        changed_target_ids.append(target_id)
+        if bundle_target["primary"]:
+            primary_changed_target_ids.append(target_id)
+
+    required_human_action = "Review the staged patch bundle and governed artifacts before choosing the next bounded step."
+    return {
+        "type": "AutoAgentStagedPatchReviewBundle",
+        "mode": str(staged_patch.get("mode") or "review_bundle"),
+        "status": "ready" if changed_targets else "ready_no_changes",
+        "dispatchScope": "bounded_review_bundle",
+        "manualOnly": True,
+        "reportOnly": True,
+        "requiresHumanReview": True,
+        "applyOnPass": bool(staged_patch.get("applyOnPass")),
+        "manifestFormat": staged_patch.get("manifestFormat"),
+        "includeTargetSnapshots": include_target_snapshots,
+        "includeDiffSummary": include_diff_summary,
+        "experiment": {
+            "name": experiment["name"],
+            "path": experiment_path.as_posix(),
+            "primaryTargetId": experiment["primaryTargetId"],
+            "targetBundle": _serialize_targets(experiment["targets"]),
+        },
+        "candidate": {
+            "candidateId": staged_patch.get("candidateId"),
+            "candidatePath": staged_patch.get("candidatePath"),
+            "changedTargetCount": int(staged_patch.get("changedTargetCount") or 0),
+        },
+        "summary": {
+            "changedTargetCount": len(changed_targets),
+            "changedTargetIds": changed_target_ids,
+            "primaryChangedTargetIds": primary_changed_target_ids,
+            "hasChanges": bool(changed_targets),
+        },
+        "changedTargets": changed_targets,
+        "reviewerHints": _non_empty_scalar_texts(staged_patch.get("reviewerHints") or []),
+        "requiredHumanAction": required_human_action,
+        "artifactRefs": {
+            "report": report_path.as_posix(),
+            "results": results_path.as_posix(),
+            "evidence": evidence_path.as_posix(),
+        },
+    }
+
+
+def _serialize_staged_patch_review_bundle_state(state: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "status": str(state.get("status") or "artifact_missing"),
+        "bundlePath": state.get("bundlePath"),
+        "bundleFound": bool(state.get("bundleFound")),
+        "candidateId": state.get("candidateId"),
+        "changedTargetCount": int(state.get("changedTargetCount") or 0),
+        "changedTargetIds": _non_empty_scalar_texts(state.get("changedTargetIds") or []),
+        "primaryChangedTargetIds": _non_empty_scalar_texts(
+            state.get("primaryChangedTargetIds") or []
+        ),
+        "reviewerHints": _non_empty_scalar_texts(state.get("reviewerHints") or []),
+        "requiredHumanAction": state.get("requiredHumanAction"),
+    }
+
+
 def _provenance_summary(
     experiment_path: Path,
     experiment: dict[str, Any],
@@ -4989,6 +5623,7 @@ def _provenance_summary(
     mutation_drafts_artifact: dict[str, Any],
     policy_drafts_artifact: dict[str, Any],
     trace_artifact: dict[str, Any],
+    staged_patch_bundle_artifact: dict[str, Any],
 ) -> dict[str, Any]:
     current_run_root = _current_run_root()
     return {
@@ -5053,6 +5688,7 @@ def _provenance_summary(
             "mutationDraftsPath": mutation_drafts_artifact["actualPath"],
             "policyDraftsPath": policy_drafts_artifact["actualPath"],
             "tracePath": trace_artifact["actualPath"],
+            "stagedPatchBundlePath": staged_patch_bundle_artifact["actualPath"],
             "currentRunRoot": current_run_root.as_posix() if current_run_root is not None else None,
         },
     }
@@ -5487,6 +6123,8 @@ def _candidate_episode_step(
         "sequence": step_index,
         "sourceKind": str(record.get("sourceKind") or "unknown"),
         "sourceScope": record.get("sourceScope"),
+        "sourceOrigin": record.get("sourceOrigin"),
+        "sourceRunId": record.get("sourceRunId"),
         "file": record.get("file"),
         "recordType": record.get("recordType"),
         "status": record.get("status"),
@@ -5518,19 +6156,50 @@ def _candidate_trajectory_episode(
         for index, record in enumerate(matched_records, start=1)
     ]
     source_kind_counts: dict[str, int] = {}
+    source_origin_counts: dict[str, int] = {}
     status_counts: dict[str, int] = {}
     tool_names: list[str] = []
     tool_sequence: list[str] = []
     tool_counts: dict[str, int] = {}
     seen_tool_names: set[str] = set()
+    seen_source_scopes: set[str] = set()
+    source_scopes: list[str] = []
+    seen_source_ids: set[str] = set()
+    source_ids: list[str] = []
+    seen_source_run_ids: set[str] = set()
+    governed_run_ids: list[str] = []
     handoff_count = 0
     for step in steps:
         source_kind = step["sourceKind"]
         source_kind_counts[source_kind] = source_kind_counts.get(source_kind, 0) + 1
+        source_origin = step.get("sourceOrigin")
+        if source_origin is not None and str(source_origin):
+            normalized_source_origin = str(source_origin)
+            source_origin_counts[normalized_source_origin] = (
+                source_origin_counts.get(normalized_source_origin, 0) + 1
+            )
         status = str(step.get("status") or "unknown")
         status_counts[status] = status_counts.get(status, 0) + 1
         if source_kind == "handoff_event" or step.get("handoffRefs"):
             handoff_count += 1
+        source_scope = step.get("sourceScope")
+        if source_scope is not None:
+            normalized_source_scope = str(source_scope)
+            if normalized_source_scope not in seen_source_scopes:
+                seen_source_scopes.add(normalized_source_scope)
+                source_scopes.append(normalized_source_scope)
+        source_id = step.get("sourceId")
+        if source_id is not None:
+            normalized_source_id = str(source_id)
+            if normalized_source_id not in seen_source_ids:
+                seen_source_ids.add(normalized_source_id)
+                source_ids.append(normalized_source_id)
+        source_run_id = step.get("sourceRunId")
+        if source_run_id is not None:
+            normalized_source_run_id = str(source_run_id)
+            if normalized_source_run_id not in seen_source_run_ids:
+                seen_source_run_ids.add(normalized_source_run_id)
+                governed_run_ids.append(normalized_source_run_id)
         tool_name = step.get("toolName")
         if tool_name is None:
             continue
@@ -5558,6 +6227,10 @@ def _candidate_trajectory_episode(
             "matchedRecordCount": len(steps),
             "stepCount": len(steps),
             "sourceKindCounts": source_kind_counts,
+            "sourceOriginCounts": source_origin_counts,
+            "sourceScopes": source_scopes,
+            "sourceIds": source_ids,
+            "governedRunIds": governed_run_ids,
             "statusCounts": status_counts,
             "toolNames": tool_names,
             "toolSequence": tool_sequence,
@@ -5626,11 +6299,17 @@ def _episode_handoff_efficiency(handoff_count: int) -> float:
 
 def _episode_trace_provenance(summary: dict[str, Any]) -> dict[str, Any]:
     source_kind_counts = summary.get("sourceKindCounts") or {}
+    source_origin_counts = summary.get("sourceOriginCounts") or {}
     transcript_record_count = int(source_kind_counts.get("transcript_event") or 0)
     handoff_record_count = int(source_kind_counts.get("handoff_event") or 0)
     return {
         "matchedRecordCount": int(summary.get("matchedRecordCount") or 0),
         "sourceKinds": sorted(str(key) for key in source_kind_counts.keys()),
+        "sourceOrigins": sorted(str(key) for key in source_origin_counts.keys()),
+        "sourceOriginCounts": deepcopy(source_origin_counts),
+        "sourceScopes": _non_empty_scalar_texts(summary.get("sourceScopes") or []),
+        "sourceIds": _non_empty_scalar_texts(summary.get("sourceIds") or []),
+        "governedRunIds": _non_empty_scalar_texts(summary.get("governedRunIds") or []),
         "transcriptRecordCount": transcript_record_count,
         "handoffRecordCount": handoff_record_count,
         "transcriptBacked": transcript_record_count > 0,
@@ -6226,8 +6905,7 @@ def _guarded_policy_review_entries(
             failure_reasons: list[str] = []
             if not observed_count_pass:
                 failure_reasons.append(
-                    "observedCount "
-                    f"{observed_count} is below the threshold {min_observed_count}"
+                    f"observedCount {observed_count} is below the threshold {min_observed_count}"
                 )
             if not learning_score_pass:
                 failure_reasons.append(
@@ -7133,6 +7811,7 @@ def _build_autoagent_trace(
             "candidateSearch": deepcopy(result["candidateSearch"]),
             "evidenceSummary": deepcopy(result["evidenceSummary"]),
             "stagedPatch": deepcopy(result["stagedPatch"]),
+            "stagedPatchReviewBundle": deepcopy(result["stagedPatchReviewBundle"]),
             "outcomeLabel": _trace_outcome_label(best_score, baseline_score),
             "improvementDelta": round(best_score - baseline_score, 6),
             "appliedBestVariant": bool(result["appliedBestVariant"]),
@@ -7166,6 +7845,7 @@ def _build_autoagent_trace(
             "benchmarkDraftsPath": benchmark_drafts_artifact["actualPath"],
             "mutationDraftsPath": mutation_drafts_artifact["actualPath"],
             "policyDraftsPath": policy_drafts_artifact["actualPath"],
+            "stagedPatchBundlePath": result["artifacts"]["stagedPatchBundle"]["actualPath"],
         },
         "trajectories": trajectories,
         "episodes": episodes,
@@ -7238,6 +7918,14 @@ def _render_report(result: dict[str, Any]) -> str:
         f"- Evidence records: {result['evidenceSummary']['recordCount']}",
         f"- Evidence runs: {result['evidenceSummary']['runCount']}",
         f"- External log records: {result['evidenceSummary']['externalLogRecordCount']}",
+        (
+            "- Governed trace export records: "
+            f"{result['evidenceSummary']['governedTraceExportRecordCount']}"
+        ),
+        (
+            "- Fixture-backed external log records: "
+            f"{result['evidenceSummary']['fixtureExternalLogRecordCount']}"
+        ),
         f"- Transcript evidence records: {result['evidenceSummary']['transcriptRecordCount']}",
         f"- Handoff evidence records: {result['evidenceSummary']['handoffRecordCount']}",
         f"- Baseline score: {result['baseline']['score']}",
@@ -7436,6 +8124,62 @@ def _render_report(result: dict[str, Any]) -> str:
             "- Learning promotion audit policy blocked factors: "
             f"{_format_named_counts_for_report(result['learningPromotionAudit']['policyBlockedFactorCounts'])}"
         ),
+        (f"- Reviewed continuation package: {result['reviewedContinuationPackage']['status']}"),
+        (
+            "- Reviewed continuation bundle artifact: "
+            f"{result['reviewedContinuationPackage']['bundlePath']}"
+            if result["reviewedContinuationPackage"]["bundleFound"]
+            else "- Reviewed continuation bundle artifact: none"
+        ),
+        (
+            "- Reviewed continuation accepted items: "
+            "benchmark "
+            f"{result['reviewedContinuationPackage']['acceptedBenchmarkDraftCount']}, "
+            "mutations "
+            f"{result['reviewedContinuationPackage']['acceptedMutationDraftCount']}, "
+            "policies "
+            f"{result['reviewedContinuationPackage']['acceptedPolicyDraftCount']}"
+        ),
+        (
+            "- Reviewed continuation trace origins: "
+            + ", ".join(result["reviewedContinuationPackage"]["traceSourceOrigins"])
+            if result["reviewedContinuationPackage"]["traceSourceOrigins"]
+            else "- Reviewed continuation trace origins: none"
+        ),
+        (
+            "- Reviewed continuation governed trace runs: "
+            + ", ".join(result["reviewedContinuationPackage"]["governedTraceExportRunIds"])
+            if result["reviewedContinuationPackage"]["governedTraceExportRunIds"]
+            else "- Reviewed continuation governed trace runs: none"
+        ),
+        (
+            "- Manual dispatch manifest: "
+            f"{result['reviewedContinuationPackage']['manualDispatchStatus']}"
+        ),
+        (
+            "- Manual dispatch blocked reasons: "
+            + ", ".join(result["reviewedContinuationPackage"]["manualDispatchBlockedReasons"])
+            if result["reviewedContinuationPackage"]["manualDispatchBlockedReasons"]
+            else "- Manual dispatch blocked reasons: none"
+        ),
+        (
+            "- Manual dispatch required action: "
+            f"{result['reviewedContinuationPackage']['requiredHumanAction']}"
+            if result["reviewedContinuationPackage"]["requiredHumanAction"]
+            else "- Manual dispatch required action: none"
+        ),
+        (
+            "- Manual dispatch follow-on experiment: "
+            f"{result['reviewedContinuationPackage']['followOnExperimentPath']}"
+            if result["reviewedContinuationPackage"]["followOnExperimentPath"]
+            else "- Manual dispatch follow-on experiment: none"
+        ),
+        (
+            "- Manual dispatch launch command: "
+            f"{result['reviewedContinuationPackage']['launchCommand']}"
+            if result["reviewedContinuationPackage"]["launchCommand"]
+            else "- Manual dispatch launch command: none"
+        ),
         (
             "- Reviewed policy runtime: "
             f"{result['experiment']['reviewedPolicyRuntimeState']['status']} "
@@ -7626,6 +8370,24 @@ def _render_report(result: dict[str, Any]) -> str:
             f"{result['stagedPatch']['mode']} "
             f"({result['stagedPatch']['changedTargetCount']} targets)"
         ),
+        (f"- Staged patch bundle: {result['stagedPatchReviewBundle']['status']}"),
+        (
+            f"- Staged patch bundle artifact: {result['stagedPatchReviewBundle']['bundlePath']}"
+            if result["stagedPatchReviewBundle"]["bundleFound"]
+            else "- Staged patch bundle artifact: none"
+        ),
+        (
+            "- Staged patch bundle targets: "
+            + ", ".join(result["stagedPatchReviewBundle"]["changedTargetIds"])
+            if result["stagedPatchReviewBundle"]["changedTargetIds"]
+            else "- Staged patch bundle targets: none"
+        ),
+        (
+            "- Staged patch bundle required action: "
+            f"{result['stagedPatchReviewBundle']['requiredHumanAction']}"
+            if result["stagedPatchReviewBundle"]["requiredHumanAction"]
+            else "- Staged patch bundle required action: none"
+        ),
         f"- Applied best variant: {result['appliedBestVariant']}",
         "",
         "```json",
@@ -7707,6 +8469,7 @@ def run_autoagent_loop(
     run_root = output_root / experiment["name"]
     run_root.mkdir(parents=True, exist_ok=True)
     learning_promotion_audit_state = _load_learning_promotion_audit_state(run_root)
+    reviewed_continuation_package_state = _load_reviewed_continuation_package_state(run_root)
     experiment["reviewedPolicyRuntimeState"] = _load_reviewed_policy_runtime_state(
         experiment,
         run_root,
@@ -8044,6 +8807,58 @@ def run_autoagent_loop(
         best_candidate_path,
         experiment["stagedPatchPolicy"],
     )
+    staged_patch_bundle_path = run_root / "staged-patch-review-bundle.json"
+    staged_patch_bundle_artifact = {
+        "requestedPath": staged_patch_bundle_path.as_posix(),
+        "actualPath": None,
+        "fallbackUsed": False,
+        "warning": None,
+        "runSnapshot": None,
+    }
+    staged_patch_review_bundle_state = {
+        "status": (
+            "disabled"
+            if not experiment["stageForReview"] or not staged_patch["enabled"]
+            else "artifact_missing"
+        ),
+        "bundlePath": staged_patch_bundle_path.as_posix(),
+        "bundleFound": False,
+        "candidateId": staged_patch["candidateId"],
+        "changedTargetCount": int(staged_patch["changedTargetCount"]),
+        "changedTargetIds": [
+            str(target.get("targetId"))
+            for target in staged_patch["changedTargets"]
+            if target.get("targetId")
+        ],
+        "primaryChangedTargetIds": [
+            str(target.get("targetId"))
+            for target in staged_patch["changedTargets"]
+            if target.get("primary") and target.get("targetId")
+        ],
+        "reviewerHints": list(staged_patch["reviewerHints"]),
+        "requiredHumanAction": None,
+    }
+    if experiment["stageForReview"] and staged_patch["enabled"]:
+        staged_patch_review_bundle = _build_staged_patch_review_bundle(
+            experiment_path,
+            experiment,
+            staged_patch,
+            report_path=report_path,
+            results_path=results_path,
+            evidence_path=evidence_path,
+        )
+        staged_patch_bundle_artifact = _write_with_fallback(
+            staged_patch_bundle_path,
+            _json(staged_patch_review_bundle),
+        )
+        staged_patch_review_bundle_state.update(
+            {
+                "status": str(staged_patch_review_bundle["status"]),
+                "bundlePath": staged_patch_bundle_artifact["actualPath"],
+                "bundleFound": True,
+                "requiredHumanAction": staged_patch_review_bundle["requiredHumanAction"],
+            }
+        )
 
     checkpoint_payload = _build_search_checkpoint(
         experiment,
@@ -8190,6 +9005,7 @@ def run_autoagent_loop(
         mutation_drafts_artifact,
         policy_drafts_artifact,
         trace_artifact,
+        staged_patch_bundle_artifact,
     )
 
     result = {
@@ -8276,6 +9092,9 @@ def run_autoagent_loop(
         "evidenceSummary": evidence_dataset["summary"],
         "liveEvaluation": live_evaluation,
         "stagedPatch": staged_patch,
+        "stagedPatchReviewBundle": _serialize_staged_patch_review_bundle_state(
+            staged_patch_review_bundle_state
+        ),
         "provenance": provenance,
         "baseline": {
             "candidateId": "baseline",
@@ -8371,6 +9190,9 @@ def run_autoagent_loop(
         "learningPromotionAudit": _serialize_learning_promotion_audit_state(
             learning_promotion_audit_state
         ),
+        "reviewedContinuationPackage": _serialize_reviewed_continuation_package_state(
+            reviewed_continuation_package_state
+        ),
         "artifacts": {
             "report": None,
             "results": results_artifact,
@@ -8382,6 +9204,7 @@ def run_autoagent_loop(
             "mutationDrafts": mutation_drafts_artifact,
             "policyDrafts": policy_drafts_artifact,
             "guardedLearningReview": guarded_learning_review_artifact,
+            "stagedPatchBundle": staged_patch_bundle_artifact,
             "trace": trace_artifact,
             "runRoot": run_root.as_posix(),
         },
@@ -8477,6 +9300,32 @@ def import_learning_review(
     import_report_path: Path | None = None,
 ) -> dict[str, Any]:
     experiment = load_experiment(experiment_path)
+    experiment["governedTaskLifecycle"] = _derive_governed_task_lifecycle()
+    experiment["governedReviewConsensus"] = _derive_governed_review_consensus()
+    experiment["continuationReadiness"] = _derive_continuation_readiness(
+        experiment["continuationEligibility"],
+        experiment["governedReviewConsensus"],
+    )
+    experiment["reviewedContinuationHandoff"] = _derive_reviewed_continuation_handoff(
+        experiment["continuationEligibility"],
+        experiment["governedTaskLifecycle"],
+        experiment["governedReviewConsensus"],
+        experiment["continuationReadiness"],
+    )
+    experiment["orchestrationContract"] = _derive_orchestration_contract(
+        experiment["reviewedContinuationHandoff"],
+        experiment["governedTaskLifecycle"],
+    )
+    experiment["reviewedDispatchIntent"] = _derive_reviewed_dispatch_intent(
+        experiment["orchestrationContract"],
+        experiment["reviewedContinuationHandoff"],
+        experiment["governedTaskLifecycle"],
+    )
+    experiment["governedApprovalMetadata"] = _derive_governed_approval_metadata(
+        experiment["reviewedDispatchIntent"],
+        experiment["governedReviewConsensus"],
+        experiment["governedTaskLifecycle"],
+    )
     run_root = output_root / experiment["name"]
 
     resolved_benchmark_drafts_path = (
@@ -8796,12 +9645,6 @@ def import_learning_review(
     if promoted_policies_artifact is not None:
         result["artifacts"]["promotedPolicies"] = promoted_policies_artifact
 
-    import_report_artifact = _write_with_fallback(
-        resolved_import_report_path,
-        _json(result),
-    )
-    result["artifacts"]["importReport"] = import_report_artifact
-
     promotion_audit = {
         "type": "AutoAgentLearningPromotionAudit",
         "mode": "manual_review_import",
@@ -8860,6 +9703,79 @@ def import_learning_review(
         _json(promotion_audit),
     )
     result["artifacts"]["promotionAudit"] = promotion_audit_artifact
+
+    continuation_bundle = _build_reviewed_continuation_bundle(
+        experiment,
+        review_manifest,
+        benchmark_review_results,
+        mutation_review_results,
+        policy_review_results,
+        benchmark_drafts_by_id,
+        mutation_drafts_by_id,
+        policy_drafts_by_id,
+        promoted_benchmark_path=Path(benchmark_artifact["actualPath"]),
+        promoted_mutations_path=Path(mutation_artifact["actualPath"]),
+        promoted_policies_path=(
+            Path(promoted_policies_artifact["actualPath"])
+            if promoted_policies_artifact is not None
+            else None
+        ),
+        import_report_path=resolved_import_report_path,
+        promotion_audit_path=Path(promotion_audit_artifact["actualPath"]),
+    )
+    continuation_bundle_artifact = _write_with_fallback(
+        run_root / "reviewed-continuation-bundle.json",
+        _json(continuation_bundle),
+    )
+    result["artifacts"]["continuationBundle"] = continuation_bundle_artifact
+
+    follow_on_experiment_artifact: dict[str, Any] | None = None
+    if int(continuation_bundle["summary"].get("acceptedTotalCount") or 0) > 0:
+        follow_on_experiment_artifact = _write_with_fallback(
+            run_root / "reviewed-continuation-experiment.generated.md",
+            _build_reviewed_continuation_experiment_document(
+                experiment,
+                reviewed_benchmark_path=Path(benchmark_artifact["actualPath"]),
+                reviewed_mutations_path=Path(mutation_artifact["actualPath"]),
+                reviewed_policies_path=(
+                    Path(promoted_policies_artifact["actualPath"])
+                    if promoted_policies_artifact is not None
+                    else None
+                ),
+                continuation_bundle_path=continuation_bundle_artifact["actualPath"],
+            ),
+        )
+        result["artifacts"]["followOnExperiment"] = follow_on_experiment_artifact
+
+    manual_dispatch_manifest = _build_manual_dispatch_manifest(
+        experiment,
+        continuation_bundle,
+        continuation_bundle_path=continuation_bundle_artifact["actualPath"],
+        follow_on_experiment_path=(
+            follow_on_experiment_artifact["actualPath"]
+            if follow_on_experiment_artifact is not None
+            else None
+        ),
+        output_root=output_root,
+    )
+    manual_dispatch_manifest_artifact = _write_with_fallback(
+        run_root / "manual-dispatch.generated.json",
+        _json(manual_dispatch_manifest),
+    )
+    result["artifacts"]["manualDispatchManifest"] = manual_dispatch_manifest_artifact
+    result["continuation"] = {
+        "bundleStatus": continuation_bundle["status"],
+        "acceptedTotalCount": int(continuation_bundle["summary"].get("acceptedTotalCount") or 0),
+        "manualDispatchStatus": manual_dispatch_manifest["status"],
+        "manualDispatchBlockedReasons": list(manual_dispatch_manifest["blockedReasons"]),
+        "followOnExperimentPath": manual_dispatch_manifest.get("followOnExperimentPath"),
+    }
+
+    import_report_artifact = _write_with_fallback(
+        resolved_import_report_path,
+        _json(result),
+    )
+    result["artifacts"]["importReport"] = import_report_artifact
     return result
 
 

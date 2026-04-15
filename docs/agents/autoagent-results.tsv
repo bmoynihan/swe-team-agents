@@ -1,3 +1,4 @@
 iteration	candidate_id	parent_candidate_id	search_depth	avg_score	trajectory_score	passed	status	description	complexity_score	body_chars	tool_count
-0	baseline		0	1.0	0.88	8/8	keep	Baseline target agent	3113	2948	6
-1	relax-no-product-code-boundary	baseline	1	0.842105	0.60125	7/8	discard	Loosen the manager scope to prove governance regressions are discarded.	3105	2940	6
+0	baseline		0	1.0	0.88	14/14	keep	Baseline target agent	8854	8659	6
+1	relax-no-product-code-boundary	baseline	1	0.818182	0.516429	12/14	discard	Loosen the manager scope across the manager bundle to prove governance regressions are discarded.	8841	8646	6
+2	weaken-agent-guide-governance	baseline	1	0.848485	0.646429	12/14	discard	Weaken the shared AGENTS governance contract to prove the broader governed bundle rejects drift.	8887	8692	6

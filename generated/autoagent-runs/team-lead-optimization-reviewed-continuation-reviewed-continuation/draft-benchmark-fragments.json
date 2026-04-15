@@ -1,0 +1,329 @@
+{
+  "type": "AutoAgentBenchmarkDrafts",
+  "mode": "review_only",
+  "shadowMode": true,
+  "source": {
+    "experimentName": "team-lead-optimization-reviewed-continuation-reviewed-continuation",
+    "benchmarkPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/reviewed-benchmark.json",
+    "tracePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation-reviewed-continuation/autoagent-trace.json"
+  },
+  "draftFragmentCount": 3,
+  "draftFragments": [
+    {
+      "draftId": "benchmark-fragment-01",
+      "status": "draft",
+      "reviewRequired": true,
+      "sourceSuggestionId": "episode-benchmark-01",
+      "kind": "episode_success_guard",
+      "classification": "successful_path",
+      "fragment": {
+        "name": "episode-episode-success-guard-01",
+        "title": "Episode-derived benchmark fragment 1",
+        "goal": "Preserve the observed successful path pattern.",
+        "observedCount": 1,
+        "learningScore": 0.845833,
+        "reasoningPathEfficiencyScore": 0.798333,
+        "exampleCandidateIds": [
+          "baseline"
+        ],
+        "handoffCount": 1,
+        "traceProvenance": {
+          "matchedRecordCount": 10,
+          "sourceKinds": [
+            "handoff_event",
+            "run_report",
+            "run_state",
+            "transcript_event"
+          ],
+          "sourceOrigins": [
+            "governed_run_export"
+          ],
+          "sourceOriginCounts": {
+            "governed_run_export": 3
+          },
+          "sourceScopes": [
+            "current_artifact",
+            "run_snapshot",
+            "chat_transcript",
+            "conversation_transcript",
+            "handoff_history"
+          ],
+          "sourceIds": [
+            "chat-history-1",
+            "transcript-history-1",
+            "handoff-history-1"
+          ],
+          "governedRunIds": [
+            "20260308-160258"
+          ],
+          "transcriptRecordCount": 2,
+          "handoffRecordCount": 1,
+          "transcriptBacked": true,
+          "handoffBacked": true
+        },
+        "factorSummary": {
+          "benchmarkQuality": 1.0,
+          "evidenceQuality": 0.65,
+          "terminalOutcomeScore": 1.0,
+          "actionCount": 0,
+          "searchDepth": 0,
+          "stepCount": 10,
+          "handoffCount": 1,
+          "handoffEfficiency": 0.666667,
+          "toolSequenceLength": 3,
+          "repeatedToolCount": 0,
+          "toolChurnScore": 1.0,
+          "reasoningPathEfficiencyScore": 0.798333
+        },
+        "suggestedChecks": [
+          {
+            "id": "episode-episode-success-guard-01-check",
+            "kind": "episode_observation_guard",
+            "intent": "Preserve the observed successful path pattern.",
+            "sourceKinds": [
+              "handoff_event",
+              "run_report",
+              "run_state",
+              "transcript_event"
+            ],
+            "toolNames": [
+              "read_file",
+              "grep_search"
+            ],
+            "handoffCount": 1,
+            "terminalStatus": "success",
+            "traceProvenance": {
+              "matchedRecordCount": 10,
+              "sourceKinds": [
+                "handoff_event",
+                "run_report",
+                "run_state",
+                "transcript_event"
+              ],
+              "sourceOrigins": [
+                "governed_run_export"
+              ],
+              "sourceOriginCounts": {
+                "governed_run_export": 3
+              },
+              "sourceScopes": [
+                "current_artifact",
+                "run_snapshot",
+                "chat_transcript",
+                "conversation_transcript",
+                "handoff_history"
+              ],
+              "sourceIds": [
+                "chat-history-1",
+                "transcript-history-1",
+                "handoff-history-1"
+              ],
+              "governedRunIds": [
+                "20260308-160258"
+              ],
+              "transcriptRecordCount": 2,
+              "handoffRecordCount": 1,
+              "transcriptBacked": true,
+              "handoffBacked": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "draftId": "benchmark-fragment-02",
+      "status": "draft",
+      "reviewRequired": true,
+      "sourceSuggestionId": "episode-benchmark-02",
+      "kind": "episode_success_guard",
+      "classification": "observed_path",
+      "fragment": {
+        "name": "episode-episode-success-guard-02",
+        "title": "Episode-derived benchmark fragment 2",
+        "goal": "Preserve the observed successful path pattern.",
+        "observedCount": 1,
+        "learningScore": 0.653539,
+        "reasoningPathEfficiencyScore": 0.6375,
+        "exampleCandidateIds": [
+          "episode-avoid-failure-path-02"
+        ],
+        "handoffCount": 0,
+        "traceProvenance": {
+          "matchedRecordCount": 4,
+          "sourceKinds": [
+            "run_report",
+            "run_state"
+          ],
+          "sourceOrigins": [],
+          "sourceOriginCounts": {},
+          "sourceScopes": [
+            "current_artifact",
+            "run_snapshot"
+          ],
+          "sourceIds": [],
+          "governedRunIds": [],
+          "transcriptRecordCount": 0,
+          "handoffRecordCount": 0,
+          "transcriptBacked": false,
+          "handoffBacked": false
+        },
+        "factorSummary": {
+          "benchmarkQuality": 0.820513,
+          "evidenceQuality": 0.5,
+          "terminalOutcomeScore": 0.6,
+          "actionCount": 1,
+          "searchDepth": 1,
+          "stepCount": 4,
+          "handoffCount": 0,
+          "handoffEfficiency": 1.0,
+          "toolSequenceLength": 0,
+          "repeatedToolCount": 0,
+          "toolChurnScore": 1.0,
+          "reasoningPathEfficiencyScore": 0.6375
+        },
+        "suggestedChecks": [
+          {
+            "id": "episode-episode-success-guard-02-check",
+            "kind": "episode_observation_guard",
+            "intent": "Preserve the observed successful path pattern.",
+            "sourceKinds": [
+              "run_report",
+              "run_state"
+            ],
+            "toolNames": [],
+            "handoffCount": 0,
+            "terminalStatus": "READY_FOR_QUALITY_GATE",
+            "traceProvenance": {
+              "matchedRecordCount": 4,
+              "sourceKinds": [
+                "run_report",
+                "run_state"
+              ],
+              "sourceOrigins": [],
+              "sourceOriginCounts": {},
+              "sourceScopes": [
+                "current_artifact",
+                "run_snapshot"
+              ],
+              "sourceIds": [],
+              "governedRunIds": [],
+              "transcriptRecordCount": 0,
+              "handoffRecordCount": 0,
+              "transcriptBacked": false,
+              "handoffBacked": false
+            }
+          }
+        ]
+      }
+    },
+    {
+      "draftId": "benchmark-fragment-03",
+      "status": "draft",
+      "reviewRequired": true,
+      "sourceSuggestionId": "episode-benchmark-03",
+      "kind": "episode_failure_regression",
+      "classification": "failure_path",
+      "fragment": {
+        "name": "episode-episode-failure-regression-03",
+        "title": "Episode-derived benchmark fragment 3",
+        "goal": "Add a regression guard for the observed failing path pattern.",
+        "observedCount": 1,
+        "learningScore": 0.481539,
+        "reasoningPathEfficiencyScore": 0.65,
+        "exampleCandidateIds": [
+          "relax-no-product-code-boundary"
+        ],
+        "handoffCount": 0,
+        "traceProvenance": {
+          "matchedRecordCount": 3,
+          "sourceKinds": [
+            "run_report",
+            "transcript_event"
+          ],
+          "sourceOrigins": [
+            "governed_run_export"
+          ],
+          "sourceOriginCounts": {
+            "governed_run_export": 2
+          },
+          "sourceScopes": [
+            "run_snapshot",
+            "chat_transcript",
+            "conversation_transcript"
+          ],
+          "sourceIds": [
+            "chat-history-1",
+            "transcript-history-1"
+          ],
+          "governedRunIds": [
+            "20260308-160258"
+          ],
+          "transcriptRecordCount": 2,
+          "handoffRecordCount": 0,
+          "transcriptBacked": true,
+          "handoffBacked": false
+        },
+        "factorSummary": {
+          "benchmarkQuality": 0.820513,
+          "evidenceQuality": 0.0,
+          "terminalOutcomeScore": 0.0,
+          "actionCount": 1,
+          "searchDepth": 1,
+          "stepCount": 3,
+          "handoffCount": 0,
+          "handoffEfficiency": 1.0,
+          "toolSequenceLength": 2,
+          "repeatedToolCount": 0,
+          "toolChurnScore": 1.0,
+          "reasoningPathEfficiencyScore": 0.65
+        },
+        "suggestedChecks": [
+          {
+            "id": "episode-episode-failure-regression-03-check",
+            "kind": "episode_observation_guard",
+            "intent": "Add a regression guard for the observed failing path pattern.",
+            "sourceKinds": [
+              "run_report",
+              "transcript_event"
+            ],
+            "toolNames": [
+              "apply_patch",
+              "read_file"
+            ],
+            "handoffCount": 0,
+            "terminalStatus": "error",
+            "traceProvenance": {
+              "matchedRecordCount": 3,
+              "sourceKinds": [
+                "run_report",
+                "transcript_event"
+              ],
+              "sourceOrigins": [
+                "governed_run_export"
+              ],
+              "sourceOriginCounts": {
+                "governed_run_export": 2
+              },
+              "sourceScopes": [
+                "run_snapshot",
+                "chat_transcript",
+                "conversation_transcript"
+              ],
+              "sourceIds": [
+                "chat-history-1",
+                "transcript-history-1"
+              ],
+              "governedRunIds": [
+                "20260308-160258"
+              ],
+              "transcriptRecordCount": 2,
+              "handoffRecordCount": 0,
+              "transcriptBacked": true,
+              "handoffBacked": false
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

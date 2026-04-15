@@ -6,17 +6,17 @@
     "defaultBranch": "main"
   },
   "task": {
-    "id": "manual-autoagent-phase5f-trace-backed-reasoning-path-efficiency-20260412",
-    "title": "Implement transcript-backed reasoning-path efficiency learning for AutoAgent",
-    "goal": "Implement the smallest Phase 5F runtime slice that keeps AutoAgent manual and report_only while enabling explicit chat, transcript, and handoff evidence ingestion plus deterministic reasoning-path efficiency scoring in learning artifacts.",
+    "id": "manual-autoagent-broaden-governed-bundle-coverage-20260414",
+    "title": "Broaden the checked-in AutoAgent governed bundle to include AGENTS.md",
+    "goal": "Expand the checked-in AutoAgent manager bundle to include AGENTS.md, extend the benchmark and mutation catalog for the new governed target, and preserve the existing manual and report_only execution boundary.",
     "source": {
       "type": "manual",
-      "reference": "user request in VS Code chat on 2026-04-12 to define the next concrete slice for real chat and handoff evidence plus straightest reasoning-path learning"
+      "reference": "user request in VS Code chat on 2026-04-14 to proceed with broader governed bundle coverage after the staged review-bundle slice validated cleanly"
     },
-    "createdAt": "2026-04-12T18:44:48.0272715-04:00",
-    "updatedAt": "2026-04-12T19:06:24.0343313-04:00"
+    "createdAt": "2026-04-14T21:25:00Z",
+    "updatedAt": "2026-04-14T22:18:00Z"
   },
-  "phase": "Review",
+  "phase": "Done",
   "acceptance_criteria_refs": [
     "docs/agents/task-spec.md#AC1",
     "docs/agents/task-spec.md#AC2",
@@ -24,12 +24,12 @@
     "docs/agents/task-spec.md#AC4"
   ],
   "constraints": [
-    "Keep execution manual and report_only; do not enable autonomous continuation, autonomous apply-best, schedulers, queues, watchers, approval APIs, or execution-capable orchestration.",
-    "Keep guarded learning promotion review-only; do not auto-import, auto-apply, or auto-activate benchmark, mutation, or policy drafts.",
-    "Limit runtime changes to explicit chat, transcript, and handoff evidence ingestion plus deterministic reasoning-path efficiency scoring and reviewer-facing visibility; do not widen execution authority, auto-apply behavior, or approval authority.",
-    "Preserve existing evidence redaction, truncation, external-path controls, and explicit opt-in evidence-policy behavior from Phase 5A.",
-    "Do not introduce network calls, semantic LLM judging, opaque classifiers, or non-replayable heuristics.",
-    "Do not let the new reasoning-path signal directly bypass benchmark quality, terminal outcome, reviewed-policy runtime boundaries, apply-best authority, or continuation eligibility guardrails.",
+    "Keep the checked-in workflow manual and report_only by default; do not introduce schedulers, queues, watchers, services, background reruns, or unattended continuation.",
+    "Keep applyBestCandidate disabled and keep the live evaluator disabled in the checked-in experiment.",
+    "Keep the checked-in bundle limited to manager-shared governance artifacts; do not widen into specialist agent profiles or execution-capable assets.",
+    "Extend the benchmark and mutation catalog only with AGENTS-specific governance checks and a negative governance-regression mutation; do not change ranking logic or reviewed-continuation behavior.",
+    "Preserve redaction, truncation, and allowExternalPaths=false defaults unless a governed artifact explicitly opts into a reviewed exception.",
+    "Keep learning and review artifacts additive and reversible.",
     "Keep validation deterministic and offline.",
     "Keep governed artifacts under docs/agents/ and mirror touched files into the active run snapshot.",
     "Do not commit secrets or write outside the governed docs/agents artifact flow."
@@ -946,16 +946,328 @@
       "details": {
         "notes": "Focused transcript, handoff, and reasoning-path coverage passed, the full deterministic runner file passed, canonical AutoAgent artifacts were regenerated successfully, and the slice remains manual and review-only."
       }
+    },
+    {
+      "ts": "2026-04-12T20:25:00-04:00",
+      "by": "team-lead",
+      "summary": "Opened the bounded Phase 6A reviewed-continuation packaging slice.",
+      "details": {
+        "notes": "This slice turns approved learning-review imports plus governed trace exports into a bounded continuation package, follow-on experiment draft, and manual-dispatch manifest while keeping the live workflow manual and report_only."
+      }
+    },
+    {
+      "ts": "2026-04-12T20:25:00-04:00",
+      "by": "spec-writer",
+      "summary": "Drafted the Phase 6A implementation contract for reviewed continuation packaging.",
+      "details": {
+        "notes": "The task spec narrows scope to governed trace-export intake, reviewed continuation bundle generation, concrete manual-dispatch artifacts, and preserved manual or governed_artifacts_only boundaries."
+      }
+    },
+    {
+      "ts": "2026-04-13T00:55:18.3350435Z",
+      "by": "implementer",
+      "summary": "Implemented the Phase 6A reviewed-continuation packaging slice.",
+      "details": {
+        "notes": "The AutoAgent runtime now distinguishes governed run exports from fixture-backed evidence, emits reviewed continuation bundles and manual-dispatch manifests from approved learning reviews, and persists package-state visibility across reruns under the existing manual and report_only boundary."
+      }
+    },
+    {
+      "ts": "2026-04-13T01:16:00.0921772Z",
+      "by": "quality-gate",
+      "summary": "Recorded a PASS quality gate for the Phase 6A reviewed-continuation packaging slice.",
+      "details": {
+        "notes": "Fresh focused and full runner validation passed, governed artifacts remained machine-parseable and mirrored into the active run snapshot, and the continuation package stayed manual and report_only while the approved-import path was proven by deterministic tests."
+      }
+    },
+    {
+      "ts": "2026-04-13T01:16:00.0921772Z",
+      "by": "team-lead",
+      "summary": "Closed the bounded Phase 6A reviewed-continuation packaging slice.",
+      "details": {
+        "notes": "The Phase 6A slice is complete with refreshed governed review and release artifacts, regenerated canonical AutoAgent reporting, and no change to the manual or report_only execution boundary. The next recommended step is a new bounded task that explicitly exercises the manual-dispatch artifacts against governed run exports."
+      }
+    },
+    {
+      "ts": "2026-04-13T17:00:44.7919442-04:00",
+      "by": "team-lead",
+      "summary": "Opened the bounded Phase 6B manual-dispatch exercise slice.",
+      "details": {
+        "notes": "This slice manually launches the ready reviewed-continuation experiment from the governed dispatch contract, captures the bounded follow-on outcome, and keeps execution human-invoked only."
+      }
+    },
+    {
+      "ts": "2026-04-13T17:00:44.7919442-04:00",
+      "by": "spec-writer",
+      "summary": "Drafted the Phase 6B implementation contract for the manual-dispatch exercise.",
+      "details": {
+        "notes": "The task spec narrows scope to the exact generated launch command, reviewable follow-on outputs, preserved manual boundaries, and refreshed governed lifecycle artifacts."
+      }
+    },
+    {
+      "ts": "2026-04-13T21:17:02.9762771Z",
+      "by": "implementer",
+      "summary": "Executed the Phase 6B manual-dispatch exercise slice.",
+      "details": {
+        "notes": "The generated reviewed-continuation experiment was launched manually, canonical report/results/evidence were refreshed to the exercised run, and a new review-only follow-on run root was created under generated/autoagent-runs/team-lead-optimization-reviewed-continuation/."
+      }
+    },
+    {
+      "ts": "2026-04-13T21:17:02.9762771Z",
+      "by": "quality-gate",
+      "summary": "Recorded a PASS quality gate for the Phase 6B manual-dispatch exercise slice.",
+      "details": {
+        "notes": "The generated dispatch contract was exercised successfully, deterministic validation passed, governed artifacts remained machine-parseable and mirrored, and execution authority remained human_invoked_only."
+      }
+    },
+    {
+      "ts": "2026-04-13T21:17:02.9762771Z",
+      "by": "team-lead",
+      "summary": "Closed the bounded Phase 6B manual-dispatch exercise slice.",
+      "details": {
+        "notes": "The manual-dispatch path has now been exercised end to end. The next recommended step is a new bounded task to review the freshly generated draft benchmark, mutation, and policy artifacts and decide whether to prepare another manual learning-review manifest."
+      }
+    },
+    {
+      "ts": "2026-04-13T17:46:43.1942132-04:00",
+      "by": "team-lead",
+      "summary": "Opened the bounded Phase 6C reviewed-learning import slice.",
+      "details": {
+        "notes": "This slice records explicit reviewer decisions for the exercised continuation run's draft learning artifacts and imports only the approved incremental learning while keeping execution manual and additive."
+      }
+    },
+    {
+      "ts": "2026-04-13T17:46:43.1942132-04:00",
+      "by": "spec-writer",
+      "summary": "Drafted the Phase 6C implementation contract for exercised-run learning review and import.",
+      "details": {
+        "notes": "The task spec narrows scope to the exercised run's draft catalogs, explicit accept or reject or defer review decisions, bounded import outputs, canonical report refresh, and governed artifact parity."
+      }
+    },
+    {
+      "ts": "2026-04-13T17:51:21.2143462-04:00",
+      "by": "implementer",
+      "summary": "Executed the Phase 6C reviewed-learning import slice.",
+      "details": {
+        "notes": "A manual learning-review manifest was recorded for the exercised continuation run, only the escalation-trigger policy was promoted by reviewer override, and the import produced a reviewed continuation bundle plus a regenerated manual dispatch package under the exercised run root."
+      }
+    },
+    {
+      "ts": "2026-04-13T17:51:21.2143462-04:00",
+      "by": "quality-gate",
+      "summary": "Recorded a PASS quality gate for the Phase 6C reviewed-learning import slice.",
+      "details": {
+        "notes": "The exercised run's draft artifacts were reviewed explicitly, duplicate or unsafe items were kept out of the import, the new escalation-trigger policy was promoted additively, and deterministic validation plus governed artifact parity remained intact."
+      }
+    },
+    {
+      "ts": "2026-04-13T17:51:21.2143462-04:00",
+      "by": "team-lead",
+      "summary": "Closed the bounded Phase 6C reviewed-learning import slice.",
+      "details": {
+        "notes": "The exercised continuation run now has a governed learning review and an additive reviewed continuation package. The next recommended step is to inspect the regenerated manual-dispatch package under generated/autoagent-runs/team-lead-optimization-reviewed-continuation/ and decide whether to launch that follow-on experiment manually."
+      }
+    },
+    {
+      "ts": "2026-04-13T22:30:00Z",
+      "by": "team-lead",
+      "summary": "Opened the bounded Phase 6D slice for the reviewed continuation follow-on run.",
+      "details": {
+        "notes": "This slice authorizes a human-invoked launch of the ready reviewed continuation experiment so the repo can measure whether the accepted escalation-trigger policy improves the next bounded run."
+      }
+    },
+    {
+      "ts": "2026-04-13T22:30:00Z",
+      "by": "implementer",
+      "summary": "Prepared the governed task and report contract for manual launch-and-assessment.",
+      "details": {
+        "notes": "The Phase 6D task spec narrows scope to manual launch, follow-on outcome assessment, canonical regeneration, and governed artifact refresh without reopening the earlier review manifests."
+      }
+    },
+    {
+      "ts": "2026-04-13T22:40:00Z",
+      "by": "team-lead",
+      "summary": "Launched the ready reviewed continuation experiment as the bounded Phase 6D follow-on run.",
+      "details": {
+        "notes": "The generated manual-dispatch command produced a new run root at generated/autoagent-runs/team-lead-optimization-reviewed-continuation-reviewed-continuation/ while preserving manual and report_only semantics."
+      }
+    },
+    {
+      "ts": "2026-04-13T22:52:00Z",
+      "by": "implementer",
+      "summary": "Assessed the Phase 6D follow-on run and found no better evaluated continuation candidate than baseline.",
+      "details": {
+        "notes": "The reviewed escalation-trigger policy loaded successfully and deprioritized episode-avoid-failure-path-02 in the mutation execution plan, but the final evaluated candidate still scored 0.820513 versus baseline at 1.0."
+      }
+    },
+    {
+      "ts": "2026-04-13T23:10:00Z",
+      "by": "team-lead",
+      "summary": "Closed the bounded Phase 6D launch-and-assessment slice.",
+      "details": {
+        "notes": "The recommendation to launch the ready reviewed continuation package has now been exercised. The result is reviewable and additive, but it does not justify claiming continuation improvement beyond the current reviewed policy runtime."
+      }
+    },
+    {
+      "ts": "2026-04-13T23:35:00Z",
+      "by": "team-lead",
+      "summary": "Opened the bounded Phase 6E diagnosis slice for the losing follow-on candidate.",
+      "details": {
+        "notes": "This slice narrows scope to identifying the exact failed checks, classifying the root cause, and choosing the correct category of next step without launching another run or reviewing new drafts."
+      }
+    },
+    {
+      "ts": "2026-04-13T23:44:00Z",
+      "by": "implementer",
+      "summary": "Diagnosed the losing candidate as a mutation-lineage problem rather than a benchmark problem.",
+      "details": {
+        "notes": "The launched candidate still fails no-product-code-boundary because it retains the copied source mutation text, and it fails the success guard because it does not produce the expected read_file plus grep_search success evidence path."
+      }
+    },
+    {
+      "ts": "2026-04-13T23:48:00Z",
+      "by": "team-lead",
+      "summary": "Closed the bounded Phase 6E diagnosis slice.",
+      "details": {
+        "notes": "The correct next step is mutation-catalog correction or no further continuation work. Another learning-review import from the current raw drafts is not justified."
+      }
+    },
+    {
+      "ts": "2026-04-14T00:20:00Z",
+      "by": "team-lead",
+      "summary": "Opened the bounded Phase 6F replacement-mutation slice.",
+      "details": {
+        "notes": "This slice preserves the old review manifest as provenance, authors one additive replacement mutation in a new catalog, and runs one fresh bounded experiment to see whether a genuinely new mutation can beat baseline."
+      }
+    },
+    {
+      "ts": "2026-04-14T00:28:00Z",
+      "by": "implementer",
+      "summary": "Authored the additive replacement mutation assets and launched the fresh bounded experiment.",
+      "details": {
+        "notes": "The replacement attempt used a fresh experiment name and preserved the original review manifest and original reviewed mutation catalog unchanged."
+      }
+    },
+    {
+      "ts": "2026-04-14T00:34:00Z",
+      "by": "implementer",
+      "summary": "Assessed the replacement run outcome and found baseline still remained best.",
+      "details": {
+        "notes": "The replacement candidate reduced complexity and preserved the product-code boundary, but still failed episode-episode-success-guard-01-check with matchedRecordCount 0."
+      }
+    },
+    {
+      "ts": "2026-04-14T00:42:00Z",
+      "by": "team-lead",
+      "summary": "Closed the bounded Phase 6F replacement-mutation slice.",
+      "details": {
+        "notes": "The branch should stop here unless a future mutation is grounded in actual successful evidence that can satisfy the observation guard."
+      }
+    },
+    {
+      "ts": "2026-04-14T02:05:00Z",
+      "by": "team-lead",
+      "summary": "Opened the bounded manager-bundle alignment slice for the checked-in AutoAgent experiment.",
+      "details": {
+        "notes": "Recommendation 1 was already in place through governed chat, transcript, and handoff evidence. The next safe alignment step is to widen the checked-in optimization surface from one Team Lead file to a small manager bundle without enabling unattended continuation."
+      }
+    },
+    {
+      "ts": "2026-04-14T02:16:00Z",
+      "by": "implementer",
+      "summary": "Expanded the checked-in AutoAgent experiment, benchmark, and mutation catalog to a two-target manager bundle and added focused content validation.",
+      "details": {
+        "notes": "The canonical experiment now targets both .github/agents/team-lead.agent.md and .github/skills/team-lead/SKILL.md. The example benchmark and negative mutation now reference explicit targetIds across the bundle, and focused pytest coverage locks the new contract while preserving manual and report_only semantics."
+      }
+    },
+    {
+      "ts": "2026-04-14T02:20:00Z",
+      "by": "implementer",
+      "summary": "Re-ran the canonical AutoAgent experiment under the widened manager bundle and refreshed the canonical report artifacts.",
+      "details": {
+        "notes": "The refreshed canonical run kept baseline as the winner at 1.0 versus 0.769231 for the negative regression mutation, and the run confirmed both bundle targets participate in the generated artifacts without widening execution authority."
+      }
+    },
+    {
+      "ts": "2026-04-14T02:24:00Z",
+      "by": "team-lead",
+      "summary": "Closed the bounded manager-bundle alignment slice with a PASS quality gate.",
+      "details": {
+        "notes": "The checked-in AutoAgent experiment is now closer to the intended team-level optimizer: evidence inputs remain governed and manual, the optimization surface now includes shared manager guidance, and the next bounded step should focus on auto-staged review bundles rather than unattended continuation."
+      }
+    },
+    {
+      "ts": "2026-04-14T20:10:00Z",
+      "by": "team-lead",
+      "summary": "Opened the bounded staged patch review-bundle slice.",
+      "details": {
+        "notes": "The runtime already exposed staged patch metadata and a review_bundle mode in reports, but it still lacked a concrete generated review-bundle artifact under the run root. This slice narrows scope to that artifactization step without changing manual/report_only authority."
+      }
+    },
+    {
+      "ts": "2026-04-14T20:35:00Z",
+      "by": "implementer",
+      "summary": "Emitted a first-class staged patch review bundle and surfaced it in canonical reporting.",
+      "details": {
+        "notes": "The AutoAgent runtime now writes staged-patch-review-bundle.json under the generated run root when staged review is enabled, exposes bundle state in the result payload, provenance summary, and trace artifacts, and records the required human action in the canonical report."
+      }
+    },
+    {
+      "ts": "2026-04-14T20:53:54Z",
+      "by": "quality-gate",
+      "summary": "Recorded a PASS quality gate for the staged patch review-bundle slice.",
+      "details": {
+        "notes": "Focused staged-bundle pytest coverage passed, the canonical AutoAgent rerun refreshed the new artifact successfully, the quick suite passed on the patched tree, and the workflow remained manual and report_only."
+      }
+    },
+    {
+      "ts": "2026-04-14T20:53:54Z",
+      "by": "team-lead",
+      "summary": "Closed the staged patch review-bundle slice.",
+      "details": {
+        "notes": "AutoAgent now emits a concrete staged patch review bundle that reviewers can inspect directly from the run root. The next bounded step should focus on broader governed bundle coverage or reviewer workflow polish rather than unattended continuation."
+      }
+    },
+    {
+      "ts": "2026-04-14T21:25:00Z",
+      "by": "team-lead",
+      "summary": "Opened the bounded broader governed bundle coverage slice.",
+      "details": {
+        "notes": "This slice expands the checked-in manager bundle by one repo-level governance artifact, AGENTS.md, without widening into specialist profiles or changing the manual/report_only execution boundary."
+      }
+    },
+    {
+      "ts": "2026-04-14T21:52:00Z",
+      "by": "implementer",
+      "summary": "Expanded the checked-in bundle inputs to include AGENTS.md and fixed the markdown-target compatibility failure at the root cause.",
+      "details": {
+        "notes": "The experiment, benchmark, mutation catalog, and deterministic lock test now include agent-operating-guide. The first canonical rerun failed because AGENTS.md lacked YAML frontmatter required by the markdown target loader, so minimal frontmatter was added instead of changing runtime behavior."
+      }
+    },
+    {
+      "ts": "2026-04-14T22:18:00Z",
+      "by": "quality-gate",
+      "summary": "Recorded a PASS quality gate for the broader governed bundle coverage slice.",
+      "details": {
+        "notes": "Focused pytest coverage passed, the final canonical AutoAgent rerun refreshed the three-target bundle successfully, the captured quick-suite transcript passed, and root/run governed artifact parity was restored."
+      }
+    },
+    {
+      "ts": "2026-04-14T22:18:00Z",
+      "by": "team-lead",
+      "summary": "Closed the broader governed bundle coverage slice.",
+      "details": {
+        "notes": "The checked-in experiment now covers a three-target governed manager bundle. The next bounded step should focus on reviewer workflow polish or, at most, one more manager-shared governed artifact after maintainers review the current bundle size and signal quality."
+      }
     }
   ],
   "delegations": [],
   "evidence": {
     "tests": [
-      "New-Item -ItemType Directory -Force .tmp-pytest | Out-Null; $env:TMP = (Resolve-Path .tmp-pytest).Path; $env:TEMP = $env:TMP; py -3 -m pytest tests/test_autoagent_loop_runner.py -k \"transcript or handoff or reasoning_path\"",
-      "New-Item -ItemType Directory -Force .tmp-pytest | Out-Null; $env:TMP = (Resolve-Path .tmp-pytest).Path; $env:TEMP = $env:TMP; py -3 -m pytest tests/test_autoagent_loop_runner.py",
-      "py -3 .github/skills/autoagent-loop/scripts/autoagent_loop.py --experiment docs/agents/autoagent-experiment.md --output-root generated/autoagent-runs --report docs/agents/autoagent-report.md --results docs/agents/autoagent-results.tsv --evidence docs/agents/autoagent-evidence.json",
+      "py -3 -m pytest tests/test_autoagent_loop_runner.py::test_autoagent_loop_report_includes_staged_patch_and_provenance tests/test_autoagent_loop_runner.py::test_checked_in_autoagent_experiment_uses_manager_bundle_targets tests/test_autoagent_loop_runner.py::test_autoagent_loop_imports_approved_learning_drafts_with_review_manifest --basetemp ./.tmp/pytest-broader-bundle-rerun",
+      "py -3 scripts/run_autoagent_loop.py --experiment docs/agents/autoagent-experiment.md",
+      "pwsh -File ./scripts/ci/quick_test.ps1",
       "py -3 -m json.tool docs/agents/state.json > $null",
-      "py -3 -c \"from pathlib import Path; pairs=[('docs/agents/task-spec.md','docs/agents/runs/20260308-160258/task-spec.md'),('docs/agents/state.json','docs/agents/runs/20260308-160258/state.json'),('docs/agents/patch-report.md','docs/agents/runs/20260308-160258/patch-report.md'),('docs/agents/test-report.md','docs/agents/runs/20260308-160258/test-report.md'),('docs/agents/review-report.md','docs/agents/runs/20260308-160258/review-report.md'),('docs/agents/release-report.md','docs/agents/runs/20260308-160258/release-report.md'),('docs/agents/autoagent-experiment.md','docs/agents/runs/20260308-160258/autoagent-experiment.md'),('docs/agents/autoagent-report.md','docs/agents/runs/20260308-160258/autoagent-report.md'),('docs/agents/autoagent-results.tsv','docs/agents/runs/20260308-160258/autoagent-results.tsv'),('docs/agents/autoagent-evidence.json','docs/agents/runs/20260308-160258/autoagent-evidence.json')];\nfor left,right in pairs:\n    assert Path(left).read_text(encoding='utf-8') == Path(right).read_text(encoding='utf-8')\""
+      "py -3 -c \"from pathlib import Path; pairs=[('docs/agents/task-spec.md','docs/agents/runs/20260308-160258/task-spec.md'),('docs/agents/state.json','docs/agents/runs/20260308-160258/state.json'),('docs/agents/patch-report.md','docs/agents/runs/20260308-160258/patch-report.md'),('docs/agents/test-report.md','docs/agents/runs/20260308-160258/test-report.md'),('docs/agents/review-report.md','docs/agents/runs/20260308-160258/review-report.md'),('docs/agents/release-report.md','docs/agents/runs/20260308-160258/release-report.md'),('docs/agents/autoagent-experiment.md','docs/agents/runs/20260308-160258/autoagent-experiment.md'),('docs/agents/autoagent-report.md','docs/agents/runs/20260308-160258/autoagent-report.md'),('docs/agents/autoagent-results.tsv','docs/agents/runs/20260308-160258/autoagent-results.tsv'),('docs/agents/autoagent-evidence.json','docs/agents/runs/20260308-160258/autoagent-evidence.json')]; assert all(Path(left).read_text(encoding='utf-8') == Path(right).read_text(encoding='utf-8') for left,right in pairs); print('PARITY_OK')\""
     ],
     "reports": {
       "taskSpec": "docs/agents/task-spec.md",
@@ -1037,6 +1349,22 @@
       "evidence": "python scripts/ci/quick_test.py -> ruff format --check src scripts tests reported scripts/package_copilot_agent_converter_portable.py, scripts/run_copilot_agent_conversion.py, tests/__init__.py, tests/test_copilot_agent_scaffold_emitter.py, tests/test_package_copilot_agent_converter_portable.py, and tests/test_smoke.py",
       "retryCount": 1,
       "nextStep": "Treat the remaining Ruff backlog as separate repo-wide cleanup and keep this slice gated on the focused pytest run plus canonical AutoAgent runner evidence."
+    },
+    {
+      "ts": "2026-04-13T22:58:00Z",
+      "category": "test_or_runtime_failure",
+      "summary": "The first Phase 6D quick-suite validation attempt was interrupted by the tool time limit during compileall.",
+      "evidence": "pwsh -File ./scripts/ci/quick_test.ps1 under the initial sync timeout ended with KeyboardInterrupt in scripts/ci/quick_test.py while waiting on python -m compileall -q .",
+      "retryCount": 1,
+      "nextStep": "Rerun the Windows-native quick suite without a tool timeout; the no-timeout rerun passed and is the authoritative validation result for Phase 6D."
+    },
+    {
+      "ts": "2026-04-14T21:40:00Z",
+      "category": "test_or_runtime_failure",
+      "summary": "The first broader-bundle canonical rerun failed because AGENTS.md did not satisfy the markdown target loader contract.",
+      "evidence": "py -3 scripts/run_autoagent_loop.py --experiment docs/agents/autoagent-experiment.md -> ValueError: D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/AGENTS.md does not contain a valid YAML frontmatter block.",
+      "retryCount": 1,
+      "nextStep": "Add minimal YAML frontmatter to AGENTS.md and rerun the canonical experiment."
     }
   ],
   "risk_register": [
@@ -1187,15 +1515,15 @@
   ],
   "quality_gate": {
     "status": "PASS",
-    "lastReviewAt": "2026-04-12T23:06:34.5477007Z",
+    "lastReviewAt": "2026-04-14T22:18:00Z",
     "reviewReportRef": "docs/agents/review-report.md",
     "blockers": []
   },
   "next_action": {
     "owner": "team-lead",
-    "summary": "Present the implemented Phase 5F transcript-backed reasoning-path slice for maintainer review, then decide whether the next bounded follow-on should refine reviewer-facing learning summaries or open a separate autonomy-planning slice.",
+    "summary": "Present the validated three-target governed bundle slice for human review, then decide whether the next bounded follow-on should polish reviewer workflow or add one more manager-shared governed artifact.",
     "agent": "team-lead",
-    "due": "2026-04-13"
+    "due": "2026-04-16"
   },
   "meta": {
     "notes": "Do not store secrets. Keep this file stable and machine-parseable."

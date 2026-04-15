@@ -2,13 +2,41 @@
     "mutations": [
         {
             "id": "relax-no-product-code-boundary",
-            "description": "Loosen the manager scope to prove governance regressions are discarded.",
+            "description": "Loosen the manager scope across the manager bundle to prove governance regressions are discarded.",
             "operations": [
                 {
                     "type": "replace_text",
+                    "targetId": "team-lead",
                     "target": "body",
                     "old": "You may edit coordination artifacts, templates, and lightweight workflow wiring, but not product code.",
                     "new": "You may edit coordination artifacts, templates, lightweight workflow wiring, and product code."
+                },
+                {
+                    "type": "replace_text",
+                    "targetId": "team-lead-skill",
+                    "target": "body",
+                    "old": "- The manager does not implement product code.",
+                    "new": "- The manager may implement product code."
+                }
+            ]
+        },
+        {
+            "id": "weaken-agent-guide-governance",
+            "description": "Weaken the shared AGENTS governance contract to prove the broader governed bundle rejects drift.",
+            "operations": [
+                {
+                    "type": "replace_text",
+                    "targetId": "agent-operating-guide",
+                    "target": "body",
+                    "old": "- `docs/agents/` is the only live shared artifact root.",
+                    "new": "- `docs/agents/` is a preferred live shared artifact root."
+                },
+                {
+                    "type": "replace_text",
+                    "targetId": "agent-operating-guide",
+                    "target": "body",
+                    "old": "- Do not bypass hook denials.",
+                    "new": "- Do not bypass hook denials when local iteration needs it."
                 }
             ]
         }

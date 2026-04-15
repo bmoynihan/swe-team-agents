@@ -1,0 +1,223 @@
+{
+  "type": "AutoAgentMutationDrafts",
+  "mode": "review_only",
+  "shadowMode": true,
+  "source": {
+    "experimentName": "team-lead-optimization-reviewed-continuation",
+    "mutationCatalogPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/reviewed-mutations.json",
+    "tracePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/autoagent-trace.json"
+  },
+  "draftEntryCount": 3,
+  "draftEntries": [
+    {
+      "draftId": "mutation-draft-01",
+      "status": "draft",
+      "reviewRequired": true,
+      "sourceSeedId": "episode-mutation-seed-01",
+      "kind": "reinforce_success_path",
+      "entry": {
+        "id": "episode-reinforce-success-path-01",
+        "description": "Promote this observed successful path as a future mutation seed.",
+        "intent": "reinforce_success_path",
+        "sourceCandidateId": "baseline",
+        "sourceEpisodeId": "candidate-episode-baseline",
+        "sourceMutationId": null,
+        "preferredSourceKinds": [
+          "handoff_event",
+          "run_report",
+          "run_state",
+          "transcript_event"
+        ],
+        "preferredTools": [
+          "read_file",
+          "grep_search"
+        ],
+        "handoffCount": 1,
+        "constraints": {
+          "maxSearchDepth": 0,
+          "maxActionCount": 0
+        },
+        "learningScore": 0.839583,
+        "reasoningPathEfficiencyScore": 0.795833,
+        "traceProvenance": {
+          "matchedRecordCount": 12,
+          "sourceKinds": [
+            "handoff_event",
+            "run_report",
+            "run_state",
+            "transcript_event"
+          ],
+          "sourceOrigins": [
+            "governed_run_export"
+          ],
+          "sourceOriginCounts": {
+            "governed_run_export": 3
+          },
+          "sourceScopes": [
+            "current_artifact",
+            "run_snapshot",
+            "chat_transcript",
+            "conversation_transcript",
+            "handoff_history"
+          ],
+          "sourceIds": [
+            "chat-history-1",
+            "transcript-history-1",
+            "handoff-history-1"
+          ],
+          "governedRunIds": [
+            "20260308-160258"
+          ],
+          "transcriptRecordCount": 2,
+          "handoffRecordCount": 1,
+          "transcriptBacked": true,
+          "handoffBacked": true
+        },
+        "factorSummary": {
+          "benchmarkQuality": 1.0,
+          "evidenceQuality": 0.625,
+          "terminalOutcomeScore": 1.0,
+          "actionCount": 0,
+          "searchDepth": 0,
+          "stepCount": 12,
+          "handoffCount": 1,
+          "handoffEfficiency": 0.666667,
+          "toolSequenceLength": 3,
+          "repeatedToolCount": 0,
+          "toolChurnScore": 1.0,
+          "reasoningPathEfficiencyScore": 0.795833
+        }
+      }
+    },
+    {
+      "draftId": "mutation-draft-02",
+      "status": "draft",
+      "reviewRequired": true,
+      "sourceSeedId": "episode-mutation-seed-02",
+      "kind": "investigate_observed_path",
+      "entry": {
+        "id": "episode-investigate-observed-path-02",
+        "description": "Investigate this observed path before turning it into a mutation.",
+        "intent": "investigate_observed_path",
+        "sourceCandidateId": "episode-avoid-failure-path-02",
+        "sourceEpisodeId": "candidate-episode-episode-avoid-failure-path-02",
+        "sourceMutationId": "episode-avoid-failure-path-02",
+        "preferredSourceKinds": [
+          "run_report"
+        ],
+        "preferredTools": [],
+        "handoffCount": 0,
+        "constraints": {
+          "maxSearchDepth": 1,
+          "maxActionCount": 1
+        },
+        "learningScore": 0.698539,
+        "reasoningPathEfficiencyScore": 0.75,
+        "traceProvenance": {
+          "matchedRecordCount": 1,
+          "sourceKinds": [
+            "run_report"
+          ],
+          "sourceOrigins": [],
+          "sourceOriginCounts": {},
+          "sourceScopes": [
+            "run_snapshot"
+          ],
+          "sourceIds": [],
+          "governedRunIds": [],
+          "transcriptRecordCount": 0,
+          "handoffRecordCount": 0,
+          "transcriptBacked": false,
+          "handoffBacked": false
+        },
+        "factorSummary": {
+          "benchmarkQuality": 0.820513,
+          "evidenceQuality": 0.5,
+          "terminalOutcomeScore": 0.6,
+          "actionCount": 1,
+          "searchDepth": 1,
+          "stepCount": 1,
+          "handoffCount": 0,
+          "handoffEfficiency": 1.0,
+          "toolSequenceLength": 0,
+          "repeatedToolCount": 0,
+          "toolChurnScore": 1.0,
+          "reasoningPathEfficiencyScore": 0.75
+        }
+      }
+    },
+    {
+      "draftId": "mutation-draft-03",
+      "status": "draft",
+      "reviewRequired": true,
+      "sourceSeedId": "episode-mutation-seed-03",
+      "kind": "avoid_failure_path",
+      "entry": {
+        "id": "episode-avoid-failure-path-03",
+        "description": "Use this observed failing path to shape a future avoidance mutation.",
+        "intent": "avoid_failure_path",
+        "sourceCandidateId": "relax-no-product-code-boundary",
+        "sourceEpisodeId": "candidate-episode-relax-no-product-code-boundary",
+        "sourceMutationId": "relax-no-product-code-boundary",
+        "preferredSourceKinds": [
+          "run_report",
+          "transcript_event"
+        ],
+        "preferredTools": [
+          "apply_patch",
+          "read_file"
+        ],
+        "handoffCount": 0,
+        "constraints": {
+          "maxSearchDepth": 1,
+          "maxActionCount": 1
+        },
+        "learningScore": 0.481539,
+        "reasoningPathEfficiencyScore": 0.65,
+        "traceProvenance": {
+          "matchedRecordCount": 3,
+          "sourceKinds": [
+            "run_report",
+            "transcript_event"
+          ],
+          "sourceOrigins": [
+            "governed_run_export"
+          ],
+          "sourceOriginCounts": {
+            "governed_run_export": 2
+          },
+          "sourceScopes": [
+            "run_snapshot",
+            "chat_transcript",
+            "conversation_transcript"
+          ],
+          "sourceIds": [
+            "chat-history-1",
+            "transcript-history-1"
+          ],
+          "governedRunIds": [
+            "20260308-160258"
+          ],
+          "transcriptRecordCount": 2,
+          "handoffRecordCount": 0,
+          "transcriptBacked": true,
+          "handoffBacked": false
+        },
+        "factorSummary": {
+          "benchmarkQuality": 0.820513,
+          "evidenceQuality": 0.0,
+          "terminalOutcomeScore": 0.0,
+          "actionCount": 1,
+          "searchDepth": 1,
+          "stepCount": 3,
+          "handoffCount": 0,
+          "handoffEfficiency": 1.0,
+          "toolSequenceLength": 2,
+          "repeatedToolCount": 0,
+          "toolChurnScore": 1.0,
+          "reasoningPathEfficiencyScore": 0.65
+        }
+      }
+    }
+  ]
+}

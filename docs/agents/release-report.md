@@ -2,69 +2,71 @@
 
 ## Summary
 - **Status:** NOT_REQUIRED
-- **Goal:** Record release readiness for the bounded Phase 5F transcript-backed reasoning-path efficiency slice.
-- **Produced at:** 2026-04-12T23:06:34.5477007Z
+- **Goal:** Record release readiness for the broader governed bundle slice that adds `AGENTS.md` to the checked-in manager bundle.
+- **Produced at:** 2026-04-14T22:18:00Z
 - **Author:** release-manager
 
 ## Quality Gate Status
 - **Quality gate:** PASS
-- **Release decision:** No standalone external release is required. The slice adds deterministic transcript and handoff visibility plus reviewer-facing reasoning-path metrics under the existing manual and `report_only` execution boundary.
+- **Release decision:** No standalone external release is required. This slice changes governed AutoAgent inputs, deterministic tests, and canonical artifacts only, and does not publish, deploy, or widen execution authority.
 
 ## Versioning
 - No version bump is required.
-- No changelog entry is required outside the governed docs artifacts because the slice does not introduce a new shipped package, workflow, or externally consumable execution contract.
+- No changelog entry is required outside the governed docs artifacts because the slice changes configuration, validation, and generated evidence rather than a shipped package or service contract.
 
 ## Checklist
-- [x] Quality gate verdict recorded for the active Phase 5F slice in `docs/agents/review-report.md`
-- [x] Phase 5F implementation contract recorded in `docs/agents/task-spec.md` and `docs/agents/state.json`
-- [x] Fresh implementation and validation evidence recorded for Phase 5F
-- [x] Canonical AutoAgent artifacts regenerated for the active trace-backed visibility slice
-- [x] Release artifact remains marked not required for this bounded review-only slice
+- [x] Quality gate verdict recorded for the active broader governed bundle slice in `docs/agents/review-report.md`
+- [x] The broader-bundle contract recorded in `docs/agents/task-spec.md` and `docs/agents/state.json`
+- [x] Fresh evidence recorded for the AGENTS target addition, the frontmatter compatibility fix, the canonical rerun, and the fast-suite transcript
+- [x] Governed root and run-scoped artifacts resynchronized after the refreshed report layer
+- [x] Release artifact remains marked not required for this bounded governance-focused slice
 
 ## Rollout / handoff
 1. No standalone rollout is required.
-2. The active slice adds deterministic transcript and handoff visibility plus reviewer-facing learning metrics only and does not widen live runtime authority, deployment posture, or publication scope.
-3. The next operational step is a new bounded task, not a release action.
+2. Keep the checked-in experiment manual and review-first.
+3. Treat the larger three-target bundle as a governed review input, not an execution-authority change.
+4. Decide the next bounded slice only after maintainers review whether the three-target bundle is the right size and signal level.
 
 ## Rollback
-1. Restore `.github/skills/autoagent-loop/scripts/autoagent_loop.py`, `tests/test_autoagent_loop_runner.py`, `docs/agents/autoagent-experiment.md`, and the new repo-local fixture files if maintainers do not want to keep transcript-backed reasoning-path visibility.
-2. Restore `docs/agents/task-spec.md`, `docs/agents/state.json`, `docs/agents/patch-report.md`, `docs/agents/test-report.md`, `docs/agents/review-report.md`, `docs/agents/release-report.md`, `docs/agents/autoagent-report.md`, `docs/agents/autoagent-results.tsv`, and `docs/agents/autoagent-evidence.json` from the prior snapshot.
+1. Restore [docs/agents/autoagent-experiment.md](docs/agents/autoagent-experiment.md), [.github/skills/autoagent-loop/examples/team-lead-benchmark.json](.github/skills/autoagent-loop/examples/team-lead-benchmark.json), [.github/skills/autoagent-loop/examples/team-lead-mutations.json](.github/skills/autoagent-loop/examples/team-lead-mutations.json), [AGENTS.md](AGENTS.md), [tests/test_autoagent_loop_runner.py](tests/test_autoagent_loop_runner.py), and the touched governed reports from the prior snapshot if maintainers do not want to keep the broader governed bundle slice.
+2. Restore the matching canonical report, results, evidence, and trace artifacts for `team-lead-optimization` if maintainers do not want to keep the refreshed three-target canonical run.
 3. Restore the matching run-scoped copies under `docs/agents/runs/20260308-160258/`.
 
 ## Follow-ups
-- Open the next bounded slice only after maintainers decide whether the next step should stay on reviewer-facing learning summaries or move toward a separately governed autonomy-planning track.
-- If a later slice changes shipped runtime behavior or published artifacts, regenerate release posture and versioning guidance for that new task.
-- Keep using workspace-local pytest temp overrides on this host unless the default Windows temp root becomes writable again.
+- The likely next step is reviewer workflow polish around the larger governed bundle.
+- If maintainers still want more bundle coverage after review, add at most one more manager-shared governed artifact in a separate bounded slice.
+- Continue avoiding unattended continuation until a later bounded slice explicitly authorizes and validates it.
 
 ```json
 {
   "type": "ReleaseReport",
   "status": "NOT_REQUIRED",
-  "goal": "Record release readiness for the bounded Phase 5F transcript-backed reasoning-path efficiency slice.",
-  "producedAt": "2026-04-12T23:06:34.5477007Z",
+  "goal": "Record release readiness for the broader governed bundle slice that adds AGENTS.md to the checked-in manager bundle.",
+  "producedAt": "2026-04-14T22:18:00Z",
   "qualityGate": "PASS",
-  "summary": "The Phase 5F slice is implemented and validated, but it remains manual and review-only under the existing report_only boundary, so no standalone release action is required.",
+  "summary": "The broader governed bundle slice adds AGENTS.md to the checked-in manager bundle, refreshes the canonical AutoAgent run successfully, and preserves the existing manual and report_only execution boundary. No shipped package, deployment surface, or autonomous workflow changed.",
   "versioning": {
     "bumpRequired": false,
     "target": "none",
     "notes": [
-      "No package, workflow, or published service release is associated with this bounded review-only visibility slice.",
-      "A later slice would need a fresh release review only if it changes shipped runtime behavior or published artifacts."
+      "The active slice updates governed AutoAgent inputs, deterministic tests, generated artifacts, and report-layer evidence rather than a shipped package or service release.",
+      "A later slice would need a fresh release review only if it changes shipped runtime behavior, publication scope, or execution authority."
     ]
   },
   "rolloutPlan": [
     "No standalone rollout is required.",
-    "The active slice adds deterministic transcript and handoff visibility plus reviewer-facing learning metrics only and keeps execution manual and report_only.",
-    "If maintainers want more change, the next step is a new bounded task rather than a release action."
+    "Keep the checked-in experiment manual and review-first.",
+    "Treat the larger three-target bundle as governed review evidence only.",
+    "Choose any follow-on slice only after maintainers review whether the current bundle size is the right signal level."
   ],
   "rollbackPlan": [
-    "Restore the touched AutoAgent runtime, experiment, fixture, and test files if maintainers do not want to keep transcript-backed reasoning-path visibility.",
-    "Restore the touched docs/agents root artifacts and matching run-scoped copies from the prior snapshot if maintainers do not want to keep the Phase 5F implementation slice open."
+    "Restore the touched experiment, benchmark, mutation catalog, AGENTS.md, tests, governed reports, and matching run-scoped copies from the prior snapshot if maintainers do not want to keep the broader governed bundle slice.",
+    "Restore the matching canonical report, results, evidence, and trace artifacts if maintainers do not want to keep the refreshed three-target canonical run."
   ],
   "followUps": [
-    "Choose the next bounded task after this slice is reviewed; any move toward autonomy should remain separately governed.",
-    "Refresh release posture only if a later slice changes shipped runtime behavior or publication scope.",
-    "Keep using workspace-local pytest temp overrides on this machine until the default temp root is writable again."
+    "Keep the checked-in experiment manual and report_only.",
+    "Use a later bounded slice for reviewer workflow polish or one more manager-shared governed artifact only after human review.",
+    "Refresh release posture only if a later slice changes shipped runtime behavior or publication scope."
   ]
 }
 ```

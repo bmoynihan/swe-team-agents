@@ -1,0 +1,365 @@
+{
+  "score": 0.848485,
+  "passedChecks": 12,
+  "totalChecks": 14,
+  "checks": [
+    {
+      "id": "sole-coordinator",
+      "type": "contains_text",
+      "targetId": "team-lead",
+      "target": "body",
+      "key": null,
+      "comparator": "contains",
+      "weight": 1.5,
+      "passed": true,
+      "expected": "the only coordinator",
+      "observed": {
+        "containsExpected": true,
+        "targetLength": 2948
+      },
+      "actual": {
+        "containsExpected": true,
+        "targetLength": 2948
+      }
+    },
+    {
+      "id": "specialists-no-peer-coordination",
+      "type": "contains_text",
+      "targetId": "team-lead",
+      "target": "body",
+      "key": null,
+      "comparator": "contains",
+      "weight": 1.0,
+      "passed": true,
+      "expected": "specialists do not coordinate with each other",
+      "observed": {
+        "containsExpected": true,
+        "targetLength": 2948
+      },
+      "actual": {
+        "containsExpected": true,
+        "targetLength": 2948
+      }
+    },
+    {
+      "id": "current-run-contract",
+      "type": "contains_text",
+      "targetId": "team-lead",
+      "target": "body",
+      "key": null,
+      "comparator": "contains",
+      "weight": 1.0,
+      "passed": true,
+      "expected": "`docs/agents/current-run.json`",
+      "observed": {
+        "containsExpected": true,
+        "targetLength": 2948
+      },
+      "actual": {
+        "containsExpected": true,
+        "targetLength": 2948
+      }
+    },
+    {
+      "id": "no-product-code-boundary",
+      "type": "contains_text",
+      "targetId": "team-lead",
+      "target": "body",
+      "key": null,
+      "comparator": "contains",
+      "weight": 1.5,
+      "passed": true,
+      "expected": "but not product code",
+      "observed": {
+        "containsExpected": true,
+        "targetLength": 2948
+      },
+      "actual": {
+        "containsExpected": true,
+        "targetLength": 2948
+      }
+    },
+    {
+      "id": "quality-gate-flow",
+      "type": "contains_text",
+      "targetId": "team-lead",
+      "target": "body",
+      "key": null,
+      "comparator": "contains",
+      "weight": 1.0,
+      "passed": true,
+      "expected": "`quality-gate`",
+      "observed": {
+        "containsExpected": true,
+        "targetLength": 2948
+      },
+      "actual": {
+        "containsExpected": true,
+        "targetLength": 2948
+      }
+    },
+    {
+      "id": "review-report-artifact",
+      "type": "contains_text",
+      "targetId": "team-lead",
+      "target": "body",
+      "key": null,
+      "comparator": "contains",
+      "weight": 1.0,
+      "passed": true,
+      "expected": "`docs/agents/review-report.md`",
+      "observed": {
+        "containsExpected": true,
+        "targetLength": 2948
+      },
+      "actual": {
+        "containsExpected": true,
+        "targetLength": 2948
+      }
+    },
+    {
+      "id": "manager-decision-output",
+      "type": "contains_text",
+      "targetId": "team-lead",
+      "target": "body",
+      "key": null,
+      "comparator": "contains",
+      "weight": 1.5,
+      "passed": true,
+      "expected": "`ManagerDecision`",
+      "observed": {
+        "containsExpected": true,
+        "targetLength": 2948
+      },
+      "actual": {
+        "containsExpected": true,
+        "targetLength": 2948
+      }
+    },
+    {
+      "id": "tools-exact",
+      "type": "frontmatter_equals",
+      "targetId": "team-lead",
+      "target": null,
+      "key": "tools",
+      "comparator": "equals",
+      "weight": 1.0,
+      "passed": true,
+      "expected": [
+        "read",
+        "search",
+        "execute",
+        "edit",
+        "agent",
+        "github/*"
+      ],
+      "observed": [
+        "read",
+        "search",
+        "execute",
+        "edit",
+        "agent",
+        "github/*"
+      ],
+      "actual": [
+        "read",
+        "search",
+        "execute",
+        "edit",
+        "agent",
+        "github/*"
+      ]
+    },
+    {
+      "id": "skill-current-run-contract",
+      "type": "contains_text",
+      "targetId": "team-lead-skill",
+      "target": "body",
+      "key": null,
+      "comparator": "contains",
+      "weight": 1.0,
+      "passed": true,
+      "expected": "`docs/agents/current-run.json`",
+      "observed": {
+        "containsExpected": true,
+        "targetLength": 3535
+      },
+      "actual": {
+        "containsExpected": true,
+        "targetLength": 3535
+      }
+    },
+    {
+      "id": "skill-no-product-code-boundary",
+      "type": "contains_text",
+      "targetId": "team-lead-skill",
+      "target": "body",
+      "key": null,
+      "comparator": "contains",
+      "weight": 1.5,
+      "passed": true,
+      "expected": "The manager does not implement product code.",
+      "observed": {
+        "containsExpected": true,
+        "targetLength": 3535
+      },
+      "actual": {
+        "containsExpected": true,
+        "targetLength": 3535
+      }
+    },
+    {
+      "id": "skill-snapshot-contract",
+      "type": "contains_text",
+      "targetId": "team-lead-skill",
+      "target": "body",
+      "key": null,
+      "comparator": "contains",
+      "weight": 1.0,
+      "passed": true,
+      "expected": "Snapshot every mutable file under `docs/agents/`",
+      "observed": {
+        "containsExpected": true,
+        "targetLength": 3535
+      },
+      "actual": {
+        "containsExpected": true,
+        "targetLength": 3535
+      }
+    },
+    {
+      "id": "guide-current-run-contract",
+      "type": "contains_text",
+      "targetId": "agent-operating-guide",
+      "target": "body",
+      "key": null,
+      "comparator": "contains",
+      "weight": 1.0,
+      "passed": true,
+      "expected": "`docs/agents/current-run.json`",
+      "observed": {
+        "containsExpected": true,
+        "targetLength": 2209
+      },
+      "actual": {
+        "containsExpected": true,
+        "targetLength": 2209
+      }
+    },
+    {
+      "id": "guide-live-shared-root",
+      "type": "contains_text",
+      "targetId": "agent-operating-guide",
+      "target": "body",
+      "key": null,
+      "comparator": "contains",
+      "weight": 1.5,
+      "passed": false,
+      "expected": "`docs/agents/` is the only live shared artifact root.",
+      "observed": {
+        "containsExpected": false,
+        "targetLength": 2209
+      },
+      "actual": {
+        "containsExpected": false,
+        "targetLength": 2209
+      }
+    },
+    {
+      "id": "guide-no-hook-bypass",
+      "type": "contains_text",
+      "targetId": "agent-operating-guide",
+      "target": "body",
+      "key": null,
+      "comparator": "contains",
+      "weight": 1.0,
+      "passed": false,
+      "expected": "Do not bypass hook denials.",
+      "observed": {
+        "containsExpected": false,
+        "targetLength": 2209
+      },
+      "actual": {
+        "containsExpected": false,
+        "targetLength": 2209
+      }
+    }
+  ],
+  "complexity": {
+    "bodyChars": 8692,
+    "toolCount": 6,
+    "mcpServerCount": 0,
+    "fileCount": 3,
+    "score": 8887,
+    "perTarget": {
+      "team-lead": {
+        "bodyChars": 2948,
+        "toolCount": 6,
+        "mcpServerCount": 0,
+        "score": 3098
+      },
+      "team-lead-skill": {
+        "bodyChars": 3535,
+        "toolCount": 0,
+        "mcpServerCount": 0,
+        "score": 3535
+      },
+      "agent-operating-guide": {
+        "bodyChars": 2209,
+        "toolCount": 0,
+        "mcpServerCount": 0,
+        "score": 2209
+      }
+    }
+  },
+  "trajectoryScore": 0.646429,
+  "trajectoryScoreBreakdown": {
+    "validationBreadth": 0.857143,
+    "parentProgress": 0.0,
+    "actionEfficiency": 0.333333,
+    "targetFocus": 1.0,
+    "lineageEfficiency": 0.5,
+    "matchedEvidenceRecords": 1,
+    "attributedSuccessCount": 0,
+    "attributedWarningCount": 0,
+    "attributedErrorCount": 0,
+    "attributedToolErrorCount": 0,
+    "attributedExternalErrorCount": 0,
+    "evidenceSupport": 0.0,
+    "evidenceIssuePenalty": 0.0,
+    "reviewedPolicyBonus": 0.0,
+    "reviewedPolicyPenalty": 0.0,
+    "liveWinnerBoost": 0.0
+  },
+  "trajectoryEvidenceContext": {
+    "aliases": [
+      "candidate-trajectory-weaken-agent-guide-governance",
+      "weaken-agent-guide-governance"
+    ],
+    "matchedRecordCount": 1,
+    "errorCount": 0,
+    "warningCount": 0,
+    "successCount": 0,
+    "toolErrorCount": 0,
+    "externalErrorCount": 0,
+    "sourceKindCounts": {
+      "run_report": 1
+    },
+    "statusCounts": {
+      "ready_for_quality_gate": 1
+    }
+  },
+  "reviewedPolicyContext": {
+    "enabled": false,
+    "status": "disabled",
+    "artifactPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/reviewed-policies.json",
+    "policyCount": 0,
+    "matchedPolicyCount": 0,
+    "preferredSequenceMatchCount": 0,
+    "escalationMatchCount": 0,
+    "bonus": 0.0,
+    "penalty": 0.0,
+    "matchedPolicyIds": [],
+    "matchedPolicies": []
+  }
+}

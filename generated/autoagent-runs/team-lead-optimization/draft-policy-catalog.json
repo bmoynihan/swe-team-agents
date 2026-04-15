@@ -34,16 +34,37 @@
           "maxSearchDepth": 0,
           "maxActionCount": 0
         },
-        "learningScore": 0.870833,
-        "reasoningPathEfficiencyScore": 0.808333,
+        "learningScore": 0.839583,
+        "reasoningPathEfficiencyScore": 0.795833,
         "observedCount": 1,
         "traceProvenance": {
-          "matchedRecordCount": 6,
+          "matchedRecordCount": 12,
           "sourceKinds": [
             "handoff_event",
             "run_report",
             "run_state",
             "transcript_event"
+          ],
+          "sourceOrigins": [
+            "governed_run_export"
+          ],
+          "sourceOriginCounts": {
+            "governed_run_export": 3
+          },
+          "sourceScopes": [
+            "current_artifact",
+            "run_snapshot",
+            "chat_transcript",
+            "conversation_transcript",
+            "handoff_history"
+          ],
+          "sourceIds": [
+            "chat-history-1",
+            "transcript-history-1",
+            "handoff-history-1"
+          ],
+          "governedRunIds": [
+            "20260308-160258"
           ],
           "transcriptRecordCount": 2,
           "handoffRecordCount": 1,
@@ -52,17 +73,17 @@
         },
         "factorSummary": {
           "benchmarkQuality": 1.0,
-          "evidenceQuality": 0.75,
+          "evidenceQuality": 0.625,
           "terminalOutcomeScore": 1.0,
           "actionCount": 0,
           "searchDepth": 0,
-          "stepCount": 6,
+          "stepCount": 12,
           "handoffCount": 1,
           "handoffEfficiency": 0.666667,
           "toolSequenceLength": 3,
           "repeatedToolCount": 0,
           "toolChurnScore": 1.0,
-          "reasoningPathEfficiencyScore": 0.808333
+          "reasoningPathEfficiencyScore": 0.795833
         },
         "preferredToolSequence": [
           "read_file",
@@ -97,10 +118,10 @@
         "terminalStatus": "error",
         "constraints": {
           "maxSearchDepth": 1,
-          "maxActionCount": 1
+          "maxActionCount": 2
         },
-        "learningScore": 0.487368,
-        "reasoningPathEfficiencyScore": 0.65,
+        "learningScore": 0.464242,
+        "reasoningPathEfficiencyScore": 0.608333,
         "observedCount": 1,
         "traceProvenance": {
           "matchedRecordCount": 3,
@@ -108,16 +129,34 @@
             "run_report",
             "transcript_event"
           ],
+          "sourceOrigins": [
+            "governed_run_export"
+          ],
+          "sourceOriginCounts": {
+            "governed_run_export": 2
+          },
+          "sourceScopes": [
+            "run_snapshot",
+            "chat_transcript",
+            "conversation_transcript"
+          ],
+          "sourceIds": [
+            "chat-history-1",
+            "transcript-history-1"
+          ],
+          "governedRunIds": [
+            "20260308-160258"
+          ],
           "transcriptRecordCount": 2,
           "handoffRecordCount": 0,
           "transcriptBacked": true,
           "handoffBacked": false
         },
         "factorSummary": {
-          "benchmarkQuality": 0.842105,
+          "benchmarkQuality": 0.818182,
           "evidenceQuality": 0.0,
           "terminalOutcomeScore": 0.0,
-          "actionCount": 1,
+          "actionCount": 2,
           "searchDepth": 1,
           "stepCount": 3,
           "handoffCount": 0,
@@ -125,7 +164,7 @@
           "toolSequenceLength": 2,
           "repeatedToolCount": 0,
           "toolChurnScore": 1.0,
-          "reasoningPathEfficiencyScore": 0.65
+          "reasoningPathEfficiencyScore": 0.608333
         },
         "triggerTools": [
           "apply_patch",

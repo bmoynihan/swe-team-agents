@@ -1,0 +1,98 @@
+{
+  "id": "team-lead-benchmark",
+  "checks": [
+    {
+      "id": "sole-coordinator",
+      "type": "contains_text",
+      "target": "body",
+      "value": "the only coordinator",
+      "weight": 1.5
+    },
+    {
+      "id": "specialists-no-peer-coordination",
+      "type": "contains_text",
+      "target": "body",
+      "value": "specialists do not coordinate with each other",
+      "weight": 1.0
+    },
+    {
+      "id": "current-run-contract",
+      "type": "contains_text",
+      "target": "body",
+      "value": "`docs/agents/current-run.json`",
+      "weight": 1.0
+    },
+    {
+      "id": "no-product-code-boundary",
+      "type": "contains_text",
+      "target": "body",
+      "value": "but not product code",
+      "weight": 1.5
+    },
+    {
+      "id": "quality-gate-flow",
+      "type": "contains_text",
+      "target": "body",
+      "value": "`quality-gate`",
+      "weight": 1.0
+    },
+    {
+      "id": "review-report-artifact",
+      "type": "contains_text",
+      "target": "body",
+      "value": "`docs/agents/review-report.md`",
+      "weight": 1.0
+    },
+    {
+      "id": "manager-decision-output",
+      "type": "contains_text",
+      "target": "body",
+      "value": "`ManagerDecision`",
+      "weight": 1.5
+    },
+    {
+      "id": "tools-exact",
+      "type": "frontmatter_equals",
+      "key": "tools",
+      "value": [
+        "read",
+        "search",
+        "execute",
+        "edit",
+        "agent",
+        "github/*"
+      ],
+      "weight": 1.0
+    },
+    {
+      "id": "episode-episode-success-guard-01-check",
+      "type": "episode_observation_guard",
+      "sourceKinds": [
+        "handoff_event",
+        "run_report",
+        "run_state",
+        "transcript_event"
+      ],
+      "toolNames": [
+        "read_file",
+        "grep_search"
+      ],
+      "terminalStatus": "success",
+      "minMatchedRecordCount": 1,
+      "weight": 0.25,
+      "intent": "Preserve the observed successful path pattern."
+    }
+  ],
+  "approvedLearningDrafts": [
+    {
+      "draftId": "benchmark-fragment-01",
+      "sourceSuggestionId": "episode-benchmark-01",
+      "reviewer": "human-maintainer",
+      "reviewedAt": "2026-03-08T16:20:00Z",
+      "notes": "Promote the governed-export-backed successful path benchmark fragment.",
+      "addedCheckIds": [
+        "episode-episode-success-guard-01-check"
+      ]
+    }
+  ]
+}

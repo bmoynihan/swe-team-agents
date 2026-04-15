@@ -1,7 +1,7 @@
 {
   "score": 1.0,
-  "passedChecks": 8,
-  "totalChecks": 8,
+  "passedChecks": 14,
+  "totalChecks": 14,
   "checks": [
     {
       "id": "sole-coordinator",
@@ -169,20 +169,146 @@
         "agent",
         "github/*"
       ]
+    },
+    {
+      "id": "skill-current-run-contract",
+      "type": "contains_text",
+      "targetId": "team-lead-skill",
+      "target": "body",
+      "key": null,
+      "comparator": "contains",
+      "weight": 1.0,
+      "passed": true,
+      "expected": "`docs/agents/current-run.json`",
+      "observed": {
+        "containsExpected": true,
+        "targetLength": 3535
+      },
+      "actual": {
+        "containsExpected": true,
+        "targetLength": 3535
+      }
+    },
+    {
+      "id": "skill-no-product-code-boundary",
+      "type": "contains_text",
+      "targetId": "team-lead-skill",
+      "target": "body",
+      "key": null,
+      "comparator": "contains",
+      "weight": 1.5,
+      "passed": true,
+      "expected": "The manager does not implement product code.",
+      "observed": {
+        "containsExpected": true,
+        "targetLength": 3535
+      },
+      "actual": {
+        "containsExpected": true,
+        "targetLength": 3535
+      }
+    },
+    {
+      "id": "skill-snapshot-contract",
+      "type": "contains_text",
+      "targetId": "team-lead-skill",
+      "target": "body",
+      "key": null,
+      "comparator": "contains",
+      "weight": 1.0,
+      "passed": true,
+      "expected": "Snapshot every mutable file under `docs/agents/`",
+      "observed": {
+        "containsExpected": true,
+        "targetLength": 3535
+      },
+      "actual": {
+        "containsExpected": true,
+        "targetLength": 3535
+      }
+    },
+    {
+      "id": "guide-current-run-contract",
+      "type": "contains_text",
+      "targetId": "agent-operating-guide",
+      "target": "body",
+      "key": null,
+      "comparator": "contains",
+      "weight": 1.0,
+      "passed": true,
+      "expected": "`docs/agents/current-run.json`",
+      "observed": {
+        "containsExpected": true,
+        "targetLength": 2176
+      },
+      "actual": {
+        "containsExpected": true,
+        "targetLength": 2176
+      }
+    },
+    {
+      "id": "guide-live-shared-root",
+      "type": "contains_text",
+      "targetId": "agent-operating-guide",
+      "target": "body",
+      "key": null,
+      "comparator": "contains",
+      "weight": 1.5,
+      "passed": true,
+      "expected": "`docs/agents/` is the only live shared artifact root.",
+      "observed": {
+        "containsExpected": true,
+        "targetLength": 2176
+      },
+      "actual": {
+        "containsExpected": true,
+        "targetLength": 2176
+      }
+    },
+    {
+      "id": "guide-no-hook-bypass",
+      "type": "contains_text",
+      "targetId": "agent-operating-guide",
+      "target": "body",
+      "key": null,
+      "comparator": "contains",
+      "weight": 1.0,
+      "passed": true,
+      "expected": "Do not bypass hook denials.",
+      "observed": {
+        "containsExpected": true,
+        "targetLength": 2176
+      },
+      "actual": {
+        "containsExpected": true,
+        "targetLength": 2176
+      }
     }
   ],
   "complexity": {
-    "bodyChars": 2948,
+    "bodyChars": 8659,
     "toolCount": 6,
     "mcpServerCount": 0,
-    "fileCount": 1,
-    "score": 3113,
+    "fileCount": 3,
+    "score": 8854,
     "perTarget": {
       "team-lead": {
         "bodyChars": 2948,
         "toolCount": 6,
         "mcpServerCount": 0,
         "score": 3098
+      },
+      "team-lead-skill": {
+        "bodyChars": 3535,
+        "toolCount": 0,
+        "mcpServerCount": 0,
+        "score": 3535
+      },
+      "agent-operating-guide": {
+        "bodyChars": 2176,
+        "toolCount": 0,
+        "mcpServerCount": 0,
+        "score": 2176
       }
     }
   }

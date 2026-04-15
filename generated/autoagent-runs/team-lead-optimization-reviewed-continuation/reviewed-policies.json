@@ -1,0 +1,96 @@
+{
+  "type": "AutoAgentReviewedPolicies",
+  "mode": "manual_review_import",
+  "source": {
+    "experimentName": "team-lead-optimization-reviewed-continuation",
+    "policyDraftsPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/draft-policy-catalog.json"
+  },
+  "policies": [
+    {
+      "id": "episode-policy-escalation-trigger-02",
+      "description": "Escalate or branch away when this observed tool path ends in failure or warning.",
+      "intent": "escalation_trigger",
+      "classification": "failure_path",
+      "sourceCandidateIds": [
+        "relax-no-product-code-boundary"
+      ],
+      "preferredSourceKinds": [
+        "run_report",
+        "transcript_event"
+      ],
+      "handoffCount": 0,
+      "terminalStatus": "error",
+      "constraints": {
+        "maxSearchDepth": 1,
+        "maxActionCount": 1
+      },
+      "learningScore": 0.481539,
+      "reasoningPathEfficiencyScore": 0.65,
+      "observedCount": 1,
+      "traceProvenance": {
+        "matchedRecordCount": 3,
+        "sourceKinds": [
+          "run_report",
+          "transcript_event"
+        ],
+        "sourceOrigins": [
+          "governed_run_export"
+        ],
+        "sourceOriginCounts": {
+          "governed_run_export": 2
+        },
+        "sourceScopes": [
+          "run_snapshot",
+          "chat_transcript",
+          "conversation_transcript"
+        ],
+        "sourceIds": [
+          "chat-history-1",
+          "transcript-history-1"
+        ],
+        "governedRunIds": [
+          "20260308-160258"
+        ],
+        "transcriptRecordCount": 2,
+        "handoffRecordCount": 0,
+        "transcriptBacked": true,
+        "handoffBacked": false
+      },
+      "factorSummary": {
+        "benchmarkQuality": 0.820513,
+        "evidenceQuality": 0.0,
+        "terminalOutcomeScore": 0.0,
+        "actionCount": 1,
+        "searchDepth": 1,
+        "stepCount": 3,
+        "handoffCount": 0,
+        "handoffEfficiency": 1.0,
+        "toolSequenceLength": 2,
+        "repeatedToolCount": 0,
+        "toolChurnScore": 1.0,
+        "reasoningPathEfficiencyScore": 0.65
+      },
+      "triggerTools": [
+        "apply_patch",
+        "read_file"
+      ],
+      "learningImportMetadata": {
+        "draftId": "policy-draft-02",
+        "sourcePolicyId": "episode-policy-02",
+        "reviewer": "human-maintainer",
+        "reviewedAt": "2026-04-13T17:46:43.1942132-04:00",
+        "notes": "Promote by reviewer override because the same governed transcript-backed failure path resurfaced across both the original and exercised continuation runs, and as an escalation trigger it penalizes the unsafe apply_patch/read_file error path instead of rewarding it."
+      }
+    }
+  ],
+  "approvedLearningDrafts": [
+    {
+      "draftId": "policy-draft-02",
+      "promotedPolicyId": "episode-policy-escalation-trigger-02",
+      "sourcePolicyId": "episode-policy-02",
+      "reviewer": "human-maintainer",
+      "reviewedAt": "2026-04-13T17:46:43.1942132-04:00",
+      "notes": "Promote by reviewer override because the same governed transcript-backed failure path resurfaced across both the original and exercised continuation runs, and as an escalation trigger it penalizes the unsafe apply_patch/read_file error path instead of rewarding it."
+    }
+  ]
+}

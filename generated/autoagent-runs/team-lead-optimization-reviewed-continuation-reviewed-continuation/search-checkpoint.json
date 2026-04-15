@@ -1,0 +1,1246 @@
+{
+  "type": "AutoAgentCheckpoint",
+  "version": 2,
+  "resumeStage": "post_mutation_search",
+  "experiment": {
+    "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/reviewed-continuation-experiment.generated.md",
+    "exists": true,
+    "sha256": "24261b667f18487ff77bd60f21c3febfe3468cb10aff918891758d90dfbba76a",
+    "sizeBytes": 4883
+  },
+  "benchmark": {
+    "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/reviewed-benchmark.json",
+    "exists": true,
+    "sha256": "0c02ed2ed8ce3de8bfb8c4d0692b2db36e0e65e63d3b2e4329ebd4206bc8a61b",
+    "sizeBytes": 2450
+  },
+  "mutationCatalog": {
+    "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/reviewed-mutations.json",
+    "exists": true,
+    "sha256": "401d4b896bf907ac15eb317aa331a7201c6931f92bc007ce9df8be57851057b7",
+    "sizeBytes": 2062
+  },
+  "candidatePolicy": {
+    "keepStrategy": "score-then-simpler",
+    "searchStrategy": "current_best",
+    "frontierSize": 1
+  },
+  "requestedMutationCount": 2,
+  "totalMutationCount": 2,
+  "completedMutationCount": 2,
+  "nextMutationIndex": 3,
+  "hasRemainingMutations": false,
+  "mutationExecutionPlan": [
+    {
+      "plannedIndex": 1,
+      "catalogIndex": 1,
+      "planToken": "1:relax-no-product-code-boundary",
+      "mutationId": "relax-no-product-code-boundary",
+      "description": "Loosen the manager scope to prove governance regressions are discarded.",
+      "priorityStatus": "neutral",
+      "priorityScore": 0.0,
+      "bonus": 0.0,
+      "penalty": 0.0,
+      "matchedPolicyCount": 0,
+      "matchedPolicyIds": [],
+      "sourceCandidateIds": []
+    },
+    {
+      "plannedIndex": 2,
+      "catalogIndex": 2,
+      "planToken": "2:episode-avoid-failure-path-02",
+      "mutationId": "episode-avoid-failure-path-02",
+      "description": "Use this observed failing path to shape a future avoidance mutation.",
+      "priorityStatus": "deprioritized",
+      "priorityScore": -0.024077,
+      "bonus": 0.0,
+      "penalty": 0.024077,
+      "matchedPolicyCount": 1,
+      "matchedPolicyIds": [
+        "episode-policy-escalation-trigger-02"
+      ],
+      "sourceCandidateIds": [
+        "relax-no-product-code-boundary"
+      ]
+    }
+  ],
+  "mutationExecutionPlanTokens": [
+    "1:relax-no-product-code-boundary",
+    "2:episode-avoid-failure-path-02"
+  ],
+  "evaluationIteration": 3,
+  "deterministicBestCandidateId": "baseline",
+  "currentFrontierCandidateIds": [
+    "baseline"
+  ],
+  "inlineCandidateIds": [
+    "baseline"
+  ],
+  "inlineCandidateCount": 1,
+  "snapshotBackedCandidateCount": 2,
+  "keptCandidates": [
+    "baseline"
+  ],
+  "discardedCandidates": [
+    "relax-no-product-code-boundary",
+    "episode-avoid-failure-path-02"
+  ],
+  "rows": [
+    {
+      "iteration": 0,
+      "candidateId": "baseline",
+      "parentCandidateId": null,
+      "searchDepth": 0,
+      "score": 1.0,
+      "passedChecks": 9,
+      "totalChecks": 9,
+      "status": "keep",
+      "description": "Baseline target agent",
+      "complexity": {
+        "bodyChars": 2948,
+        "toolCount": 6,
+        "mcpServerCount": 0,
+        "fileCount": 1,
+        "score": 3113,
+        "perTarget": {
+          "team-lead": {
+            "bodyChars": 2948,
+            "toolCount": 6,
+            "mcpServerCount": 0,
+            "score": 3098
+          }
+        }
+      },
+      "trajectoryScore": 0.88
+    },
+    {
+      "iteration": 1,
+      "candidateId": "relax-no-product-code-boundary",
+      "parentCandidateId": "baseline",
+      "searchDepth": 1,
+      "score": 0.820513,
+      "trajectoryScore": 0.523701,
+      "passedChecks": 7,
+      "totalChecks": 9,
+      "status": "discard",
+      "description": "Loosen the manager scope to prove governance regressions are discarded.",
+      "complexity": {
+        "bodyChars": 2940,
+        "toolCount": 6,
+        "mcpServerCount": 0,
+        "fileCount": 1,
+        "score": 3105,
+        "perTarget": {
+          "team-lead": {
+            "bodyChars": 2940,
+            "toolCount": 6,
+            "mcpServerCount": 0,
+            "score": 3090
+          }
+        }
+      },
+      "touchedTargets": [
+        "team-lead"
+      ]
+    },
+    {
+      "iteration": 2,
+      "candidateId": "episode-avoid-failure-path-02",
+      "parentCandidateId": "baseline",
+      "searchDepth": 1,
+      "score": 0.820513,
+      "trajectoryScore": 0.627778,
+      "passedChecks": 7,
+      "totalChecks": 9,
+      "status": "discard",
+      "description": "Use this observed failing path to shape a future avoidance mutation.",
+      "complexity": {
+        "bodyChars": 2940,
+        "toolCount": 6,
+        "mcpServerCount": 0,
+        "fileCount": 1,
+        "score": 3105,
+        "perTarget": {
+          "team-lead": {
+            "bodyChars": 2940,
+            "toolCount": 6,
+            "mcpServerCount": 0,
+            "score": 3090
+          }
+        }
+      },
+      "touchedTargets": [
+        "team-lead"
+      ]
+    }
+  ],
+  "candidateRecords": [
+    {
+      "iteration": 0,
+      "candidateId": "baseline",
+      "parentCandidateId": null,
+      "description": "Baseline target agent",
+      "status": "keep",
+      "evaluation": {
+        "score": 1.0,
+        "passedChecks": 9,
+        "totalChecks": 9,
+        "checks": [
+          {
+            "id": "sole-coordinator",
+            "type": "contains_text",
+            "targetId": "team-lead",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.5,
+            "passed": true,
+            "expected": "the only coordinator",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 2948
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 2948
+            }
+          },
+          {
+            "id": "specialists-no-peer-coordination",
+            "type": "contains_text",
+            "targetId": "team-lead",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.0,
+            "passed": true,
+            "expected": "specialists do not coordinate with each other",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 2948
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 2948
+            }
+          },
+          {
+            "id": "current-run-contract",
+            "type": "contains_text",
+            "targetId": "team-lead",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.0,
+            "passed": true,
+            "expected": "`docs/agents/current-run.json`",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 2948
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 2948
+            }
+          },
+          {
+            "id": "no-product-code-boundary",
+            "type": "contains_text",
+            "targetId": "team-lead",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.5,
+            "passed": true,
+            "expected": "but not product code",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 2948
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 2948
+            }
+          },
+          {
+            "id": "quality-gate-flow",
+            "type": "contains_text",
+            "targetId": "team-lead",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.0,
+            "passed": true,
+            "expected": "`quality-gate`",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 2948
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 2948
+            }
+          },
+          {
+            "id": "review-report-artifact",
+            "type": "contains_text",
+            "targetId": "team-lead",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.0,
+            "passed": true,
+            "expected": "`docs/agents/review-report.md`",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 2948
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 2948
+            }
+          },
+          {
+            "id": "manager-decision-output",
+            "type": "contains_text",
+            "targetId": "team-lead",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.5,
+            "passed": true,
+            "expected": "`ManagerDecision`",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 2948
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 2948
+            }
+          },
+          {
+            "id": "tools-exact",
+            "type": "frontmatter_equals",
+            "targetId": "team-lead",
+            "target": null,
+            "key": "tools",
+            "comparator": "equals",
+            "weight": 1.0,
+            "passed": true,
+            "expected": [
+              "read",
+              "search",
+              "execute",
+              "edit",
+              "agent",
+              "github/*"
+            ],
+            "observed": [
+              "read",
+              "search",
+              "execute",
+              "edit",
+              "agent",
+              "github/*"
+            ],
+            "actual": [
+              "read",
+              "search",
+              "execute",
+              "edit",
+              "agent",
+              "github/*"
+            ]
+          },
+          {
+            "id": "episode-episode-success-guard-01-check",
+            "type": "episode_observation_guard",
+            "targetId": "team-lead",
+            "target": null,
+            "key": null,
+            "comparator": "episode_matches",
+            "weight": 0.25,
+            "passed": true,
+            "expected": {
+              "minMatchedRecordCount": 1,
+              "sourceKinds": [
+                "handoff_event",
+                "run_report",
+                "run_state",
+                "transcript_event"
+              ],
+              "toolNames": [
+                "read_file",
+                "grep_search"
+              ],
+              "terminalStatus": "success"
+            },
+            "observed": {
+              "episodeId": "candidate-episode-baseline",
+              "matchedRecordCount": 10,
+              "sourceKinds": [
+                "handoff_event",
+                "run_report",
+                "run_state",
+                "transcript_event"
+              ],
+              "toolNames": [
+                "read_file",
+                "grep_search"
+              ],
+              "terminalStatus": "success",
+              "sourceKindCounts": {
+                "run_state": 2,
+                "run_report": 5,
+                "transcript_event": 2,
+                "handoff_event": 1
+              },
+              "statusCounts": {
+                "Done": 2,
+                "READY_FOR_QUALITY_GATE": 4,
+                "PASS": 1,
+                "success": 3
+              },
+              "sourceKindsMatch": true,
+              "toolNamesMatch": true,
+              "terminalStatusMatch": true
+            },
+            "actual": {
+              "episodeId": "candidate-episode-baseline",
+              "matchedRecordCount": 10,
+              "sourceKinds": [
+                "handoff_event",
+                "run_report",
+                "run_state",
+                "transcript_event"
+              ],
+              "toolNames": [
+                "read_file",
+                "grep_search"
+              ],
+              "terminalStatus": "success",
+              "sourceKindCounts": {
+                "run_state": 2,
+                "run_report": 5,
+                "transcript_event": 2,
+                "handoff_event": 1
+              },
+              "statusCounts": {
+                "Done": 2,
+                "READY_FOR_QUALITY_GATE": 4,
+                "PASS": 1,
+                "success": 3
+              },
+              "sourceKindsMatch": true,
+              "toolNamesMatch": true,
+              "terminalStatusMatch": true
+            }
+          }
+        ],
+        "complexity": {
+          "bodyChars": 2948,
+          "toolCount": 6,
+          "mcpServerCount": 0,
+          "fileCount": 1,
+          "score": 3113,
+          "perTarget": {
+            "team-lead": {
+              "bodyChars": 2948,
+              "toolCount": 6,
+              "mcpServerCount": 0,
+              "score": 3098
+            }
+          }
+        },
+        "trajectoryScore": 0.88,
+        "trajectoryScoreBreakdown": {
+          "validationBreadth": 1.0,
+          "parentProgress": 0.0,
+          "actionEfficiency": 1.0,
+          "targetFocus": 1.0,
+          "lineageEfficiency": 1.0,
+          "matchedEvidenceRecords": 10,
+          "attributedSuccessCount": 3,
+          "attributedWarningCount": 0,
+          "attributedErrorCount": 0,
+          "attributedToolErrorCount": 0,
+          "attributedExternalErrorCount": 0,
+          "evidenceSupport": 0.03,
+          "evidenceIssuePenalty": 0.0,
+          "reviewedPolicyBonus": 0.0,
+          "reviewedPolicyPenalty": 0.0,
+          "liveWinnerBoost": 0.0
+        },
+        "trajectoryEvidenceContext": {
+          "aliases": [
+            "baseline",
+            "candidate-trajectory-baseline"
+          ],
+          "matchedRecordCount": 10,
+          "errorCount": 0,
+          "warningCount": 0,
+          "successCount": 3,
+          "toolErrorCount": 0,
+          "externalErrorCount": 0,
+          "sourceKindCounts": {
+            "run_state": 2,
+            "run_report": 5,
+            "transcript_event": 2,
+            "handoff_event": 1
+          },
+          "statusCounts": {
+            "done": 2,
+            "ready_for_quality_gate": 4,
+            "pass": 1,
+            "success": 3
+          }
+        },
+        "reviewedPolicyContext": {
+          "enabled": true,
+          "status": "ready",
+          "artifactPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/reviewed-policies.json",
+          "policyCount": 1,
+          "matchedPolicyCount": 0,
+          "preferredSequenceMatchCount": 0,
+          "escalationMatchCount": 0,
+          "bonus": 0.0,
+          "penalty": 0.0,
+          "matchedPolicyIds": [],
+          "matchedPolicies": []
+        }
+      },
+      "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation-reviewed-continuation/candidates/iteration-00-baseline.agent.md",
+      "documentStorage": "inline",
+      "searchDepth": 0,
+      "mutationId": null,
+      "touchedTargets": [],
+      "documents": {
+        "team-lead": {
+          "frontmatter": {
+            "name": "team-lead",
+            "description": "Orchestrates a manager-led, multi-agent SWE workflow. Owns the task artifacts, delegates work to specialist agents, and converges on a review-ready and release-ready PR with objective evidence.\n",
+            "tools": [
+              "read",
+              "search",
+              "execute",
+              "edit",
+              "agent",
+              "github/*"
+            ],
+            "user-invocable": true,
+            "disable-model-invocation": false,
+            "metadata": {
+              "role": "manager",
+              "protocol": "swe-team-v1",
+              "state_artifacts": "docs/agents/state.json, docs/agents/task-spec.md, docs/agents/patch-report.md, docs/agents/test-report.md, docs/agents/review-report.md, docs/agents/release-report.md"
+            }
+          },
+          "body": "# Team Lead (Manager) - Multi-Agent SWE Protocol\n\nYou are the Team Lead, the only coordinator for one reviewable, release-ready change; specialists do not coordinate with each other.\n\n## Hard constraints\n\n- Work in one repository and one PR-sized change.\n- Stop and report governance or policy blocks instead of trying to bypass them.\n- Keep the system deterministic: `docs/agents/` is the shared root and `docs/agents/current-run.json` points to the active run.\n\n## Your responsibilities\n\nKeep these artifacts current:\n\n- `docs/agents/state.json`\n- `docs/agents/task-spec.md`\n- `docs/agents/patch-report.md`\n- `docs/agents/test-report.md`\n- `docs/agents/review-report.md`\n- `docs/agents/release-report.md`\n\nYou may edit coordination artifacts, templates, and lightweight workflow wiring, but not product code.\n\n## Canonical flow\n\n1. Intake\n2. Research -> `repo-researcher`\n3. Spec -> `spec-writer`\n4. Implement -> `implementer`\n5. Validate -> `test-engineer`\n6. Quality Gate -> `quality-gate`\n7. Release Prep -> `release-manager` when release evidence is required\n8. Done -> ready for human review\n\nIf the Quality Gate fails, return to Implement with the blocker batch and iterate.\n\n## Required artifact expectations\n\n- `state.json`: current phase, decisions, delegations, failures, next action\n- `task-spec.md`: acceptance criteria, non-goals, risk register, validation plan\n- `patch-report.md`: implementation summary and risks\n- `test-report.md`: commands run, results, missing coverage\n- `review-report.md`: PASS or FAIL with evidence and blockers\n- `release-report.md`: release readiness or an explicit reason release prep was not required\n\nSnapshot the shared working set into the active run folder under `docs/agents/runs/<run-id>/`.\n\n## Delegation contracts\n\nAll specialist requests and results must include:\n\n1. A short human summary.\n2. One machine-parseable JSON object inside a fenced code block.\n\nStandard requests:\n\n- `ResearchRequest` -> `repo-researcher`\n- `TaskSpecDraft` -> `spec-writer`\n- `ChangePlan` -> `implementer`\n- `TestRequest` -> `test-engineer`\n- `ReviewRequest` -> `quality-gate`\n- `ReleaseRequest` -> `release-manager`\n\n## Failure budgets\n\n- `setup_failure`: 2 attempts\n- `test_or_runtime_failure`: 3 iterations per acceptance-criteria slice\n- `network_block`: 0 automatic retries\n- `tool_denial`: stop and report\n- `permission_or_governance_block`: stop and report\n\nRecord all failures in `docs/agents/state.json`.\n\n## Output requirements\n\nEvery response must include:\n\n1. Status summary\n2. Next action\n3. A single JSON object of type `ManagerDecision`\n\n```json\n{\n  \"type\": \"ManagerDecision\",\n  \"phase\": \"Intake|Research|Spec|Implement|Validate|Review|Done\",\n  \"next\": \"repo-researcher|spec-writer|implementer|test-engineer|quality-gate|release-manager|human-review\",\n  \"goal\": \"single sentence\",\n  \"acceptance\": [\"AC1\", \"AC2\"],\n  \"evidence_required\": [\"tests_pass\", \"quality_gate_pass\"],\n  \"notes\": \"optional\"\n}\n```"
+        }
+      }
+    },
+    {
+      "iteration": 1,
+      "candidateId": "relax-no-product-code-boundary",
+      "parentCandidateId": "baseline",
+      "description": "Loosen the manager scope to prove governance regressions are discarded.",
+      "status": "discard",
+      "evaluation": {
+        "score": 0.820513,
+        "passedChecks": 7,
+        "totalChecks": 9,
+        "checks": [
+          {
+            "id": "sole-coordinator",
+            "type": "contains_text",
+            "targetId": "team-lead",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.5,
+            "passed": true,
+            "expected": "the only coordinator",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 2940
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 2940
+            }
+          },
+          {
+            "id": "specialists-no-peer-coordination",
+            "type": "contains_text",
+            "targetId": "team-lead",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.0,
+            "passed": true,
+            "expected": "specialists do not coordinate with each other",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 2940
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 2940
+            }
+          },
+          {
+            "id": "current-run-contract",
+            "type": "contains_text",
+            "targetId": "team-lead",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.0,
+            "passed": true,
+            "expected": "`docs/agents/current-run.json`",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 2940
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 2940
+            }
+          },
+          {
+            "id": "no-product-code-boundary",
+            "type": "contains_text",
+            "targetId": "team-lead",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.5,
+            "passed": false,
+            "expected": "but not product code",
+            "observed": {
+              "containsExpected": false,
+              "targetLength": 2940
+            },
+            "actual": {
+              "containsExpected": false,
+              "targetLength": 2940
+            }
+          },
+          {
+            "id": "quality-gate-flow",
+            "type": "contains_text",
+            "targetId": "team-lead",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.0,
+            "passed": true,
+            "expected": "`quality-gate`",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 2940
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 2940
+            }
+          },
+          {
+            "id": "review-report-artifact",
+            "type": "contains_text",
+            "targetId": "team-lead",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.0,
+            "passed": true,
+            "expected": "`docs/agents/review-report.md`",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 2940
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 2940
+            }
+          },
+          {
+            "id": "manager-decision-output",
+            "type": "contains_text",
+            "targetId": "team-lead",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.5,
+            "passed": true,
+            "expected": "`ManagerDecision`",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 2940
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 2940
+            }
+          },
+          {
+            "id": "tools-exact",
+            "type": "frontmatter_equals",
+            "targetId": "team-lead",
+            "target": null,
+            "key": "tools",
+            "comparator": "equals",
+            "weight": 1.0,
+            "passed": true,
+            "expected": [
+              "read",
+              "search",
+              "execute",
+              "edit",
+              "agent",
+              "github/*"
+            ],
+            "observed": [
+              "read",
+              "search",
+              "execute",
+              "edit",
+              "agent",
+              "github/*"
+            ],
+            "actual": [
+              "read",
+              "search",
+              "execute",
+              "edit",
+              "agent",
+              "github/*"
+            ]
+          },
+          {
+            "id": "episode-episode-success-guard-01-check",
+            "type": "episode_observation_guard",
+            "targetId": "team-lead",
+            "target": null,
+            "key": null,
+            "comparator": "episode_matches",
+            "weight": 0.25,
+            "passed": false,
+            "expected": {
+              "minMatchedRecordCount": 1,
+              "sourceKinds": [
+                "handoff_event",
+                "run_report",
+                "run_state",
+                "transcript_event"
+              ],
+              "toolNames": [
+                "read_file",
+                "grep_search"
+              ],
+              "terminalStatus": "success"
+            },
+            "observed": {
+              "episodeId": "candidate-episode-relax-no-product-code-boundary",
+              "matchedRecordCount": 3,
+              "sourceKinds": [
+                "run_report",
+                "transcript_event"
+              ],
+              "toolNames": [
+                "apply_patch",
+                "read_file"
+              ],
+              "terminalStatus": "error",
+              "sourceKindCounts": {
+                "run_report": 1,
+                "transcript_event": 2
+              },
+              "statusCounts": {
+                "READY_FOR_QUALITY_GATE": 1,
+                "error": 2
+              },
+              "sourceKindsMatch": false,
+              "toolNamesMatch": false,
+              "terminalStatusMatch": false
+            },
+            "actual": {
+              "episodeId": "candidate-episode-relax-no-product-code-boundary",
+              "matchedRecordCount": 3,
+              "sourceKinds": [
+                "run_report",
+                "transcript_event"
+              ],
+              "toolNames": [
+                "apply_patch",
+                "read_file"
+              ],
+              "terminalStatus": "error",
+              "sourceKindCounts": {
+                "run_report": 1,
+                "transcript_event": 2
+              },
+              "statusCounts": {
+                "READY_FOR_QUALITY_GATE": 1,
+                "error": 2
+              },
+              "sourceKindsMatch": false,
+              "toolNamesMatch": false,
+              "terminalStatusMatch": false
+            }
+          }
+        ],
+        "complexity": {
+          "bodyChars": 2940,
+          "toolCount": 6,
+          "mcpServerCount": 0,
+          "fileCount": 1,
+          "score": 3105,
+          "perTarget": {
+            "team-lead": {
+              "bodyChars": 2940,
+              "toolCount": 6,
+              "mcpServerCount": 0,
+              "score": 3090
+            }
+          }
+        },
+        "trajectoryScore": 0.523701,
+        "trajectoryScoreBreakdown": {
+          "validationBreadth": 0.777778,
+          "parentProgress": 0.0,
+          "actionEfficiency": 0.5,
+          "targetFocus": 1.0,
+          "lineageEfficiency": 0.5,
+          "matchedEvidenceRecords": 3,
+          "attributedSuccessCount": 0,
+          "attributedWarningCount": 0,
+          "attributedErrorCount": 2,
+          "attributedToolErrorCount": 2,
+          "attributedExternalErrorCount": 0,
+          "evidenceSupport": 0.0,
+          "evidenceIssuePenalty": 0.08,
+          "reviewedPolicyBonus": 0.0,
+          "reviewedPolicyPenalty": 0.024077,
+          "liveWinnerBoost": 0.0
+        },
+        "trajectoryEvidenceContext": {
+          "aliases": [
+            "candidate-trajectory-relax-no-product-code-boundary",
+            "relax-no-product-code-boundary"
+          ],
+          "matchedRecordCount": 3,
+          "errorCount": 2,
+          "warningCount": 0,
+          "successCount": 0,
+          "toolErrorCount": 2,
+          "externalErrorCount": 0,
+          "sourceKindCounts": {
+            "run_report": 1,
+            "transcript_event": 2
+          },
+          "statusCounts": {
+            "ready_for_quality_gate": 1,
+            "error": 2
+          }
+        },
+        "reviewedPolicyContext": {
+          "enabled": true,
+          "status": "ready",
+          "artifactPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/reviewed-policies.json",
+          "policyCount": 1,
+          "matchedPolicyCount": 1,
+          "preferredSequenceMatchCount": 0,
+          "escalationMatchCount": 1,
+          "bonus": 0.0,
+          "penalty": 0.024077,
+          "matchedPolicyIds": [
+            "episode-policy-escalation-trigger-02"
+          ],
+          "matchedPolicies": [
+            {
+              "policyId": "episode-policy-escalation-trigger-02",
+              "intent": "escalation_trigger",
+              "effectType": "penalty",
+              "effect": 0.024077,
+              "learningScore": 0.481539
+            }
+          ]
+        }
+      },
+      "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation-reviewed-continuation/candidates/iteration-01-relax-no-product-code-boundary.agent.md",
+      "documentStorage": "candidate_snapshot",
+      "searchDepth": 1,
+      "mutationId": "relax-no-product-code-boundary",
+      "touchedTargets": [
+        "team-lead"
+      ]
+    },
+    {
+      "iteration": 2,
+      "candidateId": "episode-avoid-failure-path-02",
+      "parentCandidateId": "baseline",
+      "description": "Use this observed failing path to shape a future avoidance mutation.",
+      "status": "discard",
+      "evaluation": {
+        "score": 0.820513,
+        "passedChecks": 7,
+        "totalChecks": 9,
+        "checks": [
+          {
+            "id": "sole-coordinator",
+            "type": "contains_text",
+            "targetId": "team-lead",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.5,
+            "passed": true,
+            "expected": "the only coordinator",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 2940
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 2940
+            }
+          },
+          {
+            "id": "specialists-no-peer-coordination",
+            "type": "contains_text",
+            "targetId": "team-lead",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.0,
+            "passed": true,
+            "expected": "specialists do not coordinate with each other",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 2940
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 2940
+            }
+          },
+          {
+            "id": "current-run-contract",
+            "type": "contains_text",
+            "targetId": "team-lead",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.0,
+            "passed": true,
+            "expected": "`docs/agents/current-run.json`",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 2940
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 2940
+            }
+          },
+          {
+            "id": "no-product-code-boundary",
+            "type": "contains_text",
+            "targetId": "team-lead",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.5,
+            "passed": false,
+            "expected": "but not product code",
+            "observed": {
+              "containsExpected": false,
+              "targetLength": 2940
+            },
+            "actual": {
+              "containsExpected": false,
+              "targetLength": 2940
+            }
+          },
+          {
+            "id": "quality-gate-flow",
+            "type": "contains_text",
+            "targetId": "team-lead",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.0,
+            "passed": true,
+            "expected": "`quality-gate`",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 2940
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 2940
+            }
+          },
+          {
+            "id": "review-report-artifact",
+            "type": "contains_text",
+            "targetId": "team-lead",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.0,
+            "passed": true,
+            "expected": "`docs/agents/review-report.md`",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 2940
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 2940
+            }
+          },
+          {
+            "id": "manager-decision-output",
+            "type": "contains_text",
+            "targetId": "team-lead",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.5,
+            "passed": true,
+            "expected": "`ManagerDecision`",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 2940
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 2940
+            }
+          },
+          {
+            "id": "tools-exact",
+            "type": "frontmatter_equals",
+            "targetId": "team-lead",
+            "target": null,
+            "key": "tools",
+            "comparator": "equals",
+            "weight": 1.0,
+            "passed": true,
+            "expected": [
+              "read",
+              "search",
+              "execute",
+              "edit",
+              "agent",
+              "github/*"
+            ],
+            "observed": [
+              "read",
+              "search",
+              "execute",
+              "edit",
+              "agent",
+              "github/*"
+            ],
+            "actual": [
+              "read",
+              "search",
+              "execute",
+              "edit",
+              "agent",
+              "github/*"
+            ]
+          },
+          {
+            "id": "episode-episode-success-guard-01-check",
+            "type": "episode_observation_guard",
+            "targetId": "team-lead",
+            "target": null,
+            "key": null,
+            "comparator": "episode_matches",
+            "weight": 0.25,
+            "passed": false,
+            "expected": {
+              "minMatchedRecordCount": 1,
+              "sourceKinds": [
+                "handoff_event",
+                "run_report",
+                "run_state",
+                "transcript_event"
+              ],
+              "toolNames": [
+                "read_file",
+                "grep_search"
+              ],
+              "terminalStatus": "success"
+            },
+            "observed": {
+              "episodeId": "candidate-episode-episode-avoid-failure-path-02",
+              "matchedRecordCount": 4,
+              "sourceKinds": [
+                "run_report",
+                "run_state"
+              ],
+              "toolNames": [],
+              "terminalStatus": "READY_FOR_QUALITY_GATE",
+              "sourceKindCounts": {
+                "run_state": 1,
+                "run_report": 3
+              },
+              "statusCounts": {
+                "Done": 1,
+                "READY_FOR_QUALITY_GATE": 2,
+                "PASS": 1
+              },
+              "sourceKindsMatch": false,
+              "toolNamesMatch": false,
+              "terminalStatusMatch": false
+            },
+            "actual": {
+              "episodeId": "candidate-episode-episode-avoid-failure-path-02",
+              "matchedRecordCount": 4,
+              "sourceKinds": [
+                "run_report",
+                "run_state"
+              ],
+              "toolNames": [],
+              "terminalStatus": "READY_FOR_QUALITY_GATE",
+              "sourceKindCounts": {
+                "run_state": 1,
+                "run_report": 3
+              },
+              "statusCounts": {
+                "Done": 1,
+                "READY_FOR_QUALITY_GATE": 2,
+                "PASS": 1
+              },
+              "sourceKindsMatch": false,
+              "toolNamesMatch": false,
+              "terminalStatusMatch": false
+            }
+          }
+        ],
+        "complexity": {
+          "bodyChars": 2940,
+          "toolCount": 6,
+          "mcpServerCount": 0,
+          "fileCount": 1,
+          "score": 3105,
+          "perTarget": {
+            "team-lead": {
+              "bodyChars": 2940,
+              "toolCount": 6,
+              "mcpServerCount": 0,
+              "score": 3090
+            }
+          }
+        },
+        "trajectoryScore": 0.627778,
+        "trajectoryScoreBreakdown": {
+          "validationBreadth": 0.777778,
+          "parentProgress": 0.0,
+          "actionEfficiency": 0.5,
+          "targetFocus": 1.0,
+          "lineageEfficiency": 0.5,
+          "matchedEvidenceRecords": 4,
+          "attributedSuccessCount": 0,
+          "attributedWarningCount": 0,
+          "attributedErrorCount": 0,
+          "attributedToolErrorCount": 0,
+          "attributedExternalErrorCount": 0,
+          "evidenceSupport": 0.0,
+          "evidenceIssuePenalty": 0.0,
+          "reviewedPolicyBonus": 0.0,
+          "reviewedPolicyPenalty": 0.0,
+          "liveWinnerBoost": 0.0
+        },
+        "trajectoryEvidenceContext": {
+          "aliases": [
+            "candidate-trajectory-episode-avoid-failure-path-02",
+            "episode-avoid-failure-path-02"
+          ],
+          "matchedRecordCount": 4,
+          "errorCount": 0,
+          "warningCount": 0,
+          "successCount": 0,
+          "toolErrorCount": 0,
+          "externalErrorCount": 0,
+          "sourceKindCounts": {
+            "run_state": 1,
+            "run_report": 3
+          },
+          "statusCounts": {
+            "done": 1,
+            "ready_for_quality_gate": 2,
+            "pass": 1
+          }
+        },
+        "reviewedPolicyContext": {
+          "enabled": true,
+          "status": "ready",
+          "artifactPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/reviewed-policies.json",
+          "policyCount": 1,
+          "matchedPolicyCount": 0,
+          "preferredSequenceMatchCount": 0,
+          "escalationMatchCount": 0,
+          "bonus": 0.0,
+          "penalty": 0.0,
+          "matchedPolicyIds": [],
+          "matchedPolicies": []
+        }
+      },
+      "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation-reviewed-continuation/candidates/iteration-02-episode-avoid-failure-path-02.agent.md",
+      "documentStorage": "candidate_snapshot",
+      "searchDepth": 1,
+      "mutationId": "episode-avoid-failure-path-02",
+      "touchedTargets": [
+        "team-lead"
+      ]
+    }
+  ],
+  "frontierSnapshots": [
+    {
+      "mutationIndex": 0,
+      "catalogIndex": 0,
+      "planToken": "0:baseline",
+      "mutationId": null,
+      "evaluatedCandidateIds": [
+        "baseline"
+      ],
+      "frontierCandidateIds": [
+        "baseline"
+      ],
+      "bestCandidateId": "baseline"
+    },
+    {
+      "mutationIndex": 1,
+      "catalogIndex": 1,
+      "planToken": "1:relax-no-product-code-boundary",
+      "mutationId": "relax-no-product-code-boundary",
+      "evaluatedCandidateIds": [
+        "relax-no-product-code-boundary"
+      ],
+      "frontierCandidateIds": [
+        "baseline"
+      ],
+      "bestCandidateId": "baseline"
+    },
+    {
+      "mutationIndex": 2,
+      "catalogIndex": 2,
+      "planToken": "2:episode-avoid-failure-path-02",
+      "mutationId": "episode-avoid-failure-path-02",
+      "evaluatedCandidateIds": [
+        "episode-avoid-failure-path-02"
+      ],
+      "frontierCandidateIds": [
+        "baseline"
+      ],
+      "bestCandidateId": "baseline"
+    }
+  ]
+}

@@ -1,15 +1,26 @@
 ---
 name: team-lead-optimization
 description: >
-  Conservative first-pass AutoAgent experiment for this repository. It benchmarks the
-  `team-lead` agent profile, tests a small mutation catalog, and keeps only variants
-  that improve score or preserve score with lower complexity while staging
-  review-oriented run metadata.
+  Conservative first-pass AutoAgent experiment for this repository. It benchmarks a
+  small governed manager bundle anchored on the `team-lead` agent profile, the
+  shared Team Lead orchestration skill, and the repo-level `AGENTS.md` operating
+  guide, tests a small mutation catalog, and keeps only variants that improve score
+  or preserve score with lower complexity while staging review-oriented run metadata.
 optimizationTargets:
   - id: team-lead
     path: ../../.github/agents/team-lead.agent.md
     kind: agent_profile
     primary: true
+    mutableRegions:
+      - body
+  - id: team-lead-skill
+    path: ../../.github/skills/team-lead/SKILL.md
+    kind: markdown_document
+    mutableRegions:
+      - body
+  - id: agent-operating-guide
+    path: ../../AGENTS.md
+    kind: markdown_document
     mutableRegions:
       - body
 benchmarkPath: ../../.github/skills/autoagent-loop/examples/team-lead-benchmark.json
@@ -58,13 +69,13 @@ evidencePolicy:
   includeHookAudit: true
   includeChatHistory: true
   chatHistoryPaths:
-    - ../../tests/fixtures/autoagent-loop/team-lead-chat-history.json
+    - runs/20260308-160258/copilot-chat-export.json
   includeTranscriptHistory: true
   transcriptHistoryPaths:
-    - ../../tests/fixtures/autoagent-loop/team-lead-transcript-history.jsonl
+    - runs/20260308-160258/copilot-transcript-export.jsonl
   includeHandoffHistory: true
   handoffHistoryPaths:
-    - ../../tests/fixtures/autoagent-loop/team-lead-handoff-history.jsonl
+    - runs/20260308-160258/copilot-handoff-export.jsonl
   includeVsCodeLogs: false
   vsCodeLogPaths: []
   externalLogSources: []
@@ -88,19 +99,25 @@ Optimize the Team Lead agent for clarity and brevity while preserving these requ
 
 Keep any candidate that improves benchmark score. If two candidates tie on score, keep the simpler one.
 
-This checked-in Team Lead experiment intentionally starts with a single target agent file instead of
-a larger orchestration bundle. The agent profile carries the highest-signal manager contract, and
-keeping the first pass single-target limits risk while the benchmark and mutation catalog mature.
-If maintainers later want broader optimization, they can extend `optimizationTargets` to include
-`.github/skills/team-lead/SKILL.md` or other shared guidance artifacts.
+This checked-in Team Lead experiment now starts with a small governed manager bundle instead of a
+single target file. The `team-lead` agent profile still carries the highest-signal tool surface and
+output contract, `.github/skills/team-lead/SKILL.md` carries the shared workflow rules that the
+manager is expected to preserve across runs, and `AGENTS.md` carries the repo-level operating guide
+for the canonical artifact root, validation order, and hook-governance expectations. This is still
+deliberately smaller than the full agent team: it expands the optimization surface beyond one file
+without yet widening into specialist profiles, hooks, or broader shared guidance.
+
+If maintainers later want broader optimization, they can extend `optimizationTargets` further to
+include specialist agent profiles or additional shared guidance artifacts after the bundle benchmark
+and mutation catalog have enough evidence-backed coverage to keep the larger search space governed.
 
 It also opts into the governed evidence collector so the loop can summarize current artifacts, recent
 run snapshots, and hook-audit records into a redacted evidence dataset without reading arbitrary
 external files by default.
 
-This checked-in experiment now also uses repo-local fixture-backed chat, transcript, and handoff
-exports so canonical artifacts keep explicit reasoning-trace uptake visible without depending on a
-maintainer's private editor history.
+This checked-in experiment now points its chat, transcript, and handoff evidence at sanitized
+governed exports stored under the active run snapshot so canonical artifacts exercise the
+repo-owned continuation path instead of the fixture-only fallback.
 
 The candidate-search policy is now explicit in the sample schema. This checked-in experiment keeps
 the default `current_best` search path with a frontier size of `1`, which preserves the historical

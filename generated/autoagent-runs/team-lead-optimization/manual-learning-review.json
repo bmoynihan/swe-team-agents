@@ -1,0 +1,57 @@
+{
+    "type": "AutoAgentLearningReview",
+    "reviewer": "human-maintainer",
+    "reviewedAt": "2026-03-08T16:20:00Z",
+    "summary": "Approve governed-export-backed benchmark, mutation, and policy drafts for reviewed continuation packaging.",
+    "benchmarkDrafts": [
+        {
+            "draftId": "benchmark-fragment-01",
+            "stagedDecision": "accept",
+            "decision": "accept",
+            "decisionRationale": {
+                "observedCount": 1,
+                "observedCountThreshold": 1,
+                "observedCountPass": true,
+                "observedCountDelta": 0,
+                "blockedByFactors": [],
+                "primaryBlockedFactor": null
+            },
+            "notes": "Promote the governed-export-backed successful path benchmark fragment."
+        }
+    ],
+    "mutationDrafts": [
+        {
+            "draftId": "mutation-draft-02",
+            "stagedDecision": "accept",
+            "decision": "accept",
+            "decisionRationale": {
+                "sourceMutationId": "relax-no-product-code-boundary",
+                "blockedByFactors": [],
+                "primaryBlockedFactor": null
+            },
+            "notes": "Promote the reviewed avoidance mutation because it preserves an explicit source mutation id."
+        }
+    ],
+    "policyDrafts": [
+        {
+            "draftId": "policy-draft-01",
+            "stagedDecision": "defer",
+            "decision": "accept",
+            "decisionRationale": {
+                "observedCount": 1,
+                "observedCountThreshold": 2,
+                "observedCountPass": false,
+                "observedCountDelta": -1,
+                "learningScore": 0.855208,
+                "learningScoreThreshold": 0.7,
+                "learningScorePass": true,
+                "learningScoreDelta": 0.155208,
+                "blockedByFactors": [
+                    "observedCount"
+                ],
+                "primaryBlockedFactor": "observedCount"
+            },
+            "notes": "Promote the preferred tool sequence by explicit reviewer override so the continuation package captures the governed successful path."
+        }
+    ]
+}

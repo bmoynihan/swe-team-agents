@@ -1,3 +1,8 @@
+---
+title: Agent Operating Guide
+description: Repository-level workflow and governed artifact contract for the multi-agent SWE team.
+---
+
 # Agent Operating Guide
 
 This repository uses a manager-led multi-agent workflow:

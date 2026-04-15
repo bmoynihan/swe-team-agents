@@ -15,15 +15,29 @@
     "baseline"
   ],
   "maxSearchDepth": 1,
-  "candidateCount": 2,
-  "frontierSnapshotCount": 2,
+  "candidateCount": 3,
+  "frontierSnapshotCount": 3,
   "mutationExecutionPlan": [
     {
       "plannedIndex": 1,
       "catalogIndex": 1,
       "planToken": "1:relax-no-product-code-boundary",
       "mutationId": "relax-no-product-code-boundary",
-      "description": "Loosen the manager scope to prove governance regressions are discarded.",
+      "description": "Loosen the manager scope across the manager bundle to prove governance regressions are discarded.",
+      "priorityStatus": "neutral",
+      "priorityScore": 0.0,
+      "bonus": 0.0,
+      "penalty": 0.0,
+      "matchedPolicyCount": 0,
+      "matchedPolicyIds": [],
+      "sourceCandidateIds": []
+    },
+    {
+      "plannedIndex": 2,
+      "catalogIndex": 2,
+      "planToken": "2:weaken-agent-guide-governance",
+      "mutationId": "weaken-agent-guide-governance",
+      "description": "Weaken the shared AGENTS governance contract to prove the broader governed bundle rejects drift.",
       "priorityStatus": "neutral",
       "priorityScore": 0.0,
       "bonus": 0.0,
@@ -41,24 +55,31 @@
   },
   "winnerExplanation": {
     "winnerCandidateId": "baseline",
-    "comparedCandidateId": "relax-no-product-code-boundary",
+    "comparedCandidateId": "weaken-agent-guide-governance",
     "comparisonMode": "deterministic_ranking",
     "decisiveSignal": "benchmark_score",
     "evidenceBacked": false,
-    "summary": "baseline beat relax-no-product-code-boundary on benchmark score (1.0 vs 0.842105).",
+    "summary": "baseline beat weaken-agent-guide-governance on benchmark score (1.0 vs 0.848485).",
     "evidenceSummary": null,
     "rankingComparison": {
       "winnerScore": 1.0,
-      "runnerUpScore": 0.842105,
-      "scoreDelta": 0.157895,
-      "winnerComplexityScore": 3113,
-      "runnerUpComplexityScore": 3105,
-      "complexityAdvantage": -8,
+      "runnerUpScore": 0.848485,
+      "scoreDelta": 0.151515,
+      "winnerComplexityScore": 8854,
+      "runnerUpComplexityScore": 8887,
+      "complexityAdvantage": 33,
       "winnerTrajectoryScore": 0.88,
-      "runnerUpTrajectoryScore": 0.60125,
-      "trajectoryScoreDelta": 0.27875
+      "runnerUpTrajectoryScore": 0.646429,
+      "trajectoryScoreDelta": 0.233571
     },
     "topTrajectorySignals": [
+      {
+        "signal": "matchedEvidenceRecords",
+        "preference": "higher_is_better",
+        "winner": 12,
+        "runnerUp": 1,
+        "advantage": 11.0
+      },
       {
         "signal": "attributedSuccessCount",
         "preference": "higher_is_better",
@@ -67,54 +88,46 @@
         "advantage": 3.0
       },
       {
-        "signal": "matchedEvidenceRecords",
-        "preference": "higher_is_better",
-        "winner": 6,
-        "runnerUp": 3,
-        "advantage": 3.0
-      },
-      {
-        "signal": "attributedErrorCount",
-        "preference": "lower_is_better",
-        "winner": 0,
-        "runnerUp": 2,
-        "advantage": 2.0
-      },
-      {
-        "signal": "attributedToolErrorCount",
-        "preference": "lower_is_better",
-        "winner": 0,
-        "runnerUp": 2,
-        "advantage": 2.0
-      },
-      {
         "signal": "actionEfficiency",
+        "preference": "higher_is_better",
+        "winner": 1.0,
+        "runnerUp": 0.333333,
+        "advantage": 0.666667
+      },
+      {
+        "signal": "lineageEfficiency",
         "preference": "higher_is_better",
         "winner": 1.0,
         "runnerUp": 0.5,
         "advantage": 0.5
+      },
+      {
+        "signal": "validationBreadth",
+        "preference": "higher_is_better",
+        "winner": 1.0,
+        "runnerUp": 0.857143,
+        "advantage": 0.142857
       }
     ],
-    "trajectorySummary": "Top trajectory contributors: attributedSuccessCount +3, matchedEvidenceRecords +3, attributedErrorCount lower by 2",
+    "trajectorySummary": "Top trajectory contributors: matchedEvidenceRecords +11, attributedSuccessCount +3, actionEfficiency +0.666667",
     "evidenceComparison": {
       "winnerSourceKinds": {
         "handoff_event": 1,
-        "run_report": 1,
+        "run_report": 7,
         "run_state": 2,
         "transcript_event": 2
       },
       "runnerUpSourceKinds": {
-        "run_report": 1,
-        "transcript_event": 2
+        "run_report": 1
       },
       "winnerStatuses": {
-        "ready_for_quality_gate": 1,
-        "review": 1,
-        "spec": 1,
+        "done": 1,
+        "implement": 1,
+        "pass": 2,
+        "ready_for_quality_gate": 5,
         "success": 3
       },
       "runnerUpStatuses": {
-        "error": 2,
         "ready_for_quality_gate": 1
       }
     },
@@ -123,7 +136,7 @@
       "iteration": 0,
       "searchDepth": 0,
       "score": 1.0,
-      "complexityScore": 3113,
+      "complexityScore": 8854,
       "trajectoryScore": 0.88,
       "trajectorySignals": {
         "validationBreadth": 1.0,
@@ -131,7 +144,7 @@
         "actionEfficiency": 1.0,
         "targetFocus": 1.0,
         "lineageEfficiency": 1.0,
-        "matchedEvidenceRecords": 6,
+        "matchedEvidenceRecords": 12,
         "attributedSuccessCount": 3,
         "attributedWarningCount": 0,
         "attributedErrorCount": 0,
@@ -144,7 +157,7 @@
         "liveWinnerBoost": 0.0
       },
       "evidence": {
-        "matchedRecordCount": 6,
+        "matchedRecordCount": 12,
         "successCount": 3,
         "warningCount": 0,
         "errorCount": 0,
@@ -152,56 +165,55 @@
         "externalErrorCount": 0,
         "sourceKindCounts": {
           "handoff_event": 1,
-          "run_report": 1,
+          "run_report": 7,
           "run_state": 2,
           "transcript_event": 2
         },
         "statusCounts": {
-          "ready_for_quality_gate": 1,
-          "review": 1,
-          "spec": 1,
+          "done": 1,
+          "implement": 1,
+          "pass": 2,
+          "ready_for_quality_gate": 5,
           "success": 3
         }
       }
     },
     "runnerUp": {
-      "candidateId": "relax-no-product-code-boundary",
-      "iteration": 1,
+      "candidateId": "weaken-agent-guide-governance",
+      "iteration": 2,
       "searchDepth": 1,
-      "score": 0.842105,
-      "complexityScore": 3105,
-      "trajectoryScore": 0.60125,
+      "score": 0.848485,
+      "complexityScore": 8887,
+      "trajectoryScore": 0.646429,
       "trajectorySignals": {
-        "validationBreadth": 0.875,
+        "validationBreadth": 0.857143,
         "parentProgress": 0.0,
-        "actionEfficiency": 0.5,
+        "actionEfficiency": 0.333333,
         "targetFocus": 1.0,
         "lineageEfficiency": 0.5,
-        "matchedEvidenceRecords": 3,
+        "matchedEvidenceRecords": 1,
         "attributedSuccessCount": 0,
         "attributedWarningCount": 0,
-        "attributedErrorCount": 2,
-        "attributedToolErrorCount": 2,
+        "attributedErrorCount": 0,
+        "attributedToolErrorCount": 0,
         "attributedExternalErrorCount": 0,
         "evidenceSupport": 0.0,
-        "evidenceIssuePenalty": 0.08,
+        "evidenceIssuePenalty": 0.0,
         "reviewedPolicyBonus": 0.0,
         "reviewedPolicyPenalty": 0.0,
         "liveWinnerBoost": 0.0
       },
       "evidence": {
-        "matchedRecordCount": 3,
+        "matchedRecordCount": 1,
         "successCount": 0,
         "warningCount": 0,
-        "errorCount": 2,
-        "toolErrorCount": 2,
+        "errorCount": 0,
+        "toolErrorCount": 0,
         "externalErrorCount": 0,
         "sourceKindCounts": {
-          "run_report": 1,
-          "transcript_event": 2
+          "run_report": 1
         },
         "statusCounts": {
-          "error": 2,
           "ready_for_quality_gate": 1
         }
       }
@@ -219,31 +231,43 @@
       "description": "Baseline target agent",
       "score": 1.0,
       "trajectoryScore": 0.88,
-      "trajectoryEvidenceMatches": 6,
+      "trajectoryEvidenceMatches": 12,
       "trajectoryEvidenceErrors": 0,
       "trajectoryEvidenceWarnings": 0,
       "trajectoryEvidenceSuccesses": 3,
       "reviewedPolicyMatches": 0,
       "reviewedPolicyBonus": 0.0,
       "reviewedPolicyPenalty": 0.0,
-      "passedChecks": 8,
-      "totalChecks": 8,
+      "passedChecks": 14,
+      "totalChecks": 14,
       "complexity": {
-        "bodyChars": 2948,
+        "bodyChars": 8659,
         "toolCount": 6,
         "mcpServerCount": 0,
-        "fileCount": 1,
-        "score": 3113,
+        "fileCount": 3,
+        "score": 8854,
         "perTarget": {
           "team-lead": {
             "bodyChars": 2948,
             "toolCount": 6,
             "mcpServerCount": 0,
             "score": 3098
+          },
+          "team-lead-skill": {
+            "bodyChars": 3535,
+            "toolCount": 0,
+            "mcpServerCount": 0,
+            "score": 3535
+          },
+          "agent-operating-guide": {
+            "bodyChars": 2176,
+            "toolCount": 0,
+            "mcpServerCount": 0,
+            "score": 2176
           }
         }
       },
-      "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-00-baseline.agent.md",
+      "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-00-baseline",
       "touchedTargets": []
     },
     {
@@ -253,9 +277,9 @@
       "iteration": 1,
       "searchDepth": 1,
       "status": "discard",
-      "description": "Loosen the manager scope to prove governance regressions are discarded.",
-      "score": 0.842105,
-      "trajectoryScore": 0.60125,
+      "description": "Loosen the manager scope across the manager bundle to prove governance regressions are discarded.",
+      "score": 0.818182,
+      "trajectoryScore": 0.516429,
       "trajectoryEvidenceMatches": 3,
       "trajectoryEvidenceErrors": 2,
       "trajectoryEvidenceWarnings": 0,
@@ -263,26 +287,90 @@
       "reviewedPolicyMatches": 0,
       "reviewedPolicyBonus": 0.0,
       "reviewedPolicyPenalty": 0.0,
-      "passedChecks": 7,
-      "totalChecks": 8,
+      "passedChecks": 12,
+      "totalChecks": 14,
       "complexity": {
-        "bodyChars": 2940,
+        "bodyChars": 8646,
         "toolCount": 6,
         "mcpServerCount": 0,
-        "fileCount": 1,
-        "score": 3105,
+        "fileCount": 3,
+        "score": 8841,
         "perTarget": {
           "team-lead": {
             "bodyChars": 2940,
             "toolCount": 6,
             "mcpServerCount": 0,
             "score": 3090
+          },
+          "team-lead-skill": {
+            "bodyChars": 3530,
+            "toolCount": 0,
+            "mcpServerCount": 0,
+            "score": 3530
+          },
+          "agent-operating-guide": {
+            "bodyChars": 2176,
+            "toolCount": 0,
+            "mcpServerCount": 0,
+            "score": 2176
           }
         }
       },
-      "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-01-relax-no-product-code-boundary.agent.md",
+      "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-01-relax-no-product-code-boundary",
       "touchedTargets": [
-        "team-lead"
+        "team-lead",
+        "team-lead-skill"
+      ]
+    },
+    {
+      "candidateId": "weaken-agent-guide-governance",
+      "parentCandidateId": "baseline",
+      "mutationId": "weaken-agent-guide-governance",
+      "iteration": 2,
+      "searchDepth": 1,
+      "status": "discard",
+      "description": "Weaken the shared AGENTS governance contract to prove the broader governed bundle rejects drift.",
+      "score": 0.848485,
+      "trajectoryScore": 0.646429,
+      "trajectoryEvidenceMatches": 1,
+      "trajectoryEvidenceErrors": 0,
+      "trajectoryEvidenceWarnings": 0,
+      "trajectoryEvidenceSuccesses": 0,
+      "reviewedPolicyMatches": 0,
+      "reviewedPolicyBonus": 0.0,
+      "reviewedPolicyPenalty": 0.0,
+      "passedChecks": 12,
+      "totalChecks": 14,
+      "complexity": {
+        "bodyChars": 8692,
+        "toolCount": 6,
+        "mcpServerCount": 0,
+        "fileCount": 3,
+        "score": 8887,
+        "perTarget": {
+          "team-lead": {
+            "bodyChars": 2948,
+            "toolCount": 6,
+            "mcpServerCount": 0,
+            "score": 3098
+          },
+          "team-lead-skill": {
+            "bodyChars": 3535,
+            "toolCount": 0,
+            "mcpServerCount": 0,
+            "score": 3535
+          },
+          "agent-operating-guide": {
+            "bodyChars": 2209,
+            "toolCount": 0,
+            "mcpServerCount": 0,
+            "score": 2209
+          }
+        }
+      },
+      "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-02-weaken-agent-guide-governance",
+      "touchedTargets": [
+        "agent-operating-guide"
       ]
     }
   ],
@@ -307,6 +395,19 @@
       "mutationId": "relax-no-product-code-boundary",
       "evaluatedCandidateIds": [
         "relax-no-product-code-boundary"
+      ],
+      "frontierCandidateIds": [
+        "baseline"
+      ],
+      "bestCandidateId": "baseline"
+    },
+    {
+      "mutationIndex": 2,
+      "catalogIndex": 2,
+      "planToken": "2:weaken-agent-guide-governance",
+      "mutationId": "weaken-agent-guide-governance",
+      "evaluatedCandidateIds": [
+        "weaken-agent-guide-governance"
       ],
       "frontierCandidateIds": [
         "baseline"

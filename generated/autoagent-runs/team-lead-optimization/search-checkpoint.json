@@ -5,30 +5,30 @@
   "experiment": {
     "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/autoagent-experiment.md",
     "exists": true,
-    "sha256": "4fdfba58c95ea72fac6e4e6aa0c82dc34e1d3eb934735dddfe9a6869e4052c15",
-    "sizeBytes": 8968
+    "sha256": "135cc204b15cf9388c3a849b431f609395c9774041a21e933c605d9f8c8d0cd5",
+    "sizeBytes": 9844
   },
   "benchmark": {
     "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/.github/skills/autoagent-loop/examples/team-lead-benchmark.json",
     "exists": true,
-    "sha256": "e6317b46662d050f5b108fcadd61a64cf81b4734de11efb69661cc26d39ce71d",
-    "sizeBytes": 1924
+    "sha256": "2664b454cb1b31f700622a347695e91f7adc591965ecea279023f3e0ebd35e15",
+    "sizeBytes": 3897
   },
   "mutationCatalog": {
     "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/.github/skills/autoagent-loop/examples/team-lead-mutations.json",
     "exists": true,
-    "sha256": "b0bb3b075af0d678d4029ab6d401a2c4915b7e5bd51f75008499ce2984e71c4b",
-    "sizeBytes": 636
+    "sha256": "53ce4c8fa10554c264360b4fff3def2eeb2ccd8c9907e132018f50506899d9fe",
+    "sizeBytes": 1968
   },
   "candidatePolicy": {
     "keepStrategy": "score-then-simpler",
     "searchStrategy": "current_best",
     "frontierSize": 1
   },
-  "requestedMutationCount": 1,
-  "totalMutationCount": 1,
-  "completedMutationCount": 1,
-  "nextMutationIndex": 2,
+  "requestedMutationCount": 2,
+  "totalMutationCount": 2,
+  "completedMutationCount": 2,
+  "nextMutationIndex": 3,
   "hasRemainingMutations": false,
   "mutationExecutionPlan": [
     {
@@ -36,7 +36,21 @@
       "catalogIndex": 1,
       "planToken": "1:relax-no-product-code-boundary",
       "mutationId": "relax-no-product-code-boundary",
-      "description": "Loosen the manager scope to prove governance regressions are discarded.",
+      "description": "Loosen the manager scope across the manager bundle to prove governance regressions are discarded.",
+      "priorityStatus": "neutral",
+      "priorityScore": 0.0,
+      "bonus": 0.0,
+      "penalty": 0.0,
+      "matchedPolicyCount": 0,
+      "matchedPolicyIds": [],
+      "sourceCandidateIds": []
+    },
+    {
+      "plannedIndex": 2,
+      "catalogIndex": 2,
+      "planToken": "2:weaken-agent-guide-governance",
+      "mutationId": "weaken-agent-guide-governance",
+      "description": "Weaken the shared AGENTS governance contract to prove the broader governed bundle rejects drift.",
       "priorityStatus": "neutral",
       "priorityScore": 0.0,
       "bonus": 0.0,
@@ -47,9 +61,10 @@
     }
   ],
   "mutationExecutionPlanTokens": [
-    "1:relax-no-product-code-boundary"
+    "1:relax-no-product-code-boundary",
+    "2:weaken-agent-guide-governance"
   ],
-  "evaluationIteration": 2,
+  "evaluationIteration": 3,
   "deterministicBestCandidateId": "baseline",
   "currentFrontierCandidateIds": [
     "baseline"
@@ -58,12 +73,13 @@
     "baseline"
   ],
   "inlineCandidateCount": 1,
-  "snapshotBackedCandidateCount": 1,
+  "snapshotBackedCandidateCount": 2,
   "keptCandidates": [
     "baseline"
   ],
   "discardedCandidates": [
-    "relax-no-product-code-boundary"
+    "relax-no-product-code-boundary",
+    "weaken-agent-guide-governance"
   ],
   "rows": [
     {
@@ -72,22 +88,34 @@
       "parentCandidateId": null,
       "searchDepth": 0,
       "score": 1.0,
-      "passedChecks": 8,
-      "totalChecks": 8,
+      "passedChecks": 14,
+      "totalChecks": 14,
       "status": "keep",
       "description": "Baseline target agent",
       "complexity": {
-        "bodyChars": 2948,
+        "bodyChars": 8659,
         "toolCount": 6,
         "mcpServerCount": 0,
-        "fileCount": 1,
-        "score": 3113,
+        "fileCount": 3,
+        "score": 8854,
         "perTarget": {
           "team-lead": {
             "bodyChars": 2948,
             "toolCount": 6,
             "mcpServerCount": 0,
             "score": 3098
+          },
+          "team-lead-skill": {
+            "bodyChars": 3535,
+            "toolCount": 0,
+            "mcpServerCount": 0,
+            "score": 3535
+          },
+          "agent-operating-guide": {
+            "bodyChars": 2176,
+            "toolCount": 0,
+            "mcpServerCount": 0,
+            "score": 2176
           }
         }
       },
@@ -98,29 +126,84 @@
       "candidateId": "relax-no-product-code-boundary",
       "parentCandidateId": "baseline",
       "searchDepth": 1,
-      "score": 0.842105,
-      "trajectoryScore": 0.60125,
-      "passedChecks": 7,
-      "totalChecks": 8,
+      "score": 0.818182,
+      "trajectoryScore": 0.516429,
+      "passedChecks": 12,
+      "totalChecks": 14,
       "status": "discard",
-      "description": "Loosen the manager scope to prove governance regressions are discarded.",
+      "description": "Loosen the manager scope across the manager bundle to prove governance regressions are discarded.",
       "complexity": {
-        "bodyChars": 2940,
+        "bodyChars": 8646,
         "toolCount": 6,
         "mcpServerCount": 0,
-        "fileCount": 1,
-        "score": 3105,
+        "fileCount": 3,
+        "score": 8841,
         "perTarget": {
           "team-lead": {
             "bodyChars": 2940,
             "toolCount": 6,
             "mcpServerCount": 0,
             "score": 3090
+          },
+          "team-lead-skill": {
+            "bodyChars": 3530,
+            "toolCount": 0,
+            "mcpServerCount": 0,
+            "score": 3530
+          },
+          "agent-operating-guide": {
+            "bodyChars": 2176,
+            "toolCount": 0,
+            "mcpServerCount": 0,
+            "score": 2176
           }
         }
       },
       "touchedTargets": [
-        "team-lead"
+        "team-lead",
+        "team-lead-skill"
+      ]
+    },
+    {
+      "iteration": 2,
+      "candidateId": "weaken-agent-guide-governance",
+      "parentCandidateId": "baseline",
+      "searchDepth": 1,
+      "score": 0.848485,
+      "trajectoryScore": 0.646429,
+      "passedChecks": 12,
+      "totalChecks": 14,
+      "status": "discard",
+      "description": "Weaken the shared AGENTS governance contract to prove the broader governed bundle rejects drift.",
+      "complexity": {
+        "bodyChars": 8692,
+        "toolCount": 6,
+        "mcpServerCount": 0,
+        "fileCount": 3,
+        "score": 8887,
+        "perTarget": {
+          "team-lead": {
+            "bodyChars": 2948,
+            "toolCount": 6,
+            "mcpServerCount": 0,
+            "score": 3098
+          },
+          "team-lead-skill": {
+            "bodyChars": 3535,
+            "toolCount": 0,
+            "mcpServerCount": 0,
+            "score": 3535
+          },
+          "agent-operating-guide": {
+            "bodyChars": 2209,
+            "toolCount": 0,
+            "mcpServerCount": 0,
+            "score": 2209
+          }
+        }
+      },
+      "touchedTargets": [
+        "agent-operating-guide"
       ]
     }
   ],
@@ -133,8 +216,8 @@
       "status": "keep",
       "evaluation": {
         "score": 1.0,
-        "passedChecks": 8,
-        "totalChecks": 8,
+        "passedChecks": 14,
+        "totalChecks": 14,
         "checks": [
           {
             "id": "sole-coordinator",
@@ -302,20 +385,146 @@
               "agent",
               "github/*"
             ]
+          },
+          {
+            "id": "skill-current-run-contract",
+            "type": "contains_text",
+            "targetId": "team-lead-skill",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.0,
+            "passed": true,
+            "expected": "`docs/agents/current-run.json`",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 3535
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 3535
+            }
+          },
+          {
+            "id": "skill-no-product-code-boundary",
+            "type": "contains_text",
+            "targetId": "team-lead-skill",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.5,
+            "passed": true,
+            "expected": "The manager does not implement product code.",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 3535
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 3535
+            }
+          },
+          {
+            "id": "skill-snapshot-contract",
+            "type": "contains_text",
+            "targetId": "team-lead-skill",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.0,
+            "passed": true,
+            "expected": "Snapshot every mutable file under `docs/agents/`",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 3535
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 3535
+            }
+          },
+          {
+            "id": "guide-current-run-contract",
+            "type": "contains_text",
+            "targetId": "agent-operating-guide",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.0,
+            "passed": true,
+            "expected": "`docs/agents/current-run.json`",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 2176
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 2176
+            }
+          },
+          {
+            "id": "guide-live-shared-root",
+            "type": "contains_text",
+            "targetId": "agent-operating-guide",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.5,
+            "passed": true,
+            "expected": "`docs/agents/` is the only live shared artifact root.",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 2176
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 2176
+            }
+          },
+          {
+            "id": "guide-no-hook-bypass",
+            "type": "contains_text",
+            "targetId": "agent-operating-guide",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.0,
+            "passed": true,
+            "expected": "Do not bypass hook denials.",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 2176
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 2176
+            }
           }
         ],
         "complexity": {
-          "bodyChars": 2948,
+          "bodyChars": 8659,
           "toolCount": 6,
           "mcpServerCount": 0,
-          "fileCount": 1,
-          "score": 3113,
+          "fileCount": 3,
+          "score": 8854,
           "perTarget": {
             "team-lead": {
               "bodyChars": 2948,
               "toolCount": 6,
               "mcpServerCount": 0,
               "score": 3098
+            },
+            "team-lead-skill": {
+              "bodyChars": 3535,
+              "toolCount": 0,
+              "mcpServerCount": 0,
+              "score": 3535
+            },
+            "agent-operating-guide": {
+              "bodyChars": 2176,
+              "toolCount": 0,
+              "mcpServerCount": 0,
+              "score": 2176
             }
           }
         },
@@ -326,7 +535,7 @@
           "actionEfficiency": 1.0,
           "targetFocus": 1.0,
           "lineageEfficiency": 1.0,
-          "matchedEvidenceRecords": 6,
+          "matchedEvidenceRecords": 12,
           "attributedSuccessCount": 3,
           "attributedWarningCount": 0,
           "attributedErrorCount": 0,
@@ -343,7 +552,7 @@
             "baseline",
             "candidate-trajectory-baseline"
           ],
-          "matchedRecordCount": 6,
+          "matchedRecordCount": 12,
           "errorCount": 0,
           "warningCount": 0,
           "successCount": 3,
@@ -351,14 +560,15 @@
           "externalErrorCount": 0,
           "sourceKindCounts": {
             "run_state": 2,
-            "run_report": 1,
+            "run_report": 7,
             "transcript_event": 2,
             "handoff_event": 1
           },
           "statusCounts": {
-            "review": 1,
-            "spec": 1,
-            "ready_for_quality_gate": 1,
+            "implement": 1,
+            "ready_for_quality_gate": 5,
+            "pass": 2,
+            "done": 1,
             "success": 3
           }
         },
@@ -376,7 +586,7 @@
           "matchedPolicies": []
         }
       },
-      "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-00-baseline.agent.md",
+      "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-00-baseline",
       "documentStorage": "inline",
       "searchDepth": 0,
       "mutationId": null,
@@ -403,6 +613,21 @@
             }
           },
           "body": "# Team Lead (Manager) - Multi-Agent SWE Protocol\n\nYou are the Team Lead, the only coordinator for one reviewable, release-ready change; specialists do not coordinate with each other.\n\n## Hard constraints\n\n- Work in one repository and one PR-sized change.\n- Stop and report governance or policy blocks instead of trying to bypass them.\n- Keep the system deterministic: `docs/agents/` is the shared root and `docs/agents/current-run.json` points to the active run.\n\n## Your responsibilities\n\nKeep these artifacts current:\n\n- `docs/agents/state.json`\n- `docs/agents/task-spec.md`\n- `docs/agents/patch-report.md`\n- `docs/agents/test-report.md`\n- `docs/agents/review-report.md`\n- `docs/agents/release-report.md`\n\nYou may edit coordination artifacts, templates, and lightweight workflow wiring, but not product code.\n\n## Canonical flow\n\n1. Intake\n2. Research -> `repo-researcher`\n3. Spec -> `spec-writer`\n4. Implement -> `implementer`\n5. Validate -> `test-engineer`\n6. Quality Gate -> `quality-gate`\n7. Release Prep -> `release-manager` when release evidence is required\n8. Done -> ready for human review\n\nIf the Quality Gate fails, return to Implement with the blocker batch and iterate.\n\n## Required artifact expectations\n\n- `state.json`: current phase, decisions, delegations, failures, next action\n- `task-spec.md`: acceptance criteria, non-goals, risk register, validation plan\n- `patch-report.md`: implementation summary and risks\n- `test-report.md`: commands run, results, missing coverage\n- `review-report.md`: PASS or FAIL with evidence and blockers\n- `release-report.md`: release readiness or an explicit reason release prep was not required\n\nSnapshot the shared working set into the active run folder under `docs/agents/runs/<run-id>/`.\n\n## Delegation contracts\n\nAll specialist requests and results must include:\n\n1. A short human summary.\n2. One machine-parseable JSON object inside a fenced code block.\n\nStandard requests:\n\n- `ResearchRequest` -> `repo-researcher`\n- `TaskSpecDraft` -> `spec-writer`\n- `ChangePlan` -> `implementer`\n- `TestRequest` -> `test-engineer`\n- `ReviewRequest` -> `quality-gate`\n- `ReleaseRequest` -> `release-manager`\n\n## Failure budgets\n\n- `setup_failure`: 2 attempts\n- `test_or_runtime_failure`: 3 iterations per acceptance-criteria slice\n- `network_block`: 0 automatic retries\n- `tool_denial`: stop and report\n- `permission_or_governance_block`: stop and report\n\nRecord all failures in `docs/agents/state.json`.\n\n## Output requirements\n\nEvery response must include:\n\n1. Status summary\n2. Next action\n3. A single JSON object of type `ManagerDecision`\n\n```json\n{\n  \"type\": \"ManagerDecision\",\n  \"phase\": \"Intake|Research|Spec|Implement|Validate|Review|Done\",\n  \"next\": \"repo-researcher|spec-writer|implementer|test-engineer|quality-gate|release-manager|human-review\",\n  \"goal\": \"single sentence\",\n  \"acceptance\": [\"AC1\", \"AC2\"],\n  \"evidence_required\": [\"tests_pass\", \"quality_gate_pass\"],\n  \"notes\": \"optional\"\n}\n```"
+        },
+        "team-lead-skill": {
+          "frontmatter": {
+            "name": "team-lead",
+            "description": "Manager-only orchestration skill for the Team Lead agent. Boots and maintains the task artifact set, delegates work to specialist agents, enforces one-PR scope, and converges on objective evidence before handing off to a human maintainer.\n",
+            "license": "See repository LICENSE"
+          },
+          "body": "# Team Lead Orchestrator\n\n## When to use\n\nUse this skill whenever you are acting as the Team Lead or Manager for a non-trivial task.\n\n## How to invoke\n\n- Recommended first step: `/swe-team-protocol`\n- Then run: `/team-lead`\n\n## Source-of-truth order\n\n1. The user's task brief or issue description\n2. Canonical artifacts under `docs/agents/`\n3. `.github/copilot-instructions.md`\n4. CI helpers such as `scripts/ci/quick_test.sh` and `scripts/ci/full_test.sh`\n5. Hook policy under `.github/hooks/`\n\n`docs/agents/current-run.json` points to the active run snapshot under `docs/agents/runs/<run-id>/`.\n\n## Non-negotiable rules\n\n- One PR worth of work.\n- Respect governance, hooks, and workflow approval gates.\n- The manager does not implement product code.\n- Done means acceptance criteria met, tests evidenced, quality gate PASS, and release prep completed or explicitly skipped.\n- Snapshot every mutable file under `docs/agents/`, except `current-run.json` and `CANONICAL_ARTIFACT_POLICY.md`, into the active run folder.\n\n## Quick start\n\n1. Run `bash .github/skills/team-lead/scripts/init_task_artifacts.sh`\n2. Write the goal into `docs/agents/state.json`\n3. Delegate a `ResearchRequest` using `.github/skills/swe-team-protocol/templates/delegation/research-request.template.json`\n\n## Procedure\n\n### Step 0 - Preflight\n\n- Confirm repo and branch.\n- Confirm `docs/agents/current-run.json`.\n- Run the repo's fast checks before product code changes.\n- If the task changes `.github/agents/**`, `.github/skills/**`, `.github/instructions/**`, `.github/hooks/**`, `scripts/hooks/**`, `.github/workflows/copilot-setup-steps.yml`, or `docs/agents/**`, delegate an audit to `agent-arch-auditor`.\n\n### Step 1 - Intake\n\nUpdate `docs/agents/state.json` with:\n\n- `phase = \"Intake\"`\n- goal\n- initial constraints\n- known blockers\n\n### Step 2 - Research\n\nDelegate to `repo-researcher`.\n\n### Step 3 - Spec\n\nDelegate to `spec-writer` and ensure `docs/agents/task-spec.md` is current.\n\n### Step 4 - Implementation\n\nDelegate to `implementer` and collect `docs/agents/patch-report.md`.\n\n### Step 5 - Validation\n\nDelegate to `test-engineer` and collect `docs/agents/test-report.md`.\n\n### Step 6 - Quality Gate\n\nDelegate to `quality-gate` and write `docs/agents/review-report.md`.\n\n### Step 7 - Release Prep\n\nIf release evidence is required, delegate to `release-manager` and write `docs/agents/release-report.md`.\nOtherwise, record in `release-report.md` why release prep was not required.\n\n### Step 8 - Finalize\n\n- Sync the entire mutable working set into `docs/agents/runs/<run-id>/`\n- Ensure all artifacts agree\n- Announce ready for human review\n\n## Required artifacts\n\nKeep these updated:\n\n- `docs/agents/state.json`\n- `docs/agents/task-spec.md`\n- `docs/agents/patch-report.md`\n- `docs/agents/test-report.md`\n- `docs/agents/review-report.md`\n- `docs/agents/release-report.md`\n- `docs/agents/protocol.md`\n\nWhen specialist roles produce additional artifacts such as `*-report.md` files or `mcp-config.json`, treat them as part of the mutable working set and snapshot them into the active run folder.\n\nShared templates live under `.github/skills/swe-team-protocol/templates/`.\n\n## Helper scripts\n\n- `.github/skills/team-lead/scripts/init_task_artifacts.sh`\n- `.github/skills/team-lead/scripts/validate_artifacts.sh`\n- `.github/skills/team-lead/scripts/mirror_artifacts.sh` (syncs the mutable working set into the active run folder)\n\n## Output contract\n\nEvery response should include:\n\n1. Status summary\n2. Next action\n3. A single `ManagerDecision` JSON object"
+        },
+        "agent-operating-guide": {
+          "frontmatter": {
+            "title": "Agent Operating Guide",
+            "description": "Repository-level workflow and governed artifact contract for the multi-agent SWE team."
+          },
+          "body": "# Agent Operating Guide\n\nThis repository uses a manager-led multi-agent workflow:\n\n1. Research\n2. Spec\n3. Implement\n4. Validate\n5. Quality Gate\n6. Release Prep\n7. Iterate\n\nCanonical artifact policy:\n\n- `docs/agents/` is the only live shared artifact root.\n- `docs/agents/current-run.json` points to the active run folder.\n- `docs/agents/runs/<run-id>/` owns the mutable run snapshot and hook audit logs.\n- Every mutable file under `docs/agents/`, except `current-run.json` and `CANONICAL_ARTIFACT_POLICY.md`, must be copied into the active run folder.\n\nRequired mutable artifacts:\n\n- `docs/agents/state.json`\n- `docs/agents/task-spec.md`\n- `docs/agents/patch-report.md`\n- `docs/agents/test-report.md`\n- `docs/agents/review-report.md`\n- `docs/agents/release-report.md`\n\nSupporting working artifacts:\n\n- `docs/agents/research-report.md`\n- `docs/agents/docs-report.md`\n- `docs/agents/skills-report.md`\n- `docs/agents/protocol.md`\n- `docs/agents/mcp-config.json`\n- Any specialist report under `docs/agents/*-report.md`\n\nPrimary team profiles are in `.github/agents/*.agent.md`.\n\nValidation commands:\n\n- Fast checks: `./scripts/ci/quick_test.sh`\n- Full checks: `./scripts/ci/full_test.sh`\n- Windows fast checks without bash: `pwsh -File ./scripts/ci/quick_test.ps1`\n- Windows full checks without bash: `pwsh -File ./scripts/ci/full_test.ps1`\n\nSecurity and policy notes:\n\n- Never commit secrets.\n- Do not bypass hook denials.\n- Keep changes scoped to the task specification.\n\n## Databricks-first workflow\n\n- Prefer the `Databricks` custom agent for Databricks-specific changes.\n- Prefer Databricks MCP tools over hand-written API requests when a tool already exists.\n- Prefer serverless-friendly defaults when the workspace supports them.\n\n## Validation order\n\n1. Read the relevant files in the repository.\n2. Make the smallest safe edit.\n3. Validate with Databricks MCP tools or local checks.\n4. Report any remaining Databricks-side prerequisites.\n\n## Secrets and environment\n\n- Never commit secrets.\n- Treat `.databricks.env`, `.env`, local Databricks profiles, and generated tokens as sensitive.\n- Use placeholders in examples instead of real workspace URLs, IDs, or credentials."
         }
       }
     },
@@ -410,12 +635,12 @@
       "iteration": 1,
       "candidateId": "relax-no-product-code-boundary",
       "parentCandidateId": "baseline",
-      "description": "Loosen the manager scope to prove governance regressions are discarded.",
+      "description": "Loosen the manager scope across the manager bundle to prove governance regressions are discarded.",
       "status": "discard",
       "evaluation": {
-        "score": 0.842105,
-        "passedChecks": 7,
-        "totalChecks": 8,
+        "score": 0.818182,
+        "passedChecks": 12,
+        "totalChecks": 14,
         "checks": [
           {
             "id": "sole-coordinator",
@@ -583,29 +808,155 @@
               "agent",
               "github/*"
             ]
+          },
+          {
+            "id": "skill-current-run-contract",
+            "type": "contains_text",
+            "targetId": "team-lead-skill",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.0,
+            "passed": true,
+            "expected": "`docs/agents/current-run.json`",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 3530
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 3530
+            }
+          },
+          {
+            "id": "skill-no-product-code-boundary",
+            "type": "contains_text",
+            "targetId": "team-lead-skill",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.5,
+            "passed": false,
+            "expected": "The manager does not implement product code.",
+            "observed": {
+              "containsExpected": false,
+              "targetLength": 3530
+            },
+            "actual": {
+              "containsExpected": false,
+              "targetLength": 3530
+            }
+          },
+          {
+            "id": "skill-snapshot-contract",
+            "type": "contains_text",
+            "targetId": "team-lead-skill",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.0,
+            "passed": true,
+            "expected": "Snapshot every mutable file under `docs/agents/`",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 3530
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 3530
+            }
+          },
+          {
+            "id": "guide-current-run-contract",
+            "type": "contains_text",
+            "targetId": "agent-operating-guide",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.0,
+            "passed": true,
+            "expected": "`docs/agents/current-run.json`",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 2176
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 2176
+            }
+          },
+          {
+            "id": "guide-live-shared-root",
+            "type": "contains_text",
+            "targetId": "agent-operating-guide",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.5,
+            "passed": true,
+            "expected": "`docs/agents/` is the only live shared artifact root.",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 2176
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 2176
+            }
+          },
+          {
+            "id": "guide-no-hook-bypass",
+            "type": "contains_text",
+            "targetId": "agent-operating-guide",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.0,
+            "passed": true,
+            "expected": "Do not bypass hook denials.",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 2176
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 2176
+            }
           }
         ],
         "complexity": {
-          "bodyChars": 2940,
+          "bodyChars": 8646,
           "toolCount": 6,
           "mcpServerCount": 0,
-          "fileCount": 1,
-          "score": 3105,
+          "fileCount": 3,
+          "score": 8841,
           "perTarget": {
             "team-lead": {
               "bodyChars": 2940,
               "toolCount": 6,
               "mcpServerCount": 0,
               "score": 3090
+            },
+            "team-lead-skill": {
+              "bodyChars": 3530,
+              "toolCount": 0,
+              "mcpServerCount": 0,
+              "score": 3530
+            },
+            "agent-operating-guide": {
+              "bodyChars": 2176,
+              "toolCount": 0,
+              "mcpServerCount": 0,
+              "score": 2176
             }
           }
         },
-        "trajectoryScore": 0.60125,
+        "trajectoryScore": 0.516429,
         "trajectoryScoreBreakdown": {
-          "validationBreadth": 0.875,
+          "validationBreadth": 0.857143,
           "parentProgress": 0.0,
-          "actionEfficiency": 0.5,
-          "targetFocus": 1.0,
+          "actionEfficiency": 0.333333,
+          "targetFocus": 0.5,
           "lineageEfficiency": 0.5,
           "matchedEvidenceRecords": 3,
           "attributedSuccessCount": 0,
@@ -653,12 +1004,392 @@
           "matchedPolicies": []
         }
       },
-      "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-01-relax-no-product-code-boundary.agent.md",
+      "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-01-relax-no-product-code-boundary",
       "documentStorage": "candidate_snapshot",
       "searchDepth": 1,
       "mutationId": "relax-no-product-code-boundary",
       "touchedTargets": [
-        "team-lead"
+        "team-lead",
+        "team-lead-skill"
+      ]
+    },
+    {
+      "iteration": 2,
+      "candidateId": "weaken-agent-guide-governance",
+      "parentCandidateId": "baseline",
+      "description": "Weaken the shared AGENTS governance contract to prove the broader governed bundle rejects drift.",
+      "status": "discard",
+      "evaluation": {
+        "score": 0.848485,
+        "passedChecks": 12,
+        "totalChecks": 14,
+        "checks": [
+          {
+            "id": "sole-coordinator",
+            "type": "contains_text",
+            "targetId": "team-lead",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.5,
+            "passed": true,
+            "expected": "the only coordinator",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 2948
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 2948
+            }
+          },
+          {
+            "id": "specialists-no-peer-coordination",
+            "type": "contains_text",
+            "targetId": "team-lead",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.0,
+            "passed": true,
+            "expected": "specialists do not coordinate with each other",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 2948
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 2948
+            }
+          },
+          {
+            "id": "current-run-contract",
+            "type": "contains_text",
+            "targetId": "team-lead",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.0,
+            "passed": true,
+            "expected": "`docs/agents/current-run.json`",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 2948
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 2948
+            }
+          },
+          {
+            "id": "no-product-code-boundary",
+            "type": "contains_text",
+            "targetId": "team-lead",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.5,
+            "passed": true,
+            "expected": "but not product code",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 2948
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 2948
+            }
+          },
+          {
+            "id": "quality-gate-flow",
+            "type": "contains_text",
+            "targetId": "team-lead",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.0,
+            "passed": true,
+            "expected": "`quality-gate`",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 2948
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 2948
+            }
+          },
+          {
+            "id": "review-report-artifact",
+            "type": "contains_text",
+            "targetId": "team-lead",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.0,
+            "passed": true,
+            "expected": "`docs/agents/review-report.md`",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 2948
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 2948
+            }
+          },
+          {
+            "id": "manager-decision-output",
+            "type": "contains_text",
+            "targetId": "team-lead",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.5,
+            "passed": true,
+            "expected": "`ManagerDecision`",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 2948
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 2948
+            }
+          },
+          {
+            "id": "tools-exact",
+            "type": "frontmatter_equals",
+            "targetId": "team-lead",
+            "target": null,
+            "key": "tools",
+            "comparator": "equals",
+            "weight": 1.0,
+            "passed": true,
+            "expected": [
+              "read",
+              "search",
+              "execute",
+              "edit",
+              "agent",
+              "github/*"
+            ],
+            "observed": [
+              "read",
+              "search",
+              "execute",
+              "edit",
+              "agent",
+              "github/*"
+            ],
+            "actual": [
+              "read",
+              "search",
+              "execute",
+              "edit",
+              "agent",
+              "github/*"
+            ]
+          },
+          {
+            "id": "skill-current-run-contract",
+            "type": "contains_text",
+            "targetId": "team-lead-skill",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.0,
+            "passed": true,
+            "expected": "`docs/agents/current-run.json`",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 3535
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 3535
+            }
+          },
+          {
+            "id": "skill-no-product-code-boundary",
+            "type": "contains_text",
+            "targetId": "team-lead-skill",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.5,
+            "passed": true,
+            "expected": "The manager does not implement product code.",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 3535
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 3535
+            }
+          },
+          {
+            "id": "skill-snapshot-contract",
+            "type": "contains_text",
+            "targetId": "team-lead-skill",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.0,
+            "passed": true,
+            "expected": "Snapshot every mutable file under `docs/agents/`",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 3535
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 3535
+            }
+          },
+          {
+            "id": "guide-current-run-contract",
+            "type": "contains_text",
+            "targetId": "agent-operating-guide",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.0,
+            "passed": true,
+            "expected": "`docs/agents/current-run.json`",
+            "observed": {
+              "containsExpected": true,
+              "targetLength": 2209
+            },
+            "actual": {
+              "containsExpected": true,
+              "targetLength": 2209
+            }
+          },
+          {
+            "id": "guide-live-shared-root",
+            "type": "contains_text",
+            "targetId": "agent-operating-guide",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.5,
+            "passed": false,
+            "expected": "`docs/agents/` is the only live shared artifact root.",
+            "observed": {
+              "containsExpected": false,
+              "targetLength": 2209
+            },
+            "actual": {
+              "containsExpected": false,
+              "targetLength": 2209
+            }
+          },
+          {
+            "id": "guide-no-hook-bypass",
+            "type": "contains_text",
+            "targetId": "agent-operating-guide",
+            "target": "body",
+            "key": null,
+            "comparator": "contains",
+            "weight": 1.0,
+            "passed": false,
+            "expected": "Do not bypass hook denials.",
+            "observed": {
+              "containsExpected": false,
+              "targetLength": 2209
+            },
+            "actual": {
+              "containsExpected": false,
+              "targetLength": 2209
+            }
+          }
+        ],
+        "complexity": {
+          "bodyChars": 8692,
+          "toolCount": 6,
+          "mcpServerCount": 0,
+          "fileCount": 3,
+          "score": 8887,
+          "perTarget": {
+            "team-lead": {
+              "bodyChars": 2948,
+              "toolCount": 6,
+              "mcpServerCount": 0,
+              "score": 3098
+            },
+            "team-lead-skill": {
+              "bodyChars": 3535,
+              "toolCount": 0,
+              "mcpServerCount": 0,
+              "score": 3535
+            },
+            "agent-operating-guide": {
+              "bodyChars": 2209,
+              "toolCount": 0,
+              "mcpServerCount": 0,
+              "score": 2209
+            }
+          }
+        },
+        "trajectoryScore": 0.646429,
+        "trajectoryScoreBreakdown": {
+          "validationBreadth": 0.857143,
+          "parentProgress": 0.0,
+          "actionEfficiency": 0.333333,
+          "targetFocus": 1.0,
+          "lineageEfficiency": 0.5,
+          "matchedEvidenceRecords": 1,
+          "attributedSuccessCount": 0,
+          "attributedWarningCount": 0,
+          "attributedErrorCount": 0,
+          "attributedToolErrorCount": 0,
+          "attributedExternalErrorCount": 0,
+          "evidenceSupport": 0.0,
+          "evidenceIssuePenalty": 0.0,
+          "reviewedPolicyBonus": 0.0,
+          "reviewedPolicyPenalty": 0.0,
+          "liveWinnerBoost": 0.0
+        },
+        "trajectoryEvidenceContext": {
+          "aliases": [
+            "candidate-trajectory-weaken-agent-guide-governance",
+            "weaken-agent-guide-governance"
+          ],
+          "matchedRecordCount": 1,
+          "errorCount": 0,
+          "warningCount": 0,
+          "successCount": 0,
+          "toolErrorCount": 0,
+          "externalErrorCount": 0,
+          "sourceKindCounts": {
+            "run_report": 1
+          },
+          "statusCounts": {
+            "ready_for_quality_gate": 1
+          }
+        },
+        "reviewedPolicyContext": {
+          "enabled": false,
+          "status": "disabled",
+          "artifactPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/reviewed-policies.json",
+          "policyCount": 0,
+          "matchedPolicyCount": 0,
+          "preferredSequenceMatchCount": 0,
+          "escalationMatchCount": 0,
+          "bonus": 0.0,
+          "penalty": 0.0,
+          "matchedPolicyIds": [],
+          "matchedPolicies": []
+        }
+      },
+      "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-02-weaken-agent-guide-governance",
+      "documentStorage": "candidate_snapshot",
+      "searchDepth": 1,
+      "mutationId": "weaken-agent-guide-governance",
+      "touchedTargets": [
+        "agent-operating-guide"
       ]
     }
   ],
@@ -683,6 +1414,19 @@
       "mutationId": "relax-no-product-code-boundary",
       "evaluatedCandidateIds": [
         "relax-no-product-code-boundary"
+      ],
+      "frontierCandidateIds": [
+        "baseline"
+      ],
+      "bestCandidateId": "baseline"
+    },
+    {
+      "mutationIndex": 2,
+      "catalogIndex": 2,
+      "planToken": "2:weaken-agent-guide-governance",
+      "mutationId": "weaken-agent-guide-governance",
+      "evaluatedCandidateIds": [
+        "weaken-agent-guide-governance"
       ],
       "frontierCandidateIds": [
         "baseline"

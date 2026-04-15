@@ -1,0 +1,323 @@
+{
+  "score": 0.820513,
+  "passedChecks": 7,
+  "totalChecks": 9,
+  "checks": [
+    {
+      "id": "sole-coordinator",
+      "type": "contains_text",
+      "targetId": "team-lead",
+      "target": "body",
+      "key": null,
+      "comparator": "contains",
+      "weight": 1.5,
+      "passed": true,
+      "expected": "the only coordinator",
+      "observed": {
+        "containsExpected": true,
+        "targetLength": 2940
+      },
+      "actual": {
+        "containsExpected": true,
+        "targetLength": 2940
+      }
+    },
+    {
+      "id": "specialists-no-peer-coordination",
+      "type": "contains_text",
+      "targetId": "team-lead",
+      "target": "body",
+      "key": null,
+      "comparator": "contains",
+      "weight": 1.0,
+      "passed": true,
+      "expected": "specialists do not coordinate with each other",
+      "observed": {
+        "containsExpected": true,
+        "targetLength": 2940
+      },
+      "actual": {
+        "containsExpected": true,
+        "targetLength": 2940
+      }
+    },
+    {
+      "id": "current-run-contract",
+      "type": "contains_text",
+      "targetId": "team-lead",
+      "target": "body",
+      "key": null,
+      "comparator": "contains",
+      "weight": 1.0,
+      "passed": true,
+      "expected": "`docs/agents/current-run.json`",
+      "observed": {
+        "containsExpected": true,
+        "targetLength": 2940
+      },
+      "actual": {
+        "containsExpected": true,
+        "targetLength": 2940
+      }
+    },
+    {
+      "id": "no-product-code-boundary",
+      "type": "contains_text",
+      "targetId": "team-lead",
+      "target": "body",
+      "key": null,
+      "comparator": "contains",
+      "weight": 1.5,
+      "passed": false,
+      "expected": "but not product code",
+      "observed": {
+        "containsExpected": false,
+        "targetLength": 2940
+      },
+      "actual": {
+        "containsExpected": false,
+        "targetLength": 2940
+      }
+    },
+    {
+      "id": "quality-gate-flow",
+      "type": "contains_text",
+      "targetId": "team-lead",
+      "target": "body",
+      "key": null,
+      "comparator": "contains",
+      "weight": 1.0,
+      "passed": true,
+      "expected": "`quality-gate`",
+      "observed": {
+        "containsExpected": true,
+        "targetLength": 2940
+      },
+      "actual": {
+        "containsExpected": true,
+        "targetLength": 2940
+      }
+    },
+    {
+      "id": "review-report-artifact",
+      "type": "contains_text",
+      "targetId": "team-lead",
+      "target": "body",
+      "key": null,
+      "comparator": "contains",
+      "weight": 1.0,
+      "passed": true,
+      "expected": "`docs/agents/review-report.md`",
+      "observed": {
+        "containsExpected": true,
+        "targetLength": 2940
+      },
+      "actual": {
+        "containsExpected": true,
+        "targetLength": 2940
+      }
+    },
+    {
+      "id": "manager-decision-output",
+      "type": "contains_text",
+      "targetId": "team-lead",
+      "target": "body",
+      "key": null,
+      "comparator": "contains",
+      "weight": 1.5,
+      "passed": true,
+      "expected": "`ManagerDecision`",
+      "observed": {
+        "containsExpected": true,
+        "targetLength": 2940
+      },
+      "actual": {
+        "containsExpected": true,
+        "targetLength": 2940
+      }
+    },
+    {
+      "id": "tools-exact",
+      "type": "frontmatter_equals",
+      "targetId": "team-lead",
+      "target": null,
+      "key": "tools",
+      "comparator": "equals",
+      "weight": 1.0,
+      "passed": true,
+      "expected": [
+        "read",
+        "search",
+        "execute",
+        "edit",
+        "agent",
+        "github/*"
+      ],
+      "observed": [
+        "read",
+        "search",
+        "execute",
+        "edit",
+        "agent",
+        "github/*"
+      ],
+      "actual": [
+        "read",
+        "search",
+        "execute",
+        "edit",
+        "agent",
+        "github/*"
+      ]
+    },
+    {
+      "id": "episode-episode-success-guard-01-check",
+      "type": "episode_observation_guard",
+      "targetId": "team-lead",
+      "target": null,
+      "key": null,
+      "comparator": "episode_matches",
+      "weight": 0.25,
+      "passed": false,
+      "expected": {
+        "minMatchedRecordCount": 1,
+        "sourceKinds": [
+          "handoff_event",
+          "run_report",
+          "run_state",
+          "transcript_event"
+        ],
+        "toolNames": [
+          "read_file",
+          "grep_search"
+        ],
+        "terminalStatus": "success"
+      },
+      "observed": {
+        "episodeId": "candidate-episode-relax-no-product-code-boundary",
+        "matchedRecordCount": 3,
+        "sourceKinds": [
+          "run_report",
+          "transcript_event"
+        ],
+        "toolNames": [
+          "apply_patch",
+          "read_file"
+        ],
+        "terminalStatus": "error",
+        "sourceKindCounts": {
+          "run_report": 1,
+          "transcript_event": 2
+        },
+        "statusCounts": {
+          "READY_FOR_QUALITY_GATE": 1,
+          "error": 2
+        },
+        "sourceKindsMatch": false,
+        "toolNamesMatch": false,
+        "terminalStatusMatch": false
+      },
+      "actual": {
+        "episodeId": "candidate-episode-relax-no-product-code-boundary",
+        "matchedRecordCount": 3,
+        "sourceKinds": [
+          "run_report",
+          "transcript_event"
+        ],
+        "toolNames": [
+          "apply_patch",
+          "read_file"
+        ],
+        "terminalStatus": "error",
+        "sourceKindCounts": {
+          "run_report": 1,
+          "transcript_event": 2
+        },
+        "statusCounts": {
+          "READY_FOR_QUALITY_GATE": 1,
+          "error": 2
+        },
+        "sourceKindsMatch": false,
+        "toolNamesMatch": false,
+        "terminalStatusMatch": false
+      }
+    }
+  ],
+  "complexity": {
+    "bodyChars": 2940,
+    "toolCount": 6,
+    "mcpServerCount": 0,
+    "fileCount": 1,
+    "score": 3105,
+    "perTarget": {
+      "team-lead": {
+        "bodyChars": 2940,
+        "toolCount": 6,
+        "mcpServerCount": 0,
+        "score": 3090
+      }
+    }
+  },
+  "trajectoryScore": 0.523701,
+  "trajectoryScoreBreakdown": {
+    "validationBreadth": 0.777778,
+    "parentProgress": 0.0,
+    "actionEfficiency": 0.5,
+    "targetFocus": 1.0,
+    "lineageEfficiency": 0.5,
+    "matchedEvidenceRecords": 3,
+    "attributedSuccessCount": 0,
+    "attributedWarningCount": 0,
+    "attributedErrorCount": 2,
+    "attributedToolErrorCount": 2,
+    "attributedExternalErrorCount": 0,
+    "evidenceSupport": 0.0,
+    "evidenceIssuePenalty": 0.08,
+    "reviewedPolicyBonus": 0.0,
+    "reviewedPolicyPenalty": 0.024077,
+    "liveWinnerBoost": 0.0
+  },
+  "trajectoryEvidenceContext": {
+    "aliases": [
+      "candidate-trajectory-relax-no-product-code-boundary",
+      "relax-no-product-code-boundary"
+    ],
+    "matchedRecordCount": 3,
+    "errorCount": 2,
+    "warningCount": 0,
+    "successCount": 0,
+    "toolErrorCount": 2,
+    "externalErrorCount": 0,
+    "sourceKindCounts": {
+      "run_report": 1,
+      "transcript_event": 2
+    },
+    "statusCounts": {
+      "ready_for_quality_gate": 1,
+      "error": 2
+    }
+  },
+  "reviewedPolicyContext": {
+    "enabled": true,
+    "status": "ready",
+    "artifactPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/reviewed-policies.json",
+    "policyCount": 1,
+    "matchedPolicyCount": 1,
+    "preferredSequenceMatchCount": 0,
+    "escalationMatchCount": 1,
+    "bonus": 0.0,
+    "penalty": 0.024077,
+    "matchedPolicyIds": [
+      "episode-policy-escalation-trigger-02"
+    ],
+    "matchedPolicies": [
+      {
+        "policyId": "episode-policy-escalation-trigger-02",
+        "intent": "escalation_trigger",
+        "effectType": "penalty",
+        "effect": 0.024077,
+        "learningScore": 0.481539
+      }
+    ]
+  }
+}

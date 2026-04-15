@@ -20,21 +20,60 @@
   "inlineCandidateIds": [
     "baseline"
   ],
-  "snapshotCandidateCount": 1,
-  "requiredFileCount": 1,
+  "snapshotCandidateCount": 2,
+  "requiredFileCount": 6,
   "snapshotCandidates": [
     {
       "candidateId": "relax-no-product-code-boundary",
       "iteration": 1,
       "parentCandidateId": "baseline",
       "searchDepth": 1,
-      "candidatePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-01-relax-no-product-code-boundary.agent.md",
+      "candidatePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-01-relax-no-product-code-boundary",
       "requiredFiles": [
         {
           "targetId": "team-lead",
-          "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-01-relax-no-product-code-boundary.agent.md",
+          "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-01-relax-no-product-code-boundary/team-lead.agent.md",
           "kind": "agent_profile",
           "primary": true
+        },
+        {
+          "targetId": "team-lead-skill",
+          "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-01-relax-no-product-code-boundary/team-lead-skill.md",
+          "kind": "markdown_document",
+          "primary": false
+        },
+        {
+          "targetId": "agent-operating-guide",
+          "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-01-relax-no-product-code-boundary/agent-operating-guide.md",
+          "kind": "markdown_document",
+          "primary": false
+        }
+      ]
+    },
+    {
+      "candidateId": "weaken-agent-guide-governance",
+      "iteration": 2,
+      "parentCandidateId": "baseline",
+      "searchDepth": 1,
+      "candidatePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-02-weaken-agent-guide-governance",
+      "requiredFiles": [
+        {
+          "targetId": "team-lead",
+          "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-02-weaken-agent-guide-governance/team-lead.agent.md",
+          "kind": "agent_profile",
+          "primary": true
+        },
+        {
+          "targetId": "team-lead-skill",
+          "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-02-weaken-agent-guide-governance/team-lead-skill.md",
+          "kind": "markdown_document",
+          "primary": false
+        },
+        {
+          "targetId": "agent-operating-guide",
+          "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-02-weaken-agent-guide-governance/agent-operating-guide.md",
+          "kind": "markdown_document",
+          "primary": false
         }
       ]
     }

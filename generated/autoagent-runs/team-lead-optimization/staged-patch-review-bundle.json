@@ -1,0 +1,69 @@
+{
+  "type": "AutoAgentStagedPatchReviewBundle",
+  "mode": "review_bundle",
+  "status": "ready_no_changes",
+  "dispatchScope": "bounded_review_bundle",
+  "manualOnly": true,
+  "reportOnly": true,
+  "requiresHumanReview": true,
+  "applyOnPass": false,
+  "manifestFormat": "candidate_snapshot",
+  "includeTargetSnapshots": true,
+  "includeDiffSummary": true,
+  "experiment": {
+    "name": "team-lead-optimization",
+    "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/autoagent-experiment.md",
+    "primaryTargetId": "team-lead",
+    "targetBundle": [
+      {
+        "id": "team-lead",
+        "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/.github/agents/team-lead.agent.md",
+        "kind": "agent_profile",
+        "primary": true,
+        "mutableRegions": [
+          "body"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "team-lead-skill",
+        "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/.github/skills/team-lead/SKILL.md",
+        "kind": "markdown_document",
+        "primary": false,
+        "mutableRegions": [
+          "body"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "agent-operating-guide",
+        "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/AGENTS.md",
+        "kind": "markdown_document",
+        "primary": false,
+        "mutableRegions": [
+          "body"
+        ],
+        "weight": 1.0
+      }
+    ]
+  },
+  "candidate": {
+    "candidateId": "baseline",
+    "candidatePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/candidates/iteration-00-baseline",
+    "changedTargetCount": 0
+  },
+  "summary": {
+    "changedTargetCount": 0,
+    "changedTargetIds": [],
+    "primaryChangedTargetIds": [],
+    "hasChanges": false
+  },
+  "changedTargets": [],
+  "reviewerHints": [],
+  "requiredHumanAction": "Review the staged patch bundle and governed artifacts before choosing the next bounded step.",
+  "artifactRefs": {
+    "report": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/autoagent-report.md",
+    "results": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/autoagent-results.tsv",
+    "evidence": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/autoagent-evidence.json"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "mutations": [
+    {
+      "id": "relax-no-product-code-boundary",
+      "description": "Loosen the manager scope to prove governance regressions are discarded.",
+      "operations": [
+        {
+          "type": "replace_text",
+          "target": "body",
+          "old": "You may edit coordination artifacts, templates, and lightweight workflow wiring, but not product code.",
+          "new": "You may edit coordination artifacts, templates, lightweight workflow wiring, and product code."
+        }
+      ]
+    },
+    {
+      "id": "episode-avoid-failure-path-02",
+      "description": "Use this observed failing path to shape a future avoidance mutation.",
+      "operations": [
+        {
+          "type": "replace_text",
+          "target": "body",
+          "old": "You may edit coordination artifacts, templates, and lightweight workflow wiring, but not product code.",
+          "new": "You may edit coordination artifacts, templates, lightweight workflow wiring, and product code."
+        }
+      ],
+      "learningImportMetadata": {
+        "draftId": "mutation-draft-02",
+        "sourceSeedId": "episode-mutation-seed-02",
+        "sourceMutationId": "relax-no-product-code-boundary",
+        "sourceCandidateId": "relax-no-product-code-boundary",
+        "sourceEpisodeId": "candidate-episode-relax-no-product-code-boundary",
+        "reviewer": "human-maintainer",
+        "reviewedAt": "2026-03-08T16:20:00Z",
+        "notes": "Promote the reviewed avoidance mutation because it preserves an explicit source mutation id."
+      }
+    }
+  ],
+  "approvedLearningDrafts": [
+    {
+      "draftId": "mutation-draft-02",
+      "promotedMutationId": "episode-avoid-failure-path-02",
+      "sourceSeedId": "episode-mutation-seed-02",
+      "sourceMutationId": "relax-no-product-code-boundary",
+      "reviewer": "human-maintainer",
+      "reviewedAt": "2026-03-08T16:20:00Z",
+      "notes": "Promote the reviewed avoidance mutation because it preserves an explicit source mutation id."
+    }
+  ]
+}

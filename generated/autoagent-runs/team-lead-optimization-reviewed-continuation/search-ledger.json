@@ -1,0 +1,381 @@
+{
+  "type": "AutoAgentSearchLedger",
+  "experiment": {
+    "name": "team-lead-optimization-reviewed-continuation",
+    "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/reviewed-continuation-experiment.generated.md"
+  },
+  "candidatePolicy": {
+    "keepStrategy": "score-then-simpler",
+    "searchStrategy": "current_best",
+    "frontierSize": 1
+  },
+  "baselineCandidateId": "baseline",
+  "bestCandidateId": "baseline",
+  "bestCandidateLineage": [
+    "baseline"
+  ],
+  "maxSearchDepth": 1,
+  "candidateCount": 3,
+  "frontierSnapshotCount": 3,
+  "mutationExecutionPlan": [
+    {
+      "plannedIndex": 1,
+      "catalogIndex": 1,
+      "planToken": "1:relax-no-product-code-boundary",
+      "mutationId": "relax-no-product-code-boundary",
+      "description": "Loosen the manager scope to prove governance regressions are discarded.",
+      "priorityStatus": "neutral",
+      "priorityScore": 0.0,
+      "bonus": 0.0,
+      "penalty": 0.0,
+      "matchedPolicyCount": 0,
+      "matchedPolicyIds": [],
+      "sourceCandidateIds": []
+    },
+    {
+      "plannedIndex": 2,
+      "catalogIndex": 2,
+      "planToken": "2:episode-avoid-failure-path-02",
+      "mutationId": "episode-avoid-failure-path-02",
+      "description": "Use this observed failing path to shape a future avoidance mutation.",
+      "priorityStatus": "neutral",
+      "priorityScore": 0.0,
+      "bonus": 0.0,
+      "penalty": 0.0,
+      "matchedPolicyCount": 0,
+      "matchedPolicyIds": [],
+      "sourceCandidateIds": [
+        "relax-no-product-code-boundary"
+      ]
+    }
+  ],
+  "liveEvaluation": {
+    "enabled": false,
+    "status": "disabled",
+    "winnerCandidateId": "baseline",
+    "bestCandidateChanged": false
+  },
+  "winnerExplanation": {
+    "winnerCandidateId": "baseline",
+    "comparedCandidateId": "episode-avoid-failure-path-02",
+    "comparisonMode": "deterministic_ranking",
+    "decisiveSignal": "benchmark_score",
+    "evidenceBacked": false,
+    "summary": "baseline beat episode-avoid-failure-path-02 on benchmark score (1.0 vs 0.820513).",
+    "evidenceSummary": null,
+    "rankingComparison": {
+      "winnerScore": 1.0,
+      "runnerUpScore": 0.820513,
+      "scoreDelta": 0.179487,
+      "winnerComplexityScore": 3113,
+      "runnerUpComplexityScore": 3105,
+      "complexityAdvantage": -8,
+      "winnerTrajectoryScore": 0.914208,
+      "runnerUpTrajectoryScore": 0.627778,
+      "trajectoryScoreDelta": 0.28643
+    },
+    "topTrajectorySignals": [
+      {
+        "signal": "matchedEvidenceRecords",
+        "preference": "higher_is_better",
+        "winner": 12,
+        "runnerUp": 1,
+        "advantage": 11.0
+      },
+      {
+        "signal": "attributedSuccessCount",
+        "preference": "higher_is_better",
+        "winner": 3,
+        "runnerUp": 0,
+        "advantage": 3.0
+      },
+      {
+        "signal": "actionEfficiency",
+        "preference": "higher_is_better",
+        "winner": 1.0,
+        "runnerUp": 0.5,
+        "advantage": 0.5
+      },
+      {
+        "signal": "lineageEfficiency",
+        "preference": "higher_is_better",
+        "winner": 1.0,
+        "runnerUp": 0.5,
+        "advantage": 0.5
+      },
+      {
+        "signal": "validationBreadth",
+        "preference": "higher_is_better",
+        "winner": 1.0,
+        "runnerUp": 0.777778,
+        "advantage": 0.222222
+      }
+    ],
+    "trajectorySummary": "Top trajectory contributors: matchedEvidenceRecords +11, attributedSuccessCount +3, actionEfficiency +0.5",
+    "evidenceComparison": {
+      "winnerSourceKinds": {
+        "handoff_event": 1,
+        "run_report": 7,
+        "run_state": 2,
+        "transcript_event": 2
+      },
+      "runnerUpSourceKinds": {
+        "run_report": 1
+      },
+      "winnerStatuses": {
+        "done": 2,
+        "pass": 2,
+        "ready_for_quality_gate": 5,
+        "success": 3
+      },
+      "runnerUpStatuses": {
+        "ready_for_quality_gate": 1
+      }
+    },
+    "winner": {
+      "candidateId": "baseline",
+      "iteration": 0,
+      "searchDepth": 0,
+      "score": 1.0,
+      "complexityScore": 3113,
+      "trajectoryScore": 0.914208,
+      "trajectorySignals": {
+        "validationBreadth": 1.0,
+        "parentProgress": 0.0,
+        "actionEfficiency": 1.0,
+        "targetFocus": 1.0,
+        "lineageEfficiency": 1.0,
+        "matchedEvidenceRecords": 12,
+        "attributedSuccessCount": 3,
+        "attributedWarningCount": 0,
+        "attributedErrorCount": 0,
+        "attributedToolErrorCount": 0,
+        "attributedExternalErrorCount": 0,
+        "evidenceSupport": 0.03,
+        "evidenceIssuePenalty": 0.0,
+        "reviewedPolicyBonus": 0.034208,
+        "reviewedPolicyPenalty": 0.0,
+        "liveWinnerBoost": 0.0
+      },
+      "evidence": {
+        "matchedRecordCount": 12,
+        "successCount": 3,
+        "warningCount": 0,
+        "errorCount": 0,
+        "toolErrorCount": 0,
+        "externalErrorCount": 0,
+        "sourceKindCounts": {
+          "handoff_event": 1,
+          "run_report": 7,
+          "run_state": 2,
+          "transcript_event": 2
+        },
+        "statusCounts": {
+          "done": 2,
+          "pass": 2,
+          "ready_for_quality_gate": 5,
+          "success": 3
+        }
+      }
+    },
+    "runnerUp": {
+      "candidateId": "episode-avoid-failure-path-02",
+      "iteration": 2,
+      "searchDepth": 1,
+      "score": 0.820513,
+      "complexityScore": 3105,
+      "trajectoryScore": 0.627778,
+      "trajectorySignals": {
+        "validationBreadth": 0.777778,
+        "parentProgress": 0.0,
+        "actionEfficiency": 0.5,
+        "targetFocus": 1.0,
+        "lineageEfficiency": 0.5,
+        "matchedEvidenceRecords": 1,
+        "attributedSuccessCount": 0,
+        "attributedWarningCount": 0,
+        "attributedErrorCount": 0,
+        "attributedToolErrorCount": 0,
+        "attributedExternalErrorCount": 0,
+        "evidenceSupport": 0.0,
+        "evidenceIssuePenalty": 0.0,
+        "reviewedPolicyBonus": 0.0,
+        "reviewedPolicyPenalty": 0.0,
+        "liveWinnerBoost": 0.0
+      },
+      "evidence": {
+        "matchedRecordCount": 1,
+        "successCount": 0,
+        "warningCount": 0,
+        "errorCount": 0,
+        "toolErrorCount": 0,
+        "externalErrorCount": 0,
+        "sourceKindCounts": {
+          "run_report": 1
+        },
+        "statusCounts": {
+          "ready_for_quality_gate": 1
+        }
+      }
+    },
+    "liveEvaluation": null
+  },
+  "nodes": [
+    {
+      "candidateId": "baseline",
+      "parentCandidateId": null,
+      "mutationId": null,
+      "iteration": 0,
+      "searchDepth": 0,
+      "status": "keep",
+      "description": "Baseline target agent",
+      "score": 1.0,
+      "trajectoryScore": 0.914208,
+      "trajectoryEvidenceMatches": 12,
+      "trajectoryEvidenceErrors": 0,
+      "trajectoryEvidenceWarnings": 0,
+      "trajectoryEvidenceSuccesses": 3,
+      "reviewedPolicyMatches": 1,
+      "reviewedPolicyBonus": 0.034208,
+      "reviewedPolicyPenalty": 0.0,
+      "passedChecks": 9,
+      "totalChecks": 9,
+      "complexity": {
+        "bodyChars": 2948,
+        "toolCount": 6,
+        "mcpServerCount": 0,
+        "fileCount": 1,
+        "score": 3113,
+        "perTarget": {
+          "team-lead": {
+            "bodyChars": 2948,
+            "toolCount": 6,
+            "mcpServerCount": 0,
+            "score": 3098
+          }
+        }
+      },
+      "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/candidates/iteration-00-baseline.agent.md",
+      "touchedTargets": []
+    },
+    {
+      "candidateId": "relax-no-product-code-boundary",
+      "parentCandidateId": "baseline",
+      "mutationId": "relax-no-product-code-boundary",
+      "iteration": 1,
+      "searchDepth": 1,
+      "status": "discard",
+      "description": "Loosen the manager scope to prove governance regressions are discarded.",
+      "score": 0.820513,
+      "trajectoryScore": 0.547778,
+      "trajectoryEvidenceMatches": 3,
+      "trajectoryEvidenceErrors": 2,
+      "trajectoryEvidenceWarnings": 0,
+      "trajectoryEvidenceSuccesses": 0,
+      "reviewedPolicyMatches": 0,
+      "reviewedPolicyBonus": 0.0,
+      "reviewedPolicyPenalty": 0.0,
+      "passedChecks": 7,
+      "totalChecks": 9,
+      "complexity": {
+        "bodyChars": 2940,
+        "toolCount": 6,
+        "mcpServerCount": 0,
+        "fileCount": 1,
+        "score": 3105,
+        "perTarget": {
+          "team-lead": {
+            "bodyChars": 2940,
+            "toolCount": 6,
+            "mcpServerCount": 0,
+            "score": 3090
+          }
+        }
+      },
+      "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/candidates/iteration-01-relax-no-product-code-boundary.agent.md",
+      "touchedTargets": [
+        "team-lead"
+      ]
+    },
+    {
+      "candidateId": "episode-avoid-failure-path-02",
+      "parentCandidateId": "baseline",
+      "mutationId": "episode-avoid-failure-path-02",
+      "iteration": 2,
+      "searchDepth": 1,
+      "status": "discard",
+      "description": "Use this observed failing path to shape a future avoidance mutation.",
+      "score": 0.820513,
+      "trajectoryScore": 0.627778,
+      "trajectoryEvidenceMatches": 1,
+      "trajectoryEvidenceErrors": 0,
+      "trajectoryEvidenceWarnings": 0,
+      "trajectoryEvidenceSuccesses": 0,
+      "reviewedPolicyMatches": 0,
+      "reviewedPolicyBonus": 0.0,
+      "reviewedPolicyPenalty": 0.0,
+      "passedChecks": 7,
+      "totalChecks": 9,
+      "complexity": {
+        "bodyChars": 2940,
+        "toolCount": 6,
+        "mcpServerCount": 0,
+        "fileCount": 1,
+        "score": 3105,
+        "perTarget": {
+          "team-lead": {
+            "bodyChars": 2940,
+            "toolCount": 6,
+            "mcpServerCount": 0,
+            "score": 3090
+          }
+        }
+      },
+      "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/candidates/iteration-02-episode-avoid-failure-path-02.agent.md",
+      "touchedTargets": [
+        "team-lead"
+      ]
+    }
+  ],
+  "frontierSnapshots": [
+    {
+      "mutationIndex": 0,
+      "catalogIndex": 0,
+      "planToken": "0:baseline",
+      "mutationId": null,
+      "evaluatedCandidateIds": [
+        "baseline"
+      ],
+      "frontierCandidateIds": [
+        "baseline"
+      ],
+      "bestCandidateId": "baseline"
+    },
+    {
+      "mutationIndex": 1,
+      "catalogIndex": 1,
+      "planToken": "1:relax-no-product-code-boundary",
+      "mutationId": "relax-no-product-code-boundary",
+      "evaluatedCandidateIds": [
+        "relax-no-product-code-boundary"
+      ],
+      "frontierCandidateIds": [
+        "baseline"
+      ],
+      "bestCandidateId": "baseline"
+    },
+    {
+      "mutationIndex": 2,
+      "catalogIndex": 2,
+      "planToken": "2:episode-avoid-failure-path-02",
+      "mutationId": "episode-avoid-failure-path-02",
+      "evaluatedCandidateIds": [
+        "episode-avoid-failure-path-02"
+      ],
+      "frontierCandidateIds": [
+        "baseline"
+      ],
+      "bestCandidateId": "baseline"
+    }
+  ]
+}

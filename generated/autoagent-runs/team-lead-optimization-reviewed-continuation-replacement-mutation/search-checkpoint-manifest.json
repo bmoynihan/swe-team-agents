@@ -1,0 +1,42 @@
+{
+  "type": "AutoAgentCheckpointManifest",
+  "version": 1,
+  "experiment": {
+    "name": "team-lead-optimization-reviewed-continuation-replacement-mutation",
+    "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/reviewed-continuation-experiment.replacement.generated.md"
+  },
+  "checkpointPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation-replacement-mutation/search-checkpoint.json",
+  "checkpointVersion": 2,
+  "resumeStage": "post_mutation_search",
+  "candidatePolicy": {
+    "keepStrategy": "score-then-simpler",
+    "searchStrategy": "current_best",
+    "frontierSize": 1
+  },
+  "currentFrontierCandidateIds": [
+    "baseline"
+  ],
+  "deterministicBestCandidateId": "baseline",
+  "inlineCandidateIds": [
+    "baseline"
+  ],
+  "snapshotCandidateCount": 1,
+  "requiredFileCount": 1,
+  "snapshotCandidates": [
+    {
+      "candidateId": "replace-investigate-with-read-and-search-first-01",
+      "iteration": 1,
+      "parentCandidateId": "baseline",
+      "searchDepth": 1,
+      "candidatePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation-replacement-mutation/candidates/iteration-01-replace-investigate-with-read-and-search-first-01.agent.md",
+      "requiredFiles": [
+        {
+          "targetId": "team-lead",
+          "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation-replacement-mutation/candidates/iteration-01-replace-investigate-with-read-and-search-first-01.agent.md",
+          "kind": "agent_profile",
+          "primary": true
+        }
+      ]
+    }
+  ]
+}

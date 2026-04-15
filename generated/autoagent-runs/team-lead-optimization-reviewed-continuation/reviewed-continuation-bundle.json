@@ -1,0 +1,147 @@
+{
+  "type": "AutoAgentReviewedContinuationBundle",
+  "mode": "review_only",
+  "status": "ready",
+  "dispatchScope": "bounded_follow_on_slice",
+  "manualOnly": true,
+  "reportOnly": true,
+  "requiresHumanLaunch": true,
+  "approvalSource": "governed_artifacts_only",
+  "experiment": {
+    "name": "team-lead-optimization-reviewed-continuation",
+    "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization/reviewed-continuation-experiment.generated.md",
+    "primaryTargetId": "team-lead",
+    "targetBundle": [
+      {
+        "id": "team-lead",
+        "path": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/.github/agents/team-lead.agent.md",
+        "kind": "agent_profile",
+        "primary": true,
+        "mutableRegions": [
+          "body"
+        ],
+        "weight": 1.0
+      }
+    ]
+  },
+  "review": {
+    "reviewer": "human-maintainer",
+    "reviewedAt": "2026-04-13T17:46:43.1942132-04:00",
+    "summary": "Accept only the recurring escalation-trigger policy from the exercised continuation run and reject or defer duplicate, weak-provenance, or unsafe draft artifacts."
+  },
+  "summary": {
+    "acceptedBenchmarkDraftCount": 0,
+    "acceptedMutationDraftCount": 0,
+    "acceptedPolicyDraftCount": 1,
+    "acceptedTotalCount": 1,
+    "targetCount": 1,
+    "targetIds": [
+      "team-lead"
+    ]
+  },
+  "traceProvenance": {
+    "matchedRecordCount": 3,
+    "transcriptRecordCount": 2,
+    "handoffRecordCount": 0,
+    "transcriptBackedItemCount": 1,
+    "handoffBackedItemCount": 0,
+    "sourceKinds": [
+      "run_report",
+      "transcript_event"
+    ],
+    "sourceOrigins": [
+      "governed_run_export"
+    ],
+    "sourceScopes": [
+      "chat_transcript",
+      "conversation_transcript",
+      "run_snapshot"
+    ],
+    "sourceIds": [
+      "chat-history-1",
+      "transcript-history-1"
+    ],
+    "governedRunIds": [
+      "20260308-160258"
+    ],
+    "governedTraceExportBacked": true
+  },
+  "accepted": {
+    "benchmarkDrafts": [],
+    "mutationDrafts": [],
+    "policyDrafts": [
+      {
+        "draftId": "policy-draft-02",
+        "sourcePolicyId": "episode-policy-02",
+        "kind": "escalation_trigger",
+        "promotedPolicyId": "episode-policy-escalation-trigger-02",
+        "preferredSourceKinds": [
+          "run_report",
+          "transcript_event"
+        ],
+        "preferredToolSequence": [],
+        "preferredTools": [],
+        "triggerTools": [
+          "apply_patch",
+          "read_file"
+        ],
+        "constraints": {
+          "maxSearchDepth": 1,
+          "maxActionCount": 1
+        },
+        "learningScore": 0.481539,
+        "reasoningPathEfficiencyScore": 0.65,
+        "traceProvenance": {
+          "matchedRecordCount": 3,
+          "sourceKinds": [
+            "run_report",
+            "transcript_event"
+          ],
+          "sourceOrigins": [
+            "governed_run_export"
+          ],
+          "sourceOriginCounts": {
+            "governed_run_export": 2
+          },
+          "sourceScopes": [
+            "run_snapshot",
+            "chat_transcript",
+            "conversation_transcript"
+          ],
+          "sourceIds": [
+            "chat-history-1",
+            "transcript-history-1"
+          ],
+          "governedRunIds": [
+            "20260308-160258"
+          ],
+          "transcriptRecordCount": 2,
+          "handoffRecordCount": 0,
+          "transcriptBacked": true,
+          "handoffBacked": false
+        },
+        "factorSummary": {
+          "benchmarkQuality": 0.820513,
+          "evidenceQuality": 0.0,
+          "terminalOutcomeScore": 0.0,
+          "actionCount": 1,
+          "searchDepth": 1,
+          "stepCount": 3,
+          "handoffCount": 0,
+          "handoffEfficiency": 1.0,
+          "toolSequenceLength": 2,
+          "repeatedToolCount": 0,
+          "toolChurnScore": 1.0,
+          "reasoningPathEfficiencyScore": 0.65
+        }
+      }
+    ]
+  },
+  "artifacts": {
+    "promotedBenchmarkPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/reviewed-benchmark.json",
+    "promotedMutationsPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/reviewed-mutations.json",
+    "promotedPoliciesPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/reviewed-policies.json",
+    "importReportPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/learning-draft-import.json",
+    "promotionAuditPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/learning-promotion-audit.json"
+  }
+}

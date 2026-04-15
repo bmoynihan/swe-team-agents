@@ -1,0 +1,141 @@
+{
+    "type": "AutoAgentLearningReview",
+    "reviewer": "human-maintainer",
+    "reviewedAt": "2026-04-13T17:46:43.1942132-04:00",
+    "summary": "Accept only the recurring escalation-trigger policy from the exercised continuation run and reject or defer duplicate, weak-provenance, or unsafe draft artifacts.",
+    "benchmarkDrafts": [
+        {
+            "draftId": "benchmark-fragment-01",
+            "stagedDecision": "reject",
+            "decision": "reject",
+            "decisionRationale": {
+                "observedCount": 1,
+                "observedCountThreshold": 1,
+                "observedCountPass": true,
+                "observedCountDelta": 0,
+                "blockedByFactors": [
+                    "duplicateCheckId"
+                ],
+                "primaryBlockedFactor": "duplicateCheckId"
+            },
+            "notes": "Reject because the exercised run re-emitted the same benchmark check id already promoted in the Phase 6A reviewed benchmark artifact."
+        },
+        {
+            "draftId": "benchmark-fragment-02",
+            "stagedDecision": "defer",
+            "decision": "defer",
+            "decisionRationale": {
+                "observedCount": 1,
+                "observedCountThreshold": 1,
+                "observedCountPass": true,
+                "observedCountDelta": 0,
+                "blockedByFactors": [
+                    "missingGovernedTraceOrigin"
+                ],
+                "primaryBlockedFactor": "missingGovernedTraceOrigin"
+            },
+            "notes": "Defer because the observed-path fragment is sourced only from a run report snapshot and does not yet carry governed trace-export provenance."
+        },
+        {
+            "draftId": "benchmark-fragment-03",
+            "stagedDecision": "reject",
+            "decision": "reject",
+            "decisionRationale": {
+                "observedCount": 1,
+                "observedCountThreshold": 1,
+                "observedCountPass": true,
+                "observedCountDelta": 0,
+                "blockedByFactors": [
+                    "failurePathBenchmarkReward"
+                ],
+                "primaryBlockedFactor": "failurePathBenchmarkReward"
+            },
+            "notes": "Reject because promoting an episode_observation_guard keyed to terminalStatus=error would reward the failure trajectory instead of guarding against it."
+        }
+    ],
+    "mutationDrafts": [
+        {
+            "draftId": "mutation-draft-01",
+            "stagedDecision": "defer",
+            "decision": "defer",
+            "decisionRationale": {
+                "blockedByFactors": [
+                    "missingSourceMutation"
+                ],
+                "primaryBlockedFactor": "missingSourceMutation"
+            },
+            "notes": "Defer because the success-path seed is promising but has no source mutation id to clone and this slice does not invent a new mutation payload by hand."
+        },
+        {
+            "draftId": "mutation-draft-02",
+            "stagedDecision": "reject",
+            "decision": "reject",
+            "decisionRationale": {
+                "sourceMutationId": "episode-avoid-failure-path-02",
+                "blockedByFactors": [
+                    "missingGovernedTraceOrigin",
+                    "duplicateLineage"
+                ],
+                "primaryBlockedFactor": "missingGovernedTraceOrigin"
+            },
+            "notes": "Reject because the investigate-observed-path draft lacks governed trace provenance and only revisits an already promoted avoidance lineage without adding incremental signal."
+        },
+        {
+            "draftId": "mutation-draft-03",
+            "stagedDecision": "reject",
+            "decision": "reject",
+            "decisionRationale": {
+                "sourceMutationId": "relax-no-product-code-boundary",
+                "blockedByFactors": [
+                    "duplicateSemantics",
+                    "lowerSignal"
+                ],
+                "primaryBlockedFactor": "duplicateSemantics"
+            },
+            "notes": "Reject because it repeats the already reviewed avoidance mutation pattern with weaker signal than the previously promoted mutation."
+        }
+    ],
+    "policyDrafts": [
+        {
+            "draftId": "policy-draft-01",
+            "stagedDecision": "reject",
+            "decision": "reject",
+            "decisionRationale": {
+                "observedCount": 1,
+                "observedCountThreshold": 1,
+                "observedCountPass": true,
+                "observedCountDelta": 0,
+                "learningScore": 0.839583,
+                "learningScoreThreshold": 0.7,
+                "learningScorePass": true,
+                "learningScoreDelta": 0.139583,
+                "blockedByFactors": [
+                    "duplicatePolicyId"
+                ],
+                "primaryBlockedFactor": "duplicatePolicyId"
+            },
+            "notes": "Reject because the preferred tool sequence policy id is already promoted in the Phase 6A reviewed policies artifact."
+        },
+        {
+            "draftId": "policy-draft-02",
+            "stagedDecision": "defer",
+            "decision": "accept",
+            "decisionRationale": {
+                "observedCount": 1,
+                "observedCountThreshold": 2,
+                "observedCountPass": false,
+                "observedCountDelta": -1,
+                "learningScore": 0.481539,
+                "learningScoreThreshold": 0.7,
+                "learningScorePass": false,
+                "learningScoreDelta": -0.218461,
+                "blockedByFactors": [
+                    "observedCount",
+                    "learningScore"
+                ],
+                "primaryBlockedFactor": "learningScore"
+            },
+            "notes": "Promote by reviewer override because the same governed transcript-backed failure path resurfaced across both the original and exercised continuation runs, and as an escalation trigger it penalizes the unsafe apply_patch/read_file error path instead of rewarding it."
+        }
+    ]
+}

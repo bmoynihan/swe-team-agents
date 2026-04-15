@@ -1,0 +1,78 @@
+{
+  "type": "AutoAgentManualDispatchManifest",
+  "mode": "reviewed_manual_dispatch",
+  "status": "ready_for_manual_dispatch",
+  "blockedReasons": [],
+  "manualOnly": true,
+  "reportOnly": true,
+  "requiresHumanLaunch": true,
+  "requiresExplicitApproval": true,
+  "approvalSource": "governed_artifacts_only",
+  "executionAuthority": "human_invoked_only",
+  "dispatchScope": "bounded_follow_on_slice",
+  "continuationEligibilityStatus": "blocked",
+  "governedTaskLifecycle": {
+    "status": "available",
+    "readable": true,
+    "sourcePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/state.json",
+    "taskId": "manual-autoagent-phase6c-reviewed-learning-import-20260413",
+    "taskTitle": "Review and import incremental learning from the exercised continuation run",
+    "phase": "Done",
+    "qualityGateStatus": "PASS",
+    "nextActionSummary": "Inspect the regenerated manual-dispatch package under generated/autoagent-runs/team-lead-optimization-reviewed-continuation/ and decide whether to launch the new follow-on experiment manually.",
+    "nextActionOwner": "team-lead",
+    "missingFields": []
+  },
+  "governedReviewConsensus": {
+    "agrees": true,
+    "status": "consistent",
+    "blockedReasons": [],
+    "stateStatus": "PASS",
+    "stateReadable": true,
+    "stateSourcePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/state.json",
+    "reviewReportStatus": "PASS",
+    "reviewReportReadable": true,
+    "reviewReportSourcePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/review-report.md"
+  },
+  "acceptedTotalCount": 1,
+  "targetIds": [
+    "team-lead"
+  ],
+  "traceProvenance": {
+    "matchedRecordCount": 3,
+    "transcriptRecordCount": 2,
+    "handoffRecordCount": 0,
+    "transcriptBackedItemCount": 1,
+    "handoffBackedItemCount": 0,
+    "sourceKinds": [
+      "run_report",
+      "transcript_event"
+    ],
+    "sourceOrigins": [
+      "governed_run_export"
+    ],
+    "sourceScopes": [
+      "chat_transcript",
+      "conversation_transcript",
+      "run_snapshot"
+    ],
+    "sourceIds": [
+      "chat-history-1",
+      "transcript-history-1"
+    ],
+    "governedRunIds": [
+      "20260308-160258"
+    ],
+    "governedTraceExportBacked": true
+  },
+  "bundlePath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/reviewed-continuation-bundle.json",
+  "followOnExperimentPath": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/reviewed-continuation-experiment.generated.md",
+  "launchCommand": "py -3 \"D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/.github/skills/autoagent-loop/scripts/autoagent_loop.py\" --experiment \"D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs/team-lead-optimization-reviewed-continuation/reviewed-continuation-experiment.generated.md\" --output-root \"D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/generated/autoagent-runs\" --report \"D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/autoagent-report.md\" --results \"D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/autoagent-results.tsv\" --evidence \"D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/autoagent-evidence.json\"",
+  "summary": "Manual dispatch package is ready for a human-invoked follow-on run.",
+  "requiredHumanAction": "Review the generated follow-on experiment and launch it manually with the provided command.",
+  "artifactRefs": {
+    "state": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/state.json",
+    "reviewReport": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/review-report.md",
+    "report": "D:/Aon_Projects/00_VSC_Github_Databricks_Coding_Agent/swe_team_agents_template - Rev4/docs/agents/autoagent-report.md"
+  }
+}
